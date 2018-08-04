@@ -2,13 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Dip</title>
+  <title>DIP</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <dip-root>
+    <style>
+      html, body {
+        overflow: hidden;
+        margin: auto;
+        background-color: #101010;
+        height:100%;
+        width:100%;
+        box-sizing:border-box;
+      }
+      body { 
+        background-color: #000; 
+        font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
+      }
+      .spinner div {
+        width: 20px;
+        height: 2px;
+        position: absolute;
+        left: -20px;
+        bottom: -40px;
+        background-color: #fab84e;
+        border-radius: 25%;
+        animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+      }
+      .spinner div:nth-child(2) {
+        animation-delay: 150ms;
+      }
+      .spinner div:nth-child(3) {
+        animation-delay: 300ms;
+      }
+      .spinner div:nth-child(4) {
+        animation-delay: 450ms;
+      }
+      @keyframes move {
+        0% {left: 0%;}
+        75% {left:100%;}
+        100% {left:100%;}
+      }
+      .mainLoadingLogo {
+        width:100%;
+        text-align:center;
+        margin-top:10%;
+      }
+
+      .amvaraLoading {
+          background-color: black;
+          height: 45vh;
+          text-align: center;
+          width: 100%;
+          position: fixed;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+      }
+
+      .amvaraLoadingLogo {
+          background-image: url(../../assets/DIPLogV_Col_toDarkBack.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+          height: 120px;
+          width: 100%;
+          align-content: center;
+          background-position: center;
+      }
+
+      .mainLoadingText, .loadingTitle {
+        text-align:center;
+        color:#d0d0d0;
+        margin-top: 60px;
+        font-size: 0.8em;
+      }
+
+      .loadingTitle2nd {     color: #808080;    padding-top: 190px;}
+
+      .mainLoadingLogo img { 	width:20%;  }
+    </style>
+    <div class="amvaraLoading">
+      <div class="amvaraLoadingLogo"></div>
+      <div class="loadingTitle">Daten Informations Platform</div>
+      <div class="loadingTitle loadingTitle2nd" style="margin-top:25px">... loading ...</div>
+      <div id='loader'>
+        <div class='spinner'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </dip-root>
 </body>
 </html>

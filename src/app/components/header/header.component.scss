@@ -1,0 +1,56 @@
+@import '../../other/colors';
+
+:host {
+    display: flex;
+    height: 70px;
+    background-color: #212121;
+    position: fixed;
+    top: 0;
+    justify-content: space-between;
+    left: 0;
+    width: 100vw;
+}
+
+.logo {
+    display: block;
+    height: inherit;
+    width: 130px;
+    flex: initial;
+    margin-left: 15px;
+    background-image: url(../../../assets/DIPLogH_Col_toDarkBack.svg);
+    background-size: contain;
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+
+.links {
+    flex: initial;
+    display: flex;
+    height: inherit;
+    justify-content: flex-end;
+    li {
+        flex: initial;
+        list-style-type: none;
+        height: inherit;
+        line-height: 70px;
+        padding: 0 15px;
+        cursor: pointer;
+        position: relative;
+        &:hover:after, &.active:after {
+            height: 3px;
+            width: 100%;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 0;
+            margin: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all .2s ease-in-out;
+            background-color: $yellow-text;
+        }
+    }
+}

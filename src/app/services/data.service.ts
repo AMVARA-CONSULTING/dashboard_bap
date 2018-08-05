@@ -22,7 +22,7 @@ export class DataService {
    * @param array An array containing other arrays
    * @param index A number defining the index of the desired value to pivoting
    */
-  classifyByIndex(array: any[], index: number) : Object {
+  classifyByIndex(array: any[], index: number) : any {
     return array.reduce((r,a) => {
       r[a[index]] = r[a[index]] || []
       r[a[index]].push(a)
@@ -33,9 +33,9 @@ export class DataService {
   /**
    * Sums values of an array collection
    * @param array An array containing other arrays
-   * @param index A number defining the index of the desired value to make the sum
+   * @param i A number defining the index of the desired value to make the sum
    */
-  sumByIndex(array: any[], index: number) : any[] {
-    return array.reduce((a,b) => a + b, 0)
+  sumByIndex(array: any[], i: number) : any {
+    return array.reduce((a,b) => a + b[i], 0)
   }
 }

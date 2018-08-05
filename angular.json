@@ -134,6 +134,9 @@
       },
       "service": {
         "spec": false
+      },
+      "pipe": {
+        "spec": false
       }
     }
   }

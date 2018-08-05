@@ -1,3 +1,31 @@
-<p>
-  order-intake-main works!
-</p>
+<div class="overview" [@overview]="ready">
+  <div class="graphic">
+    <order-intake-graphic [data]="data.orderIntakeData"></order-intake-graphic>
+  </div>
+  <div class="simple">
+    <div class="headers">
+      <div class="empty"></div>
+      <div class="actual">Actual day (tmp)</div>
+      <div class="previous">Prev. Month</div>
+    </div>
+    <div class="overview-group" *ngFor="let key of rowKeys">
+      <div class="empty">{{ rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
+      <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
+    </div>
+  </div>
+</div>
+<div class="wrapper" [@list]="rowKeys?.length">
+  <div class="zone" *ngFor="let key of rowKeys">
+    <div class="zone-header">
+      <div class="title">{{ rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
+      <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
+    </div>
+    <div class="plant" *ngFor="let PlantID of getPlantsByZone(key)">
+      <div class="title">{{ rowPlants[PlantID][0][[config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]]}}</div>
+      <div class="actual">{{ data.sumByIndex(rowPlants[PlantID], 12) | toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(rowPlants[PlantID], 13) | toNumber }}</div>
+    </div>
+  </div>
+</div>

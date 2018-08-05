@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 export class LoadingService {
 
   // Shows the loading circle
-  Show() : void {
+  public Show() : void {
     this.show = true
   }
 
   // Hides the loading circle
-  Hide() : void {
+  public Hide() : void {
     this.show = false
   }
 
-  show: boolean = false
+  public show: boolean = false
 }

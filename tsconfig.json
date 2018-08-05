@@ -21,7 +21,8 @@
       "@components/*": ["app/components/*"],
       "@services/*": ["app/services/*"],
       "@modules/*": ["app/modules/*"],
-      "@pipes/*": ["app/pipes/*"]
+      "@pipes/*": ["app/pipes/*"],
+      "@other/*": ["app/other/*"]
     }
   }
 }

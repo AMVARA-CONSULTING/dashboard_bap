@@ -1,0 +1,22 @@
+@import '../../other/colors';
+
+:host {
+    height: 32px;
+    position: fixed;
+    width: 100%;
+    background-color: $main-bg-color;
+    bottom: 0;
+    left: 0;
+    line-height: 32px;
+    padding: 0 15px;
+}
+
+.left {
+    display: block;
+    float: left;
+}
+
+.right {
+    display: block;
+    float: right;
+}

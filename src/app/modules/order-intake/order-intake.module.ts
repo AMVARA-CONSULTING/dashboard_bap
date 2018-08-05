@@ -4,6 +4,9 @@ import { OrderIntakeMainComponent } from './components/order-intake-main/order-i
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NumberPipe } from '@pipes/number.pipe';
+import { GraphicComponent } from './components/graphic/graphic.component';
+
 const routes: Routes = [
   { path: '', component: OrderIntakeMainComponent }
 ]
@@ -14,6 +17,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule
   ],
-  declarations: [OrderIntakeMainComponent]
+  declarations: [
+    NumberPipe,
+    OrderIntakeMainComponent,
+    GraphicComponent
+  ]
 })
 export class OrderIntakeModule { }

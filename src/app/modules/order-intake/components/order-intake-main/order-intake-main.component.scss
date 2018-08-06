@@ -1,5 +1,9 @@
 @import '../../../../other/colors';
 
+:host {
+    display: block;
+}
+
 .overview {
     display: flex;
     width: 100%;

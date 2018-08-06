@@ -4,6 +4,7 @@ import { ApiService } from '@services/api.service';
 import { LoadingService } from '@services/loading.service';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, style, animate, query, stagger, state } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'order-intake-main',
@@ -33,7 +34,8 @@ export class OrderIntakeMainComponent implements OnInit {
     public data: DataService,
     private api: ApiService,
     private loader: LoadingService,
-    private config: ConfigService
+    private config: ConfigService,
+    private router: Router
   ) { }
 
   ready: boolean = false
@@ -70,6 +72,14 @@ export class OrderIntakeMainComponent implements OnInit {
       r[a[1]].push(a)
       return r
     }, {}))
+  }
+
+  goZone(ZoneID): void {
+    this.router.navigate(['order-intake','zone', ZoneID])
+  }
+
+  goPlant(PlantID): void {
+    this.router.navigate(['order-intake', 'plant', PlantID])
   }
 
   rowGroups: any

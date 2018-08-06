@@ -17,12 +17,12 @@
 </div>
 <div class="wrapper" [@list]="rowKeys?.length">
   <div class="zone" *ngFor="let key of rowKeys">
-    <div class="zone-header">
+    <div class="zone-header" (click)="goZone(rowGroups[key][0][0])">
       <div class="title">{{ rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
       <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
     </div>
-    <div class="plant" *ngFor="let PlantID of getPlantsByZone(key)">
+    <div class="plant" (click)="goPlant(rowGroups[key][0][1])" *ngFor="let PlantID of getPlantsByZone(key)">
       <div class="title">{{ rowPlants[PlantID][0][[config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]]}}</div>
       <div class="actual">{{ data.sumByIndex(rowPlants[PlantID], 12) | toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(rowPlants[PlantID], 13) | toNumber }}</div>

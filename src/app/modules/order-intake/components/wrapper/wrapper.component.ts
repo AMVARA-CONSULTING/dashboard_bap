@@ -34,7 +34,7 @@ export class OrderIntakeWrapperComponent implements OnInit {
   @ViewChild('o') outlet
 
   getState() {
-    return this.outlet.activatedRouteData.state;
+    return this.outlet.activatedRouteData.state
   }
 
 }

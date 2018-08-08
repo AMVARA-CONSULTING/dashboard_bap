@@ -1,0 +1,8 @@
+
+:host {
+    position: relative;
+}
+
+:host > * {
+    display: block;
+}

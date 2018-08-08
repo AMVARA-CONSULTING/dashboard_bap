@@ -15,6 +15,11 @@
     height: 100%;
     position: relative;
     cursor: pointer;
+    transition: top .15s ease-in-out;
+    top: 0;
+    &:hover {
+        top: -10px;
+    }
     .title {
         position: absolute;
         height: 30px;

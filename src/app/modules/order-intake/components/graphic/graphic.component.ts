@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { DataService } from '@services/data.service';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'order-intake-graphic',
@@ -19,8 +20,10 @@ import { trigger, transition, query, stagger, style, animate } from '@angular/an
 export class GraphicComponent implements OnInit, OnChanges {
 
   constructor(
-    private _data: DataService,
-    private config: ConfigService
+    public _data: DataService,
+    private config: ConfigService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ready: boolean = false
@@ -44,6 +47,7 @@ export class GraphicComponent implements OnInit, OnChanges {
         previous: parseInt(this._data.sumByIndex(zones[zone], 13)),
       }
     }
+    this.rows = this._data.classifyByIndex(this._data.orderIntakeData, 0)
     let tActual = 0
     for (var zone in this.zones) {
       if (this.zones[zone].actual > tActual) tActual = this.zones[zone].actual
@@ -60,6 +64,12 @@ export class GraphicComponent implements OnInit, OnChanges {
     this.barsWidth = 100 / Object.keys(this.zones).length
     setTimeout(() => this.ready = true, 300)
   }
+
+  goZone(ZoneID) : void {
+    this.router.navigate(['zone', ZoneID], { relativeTo: this.route })
+  }
+
+  rows: any[][] = []
 
   zones: any = {}
   zoneKeys: string[] = []

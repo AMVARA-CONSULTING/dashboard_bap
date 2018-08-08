@@ -1,9 +1,9 @@
 <div class="wrapper" [@list]="zoneKeys.length">
-  <div class="zone" *ngFor="let zoneKey of zoneKeys" [style.width.%]="barsWidth">
+  <div class="zone" (click)="goZone(zoneKey)" *ngFor="let zoneKey of zoneKeys" [style.width.%]="barsWidth">
     <div class="bars">
       <div style="position: relative; height: 100%;">
-        <div [ngClass]="{zero: !ready}" class="actual" [style.height.%]="zones[zoneKey].percentActual"></div>
-        <div [ngClass]="{zero: !ready}" class="previous" [style.height.%]="zones[zoneKey].percentPrevious"></div>
+        <div matTooltipPosition="above" [matTooltip]="(_data.sumByIndex(rows[zoneKey], 12) | toNumber) + ' ('+zones[zoneKey].percentActual+'%)'" [ngClass]="{zero: !ready}" class="actual" [style.height.%]="zones[zoneKey].percentActual"></div>
+        <div matTooltipPosition="above" [matTooltip]="(_data.sumByIndex(rows[zoneKey], 13) | toNumber) + ' ('+zones[zoneKey].percentPrevious+'%)'" [ngClass]="{zero: !ready}" class="previous" [style.height.%]="zones[zoneKey].percentPrevious"></div>
       </div>
     </div>
     <div class="title">{{ zones[zoneKey].title }}</div>

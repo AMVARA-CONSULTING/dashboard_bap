@@ -46,6 +46,7 @@ export class OrderIntakeMainComponent implements OnInit {
     if (this.data.orderIntakeData.length == 0) {
       this.api.getOrderIntakeData().subscribe(data => {
         this.data.orderIntakeData = data
+        // Transform numeric values to real numeric values, also checking NaN or null
         this.data.orderIntakeData.forEach((row, index, rows) => {
           rows[index][12] = isNaN(rows[index][12]) ? 0 : parseFloat(rows[index][12])
           rows[index][13] = isNaN(rows[index][13]) ? 0 : parseFloat(rows[index][13])
@@ -59,13 +60,19 @@ export class OrderIntakeMainComponent implements OnInit {
     }
   }
 
+  // Reduce data classifying zones and plants
+  // In DOM we will do a cross-join with key-values
   rollupData() : void {
     this.rowGroups = this.data.classifyByIndex(this.data.orderIntakeData, 0)
     this.rowPlants = this.data.classifyByIndex(this.data.orderIntakeData, 1)
     this.rowKeys = Object.keys(this.rowGroups)
+    // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }
 
+  /** Reduce rows per Zone
+   * @param ZoneID id of the selected zone
+   */
   getPlantsByZone(ZoneID) {
     return Object.keys(this.rowGroups[ZoneID].reduce((r,a) => {
       r[a[1]] = r[a[1]] || []
@@ -74,10 +81,16 @@ export class OrderIntakeMainComponent implements OnInit {
     }, {}))
   }
 
+  /** Go to /order-intake/zone/:id
+   * @param ZoneID id of the selected zone
+   */
   goZone(ZoneID): void {
     this.router.navigate(['order-intake','zone', ZoneID])
   }
 
+  /** Go to /order-intake/plant/:id
+   * @param PlantID id of the selected plant
+   */
   goPlant(PlantID): void {
     this.router.navigate(['order-intake', 'plant', PlantID])
   }

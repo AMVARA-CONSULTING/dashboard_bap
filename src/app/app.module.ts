@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppComponent } from '@components/root/app.component'
 import { HeaderComponent } from '@components/header/header.component'
 import { LoaderComponent } from '@components/loader/loader.component'
+import { FooterComponent } from '@components/footer/footer.component'
 
 // App Modules - Aka pages
 
@@ -29,10 +30,15 @@ import { LoadingService } from '@services/loading.service'
 import { DataService } from '@services/data.service'
 import { ApiService } from '@services/api.service'
 import { ConfigService } from '@services/config.service';
-import { FooterComponent } from './components/footer/footer.component'
 
 // Pipes - Used to convert dataTypes or Objects
 
+// Plugins
+
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+
+// Angular Material
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -45,12 +51,17 @@ import { FooterComponent } from './components/footer/footer.component'
     BrowserModule,
     BrowserAnimationsModule,
     RoutingModule,
+    // Pages Modules
     ProductionProgramModule,
     AllocationModule,
     OrderIntakeModule,
     PlantStockModule,
     AboutModule,
-    HelpModule
+    HelpModule,
+    // Angular Material Modules
+    MatTooltipModule,
+    // Plugins
+    RoundProgressModule
   ],
   providers: [
     LoadingService,
@@ -58,6 +69,7 @@ import { FooterComponent } from './components/footer/footer.component'
     ApiService,
     ConfigService,
     {
+      // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,
       useFactory: (configService: ConfigService) => () => configService.load(),
       deps: [ConfigService],

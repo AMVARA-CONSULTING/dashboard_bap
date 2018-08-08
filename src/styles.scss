@@ -1,5 +1,6 @@
 
 @import 'app/other/colors';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
     margin: 0;
@@ -31,4 +32,10 @@ html, body {
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+.mat-tooltip {
+    font-size: 13px;
+    background-color: $bg-white-lvl1;
+    border: 1px solid rgba(255,255,255,.2);
 }

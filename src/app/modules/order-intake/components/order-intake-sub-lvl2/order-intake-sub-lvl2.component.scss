@@ -1,3 +1,102 @@
+
+@import '../../../../other/colors';
+
 :host {
     display: block;
+    width: 100%;
+}
+
+.overview {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    .data-header {
+        display: flex;
+        flex: 1 100%;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        padding: 0 30px 0 15px;
+        box-sizing: border-box;
+        background-color: $bg-white-lvl3;
+        .empty {
+            flex: 1 70%;
+            padding-left: 20px;
+            position: relative;
+        }
+        .report-date, .glyph {
+            flex: 1 15%;
+            text-align: right;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+    }
+    .header-row {
+        display: flex;
+        flex: 1 100%;
+        padding: 12px 30px 12px 15px;
+        .title {
+            flex: 1 70%;
+            position: relative;
+        }
+        &.total {
+            background-color: $bg-white-lvl1;
+        }
+        &.arrow .title:after {
+            transition: left .2s ease-in-out;
+            content: "";
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            top: 0;
+            bottom: 0;
+            left: -2px;
+            transform: rotate(180deg);
+            margin: auto;
+            display: block;
+            background-image: url(../../../../../assets/arrow.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        &.zone {
+            cursor: pointer;
+        }
+        &.plant, &.zone {
+            background-color: $bg-white-lvl5;
+            cursor: pointer;
+            .title {
+                padding-left: 25px;
+            }
+        }
+        .actual, .previous {
+            flex: 1 15%;
+            text-align: right;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .actual {
+            color: $cyan-text;
+        }
+        .previous {
+            color: $yellow-text;
+        }
+    }
+    .meters {
+        display: flex;
+        flex: 1 100%;
+        height: 160px;
+        position: relative;
+        background: linear-gradient(to bottom, #000, #303030);
+        border-bottom: 3px solid black;
+        .meter {
+            flex: 1 50%;
+            height: 100%;
+            &:nth-child(2) {
+                border-left: 3px solid black;
+            }
+            ::ng-deep round-progress {
+                margin: 20px auto 0;
+            }
+        }
+    }
 }

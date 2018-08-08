@@ -1,3 +1,39 @@
-<p>
-  order-intake-sub-lvl2 works!
-</p>
+<div class="overview">
+  <div class="data-header">
+    <div class="empty"></div>
+    <div class="report-date">07/31/2018</div>
+    <div class="glyph">&Oslash;</div>
+  </div>
+  <ng-container *ngIf="ZoneID != null && groupInfo">
+    <div class="header-row total">
+      <div class="title">TOTAL</div>
+      <div class="actual">{{ groupInfo.totalActual | toNumber }}</div>
+      <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
+    </div>
+    <div class="header-row arrow zone" (click)="return()">
+      <div class="title">{{ groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</div>
+      <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
+      <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="PlantID != null && groupInfo">
+    <div class="header-row total">
+      <div class="title">{{ groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</div>
+      <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
+      <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
+    </div>
+    <div class="header-row arrow plant" (click)="return()">
+      <div class="title">{{ groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</div>
+      <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
+      <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>
+    </div>
+  </ng-container>
+  <div class="meters" *ngIf="ready && groupInfo">
+    <div class="meter">
+      <round-progress [duration]="800" [animation]="'easeInOutQuart'" [animationDelay]="400" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress1" background="#555555" [color]="'#79eed9'"></round-progress>
+    </div>
+    <div class="meter">
+      <round-progress [duration]="800" [animation]="'easeInOutQuart'" [animationDelay]="400" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress2" background="#555555" [color]="'#fab84e'">24%</round-progress>
+    </div>
+  </div>
+</div>

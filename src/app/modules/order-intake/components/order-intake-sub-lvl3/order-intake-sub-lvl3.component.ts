@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '@services/loading.service';
-import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
+import { DataService } from '@services/data.service';
 
 @Component({
-  selector: 'order-intake-sub-lvl2',
-  templateUrl: './order-intake-sub-lvl2.component.html',
-  styleUrls: ['./order-intake-sub-lvl2.component.scss'],
+  selector: 'order-intake-sub-lvl3',
+  templateUrl: './order-intake-sub-lvl3.component.html',
+  styleUrls: ['./order-intake-sub-lvl3.component.scss'],
   host: {
-    '(swiperight)': "return()",
-    '(swipeleft)': "forward()"
+    '(swiperight)': "return()"
   }
 })
-export class OrderIntakeSubLvl2Component implements OnInit {
+export class OrderIntakeSubLvl3Component implements OnInit {
 
   ZoneID: any = null
   PlantID: any = null
+
+  RegionID: any = null
+  ProductID: any = null
 
   ready: boolean = false
 
@@ -36,6 +38,11 @@ export class OrderIntakeSubLvl2Component implements OnInit {
         this.ZoneID = params.id
       } else {
         this.PlantID = params.id
+      }
+      if (params.type2 == 'region') {
+        this.RegionID = params.region_id.replace('_',' ').replace('-','/')
+      } else {
+        this.ProductID = params.region_id.replace('_',' ').replace('-','/')
       }
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
@@ -60,6 +67,11 @@ export class OrderIntakeSubLvl2Component implements OnInit {
 
   rollupData(): void {
     let rows
+    console.log(this.data.orderIntakeData)
+    console.log('PlantID ->',this.PlantID)
+    console.log('ZoneID ->', this.ZoneID)
+    console.log('RegionID ->', this.RegionID)
+    console.log('ProductID ->', this.ProductID)
     // Reduce rows depending on route, by Plant or by Zone
     if (this.ZoneID != null) {
       rows = this.data.classifyByIndex(this.data.orderIntakeData, 0)[this.ZoneID]
@@ -94,11 +106,8 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       zonePrevious: this.data.sumByIndex(zoneRows, this.config.config.reports.trucks.columns.orderIntake.previous),
       plantActual: this.data.sumByIndex(plantRows, this.config.config.reports.trucks.columns.orderIntake.actual),
       plantPrevious: this.data.sumByIndex(plantRows, this.config.config.reports.trucks.columns.orderIntake.previous),
-      regions: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]),
-      products: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])
     }
-    this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
-    this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
+    console.log(this.groupInfo)
     this.groupInfo.progress1 = this.ZoneID != null ?
       this.percent(this.groupInfo.zoneActual, this.groupInfo.totalActual) : 
       this.percent(this.groupInfo.plantActual, this.groupInfo.zoneActual)
@@ -119,32 +128,6 @@ export class OrderIntakeSubLvl2Component implements OnInit {
 
   return() : void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
-  }
-
-  forward(): void {
-    if (this.data.lastTap2) {
-      if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
-      } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
-      }
-    }
-  }
-
-  goProduct(ProductID): void {
-    this.data.lastTap = {
-      type: 'product',
-      key: ProductID.replace(/ /g,'_').replace('/','-')
-    }
-    this.router.navigate(['product', ProductID.replace(/ /g,'_').replace('/','-')], { relativeTo: this.activatedRoute })
-  }
-  
-  goRegion(RegionID): void {
-    this.data.lastTap = {
-      type: 'region',
-      key: RegionID.replace(/ /g,'_').replace('/','-')
-    }
-    this.router.navigate(['region', RegionID.replace(/ /g,'_').replace('/','-')], { relativeTo: this.activatedRoute })
   }
 
 }

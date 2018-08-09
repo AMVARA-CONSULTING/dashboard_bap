@@ -35,6 +35,9 @@ import { ConfigService } from '@services/config.service';
 
 // Plugins
 
+import 'hammerjs';
+import 'hammer-timejs';
+
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 // Angular Material

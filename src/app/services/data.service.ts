@@ -38,4 +38,8 @@ export class DataService {
   sumByIndex(array: any[], i: number) : any {
     return array.reduce((a,b) => a + b[i], 0)
   }
+
+  // Little Object to know if we can forward to lvl2/lvl3
+  lastTap
+  lastTap2
 }

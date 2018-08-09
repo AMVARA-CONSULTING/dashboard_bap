@@ -4,6 +4,7 @@
 :host {
     display: block;
     width: 100%;
+    left: 0;
 }
 
 .overview {
@@ -94,9 +95,76 @@
             &:nth-child(2) {
                 border-left: 3px solid black;
             }
-            ::ng-deep round-progress {
+            .container {
+                width: 120px;
+                height: 120px;
                 margin: 20px auto 0;
+                position: relative;
+                .percent {
+                    position: absolute;
+                    height: 30px;
+                    width: 100%;
+                    margin: auto;
+                    text-align: center;
+                    top: 0;
+                    bottom: 0;
+                    font-size: 27px;
+                }
             }
+        }
+    }
+    .title-header {
+        flex: 1 100%;
+        padding: 12px 30px 12px 15px;
+        display: flex;
+        background-color: $bg-white-lvl1;
+        font-size: 16px;
+        letter-spacing: 1px;
+        .title {
+            flex: 1 100%;
+        }
+    }
+    .lvl2-row {
+        flex: 1 100%;
+        padding: 12px 30px 12px 15px;
+        display: flex;
+        cursor: pointer;
+        &:nth-child(even) {
+            background-color: $bg-white-lvl3;
+        }
+        &:nth-child(odd) {
+            background-color: $bg-white-lvl4;
+        }
+        &:hover .title {
+            padding-left: 30px;
+            &:after {
+                left: 15px;
+            }
+        }
+        .title {
+            flex: 1 70%;
+            padding-left: 20px;
+            position: relative;
+            transition: padding-left .15s ease-in-out;
+            &:after {
+                transition: left .15s ease-in-out;
+                content: "";
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                display: block;
+                background-image: url(../../../../../assets/arrow.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+        .actual, .previous {
+            flex: 1 15%;
+            text-align: right;
         }
     }
 }

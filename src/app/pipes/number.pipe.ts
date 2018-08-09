@@ -8,19 +8,29 @@ export class NumberPipe implements PipeTransform {
 
   constructor(private config: ConfigService) {}
 
-  transform(value: number) : string {
+  transform(value: number, sign?: boolean): string {
+    sign = sign || false
+    if (isNaN(value)) return '-'
     if (value == 0) return '0'
     if (value > 0) {
-      if (!!false) {
+      if (sign) {
         return '+ ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
       } else {
-        return parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        if (value < 0) {
+          return '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        } else {
+          return parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        }
       }
     } else {
-      if (!!false) {
+      if (sign) {
         return '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
       } else {
-        return parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        if (value < 0) {
+          return '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        } else {
+          return parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+        }
       }
     }
   }

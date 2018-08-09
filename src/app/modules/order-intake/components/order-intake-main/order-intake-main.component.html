@@ -1,9 +1,10 @@
+
+<div class="data-header">
+  <div class="empty"></div>
+  <div class="report-date">07/31/2018</div>
+  <div class="glyph">&Oslash;</div>
+</div>
 <div class="overview" [@overview]="ready">
-  <div class="data-header">
-    <div class="empty"></div>
-    <div class="report-date">07/31/2018</div>
-    <div class="glyph">&Oslash;</div>
-  </div>
   <div class="graphic">
     <order-intake-graphic [data]="data.orderIntakeData"></order-intake-graphic>
   </div>
@@ -22,14 +23,14 @@
 </div>
 <div class="wrapper" [@list]="rowKeys?.length">
   <div class="zone" *ngFor="let key of rowKeys">
-    <div class="zone-header" (click)="goZone(rowGroups[key][0][0])">
+    <div class="zone-header" (click)="goZone(key)">
       <div class="title">{{ rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
-      <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
+      <div matTooltipPosition="after" [matTooltip]="data.sumByIndex(rowGroups[key], 12) - data.sumByIndex(rowGroups[key], 13) | toNumber:true" class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
     </div>
-    <div class="plant" (click)="goPlant(rowGroups[key][0][1])" *ngFor="let PlantID of getPlantsByZone(key)">
+    <div class="plant" (click)="goPlant(PlantID)" *ngFor="let PlantID of getPlantsByZone(key)">
       <div class="title">{{ rowPlants[PlantID][0][[config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]]}}</div>
-      <div class="actual">{{ data.sumByIndex(rowPlants[PlantID], 12) | toNumber }}</div>
+      <div matTooltipPosition="after" [matTooltip]="data.sumByIndex(rowPlants[PlantID], 12) - data.sumByIndex(rowPlants[PlantID], 13) | toNumber:true" class="actual">{{ data.sumByIndex(rowPlants[PlantID], 12) | toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(rowPlants[PlantID], 13) | toNumber }}</div>
     </div>
   </div>

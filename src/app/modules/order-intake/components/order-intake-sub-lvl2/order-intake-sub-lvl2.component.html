@@ -30,10 +30,32 @@
   </ng-container>
   <div class="meters" *ngIf="ready && groupInfo">
     <div class="meter">
-      <round-progress [duration]="800" [animation]="'easeInOutQuart'" [animationDelay]="400" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress1" background="#555555" [color]="'#79eed9'"></round-progress>
+      <div class="container">
+        <div class="percent cyan">{{groupInfo.progress1 }}%</div>
+        <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress1" background="#555555" [color]="'#79eed9'"></round-progress>
+      </div>
     </div>
     <div class="meter">
-      <round-progress [duration]="800" [animation]="'easeInOutQuart'" [animationDelay]="400" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress2" background="#555555" [color]="'#fab84e'">24%</round-progress>
+      <div class="container">
+          <div class="percent orange">{{groupInfo.progress2 }}%</div>
+        <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="60" [stroke]="13" [current]="groupInfo.progress2" background="#555555" [color]="'#fab84e'">24%</round-progress>
+      </div>
     </div>
+  </div>
+  <div class="title-header">
+    <div class="title">REGIONS</div>
+  </div>
+  <div class="lvl2-row" (click)="goProduct(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
+    <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.reports.trucks.columns.orderIntake.region[config.config.language]]]}}</div>
+    <div matTooltipPosition="after" [matTooltip]="data.sumByIndex(groupInfo.regions[RegionKey], 12) - data.sumByIndex(groupInfo.regions[RegionKey], 13) | toNumber:true" class="actual cyan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 12) | toNumber }}</div>
+    <div class="previous orange">{{ data.sumByIndex(groupInfo.regions[RegionKey], 13) | toNumber }}</div>
+  </div>
+  <div class="title-header">
+    <div class="title">PRODUCTS</div>
+  </div>
+  <div class="lvl2-row" (click)="goRegion(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
+    <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.reports.trucks.columns.orderIntake.product[config.config.language]]]}}</div>
+    <div matTooltipPosition="after" [matTooltip]="data.sumByIndex(groupInfo.products[ProductKey], 12) - data.sumByIndex(groupInfo.products[ProductKey], 13) | toNumber:true" class="actual cyan">{{ data.sumByIndex(groupInfo.products[ProductKey], 12) | toNumber }}</div>
+    <div class="previous orange">{{ data.sumByIndex(groupInfo.products[ProductKey], 13) | toNumber }}</div>
   </div>
 </div>

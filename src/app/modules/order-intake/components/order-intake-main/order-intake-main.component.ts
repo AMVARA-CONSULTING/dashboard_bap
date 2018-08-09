@@ -27,6 +27,9 @@ import { Router } from '@angular/router';
       ])
     ])
   ],
+  host: {
+    '(swipeleft)': "recoverLvl2()"
+  }
 })
 export class OrderIntakeMainComponent implements OnInit {
 
@@ -85,6 +88,10 @@ export class OrderIntakeMainComponent implements OnInit {
    * @param ZoneID id of the selected zone
    */
   goZone(ZoneID): void {
+    this.data.lastTap = {
+      type: 'zone',
+      key: ZoneID
+    }
     this.router.navigate(['order-intake','zone', ZoneID])
   }
 
@@ -92,7 +99,22 @@ export class OrderIntakeMainComponent implements OnInit {
    * @param PlantID id of the selected plant
    */
   goPlant(PlantID): void {
+    this.data.lastTap = {
+      type: 'plant',
+      key: PlantID
+    }
     this.router.navigate(['order-intake', 'plant', PlantID])
+  }
+
+  recoverLvl2(): void {
+    console.log("Recovering")
+    if (this.data.lastTap != null) {
+      if (this.data.lastTap.type == 'plant') {
+        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key])
+      } else {
+        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key])
+      }
+    }
   }
 
   rowGroups: any

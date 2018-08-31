@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'dip-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dip';
+
+  constructor(public data: DataService) {}
+
+  close() {
+    this.data.sidenavOpened = !this.data.sidenavOpened
+  }
+  
 }

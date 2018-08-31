@@ -40,9 +40,9 @@ export class OrderIntakeSubLvl3Component implements OnInit {
         this.PlantID = params.id
       }
       if (params.type2 == 'region') {
-        this.RegionID = params.region_id.replace('_',' ').replace('-','/')
+        this.RegionID = decodeURI(params.region_id)
       } else {
-        this.ProductID = params.region_id.replace('_',' ').replace('-','/')
+        this.ProductID = decodeURI(params.region_id)
       }
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
@@ -67,11 +67,6 @@ export class OrderIntakeSubLvl3Component implements OnInit {
 
   rollupData(): void {
     let rows
-    console.log(this.data.orderIntakeData)
-    console.log('PlantID ->',this.PlantID)
-    console.log('ZoneID ->', this.ZoneID)
-    console.log('RegionID ->', this.RegionID)
-    console.log('ProductID ->', this.ProductID)
     // Reduce rows depending on route, by Plant or by Zone
     if (this.ZoneID != null) {
       rows = this.data.classifyByIndex(this.data.orderIntakeData, 0)[this.ZoneID]
@@ -107,23 +102,35 @@ export class OrderIntakeSubLvl3Component implements OnInit {
       plantActual: this.data.sumByIndex(plantRows, this.config.config.reports.trucks.columns.orderIntake.actual),
       plantPrevious: this.data.sumByIndex(plantRows, this.config.config.reports.trucks.columns.orderIntake.previous),
     }
-    console.log(this.groupInfo)
-    this.groupInfo.progress1 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneActual, this.groupInfo.totalActual) : 
-      this.percent(this.groupInfo.plantActual, this.groupInfo.zoneActual)
-    this.groupInfo.progress2 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zonePrevious, this.groupInfo.totalPrevious) :
-      this.percent(this.groupInfo.plantPrevious, this.groupInfo.zonePrevious)
+    if (this.RegionID != null) {
+      this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])[this.RegionID]
+    } else {
+      this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
+    }
+    this.groupInfo.thisActual = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
+    this.groupInfo.thisPrevious = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
+    this.groupInfo.progress1 = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))
+    this.groupInfo.progress2 = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.previous))
+    this.groupInfo.sub3rows = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
+    this.groupKeys = Object.keys(this.groupInfo.sub3rows)
     
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }
+
+  groupKeys = []
+
+  subRows
 
   percent(part: number, total: number) : number {
     return parseInt(((part * 100) / total).toFixed(0))
   }
 
   ngOnInit() {
+  }
+
+  returnToMain() : void {
+    this.router.navigate(['/'], { relativeTo: this.activatedRoute })
   }
 
   return() : void {

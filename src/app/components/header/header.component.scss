@@ -29,9 +29,12 @@
 
 .links {
     flex: initial;
-    display: flex;
+    display: none;
     height: inherit;
     justify-content: flex-end;
+    @media (min-width: 800px) {
+        display: flex;
+    }
     li {
         flex: initial;
         list-style-type: none;
@@ -56,6 +59,80 @@
             bottom: 0;
             transition: all .2s ease-in-out;
             background-color: $yellow-text;
+        }
+    }
+}
+
+.menu-icon {
+    display: block;
+    @media (min-width: 800px) {
+        display: none;
+    }
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    &.active .icon .wrapper {
+        .top {
+            top: 50%;
+            transform: rotate(45deg);
+            background-color: $yellow-text;
+        }
+        .middle {
+            left: 100%;
+            opacity: 0;
+            background-color: $yellow-text;
+        }
+        .bottom {
+            bottom: 50%;
+            transform: rotate(-45deg);
+            background-color: $yellow-text;
+        }
+    }
+    .icon {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        .wrapper {
+            position: absolute;
+            width: 40%;
+            height: 30%;
+            margin: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            .top {
+                position: absolute;
+                top: 0;
+                transition: all .15s ease-in-out;
+                left: 0;
+                height: 1px;
+                width: 100%;
+                background-color: #d0d0d0;
+            }
+            .middle {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                left: 0;
+                height: 1px;
+                transition: all .15s ease-in-out;
+                width: 100%;
+                background-color: #d0d0d0;
+            }
+            .bottom {
+                position: absolute;
+                bottom: 0;
+                transition: all .15s ease-in-out;
+                left: 0;
+                height: 1px;
+                width: 100%;
+                background-color: #d0d0d0;
+            }
         }
     }
 }

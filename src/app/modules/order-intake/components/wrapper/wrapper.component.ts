@@ -26,7 +26,7 @@ import { DataService } from '@services/data.service';
           ], { optional: true }),
         ])
       ]),
-      transition('2 => 1, 3 => 2', [
+      transition('2 => 1, 3 => 2, 3 => 1', [
         query(':enter, :leave', style({ position: 'fixed', left: 0, width:'100%' })
           , { optional: true }),
         group([

@@ -5,6 +5,7 @@
     display: block;
     width: 100%;
     left: 0;
+    touch-action: pan-y !important;
 }
 
 .overview {
@@ -118,7 +119,6 @@
         padding: 12px 30px 12px 15px;
         display: flex;
         background-color: $bg-white-lvl1;
-        font-size: 16px;
         letter-spacing: 1px;
         .title {
             flex: 1 100%;
@@ -129,6 +129,11 @@
         padding: 12px 30px 12px 15px;
         display: flex;
         cursor: pointer;
+        transition: border-bottom .15s ease-in-out;
+        border-bottom: 1px solid transparent;
+        &:hover {
+            border-bottom-color: $yellow-text;
+        }
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
         }

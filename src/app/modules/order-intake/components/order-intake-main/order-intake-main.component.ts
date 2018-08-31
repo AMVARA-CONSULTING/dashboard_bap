@@ -27,9 +27,9 @@ import { Router } from '@angular/router';
       ])
     ])
   ],
-  host: {
+  /*host: {
     '(swipeleft)': "recoverLvl2()"
-  }
+  }*/
 })
 export class OrderIntakeMainComponent implements OnInit {
 
@@ -107,7 +107,6 @@ export class OrderIntakeMainComponent implements OnInit {
   }
 
   recoverLvl2(): void {
-    console.log("Recovering")
     if (this.data.lastTap != null) {
       if (this.data.lastTap.type == 'plant') {
         this.router.navigate(['order-intake', 'plant', this.data.lastTap.key])

@@ -99,6 +99,8 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     }
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
+    this.groupInfo.progressValue1 = this.ZoneID != null ? this.groupInfo.zoneActual : this.groupInfo.plantActual
+    this.groupInfo.progressValue2 = this.ZoneID != null ? this.groupInfo.zonePrevious : this.groupInfo.plantPrevious
     this.groupInfo.progress1 = this.ZoneID != null ?
       this.percent(this.groupInfo.zoneActual, this.groupInfo.totalActual) : 
       this.percent(this.groupInfo.plantActual, this.groupInfo.zoneActual)
@@ -133,18 +135,18 @@ export class OrderIntakeSubLvl2Component implements OnInit {
 
   goProduct(ProductID): void {
     this.data.lastTap = {
-      type: 'product',
-      key: ProductID.replace(/ /g,'_').replace('/','-')
+      type: 'region',
+      key: encodeURI(ProductID)
     }
-    this.router.navigate(['product', ProductID.replace(/ /g,'_').replace('/','-')], { relativeTo: this.activatedRoute })
+    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
   }
   
   goRegion(RegionID): void {
     this.data.lastTap = {
-      type: 'region',
-      key: RegionID.replace(/ /g,'_').replace('/','-')
+      type: 'product',
+      key: encodeURI(RegionID)
     }
-    this.router.navigate(['region', RegionID.replace(/ /g,'_').replace('/','-')], { relativeTo: this.activatedRoute })
+    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute })
   }
 
 }

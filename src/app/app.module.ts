@@ -33,15 +33,13 @@ import { ConfigService } from '@services/config.service';
 
 // Pipes - Used to convert dataTypes or Objects
 
-// Plugins
-
-import 'hammerjs';
-import 'hammer-timejs';
-
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 // Angular Material
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -63,8 +61,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HelpModule,
     // Angular Material Modules
     MatTooltipModule,
+    MatSidenavModule,
     // Plugins
-    RoundProgressModule
+    RoundProgressModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LoadingService,

@@ -1,0 +1,42 @@
+
+@import '../../other/colors';
+
+:host {
+    display: flex;
+    flex: 1 100%;
+    height: 160px;
+    position: relative;
+    background: linear-gradient(to bottom, #000, #303030);
+    border-bottom: 3px solid black;
+    .meter {
+        flex: 1 50%;
+        height: 100%;
+        &:nth-child(2) {
+            border-left: 3px solid black;
+        }
+        .container {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto 0;
+            position: relative;
+            .percent {
+                position: absolute;
+                height: 30px;
+                width: 100%;
+                margin: auto;
+                text-align: center;
+                top: 0;
+                bottom: 0;
+                font-size: 27px;
+            }
+        }
+    }
+}
+
+::ng-deep .mat-tooltip.actual {
+    border-color: $cyan-text;
+}
+
+::ng-deep .mat-tooltip.previous {
+    border-color: $yellow-text;
+}

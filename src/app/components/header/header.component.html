@@ -4,6 +4,15 @@
   <li routerLink="/production-program" routerLinkActive="active">Production Planning</li>
   <li>Allocation</li>
   <li>Plant Stock</li>
-  <li>About</li>
+  <li routerLink="/about" routerLinkActive="active">About</li>
   <li>Help</li>
 </ul>
+<div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
+  <div class="icon">
+    <div class="wrapper">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+    </div>
+  </div>
+</div>

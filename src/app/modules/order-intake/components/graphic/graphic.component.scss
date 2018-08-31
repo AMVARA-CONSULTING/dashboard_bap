@@ -59,3 +59,11 @@
         }
     }
 }
+
+::ng-deep .actual {
+    border-color: $cyan-text;
+}
+
+::ng-deep .previous {
+    border-color: $yellow-text;
+}

@@ -5,6 +5,9 @@ export class DataService {
 
   constructor() { }
 
+  // Determines if the sidenav is opened
+  sidenavOpened: boolean = false
+
   // Order Intake - All rows without filters
   orderIntakeData: any[][] = []
 

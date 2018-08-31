@@ -1,0 +1,21 @@
+
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+::ng-deep .mat-expansion-panel {
+    background-color: transparent;
+    box-shadow: none !important;
+}
+
+::ng-deep .mat-expansion-panel-header-title, ::ng-deep .mat-expansion-indicator:after {
+    color: $yellow-text;
+}
+
+::ng-deep .mat-expansion-panel-content {
+    color: #d0d0d0;
+}

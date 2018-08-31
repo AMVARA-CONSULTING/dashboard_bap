@@ -11,6 +11,8 @@ import { OrderIntakeWrapperComponent } from './components/wrapper/wrapper.compon
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { OrderIntakeSubLvl3Component } from './components/order-intake-sub-lvl3/order-intake-sub-lvl3.component';
+import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
+import { MatExpansionModule, MatAccordion } from '@angular/material/expansion';
 
 const sub3: Routes = [
   {
@@ -70,7 +72,12 @@ const routes: Routes = [
     GraphicComponent,
     OrderIntakeSubLvl2Component,
     OrderIntakeWrapperComponent,
-    OrderIntakeSubLvl3Component
+    OrderIntakeSubLvl3Component,
+    // DIP Own Components
+    DipCircularMetersComponent
+  ],
+  exports: [
+    DipCircularMetersComponent
   ]
 })
 export class OrderIntakeModule { }

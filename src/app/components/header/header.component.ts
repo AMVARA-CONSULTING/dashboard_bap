@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'header',
@@ -8,9 +9,16 @@ import { LoadingService } from '@services/loading.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loading: LoadingService) { }
+  constructor(
+    private loading: LoadingService,
+    public data: DataService
+  ) { }
 
   ngOnInit() {
+  }
+
+  openSidenav() : void {
+    this.data.sidenavOpened = !this.data.sidenavOpened
   }
 
 }

@@ -9,6 +9,7 @@ export class NumberPipe implements PipeTransform {
   constructor(private config: ConfigService) {}
 
   transform(value: number, sign?: boolean): string {
+    value = Math.round(value)
     sign = sign || false
     if (isNaN(value)) return '-'
     if (value == 0) return '0'

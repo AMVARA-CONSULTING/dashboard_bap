@@ -1,6 +1,18 @@
 <header></header>
-<div class="content">
-    <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container>
+    <mat-sidenav mode="push" position="end" [(opened)]="data.sidenavOpened">
+        <ul class="links">
+            <li (click)="close()" routerLink="/order-intake" routerLinkActive="active">Order Intake</li>
+            <li (click)="close()" routerLink="/production-program" routerLinkActive="active">Production Planning</li>
+            <li (click)="close()">Allocation</li>
+            <li (click)="close()">Plant Stock</li>
+            <li (click)="close()" routerLink="/about" routerLinkActive="active">About</li>
+            <li (click)="close()">Help</li>
+        </ul>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 <footer></footer>
 <loader></loader>

@@ -1,5 +1,62 @@
 
+@import '../../other/colors';
+
 .content {
     margin-top: 70px;
     margin-bottom: 32px;
+}
+
+::ng-deep .mat-drawer-container {
+    color: #d0d0d0;
+    background-color: transparent;
+}
+
+::ng-deep .mat-drawer {
+    background-color: #101010 !important;
+    width: 90%;
+    color: #d0d0d0;
+}
+
+::ng-deep mat-sidenav {
+    padding: 100px 30px 62px;
+}
+
+::ng-deep mat-sidenav-container {
+    min-height: 450px;
+}
+
+.links {
+    list-style-type: none;
+    line-height: 35px;
+    li {
+        outline: 0;
+        padding-left: 40px;
+        box-sizing: border-box;
+        position: relative;
+        margin-bottom: 10px;
+        transition: all .15s ease-in-out;
+        cursor: pointer;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            left: 10px;
+            height: 13px;
+            width: 13px;
+            transition: left .15s ease-in-out;
+            background-image: url(../../../assets/arrow.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        } 
+        &:hover {
+            &:before {
+                left: 18px;
+                background-image: url(../../../assets//arrow.yellow.svg);
+            }
+            color: $yellow-text;
+        }
+    }
 }

@@ -13,7 +13,7 @@ import { DataService } from '@services/data.service';
     // in every transition function
     trigger('routerTransition', [
       transition('1 => 2, 2 => 3', [
-        query(':enter, :leave', style({ position: 'fixed', width:'100%' })
+        query(':enter, :leave', style({ overflow: 'hidden' })
           , { optional: true }),
         group([
           query(':enter', [
@@ -27,7 +27,7 @@ import { DataService } from '@services/data.service';
         ])
       ]),
       transition('2 => 1, 3 => 2, 3 => 1', [
-        query(':enter, :leave', style({ position: 'fixed', left: 0, width:'100%' })
+        query(':enter, :leave', style({ overflow: 'hidden' })
           , { optional: true }),
         group([
           query(':enter', [

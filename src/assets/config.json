@@ -2,6 +2,26 @@
     "version": "2.0.0",
 	"language": "en",
 	"scenario": "dev",
+	"delay": 0,
+	"copyright": "DAIMLER AG",
+	"license": "TE/SO",
+	"contacts": [
+		{
+			"name": "Steffen Schweiger",
+			"description": "Berichtwesen Ordercenter",
+			"telephone": "+49 7271 71 2184"
+		}, 
+		{
+			"name": "Kai Blattmann",
+			"description": "Berichtwesen Ordercenter",
+			"telephone": "+49 7271 71 5435"
+		}, 
+		{
+			"name": "Peter Hess",
+			"description": "Berichtwesen Ordercenter",
+			"telephone": "+49 7271 71 2184"
+		}
+	],
     "reports": {
         "vans": {
 			"dev": {

@@ -1,0 +1,99 @@
+
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    &:nth-child(2) {
+        margin-bottom: 30px;
+    }
+    &:last-child {
+        margin-bottom: 10px;
+    }
+    .category {
+        flex: 1 35%;
+        line-height: 25px;
+        padding-left: 30px;
+        box-sizing: border-box;
+    }
+    .telephones {
+        flex: 1 65%;
+        line-height: 25px;
+    }
+}
+
+p {
+    line-height: 20px;
+    text-align: justify;
+}
+
+a {
+    color: $cyan-text;
+    position: relative;
+    text-decoration: none;
+    &:hover:after {
+        width: 100%;
+    }
+    &:after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        opacity: .7;
+        transition: width .2s ease-in-out;
+        background-color: $cyan-text;
+        bottom: -5px;
+        left: 0;
+        border-radius: 3px;
+        right: 0;
+        position: absolute;
+        margin: auto;
+    }
+}
+
+.helpers {
+    text-align: center;
+    margin: 50px 0;
+    .helper {
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .portrait_landscape {
+        width: 250px;
+        height: 140px;
+        background-image: url(assets/img/portrait_landscape.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .scroll_swipe {
+        width: 250px;
+        height: 135px;
+        background-image: url(assets/img/scroll_swipe.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .hand1, .hand2 {
+        width: 50px;
+        height: 90px;
+    }
+    .hand1 {
+        background-image: url(assets/img/hand1.svg);
+    }
+    .hand2 {
+        margin-left: 80px;
+        height: 95px;
+        background-image: url(assets/img/hand2.svg);
+    }
+}
+
+br {
+    line-height: 50px;
+}

@@ -40,6 +40,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ToolsService } from '@services/tools.service';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { environment } from '../environments/environment';
     DataService,
     ApiService,
     ConfigService,
+    ToolsService,
     {
       // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,

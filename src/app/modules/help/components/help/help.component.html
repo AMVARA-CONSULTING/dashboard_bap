@@ -1,0 +1,37 @@
+<help-title>General Information</help-title>
+<div class="contact-info">
+  <div class="category">
+    iBISS:
+  </div>
+  <div class="telephones">
+    <a href="" target="_blank">Link to DIP Corporate Analytics Platform</a>
+  </div>
+</div>
+<div class="contact-info">
+  <div class="category">
+    DIP Support:
+  </div>
+  <div class="telephones">
+    <contact *ngFor="let contact of contacts; let i = index;">
+      <name>{{ contact.name }}</name>
+      <description>{{ contact.description }}</description>
+      <tel>{{ contact.telephone }}</tel>
+    </contact>
+  </div>
+</div>
+<help-title>DIP Functions</help-title>
+<p>
+  This application is adapted for any device and visualization. You can navigate through it with different options.
+</p>
+<div class="helpers">
+  <div class="helper hand1"></div>
+  <div class="helper hand2"></div>
+  <br />
+  Portrait & Landscape
+  <br />
+  <div class="helper portrait_landscape"></div>
+  <br />
+  Scroll & Swipe
+  <br />
+  <div class="helper scroll_swipe"></div>
+</div>

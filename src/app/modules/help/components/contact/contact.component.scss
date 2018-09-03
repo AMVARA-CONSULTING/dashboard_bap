@@ -1,0 +1,21 @@
+
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    margin-bottom: 20px;
+}
+
+::ng-deep name, ::ng-deep description, ::ng-deep tel {
+    display: block;
+    line-height: 25px;
+}
+
+::ng-deep name {
+    color: white;
+    font-weight: bold
+}
+
+::ng-deep tel {
+    color: $yellow-text;
+}

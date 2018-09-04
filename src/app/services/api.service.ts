@@ -14,6 +14,6 @@ export class ApiService {
 
   // Get Production Program Data from Report (tmp JSON file)
   getProductionProgramData(ReportID?: string) : Observable<any[][]> {
-    return this.http.get<any[][]>('assets/reports/production_program.json')
+    return this.http.get<any[][]>('assets/reports/production_program.fake.json')
   }
 }

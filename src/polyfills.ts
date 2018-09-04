@@ -73,7 +73,9 @@ import 'core-js/es7/reflect';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+// Custom Polyfill to support .toLocaleString() in iOS devices
+// https://github.com/willsp/polyfill-Number.toLocaleString-with-Locales
+import 'number-to-locale-string'
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

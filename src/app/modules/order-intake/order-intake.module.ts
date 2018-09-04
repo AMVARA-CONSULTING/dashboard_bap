@@ -12,7 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { OrderIntakeSubLvl3Component } from './components/order-intake-sub-lvl3/order-intake-sub-lvl3.component';
 import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
-import { MatExpansionModule, MatAccordion } from '@angular/material/expansion';
+import { SharedModule } from '@modules/shared/shared.module';
 
 const sub3: Routes = [
   {
@@ -64,10 +64,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     MatTooltipModule,
-    RoundProgressModule
+    RoundProgressModule,
+    SharedModule
   ],
   declarations: [
-    NumberPipe,
     OrderIntakeMainComponent,
     GraphicComponent,
     OrderIntakeSubLvl2Component,

@@ -11,4 +11,9 @@ export class ApiService {
   getOrderIntakeData(ReportID?: string) : Observable<any[][]> {
     return this.http.get<any[][]>('assets/reports/order_intake.bkp.json')
   }
+
+  // Get Production Program Data from Report (tmp JSON file)
+  getProductionProgramData(ReportID?: string) : Observable<any[][]> {
+    return this.http.get<any[][]>('assets/reports/production_program.json')
+  }
 }

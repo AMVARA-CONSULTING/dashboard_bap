@@ -5,7 +5,7 @@ export class ToolsService {
 
   constructor() { }
 
-  public getJsonFromUrl() {
+  getJsonFromUrl() {
     var query = location.search.substr(1)
     var result = {}
     query.split("&").forEach(function(part) {
@@ -13,5 +13,9 @@ export class ToolsService {
       result[item[0]] = decodeURIComponent(item[1])
     });
     return result
+  }
+
+  getYear() : number {
+    return (new Date()).getFullYear()
   }
 }

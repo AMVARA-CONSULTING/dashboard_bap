@@ -1,3 +1,27 @@
-<p>
-  production-program-main works!
-</p>
+<div class="data-header">
+  <div class="report-date">PLANDATE: 07/31/2018</div>
+</div>
+<div class="overview">
+  <div class="graphic"></div>
+  <div class="simple">
+
+  </div>
+</div>
+<div class="wrapper">
+  <div class="zone" *ngFor="let zone of rowsGroupsGlobal | keyvalue">
+    <div class="zone-header" (click)="goZone(zone.key)">
+      <div class="title">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)] }}</div>
+      <div class="customer">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 15) | toNumber }}</div>
+      <div class="plan">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 16) | toNumber }}</div>
+      <div class="total">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 21) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 21) | toNumber:true }}</div></div>
+      <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 24) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 24) | toNumber:true }}</div></div>
+    </div>
+    <div class="plant" (click)="goPlant(PlantID)" *ngFor="let plant of rowsGroupsDetail[zone.key] | keyvalue">
+      <div class="title">{{ rowsGroupsDetail[zone.key][plant.key][0][(config.config.language == 'en' ? 7 : 6)] }}</div>
+      <div class="customer">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 15) | toNumber }}</div>
+      <div class="plan">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 16) | toNumber }}</div>
+      <div class="total">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) != 0">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) | toNumber:true }}</div></div>
+      <div class="reserve">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) != 0">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) | toNumber:true }}</div></div>
+    </div>
+  </div>
+</div>

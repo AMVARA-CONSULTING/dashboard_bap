@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
+import { Router } from '@angular/router';
+import { ToolsService } from '@services/tools.service';
 
 @Component({
   selector: 'header',
@@ -11,7 +13,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private loading: LoadingService,
-    public data: DataService
+    public data: DataService,
+    private router: Router,
+    private tools: ToolsService
   ) { }
 
   ngOnInit() {

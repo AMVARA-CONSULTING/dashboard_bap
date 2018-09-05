@@ -1,5 +1,7 @@
 cache:
-  untracked: true
+  paths:
+  - node_modules/
+
 
 stages:
   - deploy

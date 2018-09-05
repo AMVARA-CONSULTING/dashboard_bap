@@ -4,6 +4,7 @@ import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'order-intake-sub-lvl2',
@@ -27,8 +28,10 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    title.setTitle('DIP - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.Show()
     this.activatedRoute.params.subscribe(params => {
@@ -97,6 +100,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       regions: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]),
       products: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])
     }
+    this.title.setTitle('DIP - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     this.groupInfo.progressValue1 = this.ZoneID != null ? this.groupInfo.zoneActual : this.groupInfo.plantActual

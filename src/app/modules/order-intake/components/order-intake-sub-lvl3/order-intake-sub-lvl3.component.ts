@@ -4,6 +4,7 @@ import { LoadingService } from '@services/loading.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'order-intake-sub-lvl3',
@@ -29,8 +30,10 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    title.setTitle('DIP - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.Show()
     this.activatedRoute.params.subscribe(params => {
@@ -107,6 +110,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     } else {
       this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
     }
+    this.title.setTitle('DIP - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+(this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
     this.groupInfo.thisActual = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
     this.groupInfo.thisPrevious = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
     this.groupInfo.progress1 = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))

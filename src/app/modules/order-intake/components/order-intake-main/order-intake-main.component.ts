@@ -5,6 +5,7 @@ import { LoadingService } from '@services/loading.service';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, style, animate, query, stagger, state } from '@angular/animations';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'order-intake-main',
@@ -38,8 +39,11 @@ export class OrderIntakeMainComponent implements OnInit {
     private api: ApiService,
     private loader: LoadingService,
     private config: ConfigService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private title: Title
+  ) {
+    title.setTitle('DIP - Order Intake')
+  }
 
   ready: boolean = false
 

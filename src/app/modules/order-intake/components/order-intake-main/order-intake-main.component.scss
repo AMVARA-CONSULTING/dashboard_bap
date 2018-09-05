@@ -50,6 +50,7 @@
     .graphic {
         flex: 1 60%;
         padding: 30px;
+        padding-bottom: 15px;
     }
     .simple {
         flex: 1 40%;
@@ -71,6 +72,7 @@
         .overview-group {
             transition: background .1s ease-in-out;
             border-radius: 5px;
+            cursor: pointer;
             &:hover {
                 background-color: rgba(255,255,255,.05);
             }

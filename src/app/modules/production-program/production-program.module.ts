@@ -6,6 +6,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { NumberPipe } from '@pipes/number.pipe';
 import { SharedModule } from '@modules/shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   { 
@@ -30,6 +31,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    MatTooltipModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

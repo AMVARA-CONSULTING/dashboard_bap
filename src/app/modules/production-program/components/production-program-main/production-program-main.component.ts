@@ -4,11 +4,30 @@ import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@services/config.service';
+import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'production-program-main',
   templateUrl: './production-program-main.component.html',
-  styleUrls: ['./production-program-main.component.scss']
+  styleUrls: ['./production-program-main.component.scss'],
+  animations: [
+    trigger('overview', [
+      state('false', style({
+        opacity: 0
+      })),
+      state('true', style({
+        opacity: 1
+      })),
+      transition('* <=> *', animate('1000ms ease-in-out', style({ opacity: 1 })))
+    ]),
+    trigger('list', [
+      transition('* => *', [
+        query('.zone:enter', style({ opacity: 0 }), { optional: true }),
+        query('.zone:enter', stagger('200ms', animate('300ms ease-in', style({ opacity: 1 }))), { optional: true })
+      ])
+    ])
+  ]
 })
 export class ProductionProgramMainComponent implements OnInit {
 
@@ -18,15 +37,18 @@ export class ProductionProgramMainComponent implements OnInit {
     private api: ApiService,
     private route: ActivatedRoute,
     private config: ConfigService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private title: Title
+  ) { 
+    title.setTitle('DIP - Production Program')
+  }
 
   year: string = ''
 
   ngOnInit() {
+    this.loader.Show()
     this.route.paramMap.subscribe(params => {
       this.year = params.get('year')
-      this.loader.Show()
       // If no Production rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData().subscribe(data => {
@@ -43,6 +65,12 @@ export class ProductionProgramMainComponent implements OnInit {
         this.loader.Hide()
       }
     })
+  }
+
+  resultsCount: number = 0
+
+  getKeysCount() {
+    return Object.keys(this.rowsGroupsGlobal).length || 0
   }
   
   byYear: any
@@ -66,8 +94,7 @@ export class ProductionProgramMainComponent implements OnInit {
       for (var group in this.rowsGroupsGlobal) {
         this.rowsGroupsDetail[group] = this.data.classifyByIndex(this.rowsGroupsGlobal[group], 3)
       }
-      console.log(this.rowsGroupsGlobal)
-      console.log(this.rowsGroupsDetail)
+      this.resultsCount = Object.keys(this.rowsGroupsGlobal).length
       // Tell the DOM it's ready to rock ’n’ roll !
       setTimeout(() => this.ready = true)
     }

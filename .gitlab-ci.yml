@@ -5,6 +5,7 @@ deploy:
   stage: deploy
   script:
     - route=$(pwd)
+    - sudo rm -rf ./node_modules
     - sudo npm install
     - sudo npm install -g @angular/cli
     - sudo ng build --prod --aot

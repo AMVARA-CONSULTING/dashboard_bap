@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Select year</h2>
+<mat-dialog-content>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="data.year">
+    <mat-radio-button class="example-radio-button" *ngFor="let year of data.years" [value]="year">
+      {{ year }}
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button [mat-dialog-close]="true">Accept</button>
+</mat-dialog-actions>

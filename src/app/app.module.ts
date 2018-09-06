@@ -41,6 +41,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ToolsService } from '@services/tools.service';
+import { SelectYearComponent } from './dialogs/select-year/select-year.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,9 @@ import { ToolsService } from '@services/tools.service';
     // Plugins
     RoundProgressModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+  ],
+  entryComponents: [
+    SelectYearComponent
   ],
   providers: [
     LoadingService,

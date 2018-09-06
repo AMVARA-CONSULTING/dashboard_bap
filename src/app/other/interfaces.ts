@@ -14,3 +14,8 @@ export interface ContactInfo {
     description: string,
     telephone: string
 }
+
+export interface SelectYearData {
+    years: string[],
+    year: string
+}

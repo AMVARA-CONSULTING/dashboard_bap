@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@services/config.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'production-program-main',
@@ -38,7 +39,8 @@ export class ProductionProgramMainComponent implements OnInit {
     private route: ActivatedRoute,
     private config: ConfigService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private dialog: MatDialog
   ) { 
     title.setTitle('DIP - Production Program')
   }
@@ -76,6 +78,18 @@ export class ProductionProgramMainComponent implements OnInit {
   byYear: any
   years: string[] = []
 
+  changeYear(year: string, years?: string[]) : void  {
+    localStorage.setItem('production-year', year)
+    this.loader.Show()
+    this.router.navigate(['production-program', year])
+    /*
+    this.data.selectYear(year, years).then(year => {
+      localStorage.setItem('production-year', year)
+      this.loader.Show()
+      this.router.navigate(['production-program', year])
+    }).catch(err => console.log(err))*/
+  }
+
   rowsGroupsGlobal: any
   rowsGroupsDetail: any = {}
 
@@ -98,6 +112,14 @@ export class ProductionProgramMainComponent implements OnInit {
       // Tell the DOM it's ready to rock ’n’ roll !
       setTimeout(() => this.ready = true)
     }
+  }
+
+  goZone(ZoneID: string) : void {
+    this.router.navigate(['zone', ZoneID], { relativeTo: this.route })
+  }
+
+  goPlant(PlantID: string) : void {
+    this.router.navigate(['plant', PlantID], { relativeTo: this.route })
   }
   
   ready: boolean = false

@@ -32,10 +32,13 @@ export class GraphicComponent implements OnInit {
   }
 
   @Input() data: any[][]
+  @Input() year: string
 
   ngOnChanges(changes: SimpleChanges) {
     this.zoneKeys = []
-    let zones = changes.data.currentValue.reduce((r,a) => {
+    const myData = changes.data ? changes.data.currentValue : this.data
+    const myYear = changes.year ? changes.year.currentValue : this.year
+    let zones = myData.filter(item => item[13] == myYear).reduce((r,a) => {
       r[a[0]] = r[a[0]] || []
       r[a[0]].push(a)
       return r

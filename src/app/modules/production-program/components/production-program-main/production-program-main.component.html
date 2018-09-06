@@ -3,7 +3,7 @@
 </div>
 <div class="overview" [@overview]="ready">
   <div class="graphic">
-    <production-program-graphic [data]="data.productionProgramData"></production-program-graphic>
+    <production-program-graphic [year]="year" [data]="data.productionProgramData"></production-program-graphic>
   </div>
   <div class="simple">
     <div class="headers">
@@ -21,6 +21,30 @@
   </div>
 </div>
 <div class="wrapper" [@list]="resultsCount">
+  <header>
+    <div class="title">
+      <!--<button (click)="changeYear(year, years)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" mat-button><mat-icon>today</mat-icon>{{ year }}</button>-->
+      <mat-form-field style="width: 70px; margin-left: 10px;">
+        <mat-select ngDefaultControl [(ngModel)]="year" (ngModelChange)="changeYear($event)">
+          <mat-option *ngFor="let newYear of years" [value]="newYear">
+            {{ newYear }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="customer">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">Customer</div>
+    </div>
+    <div class="plan">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">Plan</div>
+    </div>
+    <div class="total">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">Total</div>
+    </div>
+    <div class="reserve">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">Total</div>
+    </div>
+  </header>
   <div class="zone" *ngFor="let zone of rowsGroupsGlobal | keyvalue">
     <div class="zone-header" (click)="goZone(zone.key)">
       <div class="title">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)] }}</div>
@@ -29,7 +53,7 @@
       <div class="total">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 21) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 21) | toNumber:true }}</div></div>
       <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 24) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 24) | toNumber:true }}</div></div>
     </div>
-    <div class="plant" (click)="goPlant(PlantID)" *ngFor="let plant of rowsGroupsDetail[zone.key] | keyvalue">
+    <div class="plant" (click)="goPlant(plant.key)" *ngFor="let plant of rowsGroupsDetail[zone.key] | keyvalue">
       <div class="title">{{ rowsGroupsDetail[zone.key][plant.key][0][(config.config.language == 'en' ? 7 : 6)] }}</div>
       <div class="customer">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 16) | toNumber }}</div>

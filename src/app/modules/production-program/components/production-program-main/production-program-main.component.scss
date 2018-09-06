@@ -11,7 +11,7 @@
     height: 30px;
     line-height: 30px;
     position: relative;
-    padding: 0 30px 0 15px;
+    padding: 0 15px 0 15px;
     box-sizing: border-box;
     background-color: $bg-white-lvl3;
     .report-date {
@@ -84,9 +84,10 @@
 .zone {
     display: block;
     position: relative;
+    
     .zone-header {
         display: flex;
-        padding: 12px 30px 12px 15px;
+        padding: 12px 15px 12px 15px;
         position: relative;
         transition: border-bottom .15s ease-in-out;
         border-bottom: 1px solid transparent;
@@ -128,7 +129,7 @@
     }
     .plant {
         display: flex;
-        padding: 12px 30px 12px 15px;
+        padding: 12px 15px 12px 15px;
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
@@ -194,4 +195,105 @@
             color: $yellow-text;
         }
     }
+}
+
+.wrapper header {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-color: $bg-white-lvl3;
+    padding: 0 15px 0 15px;
+    line-height: 35px;
+    .title {
+        flex: 1 35%;
+        position: relative;
+        ::ng-deep .mat-icon {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+    }
+    .reserve {
+        flex: 1 10%;
+    }
+    .customer, .plan, .total, .reserve {
+        text-align: right;
+        text-transform: uppercase;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .customer, .plan, .total {
+        flex: 1 20%;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+}
+
+::ng-deep .mat-tooltip.after {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        height: 0;
+        content: "";
+        display: block;
+        border-top: 6px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 8px solid rgba(0, 0, 0, 0.4);
+    }
+}
+
+::ng-deep .mat-tooltip.above {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        width: 0;
+        content: "";
+        display: block;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgba(0,0,0,.4);
+    }
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-select-value-text {
+    color: $semi-white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: $semi-white !important;
+    opacity: .7;
+}
+
+::ng-deep .mat-select-content {
+    background-color: $bg-white-lvl2;
+}
+
+::ng-deep .mat-option:not(.mat-selected) {
+    color: $semi-white;
+}
+
+::ng-deep .mat-option.mat-selected {
+    color: $yellow-text !important;
 }

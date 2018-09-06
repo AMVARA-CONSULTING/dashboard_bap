@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SelectYearComponent } from '../dialogs/select-year/select-year.component';
 
 @Injectable()
 export class DataService {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   // Determines if the sidenav is opened
   sidenavOpened: boolean = false
@@ -45,4 +47,29 @@ export class DataService {
   // Little Object to know if we can forward to lvl2/lvl3
   lastTap
   lastTap2
+
+  selectYear(year: string, years: string[]) : Promise<string> {
+    return new Promise((resolve, reject) => {
+      const dialogRef = this.dialog.open(SelectYearComponent, {
+        width: '235px',
+        data: {
+          years: years,
+          year: year
+        },
+        panelClass: 'darker-dialog'
+      })
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          const newYear = dialogRef.componentInstance.data.year
+          if (newYear != year) {
+            resolve(newYear)
+          } else {
+            reject()
+          }
+        } else {
+          reject()
+        }
+      }, err => reject())
+    })
+  }
 }

@@ -15,6 +15,10 @@ html, body {
     font-size: 13.333px;
 }
 
+button, .mat-option, .mat-select-value-text {
+    font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
+}
+
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -50,4 +54,30 @@ html, body {
 
 .mat-sidenav-container {
     min-height: 100vh !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.darker-dialog .mat-dialog-container {
+    background-color: $bg-white-lvl3;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $yellow-text;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $yellow-text;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: rgba($color: $yellow-text, $alpha: .26),
+}
+
+.mat-radio-label-content {
+    font-size: 15px;
+    padding-left: 10px;
 }

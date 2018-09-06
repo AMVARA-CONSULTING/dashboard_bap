@@ -1,7 +1,9 @@
 cache:
   paths:
   - node_modules/
-
+  
+before_script:
+  - rm -rf /home/gitlab-runner/builds
 
 stages:
   - deploy

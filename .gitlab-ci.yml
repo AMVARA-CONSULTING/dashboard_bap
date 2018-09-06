@@ -1,0 +1,17 @@
+cache:
+  paths:
+    - node_modules/
+    
+stages:
+  - deploy
+
+deploy:
+  variables:
+    CI_DEBUG_TRACE: "true"
+  stage: deploy
+  script:
+    - route=$(pwd)
+    - npm install
+    - npm install -g @angular/cli
+    - sudo ng build --prod --aot
+    - sudo rsync -raz $route/dist root@cometa.amvara.de:/home/amvara/projects/dip-more/

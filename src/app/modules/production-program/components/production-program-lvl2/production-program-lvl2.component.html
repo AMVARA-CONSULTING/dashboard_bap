@@ -1,3 +1,101 @@
-<p>
-  production-program-lvl2 works!
-</p>
+<div class="overview">
+  <div class="data-header">
+    <div class="empty"></div>
+    <div class="report-date">PLANDATE: 07/31/2018</div>
+  </div>
+  <header>
+    <div class="title">
+      <!--<button (click)="changeYear(year, years)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" mat-button><mat-icon>today</mat-icon>{{ year }}</button>-->
+      <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" style="width: 70px; margin-left: 10px;">
+        <mat-select ngDefaultControl [(ngModel)]="year" (ngModelChange)="changeYear($event)">
+          <mat-option *ngFor="let newYear of years" [value]="newYear">
+            {{ newYear }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="customer">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">Customer</div>
+    </div>
+    <div class="plan">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">Plan</div>
+    </div>
+    <div class="total">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">Total</div>
+    </div>
+    <div class="reserve">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">Total</div>
+    </div>
+  </header>
+  <ng-container *ngIf="ZoneID != null && groupInfo">
+    <div class="header-row total">
+      <div class="title">TOTAL</div>
+      <div class="customer">{{ groupInfo.totalCustomer | toNumber }}</div>
+      <div class="plan">{{ groupInfo.totalPlan | toNumber }}</div>
+      <div class="total">
+        <div>{{ groupInfo.totalTotal | toNumber }}</div>
+        <div *ngIf="groupInfo.totalTotalDiff != 0">{{ groupInfo.totalTotalDiff | toNumber }}</div>
+      </div>
+      <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
+    </div>
+    <div class="header-row arrow zone" (click)="return()">
+      <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</div>
+      <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
+      <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
+      <div class="total">
+        <div>{{ groupInfo.zoneTotal | toNumber }}</div>
+        <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+      </div>
+      <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="PlantID != null && groupInfo">
+    <div class="header-row total">
+      <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</div>
+      <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
+      <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
+      <div class="total">
+        <div>{{ groupInfo.zoneTotal | toNumber }}</div>
+        <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+      </div>
+      <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
+    </div>
+    <div class="header-row arrow plant" (click)="return()">
+      <div class="title">{{ groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6]}}</div>
+      <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
+      <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>
+      <div class="total">
+        <div>{{ groupInfo.plantTotal | toNumber }}</div>
+        <div *ngIf="groupInfo.plantTotalDiff != 0">{{ groupInfo.plantTotalDiff | toNumber:true }}</div>
+      </div>
+      <div class="reserve">{{ groupInfo.plantReserve | toNumber }}</div>
+    </div>
+  </ng-container>
+  <dip-quadro-circular-meters [customer]="groupInfo.progress1 || 0" [plan]="groupInfo.progress2 || 0" [total]="groupInfo.progress3 || 0" [reserve]="groupInfo.progress4 || 0" *ngIf="ready && groupInfo"></dip-quadro-circular-meters>
+  <div class="title-header">
+    <div class="title">REGIONS</div>
+  </div>
+  <div class="lvl2-row" (click)="goProduct(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
+    <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.language == 'en' ? 10 : 9]]}}</div>
+    <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 15) | toNumber }}</div>
+    <div class="plan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 16) | toNumber }}</div>
+    <div class="total orange">
+      <div>{{ data.sumByIndex(groupInfo.regions[RegionKey], 17) | toNumber }}</div>
+      <div *ngIf="data.sumByIndex(groupInfo.regions[RegionKey], 21) != 0">{{ data.sumByIndex(groupInfo.regions[RegionKey], 21) | toNumber:true }}</div>
+    </div>
+    <div class="reserve">{{ data.sumByIndex(groupInfo.regions[RegionKey], 22) | toNumber }}</div>
+  </div>
+  <div class="title-header">
+    <div class="title">PRODUCTS</div>
+  </div>
+  <div class="lvl2-row" (click)="goRegion(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
+    <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.language == 'en' ? 12 : 11]]}}</div>
+    <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.products[ProductKey], 15) | toNumber }}</div>
+    <div class="plan">{{ data.sumByIndex(groupInfo.products[ProductKey], 16) | toNumber }}</div>
+    <div class="total orange">
+      <div>{{ data.sumByIndex(groupInfo.products[ProductKey], 17) | toNumber }}</div>
+      <div *ngIf="data.sumByIndex(groupInfo.products[ProductKey], 21) != 0">{{ data.sumByIndex(groupInfo.products[ProductKey], 21) | toNumber:true }}</div>
+    </div>
+    <div class="reserve">{{ data.sumByIndex(groupInfo.products[ProductKey], 22) | toNumber }}</div>
+  </div>
+</div>

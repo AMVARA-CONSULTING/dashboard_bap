@@ -64,7 +64,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     MatTooltipModule,
-    RoundProgressModule,
     SharedModule
   ],
   declarations: [

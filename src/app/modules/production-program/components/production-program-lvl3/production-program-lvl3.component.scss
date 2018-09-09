@@ -1,0 +1,253 @@
+
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    width: 100%;
+    left: 0;
+    touch-action: pan-y !important;
+}
+
+.overview {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    .data-header {
+        display: flex;
+        flex: 1 100%;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        padding: 0 15px 0 15px;
+        box-sizing: border-box;
+        background-color: $bg-white-lvl3;
+        .empty {
+            flex: 1 70%;
+            padding-left: 20px;
+            position: relative;
+        }
+        .report-date, .glyph {
+            flex: 1 15%;
+            text-align: right;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+    }
+    .header-row {
+        display: flex;
+        flex: 1 100%;
+        padding: 12px 15px 12px 15px;
+        .title {
+            flex: 1 35%;
+            position: relative;
+        }
+        &.total {
+            background-color: $bg-white-lvl1;
+        }
+        &.arrow .title:after {
+            transition: left .2s ease-in-out;
+            content: "";
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            top: 2px;
+            left: -2px;
+            transform: rotate(180deg);
+            margin: auto;
+            display: block;
+            background-image: url(../../../../../assets/arrow.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        &.zone {
+            cursor: pointer;
+        }
+        &.plant, &.zone {
+            background-color: $bg-white-lvl5;
+            cursor: pointer;
+            .title {
+                padding-left: 25px;
+            }
+        }
+        .customer, .plan, .total {
+            flex: 1 20%;
+            text-align: right;
+            font-size: 15px;
+        }
+        .total div:nth-child(2) {
+            margin-top: 10px;
+        }
+        .reserve {
+            flex: 1 10%;
+            text-align: right;
+            font-size: 15px;
+        }
+        .customer {
+            color: $cyan-text;
+        }
+        .total {
+            color: $yellow-text;
+        }
+    }
+    .meters {
+        display: flex;
+        flex: 1 100%;
+        height: 160px;
+        position: relative;
+        background: linear-gradient(to bottom, #000, #303030);
+        border-bottom: 3px solid black;
+        .meter {
+            flex: 1 50%;
+            height: 100%;
+            &:nth-child(2) {
+                border-left: 3px solid black;
+            }
+            .container {
+                width: 120px;
+                height: 120px;
+                margin: 20px auto 0;
+                position: relative;
+                .percent {
+                    position: absolute;
+                    height: 30px;
+                    width: 100%;
+                    margin: auto;
+                    text-align: center;
+                    top: 0;
+                    bottom: 0;
+                    font-size: 27px;
+                }
+            }
+        }
+    }
+    .title-header {
+        flex: 1 100%;
+        padding: 12px 15px 12px 15px;
+        display: flex;
+        background-color: $bg-white-lvl1;
+        letter-spacing: 1px;
+        .title {
+            flex: 1 100%;
+        }
+    }
+    .lvl2-row {
+        flex: 1 100%;
+        padding: 12px 15px 12px 15px;
+        display: flex;
+        cursor: pointer;
+        transition: border-bottom .15s ease-in-out;
+        border-bottom: 1px solid transparent;
+        &:hover {
+            border-bottom-color: $yellow-text;
+        }
+        &:nth-child(even) {
+            background-color: $bg-white-lvl3;
+        }
+        &:nth-child(odd) {
+            background-color: $bg-white-lvl4;
+        }
+        &:hover .title {
+            padding-left: 15px;
+            &:after {
+                left: 15px;
+            }
+        }
+        .title {
+            flex: 1 35%;
+            position: relative;
+            transition: padding-left .15s ease-in-out;
+        }
+        .customer, .plan, .total {
+            flex: 1 20%;
+            text-align: right;
+        }
+        .total div:nth-child(2) {
+            margin-top: 10px;
+        }
+        .reserve {
+            flex: 10%;
+            text-align: right;
+        }
+    }
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-select-value-text {
+    color: $semi-white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: $semi-white !important;
+    opacity: .7;
+}
+
+::ng-deep .mat-select-content {
+    background-color: $bg-white-lvl2;
+}
+
+::ng-deep .mat-option:not(.mat-selected) {
+    color: $semi-white;
+}
+
+::ng-deep .mat-option.mat-selected {
+    color: $yellow-text !important;
+}
+
+.overview header {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-color: $bg-white-lvl3;
+    padding: 0 15px 0 15px;
+    line-height: 35px;
+    .title {
+        flex: 1 35%;
+        position: relative;
+        ::ng-deep .mat-icon {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+    }
+    .reserve {
+        flex: 1 10%;
+    }
+    .customer, .plan, .total, .reserve {
+        text-align: right;
+        text-transform: uppercase;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .customer, .plan, .total {
+        flex: 1 20%;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+}
+
+::ng-deep .mat-tooltip.after {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        height: 0;
+        content: "";
+        display: block;
+        border-top: 6px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 8px solid rgba(0, 0, 0, 0.4);
+    }
+}

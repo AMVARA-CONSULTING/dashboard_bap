@@ -8,11 +8,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { DipQuadroCircularMetersComponent } from '@components/quadro-circular-meters/quadro-circular-meters.component';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { MatTooltipModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     NumberPipe,
-    SelectYearComponent
+    SelectYearComponent,
+    DipQuadroCircularMetersComponent
   ],
   imports: [
     MatButtonModule,
@@ -21,17 +25,22 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatDialogModule,
     CommonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    RoundProgressModule
   ],
   exports: [
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
+    MatTooltipModule,
     NumberPipe,
     SelectYearComponent,
     MatRadioModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    DipQuadroCircularMetersComponent,
+    RoundProgressModule
   ]
 })
 export class SharedModule { }

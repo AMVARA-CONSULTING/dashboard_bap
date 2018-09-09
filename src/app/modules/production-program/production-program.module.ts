@@ -7,6 +7,8 @@ import { GraphicComponent } from './components/graphic/graphic.component';
 import { NumberPipe } from '@pipes/number.pipe';
 import { SharedModule } from '@modules/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProductionProgramLvl2Component } from './components/production-program-lvl2/production-program-lvl2.component';
+import { ProductionProgramLvl3Component } from './components/production-program-lvl3/production-program-lvl3.component';
 
 const routes: Routes = [
   { 
@@ -22,6 +24,16 @@ const routes: Routes = [
         path: ':year',
         component: ProductionProgramMainComponent,
         data: { level: 1 }
+      },
+      {
+        path: ':year/:type/:id',
+        component: ProductionProgramLvl2Component,
+        data: { level: 2 }
+      },
+      {
+        path: ':year/:type/:id/:type2/:region_id',
+        component: ProductionProgramLvl3Component,
+        data: { level: 3 }
       }
     ]
    }
@@ -37,7 +49,7 @@ const routes: Routes = [
   declarations: [
     ProductionProgramMainComponent, 
     WrapperComponent, 
-    GraphicComponent
+    GraphicComponent, ProductionProgramLvl2Component, ProductionProgramLvl3Component
   ]
 })
 export class ProductionProgramModule { }

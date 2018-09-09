@@ -43,6 +43,7 @@ export class GraphicComponent implements OnInit {
       r[a[0]].push(a)
       return r
     }, {})
+    this.zones = []
     for (var zone in zones) {
       this.zones[zone] = {
         title: zones[zone][0][(this.config.config.language == 'en' ? 1 : 2)],

@@ -19,3 +19,30 @@
 ::ng-deep .mat-expansion-panel-content {
     color: #d0d0d0;
 }
+
+.software {
+    ul li {
+        list-style-type: none;
+        line-height: 25px;
+        a {
+            text-decoration: none;
+            color: $cyan-text;
+            position: relative;
+            &:hover:after {
+                width: 100%;
+            }
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                height: 2px;
+                transition: width .2s ease-in-out;
+                width: 0;
+                background-color: rgba($color: $cyan-text, $alpha: .7)
+            }
+        }
+    }
+}

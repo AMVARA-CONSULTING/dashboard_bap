@@ -15,7 +15,7 @@ html, body {
     font-size: 13.333px;
 }
 
-button, .mat-option, .mat-select-value-text {
+button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-expansion-panel-content {
     font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
 }
 
@@ -24,9 +24,9 @@ button, .mat-option, .mat-select-value-text {
     width: 5px;
 }
  
-/*::-webkit-scrollbar-track {
-    background-color: #282828;
-}*/
+::-webkit-scrollbar-track {
+    background-color: $bg-white-lvl3;
+}
  
 ::-webkit-scrollbar-thumb {
     background-color: $yellow-text;

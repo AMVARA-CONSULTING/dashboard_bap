@@ -3,35 +3,13 @@ import { CommonModule } from '@angular/common';
 import { OrderIntakeMainComponent } from './components/order-intake-main/order-intake-main.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-import { NumberPipe } from '@pipes/number.pipe';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { OrderIntakeSubLvl2Component } from './components/order-intake-sub-lvl2/order-intake-sub-lvl2.component';
 import { OrderIntakeWrapperComponent } from './components/wrapper/wrapper.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { OrderIntakeSubLvl3Component } from './components/order-intake-sub-lvl3/order-intake-sub-lvl3.component';
 import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
 import { SharedModule } from '@modules/shared/shared.module';
-
-const sub3: Routes = [
-  {
-    path: 'region/:region_id',
-    component: OrderIntakeSubLvl3Component,
-    data: {
-      region: true,
-      level: 3
-    }
-  },
-  {
-    path: 'product/:product_id',
-    component: OrderIntakeSubLvl3Component,
-    data: {
-      region: false,
-      level: 3
-    }
-  }
-]
 
 const routes: Routes = [
   {

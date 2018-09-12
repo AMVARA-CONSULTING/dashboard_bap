@@ -1,7 +1,6 @@
 <div class="overview">
     <div class="data-header">
-      <div class="empty"></div>
-      <div class="report-date">PLANDATE: 07/31/2018</div>
+      <div class="report-date">PLANDATE: {{ plandate }}</div>
     </div>
     <header>
       <div class="title">
@@ -60,7 +59,7 @@
         </div>
         <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
       </div>
-      <div class="header-row arrow plant" (click)="return()">
+      <div class="header-row arrow plant lvl2" (click)="returnToMain()">
         <div class="title">{{ groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6]}}</div>
         <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>

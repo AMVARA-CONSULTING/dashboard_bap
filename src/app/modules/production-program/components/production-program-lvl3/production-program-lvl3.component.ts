@@ -5,6 +5,7 @@ import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment'
 
 @Component({
   selector: 'production-program-lvl3',
@@ -18,6 +19,8 @@ export class ProductionProgramLvl3Component implements OnInit {
   
   RegionID: any = null
   ProductID: any = null
+
+  plandate: string = ''
 
   ready: boolean = false
 
@@ -59,14 +62,25 @@ export class ProductionProgramLvl3Component implements OnInit {
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData().subscribe(data => {
+          this.plandate = moment(data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.productionProgramData = data
           this.productionProgramData = data.filter(dat => dat[13] == this.year)
           if (this.ZoneID != null) {
-            const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID)
-            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            if (this.RegionID != null) {
+              const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID && item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID)
+              this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            } else {
+              const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID && item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
+              this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            }
           } else {
-            const tmp = this.data.productionProgramData.filter(item => item[3] == this.PlantID)
-            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            if (this.RegionID != null) {
+              const tmp = this.data.productionProgramData.filter(item => item[3] == this.PlantID && item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID)
+              this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            } else {
+              const tmp = this.data.productionProgramData.filter(item => item[3] == this.PlantID && item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
+              this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+            }
           }
           // Transform numeric values to real numeric values, also checking NaN or null
           this.productionProgramData.forEach((row, index, rows) => {
@@ -81,12 +95,33 @@ export class ProductionProgramLvl3Component implements OnInit {
             rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
             rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
           })
-          this.rollupData()
+          try {
+            this.rollupData()
+          } catch (err) {
+            this.router.navigate(['production-program'])
+          }
           this.loader.Hide()
         })
       } else {
+        this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.productionProgramData = this.data.productionProgramData.filter(dat => dat[13] == this.year)
-        this.years = Object.keys(this.data.classifyByIndex(this.data.productionProgramData, 13))
+        if (this.ZoneID != null) {
+          if (this.RegionID != null) {
+            const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID && item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID)
+            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+          } else {
+            const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID && item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
+            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+          }
+        } else {
+          if (this.RegionID != null) {
+            const tmp = this.data.productionProgramData.filter(item => item[3] == this.PlantID && item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID)
+            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+          } else {
+            const tmp = this.data.productionProgramData.filter(item => item[3] == this.PlantID && item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
+            this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
+          }
+        }
         // Transform numeric values to real numeric values, also checking NaN or null
         this.productionProgramData.forEach((row, index, rows) => {
           rows[index][15] = isNaN(rows[index][15]) ? 0 : parseFloat(rows[index][15])
@@ -100,7 +135,11 @@ export class ProductionProgramLvl3Component implements OnInit {
           rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
           rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
         })
-        this.rollupData()
+        try {
+          this.rollupData()
+        } catch (err) {
+          this.router.navigate(['production-program'])
+        }
         this.loader.Hide()
       }
     })
@@ -120,7 +159,7 @@ export class ProductionProgramLvl3Component implements OnInit {
   changeYear(year: string, years?: string[]) : void  {
     localStorage.setItem('production-year', year)
     this.loader.Show()
-    this.router.navigate(['production-program', year, this.type, this.id])
+    this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id])
   }
 
   rollupData(): void {
@@ -171,8 +210,13 @@ export class ProductionProgramLvl3Component implements OnInit {
       productsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID),
       regionsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
     }
+    if (this.RegionID != null && this.groupInfo.productsPlain.length == 0) {
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    }
+    if (this.ProductID != null && this.groupInfo.regionsPlain.length == 0) {
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    }
     if (this.RegionID != null) {
-      console.log(plantRows)
       this.groupInfo.products = this.data.classifyByIndex(this.groupInfo.productsPlain, this.config.config.language == 'en' ? 12 : 11)
       this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     } else {
@@ -180,21 +224,19 @@ export class ProductionProgramLvl3Component implements OnInit {
       this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     }
     this.title.setTitle('DIP - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+
-    this.RegionID != null ? this.RegionID : this.ProductID)
-    this.groupInfo.progress1 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneCustomer, this.groupInfo.zoneCustomer) : 
-      this.percent(this.groupInfo.plantCustomer, this.groupInfo.plantCustomer)
-    this.groupInfo.progress2 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zonePlan, this.groupInfo.totalPlan) :
-      this.percent(this.groupInfo.plantPlan, this.groupInfo.zonePlan)
-    this.groupInfo.progress3 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneTotal, this.groupInfo.totalTotal) :
-      this.percent(this.groupInfo.plantTotal, this.groupInfo.zoneTotal)
-    this.groupInfo.progress4 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneReserve, this.groupInfo.totalReserve) :
-      this.percent(this.groupInfo.plantReserve, this.groupInfo.zoneReserve)
-      console.log("Rolling")
-      console.log(this.groupInfo)
+    (this.RegionID != null ? this.RegionID : this.ProductID))
+    this.groupInfo.progress1 = this.RegionID != null ?
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.plantCustomer) : 
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.groupInfo.plantCustomer)
+    this.groupInfo.progress2 = this.RegionID != null ?
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.groupInfo.plantPlan) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.groupInfo.plantPlan)
+    this.groupInfo.progress3 = this.RegionID != null ?
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.groupInfo.plantTotal) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.groupInfo.planTotal)
+    this.groupInfo.progress4 = this.RegionID != null ?
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.groupInfo.plantReserve) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.groupInfo.plantReserve)
     this.groupInfo = Object.assign({}, this.groupInfo)
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
@@ -209,6 +251,10 @@ export class ProductionProgramLvl3Component implements OnInit {
 
   return() : void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+  }
+
+  returnToMain() : void {
+    this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute })
   }
 
   forward(): void {

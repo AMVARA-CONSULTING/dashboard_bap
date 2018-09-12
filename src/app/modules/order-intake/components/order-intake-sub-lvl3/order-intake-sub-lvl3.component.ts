@@ -5,6 +5,7 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'order-intake-sub-lvl3',
@@ -21,6 +22,8 @@ export class OrderIntakeSubLvl3Component implements OnInit {
 
   RegionID: any = null
   ProductID: any = null
+
+  plandate: string = ''
 
   ready: boolean = false
 
@@ -42,25 +45,39 @@ export class OrderIntakeSubLvl3Component implements OnInit {
       } else {
         this.PlantID = params.id
       }
-      if (params.type2 == 'region') {
-        this.RegionID = decodeURI(params.region_id)
-      } else {
-        this.ProductID = decodeURI(params.region_id)
+      try {
+        if (params.type2 == 'region') {
+          this.RegionID = decodeURI(params.region_id)
+        } else {
+          this.ProductID = decodeURI(params.region_id)
+        }
+      } catch (err) {
+        this.router.navigate(['order-intake'])
       }
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
         this.api.getOrderIntakeData().subscribe(data => {
+          this.plandate = moment(data[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.orderIntakeData = data
           // Transform numeric values to real numeric values, also checking NaN or null
           this.data.orderIntakeData.forEach((row, index, rows) => {
             rows[index][12] = isNaN(rows[index][12]) ? 0 : parseFloat(rows[index][12])
             rows[index][13] = isNaN(rows[index][13]) ? 0 : parseFloat(rows[index][13])
           })
-          this.rollupData()
+          try {
+            this.rollupData()
+          } catch (err) {
+            this.router.navigate(['order-intake'])
+          }
           this.loader.Hide()
         })
       } else {
-        this.rollupData()
+        this.plandate = moment(data.orderIntakeData[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        try {
+          this.rollupData()
+        } catch (err) {
+          this.router.navigate(['order-intake'])
+        }
         this.loader.Hide()
       }
     })

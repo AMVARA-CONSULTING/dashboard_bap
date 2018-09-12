@@ -3,8 +3,8 @@
 	"language": "en",
 	"scenario": "dev",
 	"delay": 0,
-	"copyright": "DAIMLER AG",
-	"license": "TE/SO",
+	"copyright": "AMVARA",
+	"license": "SFASR",
 	"contacts": [
 		{
 			"name": "Steffen Schweiger",
@@ -72,6 +72,29 @@
 					"dateFull": 11,
 					"actual": 12,
 					"previous": 13
+				},
+				"allocation": {
+					"plantKey": 0,
+					"plantName": {
+						"en": 4,
+						"de": 3
+					},
+					"regionName": {
+						"en": 7,
+						"de": 6
+					},
+					"productName": {
+						"en": 9,
+						"de": 8
+					},
+					"dayOfWeek": 10,
+					"datum": 11,
+					"program": 14,
+					"allocation": 15,
+					"delta": 16,
+					"yearMonth": 17,
+					"runDate": 18,
+					"shouldBeNumber": [14, 15]
 				}
 			}
 		}

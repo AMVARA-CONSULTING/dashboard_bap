@@ -26,4 +26,24 @@ export class ToolsService {
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
+
+  /* Return a truthy number */
+  removeCommas(x: string) : number {
+    return +x.toString().replace(/,|./g,'')
+  }
+
+  /* Return a percent number with/without sign */
+  percent(part: number, total: number, sign?: boolean, space_between?: boolean, zeroSign?: boolean) : number | string {
+    sign = sign || false
+    space_between = space_between || false
+    zeroSign = zeroSign || false
+    if (zeroSign && total == 0) {
+      return '-'
+    }
+    if (sign) {
+      return parseInt(((part * 100) / total).toFixed(0)) + (space_between ? ' ' : '') + '%'
+    } else {
+      return parseInt(((part * 100) / total).toFixed(0))
+    }
+  }
 }

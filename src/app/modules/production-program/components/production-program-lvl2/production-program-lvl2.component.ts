@@ -5,6 +5,7 @@ import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'production-program-lvl2',
@@ -15,6 +16,8 @@ export class ProductionProgramLvl2Component implements OnInit {
 
   ZoneID: any = null
   PlantID: any = null
+
+  plandate: string = ''
 
   ready: boolean = false
 
@@ -47,6 +50,7 @@ export class ProductionProgramLvl2Component implements OnInit {
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData().subscribe(data => {
+          this.plandate = moment(data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.productionProgramData = data
           this.productionProgramData = data.filter(dat => dat[13] == this.year)
           if (this.ZoneID != null) {
@@ -69,10 +73,15 @@ export class ProductionProgramLvl2Component implements OnInit {
             rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
             rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
           })
-          this.rollupData()
+          try {
+            this.rollupData()
+          } catch (err) {
+            this.router.navigate(['production-program'])
+          }
           this.loader.Hide()
         })
       } else {
+        this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.productionProgramData = this.data.productionProgramData.filter(dat => dat[13] == this.year)
         this.years = Object.keys(this.data.classifyByIndex(this.data.productionProgramData, 13))
         // Transform numeric values to real numeric values, also checking NaN or null
@@ -88,7 +97,11 @@ export class ProductionProgramLvl2Component implements OnInit {
           rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
           rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
         })
-        this.rollupData()
+        try {
+          this.rollupData()
+        } catch (err) {
+          this.router.navigate(['production-program'])
+        }
         this.loader.Hide()
       }
     })
@@ -172,8 +185,6 @@ export class ProductionProgramLvl2Component implements OnInit {
     this.groupInfo.progress4 = this.ZoneID != null ?
       this.percent(this.groupInfo.zoneReserve, this.groupInfo.totalReserve) :
       this.percent(this.groupInfo.plantReserve, this.groupInfo.zoneReserve)
-      console.log("Rolling")
-      console.log(this.groupInfo)
     this.groupInfo = Object.assign({}, this.groupInfo)
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)

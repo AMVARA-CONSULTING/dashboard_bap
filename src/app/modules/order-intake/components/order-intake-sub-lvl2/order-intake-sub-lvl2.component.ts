@@ -5,6 +5,7 @@ import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'order-intake-sub-lvl2',
@@ -19,6 +20,8 @@ export class OrderIntakeSubLvl2Component implements OnInit {
 
   ZoneID: any = null
   PlantID: any = null
+
+  plandate: string = ''
 
   ready: boolean = false
 
@@ -43,17 +46,27 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
         this.api.getOrderIntakeData().subscribe(data => {
+          this.plandate = moment(data[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.orderIntakeData = data
           // Transform numeric values to real numeric values, also checking NaN or null
           this.data.orderIntakeData.forEach((row, index, rows) => {
             rows[index][12] = isNaN(rows[index][12]) ? 0 : parseFloat(rows[index][12])
             rows[index][13] = isNaN(rows[index][13]) ? 0 : parseFloat(rows[index][13])
           })
-          this.rollupData()
+          try {
+            this.rollupData()
+          } catch (err) {
+            this.router.navigate(['order-intake'])
+          }
           this.loader.Hide()
         })
       } else {
-        this.rollupData()
+        this.plandate = moment(data.orderIntakeData[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        try {
+          this.rollupData()
+        } catch (err) {
+          this.router.navigate(['order-intake'])
+        }
         this.loader.Hide()
       }
     })

@@ -4,6 +4,8 @@ import { AllocationMainComponent } from './components/allocation-main/allocation
 import { SharedModule } from '@modules/shared/shared.module';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { Routes, RouterModule } from '@angular/router';
+import { AllocationLvl2Component } from './components/allocation-lvl2/allocation-lvl2.component';
+import { GraphicComponent } from './components/graphic/graphic.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,11 @@ const routes: Routes = [
         path: ':plant',
         component: AllocationMainComponent,
         data: { level: 1 }
+      },
+      {
+        path: ':plant/date/:month',
+        component: AllocationLvl2Component,
+        data: { level: 2 }
       }
     ]
   }
@@ -33,7 +40,9 @@ const routes: Routes = [
   ],
   declarations: [
     AllocationMainComponent,
-    WrapperComponent
+    WrapperComponent,
+    AllocationLvl2Component,
+    GraphicComponent
   ]
 })
 export class AllocationModule { }

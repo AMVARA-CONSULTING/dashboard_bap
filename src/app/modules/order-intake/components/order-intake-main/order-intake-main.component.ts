@@ -55,7 +55,7 @@ export class OrderIntakeMainComponent implements OnInit {
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length == 0) {
       this.api.getOrderIntakeData().subscribe(data => {
-        this.plandate = moment(data[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = moment(data[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.data.orderIntakeData = data
         // Transform numeric values to real numeric values, also checking NaN or null
         this.data.orderIntakeData.forEach((row, index, rows) => {
@@ -66,7 +66,7 @@ export class OrderIntakeMainComponent implements OnInit {
         this.loader.Hide()
       })
     } else {
-      this.plandate = moment(this.data.orderIntakeData[0][11], 'DD/MM/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+      this.plandate = moment(this.data.orderIntakeData[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
       this.rollupData()
       this.loader.Hide()
     }

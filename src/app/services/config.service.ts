@@ -20,6 +20,7 @@ export class ConfigService {
         console.log(config)
         const search: any = this.tools.getJsonFromUrl()
         search.delay = search.delay ? search.delay * 1000 : null
+        this.config.language = localStorage.getItem('lang') || this.config.language
         setTimeout(() => resolve(), search.delay || this.config.delay)
       })
     })

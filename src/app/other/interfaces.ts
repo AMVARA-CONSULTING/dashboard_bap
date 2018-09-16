@@ -6,7 +6,8 @@ export interface Config {
     scenario: string,
     contacts: any[],
     copyright: string,
-    license: string
+    license: string,
+    translations: 'en' | 'de' | any
 }
 
 export interface ContactInfo {

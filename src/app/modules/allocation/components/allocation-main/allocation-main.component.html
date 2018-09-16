@@ -25,11 +25,16 @@
   <div class="allocation">Allocation</div>
   <div class="percent"></div>
 </header>
-<div class="content-wrapper">
-  <div class="row" *ngFor="let month of months">
-    <div class="month">{{ month.month }}</div>
-    <div class="program">{{ month.program | toNumber }}</div>
-    <div class="allocation">{{ month.allocation | toNumber }}</div>
-    <div class="percent">{{ month.percent }}</div>
+<div class="content-wrapper" [@list]="months.length">
+  <div class="row-group" *ngFor="let year of years">
+    <div class="group-header">{{ year }}</div>
+    <ng-container *ngFor="let month of months">
+      <div class="row" *ngIf="month.year == year" (click)="goMonth(month.month)">
+        <div class="month">{{ getDate(month.month) }}</div>
+        <div class="program">{{ month.program | toNumber }}</div>
+        <div class="allocation">{{ month.allocation | toNumber }}</div>
+        <div class="percent">{{ month.percent }}</div>
+      </div>
+    </ng-container>
   </div>
 </div>

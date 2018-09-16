@@ -7,16 +7,34 @@ import * as moment from 'moment';
 import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'allocation-main',
   templateUrl: './allocation-main.component.html',
-  styleUrls: ['./allocation-main.component.scss']
+  styleUrls: ['./allocation-main.component.scss'],
+  animations: [
+    trigger('list', [
+      transition('* => *', [
+        query(':enter', style({ opacity: 0 }), { optional: true }),
+        query(':enter', stagger('100ms', animate('300ms ease-in', style({ opacity: 1 }))), { optional: true })
+      ])
+    ]),
+    trigger('fade', [
+      state('false', style({ opacity: 0, height: 0, overflow: 'hidden' })),
+      state('true', style({ opacity: 1, height: '35px', overflow: 'initial' })),
+      transition('false => true', animate('250ms', style({ opacity: 1, height: '35px', overflow: 'initial' })))
+    ])
+  ]
 })
 export class AllocationMainComponent implements OnInit {
 
+  ready: boolean = false
+
   plandate: string = ''
   plants
+
+  years: string[] = []
 
   months = []
 
@@ -32,7 +50,8 @@ export class AllocationMainComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    moment.locale('en')
+    (window as any).moment = moment
+    moment.locale(this.config.config.language)
     this.title.setTitle('DIP - Allocation')
     this.loader.Show()
     this.activatedRoute.paramMap.subscribe(params => {
@@ -66,6 +85,17 @@ export class AllocationMainComponent implements OnInit {
   ngOnInit() {
   }
 
+  goMonth(date) : void {
+    const momentum = moment(date, 'MM / YYYY')
+    const year = momentum.format('YYYY')
+    const month = momentum.format('MM')
+    this.router.navigate(['year', year, 'month', month], { relativeTo: this.activatedRoute })
+  }
+
+  getDate(month) : string {
+    return moment(month, 'MM / YYYY').format('MMMM YYYY')
+  }
+
   rollupData() {
     this.plants = this.data.allocationData.reduce((r,a) => {
       r[a[0]] = r[a[0]] || ''
@@ -74,12 +104,19 @@ export class AllocationMainComponent implements OnInit {
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
       this.router.navigate(['allocation', Object.keys(this.plants)[0]])
+      return
     }
     this.title.setTitle('DIP - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}
     const filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
+    this.years = Object.keys(filteredRowsByPlant.reduce((r,a) => {
+        r[a[17].substring(0,4)] = r[a[17].substring(0,4)] || []
+        return r
+      }, {})
+    )
+    console.log(this.years)
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
       if (alocDate.isBetween(dateNow, dateNextEightMonths, null, '[]')) {
@@ -89,10 +126,10 @@ export class AllocationMainComponent implements OnInit {
     let info = []
     Object.keys(months).forEach(month => {
       const monthCorrected = moment(month, 'YYYYMM').format('MM / YYYY')
-      console.log(filteredRowsByPlant.filter(aloc => aloc[17] == month))
       const program = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.program)
       const allocation = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.allocation)
       info.push({
+        year: moment(monthCorrected, 'MM / YYYY').format('YYYY'),
         month: monthCorrected,
         program: program,
         allocation: allocation,
@@ -101,6 +138,9 @@ export class AllocationMainComponent implements OnInit {
     })
     console.log(info)
     this.months = info
+    setTimeout(() => {
+      this.ready = true
+    })
   }
 
 

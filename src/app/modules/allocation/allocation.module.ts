@@ -24,7 +24,7 @@ const routes: Routes = [
         data: { level: 1 }
       },
       {
-        path: ':plant/date/:month',
+        path: ':plant/year/:year/month/:month',
         component: AllocationLvl2Component,
         data: { level: 2 }
       }

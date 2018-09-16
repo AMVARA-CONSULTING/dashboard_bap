@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+	"language": "en",
+	"scenario": "dev",
+	"delay": 3000,
+    "reports": {
+        "vans": {
+			"dev": {
+				"allocation": "x",
+				"stock": "x",
+				"planning": "x"
+			},
+			"prod": {
+				"allocation": "x",
+				"stock": "x",
+				"planning": "x"
+			}
+		},
+		"trucks": {
+			"dev": {
+				"orderIntake": "i708A7E1DB96A4B89BD24E902ADB9852A",
+				"allocation": "i464B15BB96434390A9D6C35C67886434",
+				"stock": "i63BB42DBA849409A9E68354C67DF4AE7",
+				"planning": "i1CB7F34FB34C457AA79DAC5EF88BB136"
+			},
+			"prod": {
+				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
+				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
+				"stock": "iDDEA70370FFF48208E4E541101AF961A",
+				"planning": "iB6DC3F11EE314AB081930985C3C57787"
+			},
+			"columns": {
+				"orderIntake": {
+					"groupKey": 0,
+					"plantKey": 1,
+					"groupName": {
+						"de": 3,
+						"en": 2
+					},
+					"plantName": {
+						"de": 5,
+						"en": 4
+					},
+					"region": {
+						"de": 7,
+						"en": 6
+					},
+					"product": {
+						"de": 9,
+						"en": 8
+					},
+					"dateShort": 10,
+					"dateFull": 11,
+					"actual": 12,
+					"previous": 13
+				}
+			}
+		}
+    }
+}

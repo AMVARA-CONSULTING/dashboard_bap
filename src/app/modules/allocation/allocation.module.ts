@@ -6,6 +6,8 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AllocationLvl2Component } from './components/allocation-lvl2/allocation-lvl2.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
+import { AllocationLvl3Component } from '@modules/allocation/components/allocation-lvl3/allocation-lvl3.component';
+import { AllocationBarComponent } from './components/allocation-bar/allocation-bar.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,6 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
         component: AllocationMainComponent,
         data: { level: 1 }
       },
@@ -24,7 +25,7 @@ const routes: Routes = [
         data: { level: 1 }
       },
       {
-        path: ':plant/year/:year/month/:month',
+        path: ':plant/date/:date',
         component: AllocationLvl2Component,
         data: { level: 2 }
       }
@@ -42,7 +43,9 @@ const routes: Routes = [
     AllocationMainComponent,
     WrapperComponent,
     AllocationLvl2Component,
-    GraphicComponent
+    GraphicComponent,
+    AllocationLvl3Component,
+    AllocationBarComponent
   ]
 })
 export class AllocationModule { }

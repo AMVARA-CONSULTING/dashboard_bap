@@ -1,4 +1,6 @@
-<?xml version="1.0" standalone="yes"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1030" height="1512">
-<path style="fill:#f8af3b; stroke:none;" d="M369 335C380.884 337.749 391.907 344.214 404 346C407.376 333.657 414.911 322.046 422.651 312C459.311 264.422 525.416 249.16 579 275.969C617.202 295.082 644.756 334.366 648.83 377C650.591 395.429 647.684 413.526 642 431C652.636 435.715 665.538 441.027 677 443C681.096 425.297 685.807 408.368 685.996 390C686.542 336.961 659.551 285.082 616 255.026C546.479 207.046 447.86 220.707 395.004 287C384.084 300.695 373.089 317.746 369 335z"/>
+<svg class="lds-curve-bars" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
+    <g transform="translate(50,50)">
+        <circle cx="0" cy="0" r="15" fill="none" stroke="#393939" stroke-width="4.1"></circle>
+        <circle cx="0" cy="0" r="15" fill="none" stroke="#f8b03b" stroke-width="4.1" stroke-dasharray="55" transform="rotate(210)"></circle>
+    </g>
 </svg>

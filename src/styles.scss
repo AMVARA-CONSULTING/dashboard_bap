@@ -2,6 +2,20 @@
 @import 'app/other/colors';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@font-face {
+    font-family: CorpoS;
+    src: url(assets/c063003t.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: CorpoSDem;
+    src: url(assets/c063004t.ttf) format('truetype');
+}
+
+* {
+    font-family: "CorpoS", sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -45,11 +59,11 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 }
 
 .cyan {
-    color: $cyan-text;
+    color: $lighten-cyan-text;
 }
 
 .orange {
-    color: $yellow-text,
+    color: $yellow-text;
 }
 
 .mat-sidenav-container {

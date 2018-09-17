@@ -49,7 +49,9 @@ const routes: Routes = [
   declarations: [
     ProductionProgramMainComponent, 
     WrapperComponent, 
-    GraphicComponent, ProductionProgramLvl2Component, ProductionProgramLvl3Component
+    GraphicComponent, 
+    ProductionProgramLvl2Component, 
+    ProductionProgramLvl3Component
   ]
 })
 export class ProductionProgramModule { }

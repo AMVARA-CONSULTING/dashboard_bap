@@ -26,7 +26,7 @@
         line-height: 25px;
         a {
             text-decoration: none;
-            color: $cyan-text;
+            color: $lighten-cyan-text;
             position: relative;
             &:hover:after {
                 width: 100%;
@@ -41,8 +41,49 @@
                 height: 2px;
                 transition: width .2s ease-in-out;
                 width: 0;
-                background-color: rgba($color: $cyan-text, $alpha: .7)
+                background-color: $lighten-cyan-text
             }
         }
     }
+}
+
+p a, p span {
+    color: $lighten-cyan-text;
+    text-decoration: none;
+}
+
+p {
+    line-height: 25px;
+}
+
+::ng-deep .segment-key {
+    color: $yellow-text !important
+}
+
+::ng-deep .segment-value {
+    color: $lighten-cyan-text !important;
+    margin-left: 10px !important;
+}
+
+.changelog {
+    line-height: 25px;
+    padding-left: 15px;
+    & > ul > li {
+        color: $yellow-text;
+        list-style-type: none;
+        & > ul {
+            padding-left: 20px;
+        }
+        & > ul > li {
+            color: $semi-white;
+            line-height: 30px;
+            list-style-type: none;
+            &::before {
+                content: "•";
+                margin-right: 10px;
+                color: $semi-white;
+              }
+        }
+    }
+
 }

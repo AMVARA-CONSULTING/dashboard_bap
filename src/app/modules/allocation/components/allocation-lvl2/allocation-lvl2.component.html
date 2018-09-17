@@ -1,3 +1,46 @@
-<p>
-  allocation-lvl2 works!
-</p>
+<div class="plandate">PLANDATE: {{ plandate }}</div>
+<div class="select-plant">
+  <div class="selector">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" style="margin-left: 10px;">
+      <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
+        <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
+          {{ plant.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="overview" *ngIf="ready">
+  <div class="graphic">
+    <allocation-graphic [months]="months"></allocation-graphic>
+  </div>
+</div>
+<header *ngIf="ready">
+  <div class="month" (click)="returnToMain()">
+    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{ monthMomentum }}</div>
+  </div>
+  <div class="program">Program</div>
+  <div class="allocation">Allocation</div>
+  <div class="percent"></div>
+</header>
+<allocation-bar [part]="percent" [ready]="ready" [partNumber]="partNumber || 0"></allocation-bar>
+<div class="content-wrapper" [@list]="months.length">
+  <div class="row-group" *ngIf="regions">
+    <div class="group-header">REGIONS</div>
+    <div class="row" *ngFor="let region of regions | keyvalue">
+      <div class="month">{{ region.key }}</div>
+      <div class="program">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.allocation.program) | toNumber }}</div>
+      <div class="allocation">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.allocation.allocation) | toNumber }}</div>
+      <div class="percent">0</div>
+    </div>
+  </div>
+  <div class="row-group" *ngIf="products">
+    <div class="group-header">PRODUCTS</div>
+    <div class="row" *ngFor="let product of products | keyvalue">
+      <div class="month">{{ product.key }}</div>
+      <div class="program">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.allocation.program) | toNumber }}</div>
+      <div class="allocation">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.allocation.allocation) | toNumber }}</div>
+      <div class="percent">0</div>
+    </div>
+  </div>
+</div>

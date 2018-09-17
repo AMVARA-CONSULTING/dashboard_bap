@@ -42,7 +42,7 @@
             border-radius: 3px;
             width: calc(50% - 5px);
             transition: height .7s ease-in-out;
-            background-color: $cyan-text;
+            background-color: $cyan-text-material;
             &.zero {
                 height: 0% !important;
             }
@@ -54,7 +54,7 @@
             border-radius: 3px;
             width: calc(50% - 5px);
             transition: height .7s ease-in-out;
-            background-color: $yellow-text;
+            background-color: $yellow-text-material;
             &.zero {
                 height: 0% !important;
             }
@@ -63,9 +63,9 @@
 }
 
 ::ng-deep .actual {
-    border-color: $cyan-text;
+    border-color: $cyan-text-material;
 }
 
 ::ng-deep .previous {
-    border-color: $yellow-text;
+    border-color: $yellow-text-material;
 }

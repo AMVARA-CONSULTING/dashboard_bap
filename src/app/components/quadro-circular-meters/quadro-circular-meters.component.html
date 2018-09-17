@@ -1,7 +1,7 @@
 <div class="meter">
   <div class="container" [matTooltip]="(customer | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="customer">
     <div class="percent cyan">{{ customer }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="#555555" [color]="'#79eed9'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="#555555" [color]="'#00acc1'"></round-progress>
   </div>
 </div>
 <div class="meter">
@@ -13,7 +13,7 @@
 <div class="meter">
   <div class="container" [matTooltip]="(total | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="total">
       <div class="percent orange">{{ total }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="#555555" [color]="'#fab84e'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="#555555" [color]="'#f8b03b'"></round-progress>
   </div>
 </div>
 <div class="meter">

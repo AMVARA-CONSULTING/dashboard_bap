@@ -7,7 +7,8 @@ export interface Config {
     contacts: any[],
     copyright: string,
     license: string,
-    translations: 'en' | 'de' | any
+    translations: 'en' | 'de' | any,
+    changelog: any
 }
 
 export interface ContactInfo {

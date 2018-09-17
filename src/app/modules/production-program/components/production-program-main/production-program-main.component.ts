@@ -29,7 +29,10 @@ import * as moment from 'moment'
         query('.zone:enter', stagger('200ms', animate('300ms ease-in', style({ opacity: 1 }))), { optional: true })
       ])
     ])
-  ]
+  ],
+  host: {
+    '[style.opacity]': 'loader.show ? 0 : 1'
+  }
 })
 export class ProductionProgramMainComponent implements OnInit {
 

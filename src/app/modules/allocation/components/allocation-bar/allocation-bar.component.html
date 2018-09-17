@@ -1,0 +1,4 @@
+<div class="bar">
+  <div matTooltipClass="above" [matTooltip]="partNumber | toNumber" matTooltipPosition="above" class="part" [style.width.%]="ready ? part : 0"></div>
+</div>
+<div class="percent">{{ (part | toNumber) + ' %' }}</div>

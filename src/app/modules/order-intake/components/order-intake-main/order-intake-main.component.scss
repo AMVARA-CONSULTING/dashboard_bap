@@ -67,6 +67,12 @@
         @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
             flex: 1 100%;
             border-left-width: 0;
+            .headers {
+                padding-right: 0 !important
+            }
+            .previous {
+                flex: 0 0 95px !important;
+            }
         }
         .headers, .overview-group {
             display: flex;
@@ -92,7 +98,7 @@
                 cursor: pointer;
             }
             .actual {
-                color: $cyan-text;
+                color: $lighten-cyan-text;
             }
             .previous {
                 color: $yellow-text;
@@ -127,7 +133,7 @@
             font-size: 16px;
         }
         .actual {
-            color: $cyan-text;
+            color: $lighten-cyan-text;
         }
         .previous {
             color: $yellow-text;
@@ -178,7 +184,7 @@
             }
         }
         .actual {
-            color: $cyan-text;
+            color: $lighten-cyan-text;
         }
         .previous {
             color: $yellow-text;

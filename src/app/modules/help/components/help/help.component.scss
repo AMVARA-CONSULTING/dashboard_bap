@@ -35,7 +35,7 @@ p {
 }
 
 a {
-    color: $cyan-text;
+    color: $lighten-cyan-text;
     position: relative;
     text-decoration: none;
     &:hover:after {
@@ -48,7 +48,7 @@ a {
         height: 2px;
         opacity: .7;
         transition: width .2s ease-in-out;
-        background-color: $cyan-text;
+        background-color: $lighten-cyan-text;
         bottom: -5px;
         left: 0;
         border-radius: 3px;

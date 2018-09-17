@@ -1,6 +1,9 @@
 $semi-white: #d0d0d0;
-$yellow-text: #fab84e;
-$cyan-text: #79eed9;
+$yellow-text: #f8b03b;
+$cyan-text: #00acc1;
+$cyan-text-material: #00acc1;
+$yellow-text-material: #f8b03b;
+$lighten-cyan-text: lighten($cyan-text, 20);
 $main-bg-color: #101010;
 
 $bg-white-lvl1: #393939;
@@ -9,3 +12,4 @@ $bg-white-lvl2-5: #252525;
 $bg-white-lvl4: #181818;
 $bg-white-lvl3: #202020;
 $bg-white-lvl5: #101010;
+$header-bg-color: rgba($color: #212121, $alpha: .9);

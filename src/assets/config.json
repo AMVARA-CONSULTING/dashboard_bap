@@ -1,5 +1,5 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.1",
 	"language": "de",
 	"scenario": "dev",
 	"delay": 0,
@@ -7,19 +7,19 @@
 	"license": "SFASR",
 	"contacts": [
 		{
-			"name": "Steffen Schweiger",
-			"description": "Berichtwesen Ordercenter",
-			"telephone": "+49 7271 71 2184"
+			"name": "Ralf Roeber",
+			"description": "Coordinator",
+			"telephone": "+34 717 10 26 03"
 		}, 
 		{
-			"name": "Kai Blattmann",
-			"description": "Berichtwesen Ordercenter",
-			"telephone": "+49 7271 71 5435"
+			"name": "Alex Barba",
+			"description": "Programmer",
+			"telephone": "+34 640 91 59 83"
 		}, 
 		{
-			"name": "Peter Hess",
-			"description": "Berichtwesen Ordercenter",
-			"telephone": "+49 7271 71 2184"
+			"name": "Luís Torroja",
+			"description": "Designer",
+			"telephone": "+34 670 61 74 71"
 		}
 	],
     "reports": {
@@ -104,5 +104,23 @@
 			"en": "of",
 			"de": "von"
 		}
-	}
+	},
+	"changelog": [
+		{
+			"version": "2.0.1",
+			"text": [
+				"Update colors to match logo",
+				"Allocation Lvl 2",
+				"Improve SASS structures",
+				"Added logo animation on loading data",
+				"Dynamic footer background color changes based on page content",
+				"Added info in About page",
+				"Changed contacts on Help page"
+			]
+		},
+		{
+			"version": "2.0.0",
+			"text": ["Initial App"]
+		}
+	]
 }

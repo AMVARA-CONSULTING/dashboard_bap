@@ -3,7 +3,7 @@
 :host {
     display: flex;
     height: 70px;
-    background-color: rgba($color: #212121, $alpha: .9);
+    background-color: $header-bg-color;
     position: fixed;
     top: 0;
     justify-content: space-between;
@@ -13,18 +13,87 @@
     z-index: 99;
 }
 
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 .logo {
     display: block;
     height: inherit;
+    position: relative;
     width: 130px;
     flex: initial;
     outline: 0;
+    line-height: 70px;
+    font-size: 45px;
     cursor: pointer;
     margin-left: 15px;
-    background-image: url(../../../assets/DIPLogH_Col_toDarkBack.svg);
-    background-size: contain;
-    background-position: 0;
-    background-repeat: no-repeat;
+    padding-left: 70px;
+    &.running {
+        .outer, .middle, .inter {
+            animation-play-state: running;
+        }
+    }
+    .outer {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 60px;
+        width: 60px;
+        background-image: url(assets/loader_circle_outside.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation-play-state: paused;
+        animation-name: rotate;
+        animation-duration: 1.3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .middle {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 60px;
+        width: 60px;
+        background-image: url(assets/loader_circle_middle.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation-play-state: paused;
+        animation-name: rotate;
+        animation-direction: reverse;
+        animation-duration: 1.3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .inter {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 60px;
+        width: 60px;
+        background-image: url(assets/loader_circle_inside.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation-play-state: paused;
+        animation-name: rotate;
+        animation-duration: 1.3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
 }
 
 .links {

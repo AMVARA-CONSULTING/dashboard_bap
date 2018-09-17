@@ -25,7 +25,10 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
       state('true', style({ opacity: 1, height: '35px', overflow: 'initial' })),
       transition('false => true', animate('250ms', style({ opacity: 1, height: '35px', overflow: 'initial' })))
     ])
-  ]
+  ],
+  host: {
+    '[style.opacity]': 'loader.show ? 0 : 1'
+  }
 })
 export class AllocationMainComponent implements OnInit {
 
@@ -87,9 +90,8 @@ export class AllocationMainComponent implements OnInit {
 
   goMonth(date) : void {
     const momentum = moment(date, 'MM / YYYY')
-    const year = momentum.format('YYYY')
-    const month = momentum.format('MM')
-    this.router.navigate(['year', year, 'month', month], { relativeTo: this.activatedRoute })
+    const year = momentum.format('YYYYMM')
+    this.router.navigate(['date', year], { relativeTo: this.activatedRoute })
   }
 
   getDate(month) : string {

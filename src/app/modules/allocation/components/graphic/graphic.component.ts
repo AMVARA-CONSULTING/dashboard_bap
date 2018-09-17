@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -20,13 +21,23 @@ import * as moment from 'moment';
 })
 export class GraphicComponent{
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
   }
 
-  getIndex(index, item) {
+  getIndex(index) {
     return index
+  }
+
+  goMonth(date) : void {
+    const momentum = moment(date, 'MM / YYYY')
+    const year = momentum.format('YYYY')
+    const month = momentum.format('MM')
+    this.router.navigate(['year', year, 'month', month], { relativeTo: this.activatedRoute })
   }
 
   width: number = 0

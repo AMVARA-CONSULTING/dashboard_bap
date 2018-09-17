@@ -1,6 +1,6 @@
 {
     "version": "2.0.0",
-	"language": "en",
+	"language": "de",
 	"scenario": "dev",
 	"delay": 0,
 	"copyright": "AMVARA",
@@ -98,5 +98,11 @@
 				}
 			}
 		}
-    }
+	},
+	"translations": {
+		"dateMiddle": {
+			"en": "of",
+			"de": "von"
+		}
+	}
 }

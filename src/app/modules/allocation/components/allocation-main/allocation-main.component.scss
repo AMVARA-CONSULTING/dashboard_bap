@@ -76,6 +76,13 @@ header {
 }
 
 .content-wrapper {
+    .group-header {
+        display: flex;
+        width: 100%;
+        padding: 12px 15px;
+        box-sizing: border-box;
+        background-color: $bg-white-lvl1;
+    }
     .row {
         user-select: none;
         cursor: pointer;

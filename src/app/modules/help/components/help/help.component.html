@@ -4,12 +4,12 @@
     iBISS:
   </div>
   <div class="telephones">
-    <a href="" target="_blank">Link to DIP Corporate Analytics Platform</a>
+    <a href="" target="_blank">Link to {{ config.config.appTitle }} Corporate Analytics Platform</a>
   </div>
 </div>
 <div class="contact-info">
   <div class="category">
-    DIP Support:
+    {{ config.config.appTitle }} Support:
   </div>
   <div class="telephones">
     <contact *ngFor="let contact of contacts; let i = index;">
@@ -19,7 +19,7 @@
     </contact>
   </div>
 </div>
-<help-title>DIP Functions</help-title>
+<help-title>{{ config.config.appTitle }} Functions</help-title>
 <p>
   This application is adapted for any device and visualization. You can navigate through it with different options.
 </p>

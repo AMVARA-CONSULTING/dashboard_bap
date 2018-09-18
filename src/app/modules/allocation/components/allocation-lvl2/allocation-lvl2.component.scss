@@ -59,6 +59,10 @@ header {
     background-color: $bg-white-lvl2;
     padding: 0 15px;
     box-sizing: border-box;
+    height: 40px;
+    &.return {
+        background-color: $bg-white-lvl1;
+    }
     .month {
         flex: 1 40%;
         cursor: pointer;

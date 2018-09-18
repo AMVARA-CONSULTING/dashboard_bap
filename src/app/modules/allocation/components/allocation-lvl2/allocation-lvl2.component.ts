@@ -138,9 +138,13 @@ export class AllocationLvl2Component implements OnInit {
         percent: this.tools.percent(allocation, program, true, true, true)
       })
     })
+    const maxProgram = Math.max(...info.map(mon => mon.program))
+    const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
     filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth] == this.date)
     this.partNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
-    this.percent = this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
+    this.percentAllocation = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
+    this.percentProgram = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), maxProgram, false, false, false)
+    this.programNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.regions = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language])
     this.monthMomentum = moment(this.date, 'YYYYMM').format('MMMM YYYY')
     this.products = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language])
@@ -155,8 +159,10 @@ export class AllocationLvl2Component implements OnInit {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
   }
 
-  percent: number | string = 0
+  percentAllocation: number | string = 0
+  percentProgram: number | string = 0
   partNumber: number = 0
+  programNumber: number = 0
 
   regions
   products

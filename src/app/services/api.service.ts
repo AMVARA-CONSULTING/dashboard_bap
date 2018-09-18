@@ -10,16 +10,16 @@ export class ApiService {
 
   // Get Order Intake Data from Report (temporarily from JSON File)
   getOrderIntakeData(ReportID?: string) : Observable<any[][]> {
-    return this.http.get<any[][]>('assets/reports/order_intake.fake.json').pipe(delay(2000))
+    return this.http.get<any[][]>('assets/reports/order_intake.fake.json').pipe(delay(650))
   }
 
   // Get Production Program Data from Report (tmp JSON file)
   getProductionProgramData(ReportID?: string) : Observable<any[][]> {
-    return this.http.get<any[][]>('assets/reports/production_program.fake.json').pipe(delay(2000))
+    return this.http.get<any[][]>('assets/reports/production_program.fake.json').pipe(delay(650))
   }
 
   // Get Allocation Data from Report (tmp JSON file)
   getAllocationData(ReportID?: string) : Observable<any[][]> {
-    return this.http.get<any[][]>('assets/reports/allocation.fake.json').pipe(delay(2000))
+    return this.http.get<any[][]>('assets/reports/allocation.fake.json').pipe(delay(6500))
   }
 }

@@ -3,6 +3,7 @@ import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { Router } from '@angular/router';
 import { ToolsService } from '@services/tools.service';
+import { ConfigService } from '@services/config.service';
 
 @Component({
   selector: 'header',
@@ -15,13 +16,16 @@ export class HeaderComponent implements OnInit {
     public loader: LoadingService,
     public data: DataService,
     private router: Router,
-    private tools: ToolsService
-  ) { }
+    private tools: ToolsService,
+    public config: ConfigService
+  ) {
+    
+  }
 
   ngOnInit() {
   }
 
-  openSidenav() : void {
+  openSidenav(): void {
     this.data.sidenavOpened = !this.data.sidenavOpened
   }
 

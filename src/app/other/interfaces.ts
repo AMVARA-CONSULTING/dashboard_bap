@@ -8,7 +8,8 @@ export interface Config {
     copyright: string,
     license: string,
     translations: 'en' | 'de' | any,
-    changelog: any
+    changelog: any,
+    appTitle: string
 }
 
 export interface ContactInfo {

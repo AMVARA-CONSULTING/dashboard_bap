@@ -41,7 +41,9 @@
         font-size: 10px;
         bottom: -30px;
         text-align: center;
-        transform: rotate(-40deg);
+        &.rotate {
+            transform: rotate(-40deg);
+        }
         @media (min-width: 800px) {
             transform: rotate(0deg);
             font-size: 12px;

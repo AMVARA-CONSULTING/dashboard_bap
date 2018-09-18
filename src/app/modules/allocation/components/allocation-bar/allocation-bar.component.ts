@@ -12,15 +12,22 @@ export class AllocationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  part: number = 0
+  allocation: number = 0
+  program: number = 0
 
   @Input() partNumber: number
+  @Input() programNumber: number
 
   @Input() ready: boolean
 
-  @Input('part') set partSetter(value: number) {
-    this.part = value
-    console.log(value)
+  @Input('allocation') set allocationSetter(value: number) {
+    this.allocation = value
+    console.log("Allocation", value)
+  }
+
+  @Input('program') set programSetter(value: number) {
+    this.program = value
+    console.log("Program", value)
   }
 
 }

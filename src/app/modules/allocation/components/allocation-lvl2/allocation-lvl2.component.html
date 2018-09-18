@@ -1,7 +1,17 @@
 <div class="plandate">PLANDATE: {{ plandate }}</div>
-<div class="select-plant">
-  <div class="selector">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" style="margin-left: 10px;">
+<div class="overview" *ngIf="ready">
+  <div class="graphic">
+    <allocation-graphic [months]="months"></allocation-graphic>
+  </div>
+</div>
+<header class="return" *ngIf="ready">
+  <div class="month" (click)="returnToMain()">
+    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{ monthMomentum }}</div>
+  </div>
+</header>
+<header *ngIf="ready">
+  <div class="month">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
@@ -9,21 +19,11 @@
       </mat-select>
     </mat-form-field>
   </div>
-</div>
-<div class="overview" *ngIf="ready">
-  <div class="graphic">
-    <allocation-graphic [months]="months"></allocation-graphic>
-  </div>
-</div>
-<header *ngIf="ready">
-  <div class="month" (click)="returnToMain()">
-    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{ monthMomentum }}</div>
-  </div>
   <div class="program">Program</div>
   <div class="allocation">Allocation</div>
   <div class="percent"></div>
 </header>
-<allocation-bar [part]="percent" [ready]="ready" [partNumber]="partNumber || 0"></allocation-bar>
+<allocation-bar [programNumber]="programNumber" [allocation]="percentAllocation" [program]="percentProgram" [ready]="ready" [partNumber]="partNumber || 0"></allocation-bar>
 <div class="content-wrapper" [@list]="months.length">
   <div class="row-group" *ngIf="regions">
     <div class="group-header">REGIONS</div>

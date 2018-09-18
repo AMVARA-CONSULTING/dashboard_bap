@@ -1,6 +1,7 @@
 {
     "version": "2.0.1",
 	"language": "de",
+	"appTitle": "Skill Tech",
 	"scenario": "dev",
 	"delay": 0,
 	"copyright": "AMVARA",

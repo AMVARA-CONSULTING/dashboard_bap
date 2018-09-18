@@ -1,26 +1,18 @@
 <div class="plandate">PLANDATE: {{ plandate }}</div>
-<div class="select-plant">
-  <div class="selector">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" style="margin-left: 10px;">
-      <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
-        <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
-          {{ plant.value }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="info program_allocation desktop"></div>
-  <div class="info mobile program">Program</div>
-  <div class="info mobile allocation">Allocation</div>
-  <div class="info mobile percent"></div>
-</div>
 <div class="overview">
   <div class="graphic">
     <allocation-graphic [months]="months"></allocation-graphic>
   </div>
 </div>
-<header class="desktop">
-  <div class="month"></div>
+<header>
+  <div class="month">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
+      <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
+        <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
+          {{ plant.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field></div>
   <div class="program">Program</div>
   <div class="allocation">Allocation</div>
   <div class="percent"></div>

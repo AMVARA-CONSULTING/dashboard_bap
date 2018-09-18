@@ -16,57 +16,17 @@
     background-color: $bg-white-lvl3;
 }
 
-.select-plant {
-    display: flex;
-    height: 35px;
-    width: 100%;
-    background-color: $bg-white-lvl3;
-    line-height: 35px;
-    padding: 0 15px;
-    .selector {
-        flex: 40%;
-    }
-    .program_allocation {
-        flex: 1;
-        text-align: right;
-    }
-    .program, .allocation, .percent {
-        flex: 1 20%;
-        padding-right: 10px;
-        box-sizing: border-box;
-        text-align: right;
-    }
-    .percent {
-        padding-right: 0;
-    }
-    .mobile {
-        display: block;
-        @media (min-width: 600px) {
-            display: none;
-        }
-    }
-    
-    .desktop {
-        display: none;
-        @media (min-width: 600px) {
-            display: block;
-        }
-    }
-}
-
 header {
-    display: none;
+    display: flex;
     background-color: $bg-white-lvl2;
-    padding: 12px 15px;
+    padding: 0 15px;
     box-sizing: border-box;
-    @media (min-width: 600px) {
-        display: flex;
-    }
+    height: 40px;
     .month {
         flex: 1 40%;
     }
     .program, .allocation {
-        padding-right: 10px;
+        padding: 12px 10px 12px 0;
         box-sizing: border-box;
     }
     .program, .allocation, .percent {

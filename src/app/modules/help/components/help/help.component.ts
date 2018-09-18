@@ -10,7 +10,7 @@ import { ConfigService } from '@services/config.service';
 export class HelpComponent implements OnInit {
 
   constructor(
-    private config: ConfigService
+    public config: ConfigService
   ) {
     this.contacts = config.config.contacts
   }

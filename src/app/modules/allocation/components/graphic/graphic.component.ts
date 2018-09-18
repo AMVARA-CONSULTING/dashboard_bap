@@ -33,11 +33,10 @@ export class GraphicComponent{
     return index
   }
 
-  goMonth(date) : void {
+  goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
-    const year = momentum.format('YYYY')
-    const month = momentum.format('MM')
-    this.router.navigate(['year', year, 'month', month], { relativeTo: this.activatedRoute })
+    const year = momentum.format('YYYYMM')
+    this.router.navigate(['date', year], { relativeTo: this.activatedRoute })
   }
 
   width: number = 0
@@ -48,12 +47,15 @@ export class GraphicComponent{
 
   months = []
 
+  shouldRotate: boolean = false
+
   @Input('months') set monthsSetter(values) {
     const maxs = values.map(item => item.program)
     this.maxNumber = Math.max(...maxs)
     this.months = values
     const count = values.length
     this.width = 100 / count
+    this.shouldRotate = this.width < 20
     setTimeout(() => this.ready = true, 300)
   }
 

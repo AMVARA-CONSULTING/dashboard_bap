@@ -99,7 +99,7 @@
         height: 160px;
         position: relative;
         background: linear-gradient(to bottom, #000, #303030);
-        border-bottom: 3px solid black;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
         .meter {
             flex: 1 50%;
             height: 100%;

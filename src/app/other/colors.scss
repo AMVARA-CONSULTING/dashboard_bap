@@ -1,4 +1,4 @@
-$semi-white: #d0d0d0;
+$semi-white: white;
 $yellow-text: #f8b03b;
 $cyan-text: #00acc1;
 $cyan-text-material: #00acc1;
@@ -6,10 +6,14 @@ $yellow-text-material: #f8b03b;
 $lighten-cyan-text: lighten($cyan-text, 20);
 $main-bg-color: #101010;
 
-$bg-white-lvl1: #393939;
-$bg-white-lvl2: #292929;
-$bg-white-lvl2-5: #252525;
-$bg-white-lvl4: #181818;
-$bg-white-lvl3: #202020;
-$bg-white-lvl5: #101010;
-$header-bg-color: rgba($color: #212121, $alpha: .9);
+$transparency: .6;
+
+$main-bg-body-color: rgba($color: #181820, $alpha: .92);
+$main-bg-content-color: rgba($color: #202020, $alpha: .4);
+$bg-white-lvl1: rgba($color: #343445, $alpha: .5);
+$bg-white-lvl2: rgba($color: #292931, $alpha: $transparency);
+$bg-white-lvl2-5: rgba($color: #252527, $alpha: $transparency);
+$bg-white-lvl4: rgba($color: #181820, $alpha: $transparency);
+$bg-white-lvl3-pure: #202029;
+$bg-white-lvl3: rgba($color: #202029, $alpha: .4);
+$bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);

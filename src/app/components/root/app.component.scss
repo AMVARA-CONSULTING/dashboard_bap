@@ -1,20 +1,25 @@
 
 @import '../../other/colors';
 
+:host {
+    display: block;
+    background-color: $main-bg-body-color;
+}
+
 .content {
     margin-top: 70px;
     margin-bottom: 32px;
 }
 
 ::ng-deep .mat-drawer-container {
-    color: #d0d0d0;
+    color: white;
     background-color: transparent;
 }
 
 ::ng-deep .mat-drawer {
     background-color: #101010 !important;
     width: 90%;
-    color: #d0d0d0;
+    color: white;
 }
 
 ::ng-deep mat-sidenav {

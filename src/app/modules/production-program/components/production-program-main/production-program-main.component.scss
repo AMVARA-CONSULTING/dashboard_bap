@@ -13,7 +13,6 @@
     position: relative;
     padding: 0 15px 0 15px;
     box-sizing: border-box;
-    background-color: $bg-white-lvl3;
     .report-date {
         flex: 100%;
         text-align: right;
@@ -29,18 +28,18 @@
     overflow: hidden;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: linear-gradient(to bottom, #000, #303030);
+    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
-        border-bottom: 3px solid black;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
     }
     @media screen and (min-width: 800px) {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
-        border-bottom: 3px solid black;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
     }
     .graphic {
         flex: 1 60%;
@@ -49,7 +48,7 @@
     }
     .simple {
         flex: 1 40%;
-        border-left: 3px solid black;
+        border-left: 3px solid rgba($color: #000, $alpha: .2);
         padding: 30px;
         .headers, .overview-group {
             display: flex;

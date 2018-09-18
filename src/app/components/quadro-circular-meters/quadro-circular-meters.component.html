@@ -7,7 +7,7 @@
 <div class="meter">
   <div class="container" [matTooltip]="(plan | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="plan">
       <div class="percent">{{ plan }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="plan" background="#555555" [color]="'#d0d0d0'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="plan" background="#555555" [color]="'white'"></round-progress>
   </div>
 </div>
 <div class="meter">
@@ -19,6 +19,6 @@
 <div class="meter">
   <div class="container" [matTooltip]="(reserve | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="reserve">
       <div class="percent">{{ reserve }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="reserve" background="#555555" [color]="'#d0d0d0'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="reserve" background="#555555" [color]="'white'"></round-progress>
   </div>
 </div>

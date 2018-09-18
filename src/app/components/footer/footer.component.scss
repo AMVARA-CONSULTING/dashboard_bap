@@ -4,16 +4,12 @@
     height: 32px;
     position: fixed;
     width: 100%;
-    background-color: $main-bg-color;
     bottom: 0;
     left: 0;
     z-index: 99;
     transition: background-color .3s ease-in-out;
     line-height: 32px;
     padding: 0 15px;
-    &.lighter {
-        background-color: $header-bg-color;
-    }
 }
 
 .left {

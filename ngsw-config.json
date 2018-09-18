@@ -3,6 +3,9 @@
   "assetGroups": [
     {
       "name": "app",
+      "cacheConfig": {
+        "strategy": "freshness"
+      },
       "installMode": "prefetch",
       "resources": {
         "files": [
@@ -14,6 +17,9 @@
       }
     }, {
       "name": "assets",
+      "cacheConfig": {
+        "strategy": "freshness"
+      },
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {

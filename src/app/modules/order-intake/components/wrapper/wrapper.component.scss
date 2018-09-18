@@ -3,6 +3,8 @@
 
 :host {
     position: relative;
+    display: block;
+    background-color: $main-bg-content-color;
 }
 
 :host > * {

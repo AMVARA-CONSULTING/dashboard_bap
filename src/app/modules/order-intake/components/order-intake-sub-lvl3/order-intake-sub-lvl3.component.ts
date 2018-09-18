@@ -10,10 +10,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'order-intake-sub-lvl3',
   templateUrl: './order-intake-sub-lvl3.component.html',
-  styleUrls: ['./order-intake-sub-lvl3.component.scss'],
-  host: {
-    '(swiperight)': "return()"
-  }
+  styleUrls: ['./order-intake-sub-lvl3.component.scss']
 })
 export class OrderIntakeSubLvl3Component implements OnInit {
 
@@ -39,19 +36,24 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     title.setTitle('DIP - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.Show()
-    this.activatedRoute.params.subscribe(params => {
-      if (params.type == 'zone') {
-        this.ZoneID = params.id
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params.get('type') == 'zone') {
+        this.ZoneID = params.get('id')
+        this.PlantID = null
       } else {
-        this.PlantID = params.id
+        this.PlantID = params.get('id')
+        this.ZoneID = null
       }
       try {
-        if (params.type2 == 'region') {
-          this.RegionID = decodeURI(params.region_id)
+        if (params.get('type2') == 'region') {
+          this.RegionID = decodeURI(params.get('region_id'))
+          this.ProductID = null
         } else {
-          this.ProductID = decodeURI(params.region_id)
+          this.ProductID = decodeURI(params.get('region_id'))
+          this.RegionID = null
         }
       } catch (err) {
+        console.log(err)
         this.router.navigate(['order-intake'])
       }
       // If no Order Intake rows were found, get them
@@ -81,6 +83,14 @@ export class OrderIntakeSubLvl3Component implements OnInit {
         this.loader.Hide()
       }
     })
+  }
+
+  goAnother(key) : void {
+    if (this.RegionID != null) {
+      this.router.navigate(['../../', 'product', encodeURI(key)], { relativeTo: this.activatedRoute })
+    } else {
+      this.router.navigate(['../../', 'region', encodeURI(key)], { relativeTo: this.activatedRoute })
+    }
   }
 
   groupInfo: any
@@ -128,13 +138,13 @@ export class OrderIntakeSubLvl3Component implements OnInit {
       this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
     }
     this.title.setTitle('DIP - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+(this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
-    this.groupInfo.thisActual = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
-    this.groupInfo.thisPrevious = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
-    this.groupInfo.progress1 = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))
-    this.groupInfo.progress2 = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.previous))
-    this.groupInfo.sub3rows = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
+    this.groupInfo['thisActual'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
+    this.groupInfo['thisPrevious'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
+    this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))
+    this.groupInfo['progress2'] = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.previous))
+    this.groupInfo['sub3rows'] = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
     this.groupKeys = Object.keys(this.groupInfo.sub3rows)
-    
+    this.groupInfo = Object.assign({},this.groupInfo)
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }

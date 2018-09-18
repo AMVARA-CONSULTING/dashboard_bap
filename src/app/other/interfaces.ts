@@ -9,7 +9,8 @@ export interface Config {
     license: string,
     translations: 'en' | 'de' | any,
     changelog: any,
-    appTitle: string
+    appTitle: string,
+    languageCodes: any
 }
 
 export interface ContactInfo {

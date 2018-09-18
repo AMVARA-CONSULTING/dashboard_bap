@@ -89,6 +89,14 @@ export class AllocationLvl2Component implements OnInit {
   ngOnInit() {
   }
 
+  goRegion(key) : void {
+    this.router.navigate(['region', key], { relativeTo: this.activatedRoute })
+  }
+
+  goProduct(key) : void {
+    this.router.navigate(['product', key], { relativeTo: this.activatedRoute })
+  }
+
   goMonth(date) : void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('DDYYYY')

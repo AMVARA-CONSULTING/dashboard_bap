@@ -1,5 +1,5 @@
 <div class="data-header">
-  <div class="report-date">PLANDATE: {{ plandate }}</div>
+  <div class="report-date">{{ 'plandate' | translate }}: {{ plandate }}</div>
 </div>
 <div class="overview" [@overview]="ready">
   <div class="graphic">
@@ -8,7 +8,7 @@
   <div class="simple">
     <div class="headers">
       <div class="empty"></div>
-      <div class="customer cyan">KU</div>
+      <div class="customer">KU</div>
       <div class="plan">PL</div>
       <div class="reserve">SR</div>
     </div>
@@ -32,17 +32,17 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="customer cyan">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">Customer</div>
+    <div class="customer">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">{{ 'production_program.customer' | translate }}</div>
     </div>
     <div class="plan">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">Plan</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">{{ 'production_program.plan' | translate }}</div>
     </div>
-    <div class="total orange">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">Total</div>
+    <div class="total">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{ 'production_program.total' | translate }}</div>
     </div>
     <div class="reserve">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">Total</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">{{ 'production_program.reserve' | translate }}</div>
     </div>
   </header>
   <div class="zone" *ngFor="let zone of rowsGroupsGlobal | keyvalue">

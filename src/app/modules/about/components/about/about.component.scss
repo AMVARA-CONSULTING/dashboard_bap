@@ -87,3 +87,43 @@ p {
     }
 
 }
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-select-value-text {
+    color: $semi-white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: $semi-white !important;
+    opacity: .7;
+}
+
+::ng-deep .mat-select-content {
+    background-color: $bg-white-lvl2;
+}
+
+::ng-deep .mat-option:not(.mat-selected) {
+    color: $semi-white;
+}
+
+::ng-deep .mat-option.mat-selected {
+    color: $yellow-text !important;
+}
+
+::ng-deep .mat-form-field {
+    margin-left: 20px;
+}
+
+::ng-deep .reload-translations {
+    background-color: $yellow-text;
+    color: rgba(0,0,0,.95);
+    padding: 0 10px !important;
+    line-height: 27px !important;
+    margin: 10px 0 15px !important;
+}

@@ -11,6 +11,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { DipQuadroCircularMetersComponent } from '@components/quadro-circular-meters/quadro-circular-meters.component';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { MatTooltipModule } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
+// AoT requires an exported function for factories
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +35,14 @@ import { MatTooltipModule } from '@angular/material';
     CommonModule,
     MatSelectModule,
     MatTooltipModule,
-    RoundProgressModule
+    RoundProgressModule,
+    TranslateModule.forChild({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient],
+      }
+    }),
   ],
   exports: [
     MatIconModule,
@@ -40,7 +55,8 @@ import { MatTooltipModule } from '@angular/material';
     FormsModule,
     MatSelectModule,
     DipQuadroCircularMetersComponent,
-    RoundProgressModule
+    RoundProgressModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }

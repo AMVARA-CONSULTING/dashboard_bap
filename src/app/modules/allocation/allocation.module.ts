@@ -28,6 +28,11 @@ const routes: Routes = [
         path: ':plant/date/:date',
         component: AllocationLvl2Component,
         data: { level: 2 }
+      },
+      {
+        path: ':plant/date/:date/:type/:region_id',
+        component: AllocationLvl3Component,
+        data: { level: 3 }
       }
     ]
   }

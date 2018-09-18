@@ -42,11 +42,6 @@ export class ProductionProgramLvl2Component implements OnInit {
       } else {
         this.PlantID = params.get('id')
       }
-      console.log({ 
-        year: params.get('year'),
-        type: params.get('type'),
-        zone: params.get('id'),
-      })
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData().subscribe(data => {

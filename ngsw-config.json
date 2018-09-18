@@ -3,9 +3,6 @@
   "assetGroups": [
     {
       "name": "app",
-      "cacheConfig": {
-        "strategy": "freshness"
-      },
       "installMode": "prefetch",
       "resources": {
         "files": [
@@ -17,15 +14,27 @@
       }
     }, {
       "name": "assets",
-      "cacheConfig": {
-        "strategy": "freshness"
-      },
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "iBISS",
+      "urls": [
+        "https://ibiss-analytics.es.corpintra.net/internal/bi/v1/*",
+        "https://ibiss-analytics-int.es.corpintra.net/internal/bi/v1/*"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "365d",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]

@@ -2,19 +2,24 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Config
+        {{ 'about.config' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p>
-      Language: {{ config.config.language }}
+      Language: <mat-form-field>
+          <mat-select (ngModelChange)="setLang($event)" [(ngModel)]="config.config.language">
+            <mat-option *ngFor="let lang of config.config.languageCodes | keyvalue" [value]="lang.key">{{ lang.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
     </p>
+    <button (click)="reloadLang()" class="reload-translations" mat-raised-button>Reload language files</button>
     <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
     <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Sponsor
+          {{ 'about.sponsor' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -22,7 +27,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Credits
+          {{ 'about.credits' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -30,7 +35,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Thank you
+          {{ 'about.thanks' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p>
@@ -40,7 +45,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Software
+          {{ 'about.software' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p>This mobile report has been developed by <a href="https://amvara.de/" target="_blank">AMVARA CONSULTING</a> using <span>IBM Cognos Analytics</span> and <a href="https://angular.io/" target="_blank">Angular 6</a><br />
@@ -50,22 +55,26 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Licenses
+          {{ 'about.licenses' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="software">
       <ul>
         <li>IBM Cognos Analytics 11: <a href="#" target="_blank">Consumer License</a></li>
-        <li>Angular 6: <a href="https://github.com/angular/angular/blob/master/LICENSE" target="_blank">MIT License</a></li>
+        <li>Angular 6.2.2: <a href="https://github.com/angular/angular/blob/master/LICENSE" target="_blank">MIT License</a></li>
         <li>HammerJS v2.0.8: <a href="https://github.com/hammerjs/hammer.js/blob/master/LICENSE.md" target="_blank">MIT License</a></li>
         <li>MomentJS v2.22.2: <a href="https://github.com/moment/moment/blob/develop/LICENSE" target="_blank">MIT License</a></li>
+        <li>@ngx-translate v10.0.2: <a href="https://github.com/ngx-translate/core/blob/master/LICENSE" target="_blank">MIT License</a></li>
+        <li>angular-svg-round-progressbar v2.0.0: <a href="https://github.com/crisbeto/angular-svg-round-progressbar/blob/master/LICENSE" target="_blank">MIT License</a></li>
+        <li>ng-connection-service v1.0.4: <a href="https://github.com/ultrasonicsoft/ng-connection-service/blob/master/LICENSE" target="_blank">MIT License</a></li>
+        <li>ngx-json-viewer v2.3.1: <a href="https://github.com/hivivo/ngx-json-viewer/blob/master/LICENSE" target="_blank">MIT License</a></li>
       </ul>
     </div>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Technical Information
+          {{ 'about.technical_information' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     Version: {{ config.config.version }}
@@ -73,7 +82,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Changelog
+          {{ 'about.changelog' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="changelog">

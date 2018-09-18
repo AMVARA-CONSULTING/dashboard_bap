@@ -1,11 +1,15 @@
 {
-    "version": "2.0.1",
+    "version": "2.1.0",
 	"language": "de",
 	"appTitle": "Skill Tech",
 	"scenario": "dev",
-	"delay": 0,
+	"delay": 2000,
 	"copyright": "AMVARA",
 	"license": "SFASR",
+	"languageCodes": {
+		"en": "English",
+		"de": "Deutsch"
+	},
 	"contacts": [
 		{
 			"name": "Ralf Roeber",
@@ -107,6 +111,30 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.1.0",
+			"text": [
+				"Updated Manifest file",
+				"Updated styles",
+				"Updated npm packages",
+				"Updated @angular/cli",
+				"Added popup hints",
+				"Added language selector on About",
+				"Added reload language on About",
+				"Added Translation Service on all modules",
+				"Added translations for English & Deutsch for almost all visible strings",
+				"Added click on levels 3 so you can view the regions for a product and vice versa",
+				"Added little triangle on chartbar hints",
+				"Removed percentage of barchart values (temporarily)",
+				"Automatic rotate barchart descriptions depending on bars width",
+				"Introduced new theme palette (OK from Designer)",
+				"New background image",
+				"Added real-time connection status on footer",
+				"Now the page title can be viewed in the footer",
+				"Modified Service Worker for caching iBISS platform",
+				"No more need to reload with Shift + F5 to get the latest version, now just F5"
+			]
+		},
 		{
 			"version": "2.0.1",
 			"text": [

@@ -30,10 +30,12 @@ import { LoadingService } from '@services/loading.service'
 import { DataService } from '@services/data.service'
 import { ApiService } from '@services/api.service'
 import { ConfigService } from '@services/config.service';
+import { ConnectionService } from 'ng-connection-service';
 
-// Pipes - Used to convert dataTypes or Objects
-
+// Plugins
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // Angular Material
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -42,6 +44,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ToolsService } from '@services/tools.service';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
+import { HttpClient } from '@angular/common/http';
+
+// AoT requires an exported function for factories
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -66,6 +74,13 @@ import { SelectYearComponent } from './dialogs/select-year/select-year.component
     MatSidenavModule,
     // Plugins
     RoundProgressModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient],
+      }
+    }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
@@ -75,6 +90,7 @@ import { SelectYearComponent } from './dialogs/select-year/select-year.component
     LoadingService,
     DataService,
     ApiService,
+    ConnectionService,
     ConfigService,
     ToolsService,
     {

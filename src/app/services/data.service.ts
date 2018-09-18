@@ -1,11 +1,27 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SelectYearComponent } from '../dialogs/select-year/select-year.component';
+import { ConnectionService } from 'ng-connection-service';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Injectable()
 export class DataService {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private connection: ConnectionService,
+    private router: Router,
+    private ac: ActivatedRoute
+    ) { }
+
+  init() {
+    this.connection.monitor().subscribe(isConnected => {
+      this.online = isConnected
+    })
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) this.title = this.ac.root.firstChild.snapshot.data['title']
+    })
+  }
 
   // Determines if the sidenav is opened
   sidenavOpened: boolean = false
@@ -21,6 +37,12 @@ export class DataService {
 
   // Plant Stock - All rows without filters
   plantStockData: any[][] = []
+
+  // Indicates if the user has active internet connection
+  online: boolean = true
+
+  // Contains the title of the current page
+  title: string = ''
 
   /**
    * Classifies an array collection based on an index

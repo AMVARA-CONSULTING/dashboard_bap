@@ -22,12 +22,10 @@ export class AllocationBarComponent implements OnInit {
 
   @Input('allocation') set allocationSetter(value: number) {
     this.allocation = value
-    console.log("Allocation", value)
   }
 
   @Input('program') set programSetter(value: number) {
     this.program = value
-    console.log("Program", value)
   }
 
 }

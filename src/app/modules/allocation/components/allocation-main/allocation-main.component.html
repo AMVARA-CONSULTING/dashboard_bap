@@ -1,4 +1,4 @@
-<div class="plandate">PLANDATE: {{ plandate }}</div>
+<div class="plandate">{{ 'plandate' | translate }}: {{ plandate }}</div>
 <div class="overview">
   <div class="graphic">
     <allocation-graphic [months]="months"></allocation-graphic>
@@ -13,8 +13,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field></div>
-  <div class="program">Program</div>
-  <div class="allocation">Allocation</div>
+  <div class="program">{{ 'allocation.program' | translate }}</div>
+  <div class="allocation">{{ 'allocation.allocation' | translate }}</div>
   <div class="percent"></div>
 </header>
 <div class="content-wrapper" [@list]="months.length">

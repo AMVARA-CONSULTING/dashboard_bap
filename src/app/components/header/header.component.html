@@ -5,12 +5,12 @@
   <span>{{ config.config.appTitle }}</span>
 </div>
 <ul class="links">
-  <li routerLink="/order-intake" routerLinkActive="active">Order Intake</li>
-  <li routerLink="/production-program" routerLinkActive="active">Production Planning</li>
-  <li routerLink="/allocation" routerLinkActive="active">Allocation</li>
-  <li routerLink="/plant-stock" routerLinkActive="active">Plant Stock</li>
-  <li routerLink="/about" routerLinkActive="active">About</li>
-  <li routerLink="/help" routerLinkActive="active">Help</li>
+  <li routerLink="/order-intake" routerLinkActive="active">{{ 'menu.order_intake' | translate }}</li>
+  <li routerLink="/production-program" routerLinkActive="active">{{ 'menu.production_program' | translate }}</li>
+  <li routerLink="/allocation" routerLinkActive="active">{{ 'menu.allocation' | translate }}</li>
+  <li routerLink="/plant-stock" routerLinkActive="active">{{ 'menu.plant_stock' | translate }}</li>
+  <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
+  <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
 </ul>
 <div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
   <div class="icon">

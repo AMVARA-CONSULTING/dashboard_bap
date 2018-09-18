@@ -1,6 +1,6 @@
 <div class="overview">
     <div class="data-header">
-      <div class="report-date">PLANDATE: {{ plandate }}</div>
+      <div class="report-date">{{ 'plandate' | translate }}: {{ plandate }}</div>
     </div>
     <header>
       <div class="title">
@@ -14,16 +14,16 @@
         </mat-form-field>
       </div>
       <div class="customer">
-        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">Customer</div>
+        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">{{ 'production_program.customer' | translate }}</div>
       </div>
       <div class="plan">
-        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">Plan</div>
+        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">{{ 'production_program.plan' | translate }}</div>
       </div>
       <div class="total">
-        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">Total</div>
+        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{ 'production_program.total' | translate }}</div>
       </div>
       <div class="reserve">
-        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">Total</div>
+        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">{{ 'production_program.reserve' | translate }}</div>
       </div>
     </header>
     <ng-container *ngIf="ZoneID != null && groupInfo">
@@ -38,7 +38,7 @@
         <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
       </div>
       <div class="header-row arrow zone" (click)="return()">
-        <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</div>
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</span></div>
         <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
         <div class="total">
@@ -71,7 +71,7 @@
       </div>
     </ng-container>
     <div class="header-row arrow plant" *ngIf="RegionID != null && groupInfo" (click)="return()">
-      <div class="title">{{ groupInfo.productsPlain[0][config.config.language == 'en' ? 10 : 9]}}</div>
+      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{ groupInfo.productsPlain[0][config.config.language == 'en' ? 10 : 9]}}</span></div>
       <div class="customer">{{ data.sumByIndex(groupInfo.productsPlain, 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(groupInfo.productsPlain, 16) | toNumber }}</div>
       <div class="total">
@@ -93,9 +93,9 @@
     <dip-quadro-circular-meters [customer]="groupInfo.progress1 || 0" [plan]="groupInfo.progress2 || 0" [total]="groupInfo.progress3 || 0" [reserve]="groupInfo.progress4 || 0" *ngIf="ready && groupInfo"></dip-quadro-circular-meters>
     <ng-container *ngIf="ProductID != null">
       <div class="title-header">
-        <div class="title">REGIONS</div>
+        <div class="title">{{ 'regions' | translate }}</div>
       </div>
-      <div class="lvl2-row" *ngFor="let RegionKey of groupInfo?.regionKeys">
+      <div class="lvl2-row" (click)="goForRegion(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
         <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.language == 'en' ? 10 : 9]]}}</div>
         <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 15) | toNumber }}</div>
         <div class="plan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 16) | toNumber }}</div>
@@ -108,9 +108,9 @@
     </ng-container>
     <ng-container *ngIf="RegionID != null">
       <div class="title-header">
-        <div class="title">PRODUCTS</div>
+        <div class="title">{{ 'products' | translate }}</div>
       </div>
-      <div class="lvl2-row" *ngFor="let ProductKey of groupInfo?.productKeys">
+      <div class="lvl2-row" (click)="goForProduct(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
         <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.language == 'en' ? 12 : 11]]}}</div>
         <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.products[ProductKey], 15) | toNumber }}</div>
         <div class="plan">{{ data.sumByIndex(groupInfo.products[ProductKey], 16) | toNumber }}</div>

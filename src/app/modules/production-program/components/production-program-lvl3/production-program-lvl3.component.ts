@@ -49,16 +49,11 @@ export class ProductionProgramLvl3Component implements OnInit {
       }
       if (this.type2 == 'region') {
         this.RegionID = this.region_id
+        this.ProductID = null
       } else {
         this.ProductID = this.region_id
+        this.RegionID = null
       }
-      console.log({ 
-        year: params.get('year'),
-        type: params.get('type'),
-        zone: params.get('id'),
-        type2: params.get('type2'),
-        region_id: params.get('region_id')
-      })
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData().subscribe(data => {
@@ -143,6 +138,14 @@ export class ProductionProgramLvl3Component implements OnInit {
         this.loader.Hide()
       }
     })
+  }
+
+  goForProduct(key) : void {
+    this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute })
+  }
+
+  goForRegion(key) : void {
+    this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute })
   }
 
   productionProgramData: any[][] = []

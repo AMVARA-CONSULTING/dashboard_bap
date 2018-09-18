@@ -118,7 +118,6 @@ export class AllocationMainComponent implements OnInit {
         return r
       }, {})
     )
-    console.log(this.years)
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
       if (alocDate.isBetween(dateNow, dateNextEightMonths, null, '[]')) {
@@ -138,7 +137,6 @@ export class AllocationMainComponent implements OnInit {
         percent: this.tools.percent(allocation, program, true, true, true)
       })
     })
-    console.log(info)
     this.months = info
     setTimeout(() => {
       this.ready = true

@@ -17,7 +17,7 @@ export class AppComponent {
     ) {
     data.init()
     translate.setDefaultLang('en')
-    translate.use(localStorage.getItem('lang') || translate.getBrowserLang() || config.config.language)
+    translate.use(localStorage.getItem('lang') || config.config.language)
   }
 
   close() {

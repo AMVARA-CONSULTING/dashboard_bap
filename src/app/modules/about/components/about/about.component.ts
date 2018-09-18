@@ -17,6 +17,7 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.config.config.language)
   }
 
   setLang(code: string) : void {

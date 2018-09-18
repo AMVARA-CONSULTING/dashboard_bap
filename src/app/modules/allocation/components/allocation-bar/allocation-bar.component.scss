@@ -1,0 +1,60 @@
+
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    width: 100%;
+    background-color: $bg-white-lvl5;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.bar {
+    display: block;
+    height: 20px;
+    width: calc(100% - 70px);
+    background-color: $yellow-text-material;
+    border-radius: 10px;
+    overflow: hidden;
+    .part {
+        display: block;
+        height: inherit;
+        transition: width 1s ease-in-out .5s;
+        background-color: $cyan-text-material;
+    }
+}
+
+.percent {
+    position: absolute;
+    margin: auto;
+    height: 20px;
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    text-align: right;
+    width: 70px;
+    line-height: 20px;
+    font-size: 20px;
+    color: $lighten-cyan-text;
+}
+
+::ng-deep .mat-tooltip.above {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        width: 0;
+        content: "";
+        display: block;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgba(0,0,0,.4);
+    }
+}

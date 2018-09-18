@@ -1,4 +1,9 @@
-<div class="logo" routerLink="/"></div>
+<div class="logo" [ngClass]="{'running': loader?.show}" routerLink="/">
+  <div class="inter"></div>
+  <div class="middle"></div>
+  <div class="outer"></div>
+  <span>DIP</span>
+</div>
 <ul class="links">
   <li routerLink="/order-intake" routerLinkActive="active">Order Intake</li>
   <li routerLink="/production-program" routerLinkActive="active">Production Planning</li>

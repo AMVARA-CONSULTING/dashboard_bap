@@ -138,7 +138,7 @@ header {
             color: $yellow-text;
         }
         .allocation {
-            color: $cyan-text;
+            color: $lighten-cyan-text;
         }
         .percent {
             flex: 1 20%;
@@ -149,4 +149,44 @@ header {
 
 ::ng-deep .mat-form-field {
     max-width: 140px;
+}
+
+::ng-deep .mat-tooltip.after {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        height: 0;
+        content: "";
+        display: block;
+        border-top: 6px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 8px solid rgba(0, 0, 0, 0.4);
+    }
+}
+
+::ng-deep .mat-tooltip.above {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        width: 0;
+        content: "";
+        display: block;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgba(0,0,0,.4);
+    }
 }

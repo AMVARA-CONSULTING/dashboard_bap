@@ -12,7 +12,7 @@ import { ToolsService } from '@services/tools.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private loading: LoadingService,
+    public loader: LoadingService,
     public data: DataService,
     private router: Router,
     private tools: ToolsService

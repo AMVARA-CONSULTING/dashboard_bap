@@ -5,7 +5,11 @@
         Config
       </mat-panel-title>
     </mat-expansion-panel-header>
-    dsdfkjgndfkjnjgdjdfjjdfkj
+    <p>
+      Language: {{ config.config.language }}
+    </p>
+    <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
+    <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -29,12 +33,24 @@
         Thank you
       </mat-panel-title>
     </mat-expansion-panel-header>
-    dsdfkjgndfkjnjgdjdfjjdfkj
+    <p>
+        We would like to thank Google for their UX Material design, which brings a new modern design and adaptable to any need. <a href="https://material.io/" target="_blank">See Google Material Guidelines</a>
+    </p>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
         Software
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>This mobile report has been developed by <a href="https://amvara.de/" target="_blank">AMVARA CONSULTING</a> using <span>IBM Cognos Analytics</span> and <a href="https://angular.io/" target="_blank">Angular 6</a><br />
+    The data queries were provided by the respective business department itself.
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Licenses
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="software">
@@ -44,14 +60,6 @@
         <li>MomentJS v2.22.2: <a href="https://github.com/moment/moment/blob/develop/LICENSE" target="_blank">MIT License</a></li>
       </ul>
     </div>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Licenses
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    dsdfkjgndfkjnjgdjdfjjdfkj
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -67,6 +75,15 @@
         Changelog
       </mat-panel-title>
     </mat-expansion-panel-header>
-    dsdfkjgndfkjnjgdjdfjjdfkj
+    <div class="changelog">
+      <ul>
+        <li *ngFor="let change of config.config.changelog">
+          <div class="change-title">{{ change.version }}</div>
+          <ul *ngIf="change.text.length > 0">
+            <li *ngFor="let desc of change.text">{{ desc }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>

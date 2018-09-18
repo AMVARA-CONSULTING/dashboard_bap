@@ -9,7 +9,7 @@
     display: block;
 }
 
-::ng-deep allocation-main {
+::ng-deep allocation-main, ::ng-deep allocation-lvl2 {
     position: fixed;
     top: 70px;
     bottom: 0;

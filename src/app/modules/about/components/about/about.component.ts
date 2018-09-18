@@ -15,4 +15,6 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
   }
 
+  showConfig: boolean = false
+
 }

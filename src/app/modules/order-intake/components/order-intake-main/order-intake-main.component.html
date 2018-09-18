@@ -10,8 +10,8 @@
   <div class="simple">
     <div class="headers">
       <div class="empty"></div>
-      <div class="actual">Actual day</div>
-      <div class="previous">Prev. Month</div>
+      <div class="actual cyan">Actual day</div>
+      <div class="previous orange">Prev. Month</div>
     </div>
     <div (click)="goZone(rowGroups[key][0][0])" class="overview-group" *ngFor="let key of rowKeys">
       <div class="empty">{{ rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>

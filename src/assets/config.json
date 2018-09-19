@@ -1,5 +1,5 @@
 {
-    "version": "2.1.0",
+    "version": "2.2.0",
 	"language": "en",
 	"appTitle": "Skill Tech",
 	"scenario": "dev",
@@ -100,6 +100,35 @@
 					"yearMonth": 17,
 					"runDate": 18,
 					"shouldBeNumber": [14, 15]
+				},
+				"plant_stock": {
+					"plantKey": 0,
+					"plantName": {
+						"en": 2,
+						"de": 1
+					},
+					"werkbestandName": {
+						"en": 4,
+						"de": 3
+					},
+					"hofbestandName": {
+						"en": 6,
+						"de": 5
+					},
+					"regionName": {
+						"en": 8,
+						"de": 7
+					},
+					"productName": {
+						"en": 10,
+						"de": 9
+					},
+					"actual": 11,
+					"previous": 12,
+					"delta": 13,
+					"actualDate": 15,
+					"previousDate": 17,
+					"shouldBeNumber": [11, 12, 13]
 				}
 			}
 		}
@@ -111,6 +140,13 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.2.0",
+			"text": [
+				"Created module for Plant Stock",
+				"Plant Stock Level 1"
+			]
+		},
 		{
 			"version": "2.1.0",
 			"text": [

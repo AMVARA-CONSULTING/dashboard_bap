@@ -22,4 +22,9 @@ export class ApiService {
   getAllocationData(ReportID?: string) : Observable<any[][]> {
     return this.http.get<any[][]>('assets/reports/allocation.fake.json').pipe(delay(650))
   }
+
+  // Get Plant Stock Data from Report (tmp JSON file)
+  getPlantStockData(ReportID?: string) : Observable<any[][]> {
+    return this.http.get<any[][]>('assets/reports/plant_stock.json').pipe(delay(650))
+  } 
 }

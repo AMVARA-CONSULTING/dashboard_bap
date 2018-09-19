@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: './modules/allocation/allocation.module#AllocationModule',
     data: { title: 'allocation' }
   },
+  {
+    path: 'plant-stock',
+    loadChildren: './modules/plant-stock/plant-stock.module#PlantStockModule',
+    data: { title: 'plant_stock' }
+  },
   { 
     path: 'about',
     loadChildren: './modules/about/about.module#AboutModule',

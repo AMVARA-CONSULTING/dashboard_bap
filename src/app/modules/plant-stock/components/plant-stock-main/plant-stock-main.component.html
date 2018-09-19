@@ -1,0 +1,30 @@
+<div class="plandate">{{ 'plandate' | translate }}: {{ plandate }}</div>
+<div class="overview">
+  <div class="graphic">
+    
+  </div>
+</div>
+<header>
+  <div class="werk">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
+      <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
+        <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
+          {{ plant.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field></div>
+  <div class="actual">{{ plandate }}</div>
+  <div class="previous">Prev. Month</div>
+  <div class="delta">&Delta;</div>
+</header>
+<div class="content-wrapper" [@list]>
+  <div class="group-header">TOTAL</div>
+  <div *ngFor="let werk of werkbestands | keyvalue">
+    <div class="row" (click)="goMonth(month.month)">
+      <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plant_stock.werkbestandName[config.config.language]] }}</div>
+      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
+      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+    </div>
+  </div>
+</div>

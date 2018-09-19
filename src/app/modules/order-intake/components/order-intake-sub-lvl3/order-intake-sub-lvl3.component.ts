@@ -165,7 +165,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
   }
 
   return() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, skipLocationChange: true })
   }
 
 }

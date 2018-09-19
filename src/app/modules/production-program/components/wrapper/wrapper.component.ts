@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { trigger, transition, query, style, group, animate } from '@angular/animations';
 import { RouterOutlet } from '@angular/router';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'production-program-wrapper',
@@ -47,7 +48,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class WrapperComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
   }
@@ -55,6 +56,7 @@ export class WrapperComponent implements OnInit {
   @ViewChild('o') outlet: RouterOutlet
 
   getLevel() {
+    this.data.currentLevel = +this.outlet.activatedRouteData['level']
     return this.outlet.activatedRouteData['level']
   }
 

@@ -1,13 +1,14 @@
 $semi-white: white;
-$yellow-text: #f8b03b;
-$cyan-text: #00acc1;
-$cyan-text-material: #00acc1;
-$yellow-text-material: #f8b03b;
+$yellow-text: #F8B03B;
+$cyan-text: #00ACC1;
+$cyan-text-material: #00ACC1;
+$yellow-text-material: #F8B03B;
 $lighten-cyan-text: lighten($cyan-text, 20);
 $main-bg-color: #101010;
 
 $transparency: .6;
 
+$header-bg-color: rgba($color: #17181F, $alpha: .85);
 $main-bg-body-color: rgba($color: #181820, $alpha: .92);
 $main-bg-content-color: rgba($color: #202020, $alpha: .4);
 $bg-white-lvl1: rgba($color: #343445, $alpha: .5);

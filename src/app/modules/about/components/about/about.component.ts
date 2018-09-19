@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'about',
@@ -13,8 +14,11 @@ export class AboutComponent implements OnInit {
   constructor(
     public config: ConfigService,
     private translate: TranslateService,
-    private snack: MatSnackBar
-  ) {}
+    private snack: MatSnackBar,
+    public data: DataService
+  ) {
+    data.currentLevel = 1
+  }
 
   ngOnInit() {
     console.log(this.config.config.language)

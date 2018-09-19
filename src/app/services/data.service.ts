@@ -23,6 +23,10 @@ export class DataService {
     })
   }
 
+  currentLevel: number = 0
+
+  backButton: boolean = false
+
   // Determines if the sidenav is opened
   sidenavOpened: boolean = false
 

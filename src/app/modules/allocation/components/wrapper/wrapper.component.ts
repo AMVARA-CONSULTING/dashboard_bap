@@ -58,6 +58,7 @@ export class WrapperComponent implements OnInit {
   @ViewChild('o') outlet: RouterOutlet
 
   getLevel() {
+    this.data.currentLevel = +this.outlet.activatedRouteData['level']
     return this.outlet.activatedRouteData['level']
   }
 

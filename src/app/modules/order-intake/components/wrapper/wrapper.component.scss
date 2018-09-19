@@ -13,9 +13,11 @@
 
 ::ng-deep order-intake-sub-lvl2, ::ng-deep order-intake-main, ::ng-deep order-intake-sub-lvl3 {
     position: fixed;
-    top: 70px;
+    top: 0;
     bottom: 0;
-    height: calc(100% - 102px);
+    height: calc(100% - 32px);
+    padding-top: 70px;
+    box-sizing: border-box;
     width: 100%;
     left: 0;
     overflow-y: auto;

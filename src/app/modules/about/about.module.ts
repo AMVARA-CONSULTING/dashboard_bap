@@ -14,7 +14,8 @@ import { SharedModule } from '@modules/shared/shared.module';
 
 const routes: Routes = [
   {
-    path: '', component: AboutComponent
+    path: '', component: AboutComponent,
+    data: { level: 1 },
   }
 ]
 

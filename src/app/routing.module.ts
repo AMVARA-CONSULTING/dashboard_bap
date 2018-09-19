@@ -10,7 +10,7 @@ const routes: Routes = [
   { 
     path: 'order-intake', 
     loadChildren: './modules/order-intake/order-intake.module#OrderIntakeModule', 
-    data: { title: 'order_intake'} 
+    data: { title: 'order_intake' }
   },
   {
     path: 'production-program', 

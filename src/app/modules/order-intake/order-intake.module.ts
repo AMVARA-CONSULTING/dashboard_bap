@@ -24,7 +24,7 @@ const routes: Routes = [
       {
         path: ':type/:id',
         component: OrderIntakeSubLvl2Component,
-        data: { level: 2 },
+        data: { level: 2 }
       },
       {
         path: ':type/:id/:type2/:region_id',

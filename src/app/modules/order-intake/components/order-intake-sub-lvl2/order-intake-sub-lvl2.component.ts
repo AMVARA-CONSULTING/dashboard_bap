@@ -143,9 +143,9 @@ export class OrderIntakeSubLvl2Component implements OnInit {
   forward(): void {
     if (this.data.lastTap2) {
       if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
+        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, skipLocationChange: true })
       } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
+        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, skipLocationChange: true })
       }
     }
   }
@@ -155,7 +155,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       type: 'region',
       key: encodeURI(ProductID)
     }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, skipLocationChange: true })
   }
   
   goRegion(RegionID): void {
@@ -163,7 +163,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       type: 'product',
       key: encodeURI(RegionID)
     }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute, skipLocationChange: true })
   }
 
 }

@@ -104,7 +104,7 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'zone',
       key: ZoneID
     }
-    this.router.navigate(['order-intake','zone', ZoneID])
+    this.router.navigate(['order-intake','zone', ZoneID], { skipLocationChange: true })
   }
 
   /** Go to /order-intake/plant/:id
@@ -115,15 +115,15 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'plant',
       key: PlantID
     }
-    this.router.navigate(['order-intake', 'plant', PlantID])
+    this.router.navigate(['order-intake', 'plant', PlantID], { skipLocationChange: true })
   }
 
   recoverLvl2(): void {
     if (this.data.lastTap != null) {
       if (this.data.lastTap.type == 'plant') {
-        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key])
+        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { skipLocationChange: true })
       } else {
-        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key])
+        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { skipLocationChange: true })
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-    "version": "2.2.0",
+    "version": "2.3.0",
 	"language": "en",
 	"appTitle": "Skill Tech",
 	"scenario": "dev",
@@ -140,6 +140,18 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.3.0",
+			"text": [
+				"Investigate about Service Workers (see below)",
+				"Now the SW tries to update files (if they are new) on page load",
+				"The App automatically checks for updates and prompts the user to reload",
+				"Advanced AMVARA Wiki page on how to create, use, configure and how it works Angular Service Workers",
+				"Changed page title to top left corner, only on mobile devices",
+				"Plant Stock Level 1 done",
+				"Improved performance on templates *ngFor's using container statements"
+			]
+		},
 		{
 			"version": "2.2.0",
 			"text": [

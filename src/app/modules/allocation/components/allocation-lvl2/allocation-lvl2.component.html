@@ -1,4 +1,4 @@
-<div class="plandate">{{ 'plandate' | translate }}: {{ plandate }}</div>
+<div class="plandate"><div class="empty">{{ 'menu.'+data.title | translate }}</div>{{ 'plandate' | translate }}: {{ plandate }}</div>
 <div class="overview" *ngIf="ready">
   <div class="graphic">
     <allocation-graphic [months]="months"></allocation-graphic>

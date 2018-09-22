@@ -52,7 +52,6 @@ export class PlantStockMainComponent implements OnInit {
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
         this.api.getPlantStockData().subscribe(data => {
-          console.log(data)
           this.plandate = moment(data[0][config.config.reports.trucks.columns.plant_stock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.plantStockData = data
           // Transform numeric values to real numeric values, also checking NaN or null
@@ -65,7 +64,7 @@ export class PlantStockMainComponent implements OnInit {
           this.loader.Hide()
         })
       } else {
-        this.plandate = moment(data[0][config.config.reports.trucks.columns.plant_stock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plant_stock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
         this.loader.Hide()
       }
@@ -73,6 +72,10 @@ export class PlantStockMainComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  changePlant(plant) {
+    this.router.navigate(['plant-stock', plant])
   }
 
   rollupData() {
@@ -86,9 +89,7 @@ export class PlantStockMainComponent implements OnInit {
       r[a[plantKey]] = a[plantName[this.config.config.language]]
       return r
     }, {})
-    console.log(this.data.plantStockData)
     if (this.plant == null || !this.plants[this.plant]) {
-      console.log(this.plants)
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]])
       return
     }

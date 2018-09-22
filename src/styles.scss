@@ -98,11 +98,11 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     }
 }
 
-.mat-tooltip.actual {
+.mat-tooltip.actual, .mat-tooltip.allocation {
     overflow: initial !important;
 }
 
-.mat-tooltip.actual:after {
+.mat-tooltip.actual:after, .mat-tooltip.allocation:after {
     content: "";
     bottom: -5px;
     left: 0;
@@ -116,11 +116,11 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     border-top: 5px solid $cyan-text;
 }
 
-.mat-tooltip.previous {
+.mat-tooltip.previous, .mat-tooltip.program {
     overflow: initial !important;
 }
 
-.mat-tooltip.previous:after {
+.mat-tooltip.previous:after, .mat-tooltip.program:after {
     content: "";
     bottom: -5px;
     left: 0;
@@ -184,4 +184,14 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .mat-snack-bar-container {
     background-color: rgba(0,0,0,.4) !important;
+}
+
+.newUpdate .mat-dialog-container {
+    background-color: $main-bg-body-color !important;
+}
+
+@media (min-width: 800px) {
+    .empty {
+        opacity: 0;
+    }
 }

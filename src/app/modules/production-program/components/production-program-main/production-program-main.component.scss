@@ -13,6 +13,10 @@
     position: relative;
     padding: 0 15px 0 15px;
     box-sizing: border-box;
+    .empty {
+        padding-left: 5px;
+        flex: 1 100%;
+    }
     .report-date {
         flex: 100%;
         text-align: right;

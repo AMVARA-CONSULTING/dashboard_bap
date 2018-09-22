@@ -3,6 +3,7 @@ import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from '@services/data.service';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'about',
@@ -15,7 +16,8 @@ export class AboutComponent implements OnInit {
     public config: ConfigService,
     private translate: TranslateService,
     private snack: MatSnackBar,
-    public data: DataService
+    public data: DataService,
+    public sw: SwUpdate
   ) {
     data.currentLevel = 1
   }

@@ -40,11 +40,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // Angular Material
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ToolsService } from '@services/tools.service';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
 import { HttpClient } from '@angular/common/http';
+import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -56,7 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     HeaderComponent,
     LoaderComponent,
-    FooterComponent
+    FooterComponent,
+    NewUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
     // Angular Material Modules
     MatTooltipModule,
     MatSidenavModule,
+    MatDialogModule,
     // Plugins
     RoundProgressModule,
     TranslateModule.forRoot({
@@ -84,7 +88,8 @@ export function createTranslateLoader(http: HttpClient) {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
-    SelectYearComponent
+    SelectYearComponent,
+    NewUpdateComponent
   ],
   providers: [
     LoadingService,

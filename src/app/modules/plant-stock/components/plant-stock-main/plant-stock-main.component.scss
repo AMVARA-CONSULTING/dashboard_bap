@@ -5,6 +5,11 @@
     left: 0;
 }
 
+.empty {
+    float: left;
+    padding-left: 5px;
+}
+
 .plandate {
     display: block;
     padding: 0 15px;
@@ -13,6 +18,68 @@
     width: 100%;
     text-align: right;
     box-sizing: border-box;
+}
+
+.overview {
+    display: flex;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .6s ease-in-out;
+    border-color: black;
+    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
+    @media screen and (min-width: 600px) and (orientation: landscape) {
+        max-height: 1000px;
+        min-height: 240px;
+        overflow: auto;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+    }
+    @media screen and (min-width: 800px) {
+        max-height: 1000px;
+        min-height: 240px;
+        overflow: auto;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+    }
+    .graphic {
+        flex: 1 60%;
+        padding: 30px;
+        padding-bottom: 15px;
+    }
+    .simple {
+        flex: 1 40%;
+        border-left: 3px solid rgba($color: #000, $alpha: .2);
+        padding: 30px;
+        .headers, .overview-group {
+            display: flex;
+            width: 100%;
+            line-height: 40px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            .empty, .werk, .actuak, .previous, .delta {
+                flex: 1;
+            }
+            .actuak, .previous, .delta {
+                text-align: right;
+            }
+        }
+        .overview-group {
+            transition: background .1s ease-in-out;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(255,255,255,.05);
+            }
+            .empty {
+                cursor: pointer;
+            }
+            .actual {
+                color: $lighten-cyan-text;
+            }
+            .previous {
+                color: $yellow-text;
+            }
+        }
+    }
 }
 
 header {
@@ -29,6 +96,11 @@ header {
         box-sizing: border-box;
         flex: 1 20%;
         text-align: right;
+    }
+    .previous {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 }
 

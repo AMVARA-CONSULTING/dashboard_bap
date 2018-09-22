@@ -4,6 +4,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { PlantStockMainComponent } from './components/plant-stock-main/plant-stock-main.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@modules/shared/shared.module';
+import { GraphicComponent } from './components/graphic/graphic.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,6 @@ const routes: Routes = [
     SharedModule,
     CommonModule
   ],
-  declarations: [WrapperComponent, PlantStockMainComponent]
+  declarations: [WrapperComponent, PlantStockMainComponent, GraphicComponent]
 })
 export class PlantStockModule { }

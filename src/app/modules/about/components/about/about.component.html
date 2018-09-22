@@ -77,7 +77,8 @@
           {{ 'about.technical_information' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    Version: {{ config.config.version }}
+    Version: {{ config.config.version }}<br />
+    Service Worker Status: <span *ngIf="sw.isEnabled" class="sw_status enabled">OK</span><span *ngIf="!sw.isEnabled" class="sw_status disabled">Not running</span>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

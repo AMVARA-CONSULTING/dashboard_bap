@@ -1,31 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { LoadingService } from '@services/loading.service';
-import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
 
 @Component({
-  selector: 'plant-stock-main',
-  templateUrl: './plant-stock-main.component.html',
-  styleUrls: ['./plant-stock-main.component.scss'],
-  animations: [
-    trigger('list', [
-      transition('* => *', [
-        query(':enter', style({ opacity: 0 }), { optional: true }),
-        query(':enter', stagger('100ms', animate('300ms ease-in', style({ opacity: 1 }))), { optional: true })
-      ])
-    ]),
-  ],
-  host: {
-    '[style.opacity]': 'loader.show ? 0 : 1'
-  }
+  selector: 'plant-stock-lvl2',
+  templateUrl: './plant-stock-lvl2.component.html',
+  styleUrls: ['./plant-stock-lvl2.component.scss']
 })
-export class PlantStockMainComponent implements OnInit {
+export class PlantStockLvl2Component implements OnInit {
 
   ready: boolean = false
 
@@ -74,11 +62,6 @@ export class PlantStockMainComponent implements OnInit {
   ngOnInit() {
   }
 
-  goWerk(werk) : void {
-    console.log(werk)
-    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute })
-  }
-
   changePlant(plant) {
     this.router.navigate(['plant-stock', plant])
   }
@@ -107,5 +90,4 @@ export class PlantStockMainComponent implements OnInit {
   }
 
   werkbestands
-
 }

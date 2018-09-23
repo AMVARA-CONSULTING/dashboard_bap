@@ -33,7 +33,7 @@
 </header>
 <div class="content-wrapper" [@list]>
   <div class="group-header">TOTAL</div>
-  <div class="row" (click)="goWerk(werk.key)" *ngFor="let werk of werkbestands | keyvalue">
+  <div class="row" (click)="goHofbestand(hofb.key)" *ngFor="let hobf of hofbestands | keyvalue">
     <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plant_stock.werkbestandName[config.config.language]] }}</div>
     <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
     <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>

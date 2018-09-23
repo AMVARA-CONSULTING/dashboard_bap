@@ -5,6 +5,7 @@ import { PlantStockMainComponent } from './components/plant-stock-main/plant-sto
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@modules/shared/shared.module';
 import { GraphicComponent } from './components/graphic/graphic.component';
+import { PlantStockLvl2Component } from './components/plant-stock-lvl2/plant-stock-lvl2.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
         path: ':plant',
         component: PlantStockMainComponent,
         data: { level: 1 }
+      },
+      {
+        path: ':plant/werk/:werk',
+        component: PlantStockLvl2Component,
+        data: { level: 2 }
       }
     ]
   },
@@ -31,6 +37,6 @@ const routes: Routes = [
     SharedModule,
     CommonModule
   ],
-  declarations: [WrapperComponent, PlantStockMainComponent, GraphicComponent]
+  declarations: [WrapperComponent, PlantStockMainComponent, GraphicComponent, PlantStockLvl2Component]
 })
 export class PlantStockModule { }

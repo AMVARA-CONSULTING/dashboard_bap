@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { OrderIntakeSubLvl3Component } from './components/order-intake-sub-lvl3/order-intake-sub-lvl3.component';
 import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
 import { SharedModule } from '@modules/shared/shared.module';
+import { NavigationGuard } from '../../guards/navigation-guard.service';
 
 const routes: Routes = [
   {
@@ -19,16 +20,19 @@ const routes: Routes = [
       {
         path: '',
         component: OrderIntakeMainComponent,
+        canDeactivate: [NavigationGuard],
         data: { level: 1 }
       },
       {
         path: ':type/:id',
         component: OrderIntakeSubLvl2Component,
+        canDeactivate: [NavigationGuard],
         data: { level: 2 }
       },
       {
         path: ':type/:id/:type2/:region_id',
         component: OrderIntakeSubLvl3Component,
+        canDeactivate: [NavigationGuard],
         data: { level: 3 }
       }
     ]

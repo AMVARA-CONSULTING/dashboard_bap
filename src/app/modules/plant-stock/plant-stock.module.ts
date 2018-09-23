@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@modules/shared/shared.module';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { PlantStockLvl2Component } from './components/plant-stock-lvl2/plant-stock-lvl2.component';
+import { NavigationGuard } from '../../guards/navigation-guard.service';
 
 const routes: Routes = [
   {
@@ -15,16 +16,19 @@ const routes: Routes = [
       {
         path: '',
         component: PlantStockMainComponent,
+        canDeactivate: [NavigationGuard],
         data: { level: 1 }
       },
       {
         path: ':plant',
         component: PlantStockMainComponent,
+        canDeactivate: [NavigationGuard],
         data: { level: 1 }
       },
       {
         path: ':plant/werk/:werk',
         component: PlantStockLvl2Component,
+        canDeactivate: [NavigationGuard],
         data: { level: 2 }
       }
     ]

@@ -11,10 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from '@modules/shared/shared.module';
+import { NavigationGuard } from '../../guards/navigation-guard.service';
 
 const routes: Routes = [
   {
     path: '', component: AboutComponent,
+    canDeactivate: [NavigationGuard],
     data: { level: 1 },
   }
 ]

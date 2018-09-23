@@ -5,12 +5,12 @@
   <span>{{ config.config.appTitle }}</span>
 </div>
 <ul class="links">
-  <li routerLink="/order-intake" routerLinkActive="active">{{ 'menu.order_intake' | translate }}</li>
-  <li routerLink="/production-program" routerLinkActive="active">{{ 'menu.production_program' | translate }}</li>
-  <li routerLink="/allocation" routerLinkActive="active">{{ 'menu.allocation' | translate }}</li>
-  <li routerLink="/plant-stock" routerLinkActive="active">{{ 'menu.plant_stock' | translate }}</li>
-  <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
-  <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
+  <li (click)="go('order-intake')" routerLinkActive="active">{{ 'menu.order_intake' | translate }}</li>
+  <li (click)="go('production_program')" routerLinkActive="active">{{ 'menu.production_program' | translate }}</li>
+  <li (click)="go('allocation')" routerLinkActive="active">{{ 'menu.allocation' | translate }}</li>
+  <li (click)="go('plant-stock')" routerLinkActive="active">{{ 'menu.plant_stock' | translate }}</li>
+  <li (click)="go('about')" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
+  <li (click)="go('help')" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
 </ul>
 <div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
   <div class="icon">

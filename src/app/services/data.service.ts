@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { SelectYearComponent } from '../dialogs/select-year/select-year.component';
 import { ConnectionService } from 'ng-connection-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { PlatformLocation, LocationStrategy } from '@angular/common';
 
 @Injectable()
 export class DataService {
@@ -11,7 +12,8 @@ export class DataService {
     private dialog: MatDialog,
     private connection: ConnectionService,
     private router: Router,
-    private ac: ActivatedRoute
+    private ac: ActivatedRoute,
+    private location: LocationStrategy
     ) { }
 
   init() {
@@ -19,14 +21,27 @@ export class DataService {
       this.online = isConnected
     })
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) this.title = this.ac.root.firstChild.snapshot.data['title']
+      if (event instanceof NavigationEnd) {
+        this.title = this.ac.root.firstChild.snapshot.data['title']
+        this.location.onPopState(event => {
+          console.log(this.currentLevel, this.title)
+          if (this.currentLevel == 1 && this.title == 'order_intake') {
+            this.backButton = false
+            return true
+          } else {
+            this.backButton = true
+            return false
+          }
+        })
+      }
     })
   }
 
   currentLevel: number = 0
 
   backButton: boolean = false
-
+  backTitle: string = ''
+  
   // Determines if the sidenav is opened
   sidenavOpened: boolean = false
 

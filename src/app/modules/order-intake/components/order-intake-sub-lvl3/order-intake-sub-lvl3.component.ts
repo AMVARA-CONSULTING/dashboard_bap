@@ -54,7 +54,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
         }
       } catch (err) {
         console.log(err)
-        this.router.navigate(['order-intake'])
+        this.router.navigate(['order-intake'], { replaceUrl: true })
       }
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
@@ -69,7 +69,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate(['order-intake'])
+            this.router.navigate(['order-intake'], { replaceUrl: true })
           }
           this.loader.Hide()
         })
@@ -78,7 +78,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
         try {
           this.rollupData()
         } catch (err) {
-          this.router.navigate(['order-intake'])
+          this.router.navigate(['order-intake'], { replaceUrl: true })
         }
         this.loader.Hide()
       }
@@ -161,11 +161,11 @@ export class OrderIntakeSubLvl3Component implements OnInit {
   }
 
   returnToMain() : void {
-    this.router.navigate(['/'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['/'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   return() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, skipLocationChange: true })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
 }

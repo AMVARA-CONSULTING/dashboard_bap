@@ -76,11 +76,11 @@ export class PlantStockMainComponent implements OnInit {
 
   goWerk(werk) : void {
     console.log(werk)
-    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   changePlant(plant) {
-    this.router.navigate(['plant-stock', plant])
+    this.router.navigate(['plant-stock', plant], { replaceUrl: true})
   }
 
   rollupData() {
@@ -95,7 +95,7 @@ export class PlantStockMainComponent implements OnInit {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]])
+      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))

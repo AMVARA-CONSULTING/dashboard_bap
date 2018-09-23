@@ -48,7 +48,9 @@ import { DataService } from '@services/data.service';
 })
 export class WrapperComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService) { 
+    this.data.backTitle = 'production_program'
+  }
 
   ngOnInit() {
   }

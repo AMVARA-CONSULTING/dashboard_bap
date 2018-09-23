@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
-import { PlatformLocation } from '@angular/common';
+import { PlatformLocation, LocationStrategy } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { interval } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -20,27 +20,11 @@ export class AppComponent implements OnInit {
     public data: DataService,
     private translate: TranslateService,
     private config: ConfigService,
-    private location: PlatformLocation,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private sw: SwUpdate
   ) {
-    location.onPopState(event => {
-      this.data.backButton = true
-    })
-    // this.sw.checkForUpdates()
-    /*backButtonGuard.canContinue.subscribe(res => {
-      if (data.title == 'about' || data.title == 'help' || data.currentLevel == 1) {
-        setTimeout(() => {
-          router.navigate(['order-intake'])
-        })
-      } else {
-        setTimeout(() => {
-          router.navigate(['../../'], { relativeTo: this.activatedRoute })
-        })
-      }
-    })*/
     data.init()
     translate.setDefaultLang('en')
     translate.use(localStorage.getItem('lang') || config.config.language)
@@ -67,6 +51,10 @@ export class AppComponent implements OnInit {
 
   close() {
     this.data.sidenavOpened = !this.data.sidenavOpened
+  }
+
+  go(link) {
+    this.router.navigate([link], { replaceUrl: true})
   }
   
 }

@@ -83,24 +83,24 @@ export class AllocationLvl2Component implements OnInit {
   }
 
   changePlant(plant: string) : void {
-    this.router.navigate(['allocation', plant, 'date', this.date])
+    this.router.navigate(['allocation', plant, 'date', this.date], { replaceUrl: true })
   }
 
   ngOnInit() {
   }
 
   goRegion(key) : void {
-    this.router.navigate(['region', key], { relativeTo: this.activatedRoute })
+    this.router.navigate(['region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   goProduct(key) : void {
-    this.router.navigate(['product', key], { relativeTo: this.activatedRoute })
+    this.router.navigate(['product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   goMonth(date) : void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('DDYYYY')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute })
+    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   getDate(month) : string {
@@ -114,7 +114,7 @@ export class AllocationLvl2Component implements OnInit {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['allocation', Object.keys(this.plants)[0]])
+      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     this.title.setTitle('DIP - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
@@ -164,7 +164,7 @@ export class AllocationLvl2Component implements OnInit {
   }
 
   returnToMain() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   percentAllocation: number | string = 0

@@ -30,6 +30,7 @@
     "angular-svg-round-progressbar": "^2.0.0",
     "classlist.js": "1.1.20150312",
     "core-js": "^2.5.4",
+    "hammer-time": "^2.0.1",
     "hammer-timejs": "^1.1.0",
     "hammerjs": "^2.0.8",
     "momentjs": "^2.0.0",

@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HelpComponent } from './components/help/help.component';
 import { TitleComponent } from './components/title/title.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { NavigationGuard } from '../../guards/navigation-guard.service';
 
 const routes: Routes = [
   {
-    path: '', component: HelpComponent
+    path: '', component: HelpComponent,
+    canDeactivate: [NavigationGuard],
   }
 ]
 

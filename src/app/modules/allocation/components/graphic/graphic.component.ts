@@ -36,7 +36,7 @@ export class GraphicComponent{
   goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('YYYYMM')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute })
+    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   width: number = 0

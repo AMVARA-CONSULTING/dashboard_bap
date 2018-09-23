@@ -29,4 +29,8 @@ export class HeaderComponent implements OnInit {
     this.data.sidenavOpened = !this.data.sidenavOpened
   }
 
+  go(link) {
+    this.router.navigate([link], { replaceUrl: true})
+  }
+
 }

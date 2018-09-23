@@ -8,6 +8,7 @@ import { AllocationLvl2Component } from './components/allocation-lvl2/allocation
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { AllocationLvl3Component } from '@modules/allocation/components/allocation-lvl3/allocation-lvl3.component';
 import { AllocationBarComponent } from './components/allocation-bar/allocation-bar.component';
+import { NavigationGuard } from '../../guards/navigation-guard.service';
 
 const routes: Routes = [
   {
@@ -17,21 +18,25 @@ const routes: Routes = [
       {
         path: '',
         component: AllocationMainComponent,
+        canDeactivate: [NavigationGuard],
         data: { level: 1 }
       },
       {
         path: ':plant',
         component: AllocationMainComponent,
+        canDeactivate: [NavigationGuard],
         data: { level: 1 }
       },
       {
         path: ':plant/date/:date',
         component: AllocationLvl2Component,
+        canDeactivate: [NavigationGuard],
         data: { level: 2 }
       },
       {
         path: ':plant/date/:date/:type/:region_id',
         component: AllocationLvl3Component,
+        canDeactivate: [NavigationGuard],
         data: { level: 3 }
       }
     ]

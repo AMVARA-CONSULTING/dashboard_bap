@@ -50,6 +50,7 @@ export class OrderIntakeWrapperComponent implements OnInit {
 
   constructor(private data: DataService) {
     data.lastTap, data.lastTap2 = null
+    this.data.backTitle = 'order_intake'
   }
 
   ngOnInit() {

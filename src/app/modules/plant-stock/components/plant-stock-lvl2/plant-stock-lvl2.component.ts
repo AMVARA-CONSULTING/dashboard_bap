@@ -7,11 +7,20 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 
 @Component({
   selector: 'plant-stock-lvl2',
   templateUrl: './plant-stock-lvl2.component.html',
-  styleUrls: ['./plant-stock-lvl2.component.scss']
+  styleUrls: ['./plant-stock-lvl2.component.scss'],
+  animations: [
+    trigger('list', [
+      transition('* => *', [
+        query(':enter', style({ opacity: 0 }), { optional: true }),
+        query(':enter', stagger('100ms', animate('300ms ease-in', style({ opacity: 1 }))), { optional: true })
+      ])
+    ]),
+  ],
 })
 export class PlantStockLvl2Component implements OnInit {
 
@@ -21,6 +30,8 @@ export class PlantStockLvl2Component implements OnInit {
   plants
 
   plant: string
+
+  werk: string
 
   constructor(
     public loader: LoadingService,
@@ -37,6 +48,7 @@ export class PlantStockLvl2Component implements OnInit {
     this.loader.Show()
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
+      this.werk = params.get('werk')
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
         this.api.getPlantStockData().subscribe(data => {
@@ -63,7 +75,7 @@ export class PlantStockLvl2Component implements OnInit {
   }
 
   changePlant(plant) {
-    this.router.navigate(['plant-stock', plant])
+    this.router.navigate(['plant-stock', plant], { replaceUrl: true })
   }
 
   rollupData() {
@@ -78,16 +90,20 @@ export class PlantStockLvl2Component implements OnInit {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]])
+      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.werkbestands = Object.assign({},this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]))
+    let filteredWithWerk = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.plant_stock.hofbestandName[this.config.config.language]] == this.werk)
+    if (filteredWithWerk.length == 0) this.router.navigate([''], { replaceUrl: true }) 
+    this.hofbestands = Object
     setTimeout(() => {
       this.ready = true
     })
   }
 
   werkbestands
+  hofbestands
 }

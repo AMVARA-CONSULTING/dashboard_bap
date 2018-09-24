@@ -164,7 +164,7 @@ export class AllocationLvl2Component implements OnInit {
   }
 
   returnToMain() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   percentAllocation: number | string = 0

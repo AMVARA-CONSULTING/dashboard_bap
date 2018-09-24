@@ -58,7 +58,7 @@ export class GraphicComponent implements OnInit, OnChanges {
   }
 
   goWerk(werk) : void {
-    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   maxTotal: number = 0

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
@@ -7,14 +6,15 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
-  selector: 'plant-stock-lvl2',
-  templateUrl: './plant-stock-lvl2.component.html',
-  styleUrls: ['./plant-stock-lvl2.component.scss']
+  selector: 'plant-stock-lvl3',
+  templateUrl: './plant-stock-lvl3.component.html',
+  styleUrls: ['./plant-stock-lvl3.component.scss']
 })
-export class PlantStockLvl2Component implements OnInit {
-
+export class PlantStockLvl3Component implements OnInit {
+  
   ready: boolean = false
 
   plandate: string = ''
@@ -22,6 +22,7 @@ export class PlantStockLvl2Component implements OnInit {
 
   plant: string
   werk: string
+  hofb: string
 
   constructor(
     public loader: LoadingService,
@@ -39,6 +40,7 @@ export class PlantStockLvl2Component implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.werk = params.get('werk')
+      this.hofb = params.get('hofb')
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
         this.api.getPlantStockData().subscribe(data => {
@@ -65,11 +67,7 @@ export class PlantStockLvl2Component implements OnInit {
   }
 
   changePlant(plant) {
-    this.router.navigate(['plant-stock', plant, 'werk', this.werk], { replaceUrl: true })
-  }
-
-  goHofbestand(hofbestandKey) {
-    this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', hofbestandKey], { replaceUrl: true })
+    this.router.navigate(['plant-stock', plant, 'werk', this.werk, 'hofbestand', this.hofb], { replaceUrl: true })
   }
 
   rollupData() {
@@ -78,6 +76,8 @@ export class PlantStockLvl2Component implements OnInit {
     const plantName = this.config.config.reports.trucks.columns.plant_stock.plantName
     const werkbestandName = this.config.config.reports.trucks.columns.plant_stock.werkbestandName
     const hofbestandName = this.config.config.reports.trucks.columns.plant_stock.hofbestandName
+    const regionName = this.config.config.reports.trucks.columns.plant_stock.regionName
+    const productName = this.config.config.reports.trucks.columns.plant_stock.productName
     //
     this.plants = this.data.plantStockData.reduce((r,a) => {
       r[a[plantKey]] = r[a[plantKey]] || ''
@@ -93,6 +93,9 @@ export class PlantStockLvl2Component implements OnInit {
     this.werkbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]))
     const filteredRowsByWerk = filteredRowsByPlant.filter(item => item[werkbestandName[this.config.config.language]] == this.werk)
     this.hofbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]))
+    const filteredRowsByHofbestand = filteredRowsByWerk.filter(item => item[hofbestandName[this.config.config.language]] == this.hofb)
+    this.regions = Object.assign({}, this.data.classifyByIndex(filteredRowsByHofbestand, regionName[this.config.config.language]))
+    this.products = Object.assign({}, this.data.classifyByIndex(filteredRowsByHofbestand, productName[this.config.config.language]))
     setTimeout(() => {
       this.ready = true
     })
@@ -100,4 +103,8 @@ export class PlantStockLvl2Component implements OnInit {
 
   werkbestands
   hofbestands
+
+  regions
+  products
+
 }

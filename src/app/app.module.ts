@@ -47,6 +47,7 @@ import { HttpClient } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NavigationGuard } from './guards/navigation-guard.guard';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -98,6 +99,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConnectionService,
     ConfigService,
     ToolsService,
+    NavigationGuard,
     {
       // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,

@@ -1,0 +1,31 @@
+<div class="plandate"><div class="empty">{{ 'menu.'+data.title | translate }}</div>{{ 'plandate' | translate }}: {{ plandate }}</div>
+<header>
+  <div class="werk">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
+      <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
+        <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
+          {{ plant.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field></div>
+  <div class="actual">{{ plandate }}</div>
+  <div class="previous">Prev. Month</div>
+  <div class="delta">&Delta;</div>
+</header>
+<div class="content-wrapper">
+  <div class="group-header">TOTAL</div>
+  <div class="group-header">REGIONS</div>
+  <div class="row" *ngFor="let region of regions | keyvalue">
+    <div class="werk">{{ region.value[0][config.config.reports.trucks.columns.plant_stock.regionName[config.config.language]] }}</div>
+    <div class="actual">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
+    <div class="previous">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
+    <div class="delta">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+  </div>
+  <div class="group-header">PRODUCTS</div>
+  <div class="row" *ngFor="let product of products | keyvalue">
+    <div class="werk">{{ product.value[0][config.config.reports.trucks.columns.plant_stock.productName[config.config.language]] }}</div>
+    <div class="actual">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
+    <div class="previous">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
+    <div class="delta">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+  </div>
+</div>

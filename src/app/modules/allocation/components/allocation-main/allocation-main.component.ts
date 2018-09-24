@@ -82,7 +82,7 @@ export class AllocationMainComponent implements OnInit {
   }
 
   changePlant(plant: string) : void {
-    this.router.navigate(['allocation', plant])
+    this.router.navigate(['allocation', plant], { replaceUrl: true })
   }
 
   ngOnInit() {
@@ -91,7 +91,7 @@ export class AllocationMainComponent implements OnInit {
   goMonth(date) : void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('YYYYMM')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute })
+    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   getDate(month) : string {
@@ -105,7 +105,7 @@ export class AllocationMainComponent implements OnInit {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['allocation', Object.keys(this.plants)[0]])
+      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     this.title.setTitle('DIP - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))

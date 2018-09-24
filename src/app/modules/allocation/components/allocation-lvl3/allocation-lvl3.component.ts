@@ -88,7 +88,7 @@ export class AllocationLvl3Component implements OnInit {
   }
 
   changePlant(plant: string) : void {
-    this.router.navigate(['allocation', plant, 'date', this.date, this.type, this.region_id])
+    this.router.navigate(['allocation', plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
   }
 
   ngOnInit() {
@@ -105,7 +105,7 @@ export class AllocationLvl3Component implements OnInit {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['allocation', Object.keys(this.plants)[0]])
+      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     this.title.setTitle('DIP - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
@@ -164,18 +164,18 @@ export class AllocationLvl3Component implements OnInit {
 
   exchangeType(key) : void {
     if (this.type == 'region') {
-      this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute })
+      this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
     } else {
-      this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute })
+      this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
     }
   }
 
   returnToMain() : void {
-    this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   returnToParent() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   percentAllocation: number | string = 0

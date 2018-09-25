@@ -70,7 +70,7 @@ export class GraphicComponent implements OnInit {
   }
 
   goZone(ZoneID) : void {
-    this.router.navigate(['zone', ZoneID], { relativeTo: this.route })
+    this.router.navigate(['zone', ZoneID], { relativeTo: this.route, replaceUrl: true })
   }
 
   rows: any[][] = []

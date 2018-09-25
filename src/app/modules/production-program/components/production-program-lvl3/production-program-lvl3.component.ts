@@ -93,7 +93,7 @@ export class ProductionProgramLvl3Component implements OnInit {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate(['production-program'])
+            this.router.navigate(['production-program'], { replaceUrl: true })
           }
           this.loader.Hide()
         })
@@ -133,7 +133,7 @@ export class ProductionProgramLvl3Component implements OnInit {
         try {
           this.rollupData()
         } catch (err) {
-          this.router.navigate(['production-program'])
+          this.router.navigate(['production-program'], { replaceUrl: true })
         }
         this.loader.Hide()
       }
@@ -141,11 +141,11 @@ export class ProductionProgramLvl3Component implements OnInit {
   }
 
   goForProduct(key) : void {
-    this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   goForRegion(key) : void {
-    this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   productionProgramData: any[][] = []
@@ -162,7 +162,7 @@ export class ProductionProgramLvl3Component implements OnInit {
   changeYear(year: string, years?: string[]) : void  {
     localStorage.setItem('production-year', year)
     this.loader.Show()
-    this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id])
+    this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
   }
 
   rollupData(): void {
@@ -214,10 +214,10 @@ export class ProductionProgramLvl3Component implements OnInit {
       regionsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
     }
     if (this.RegionID != null && this.groupInfo.productsPlain.length == 0) {
-      this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
     }
     if (this.ProductID != null && this.groupInfo.regionsPlain.length == 0) {
-      this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
     }
     if (this.RegionID != null) {
       this.groupInfo.products = this.data.classifyByIndex(this.groupInfo.productsPlain, this.config.config.language == 'en' ? 12 : 11)
@@ -253,19 +253,19 @@ export class ProductionProgramLvl3Component implements OnInit {
   }
 
   return() : void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   returnToMain() : void {
-    this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   forward(): void {
     if (this.data.lastTap2) {
       if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
+        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute })
+        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       }
     }
   }
@@ -275,7 +275,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       type: 'region',
       key: encodeURI(ProductID)
     }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
   
   goRegion(RegionID): void {
@@ -283,7 +283,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       type: 'product',
       key: encodeURI(RegionID)
     }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute })
+    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
 }

@@ -98,7 +98,7 @@ export class ProductionProgramMainComponent implements OnInit {
   changeYear(year: string, years?: string[]) : void  {
     localStorage.setItem('production-year', year)
     this.loader.Show()
-    this.router.navigate(['production-program', year])
+    this.router.navigate(['production-program', year], { replaceUrl: true })
     /*
     this.data.selectYear(year, years).then(year => {
       localStorage.setItem('production-year', year)
@@ -115,11 +115,11 @@ export class ProductionProgramMainComponent implements OnInit {
     this.byYear = this.data.classifyByIndex(this.data.productionProgramData, 13)
     this.years = Object.keys(this.byYear)
     const yearCache = localStorage.getItem('production-year')
-    if (yearCache && this.year != yearCache) this.router.navigate(['/production-program', yearCache])
+    if (yearCache && this.year != yearCache) this.router.navigate(['/production-program', yearCache], { replaceUrl: true })
     this.year = yearCache
     if (!this.years.includes(this.year)) {
       localStorage.setItem('production-year', this.years[0])
-      this.router.navigate(['/production-program', this.years[0]])
+      this.router.navigate(['/production-program', this.years[0]], { replaceUrl: true })
     } else {
       this.rowsGroupsGlobal = this.data.classifyByIndex(this.data.productionProgramData.filter(dat => dat[13] == this.year), 0)
       for (var group in this.rowsGroupsGlobal) {
@@ -132,11 +132,11 @@ export class ProductionProgramMainComponent implements OnInit {
   }
 
   goZone(ZoneID: string) : void {
-    this.router.navigate(['zone', ZoneID], { relativeTo: this.route })
+    this.router.navigate(['zone', ZoneID], { relativeTo: this.route, replaceUrl: true })
   }
 
   goPlant(PlantID: string) : void {
-    this.router.navigate(['plant', PlantID], { relativeTo: this.route })
+    this.router.navigate(['plant', PlantID], { relativeTo: this.route, replaceUrl: true })
   }
   
   ready: boolean = false

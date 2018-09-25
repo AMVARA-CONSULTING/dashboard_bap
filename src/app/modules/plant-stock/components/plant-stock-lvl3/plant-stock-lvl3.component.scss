@@ -1,0 +1,217 @@
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    left: 0;
+}
+
+.empty {
+    float: left;
+    padding-left: 5px;
+}
+
+.plandate {
+    display: block;
+    padding: 0 15px;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.overview {
+    display: flex;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .6s ease-in-out;
+    border-color: black;
+    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
+    @media screen and (min-width: 600px) and (orientation: landscape) {
+        max-height: 1000px;
+        min-height: 240px;
+        overflow: auto;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+    }
+    @media screen and (min-width: 800px) {
+        max-height: 1000px;
+        min-height: 240px;
+        overflow: auto;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+    }
+    .graphic {
+        flex: 1 60%;
+        padding: 30px;
+        padding-bottom: 15px;
+    }
+    .simple {
+        flex: 1 40%;
+        border-left: 3px solid rgba($color: #000, $alpha: .2);
+        padding: 30px;
+        .headers, .overview-group {
+            display: flex;
+            width: 100%;
+            line-height: 40px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            .empty, .werk, .actuak, .previous, .delta {
+                flex: 1;
+            }
+            .actuak, .previous, .delta {
+                text-align: right;
+            }
+        }
+        .overview-group {
+            transition: background .1s ease-in-out;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(255,255,255,.05);
+            }
+            .empty {
+                cursor: pointer;
+            }
+            .actual {
+                color: $lighten-cyan-text;
+            }
+            .previous {
+                color: $yellow-text;
+            }
+        }
+    }
+}
+
+header {
+    display: flex;
+    background-color: $bg-white-lvl3;
+    padding: 0 15px;
+    box-sizing: border-box;
+    height: 40px;
+    .werk {
+        flex: 1 40%;
+    }
+    .actual, .previous, .delta {
+        padding: 12px 10px 12px 0;
+        box-sizing: border-box;
+        flex: 1 25%;
+        text-align: right;
+    }
+    .previous {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.content-wrapper {
+    .group-header {
+        display: flex;
+        width: 100%;
+        padding: 12px 15px;
+        box-sizing: border-box;
+        background-color: $bg-white-lvl1;
+    }
+    .row {
+        user-select: none;
+        cursor: pointer;
+        &:nth-child(odd) {
+            background-color: $bg-white-lvl4;
+        }
+        &:nth-child(even) {
+            background-color: $bg-white-lvl3;
+        }
+        border-bottom: 1px solid transparent;
+        transition: border-bottom .15s ease-in-out;
+        &:hover {
+            border-bottom-color: $yellow-text;
+        }
+        display: flex;
+        width: 100%;
+        padding: 12px 15px;
+        box-sizing: border-box;
+        &:hover .werk {
+            &:after {
+                left: 10px;
+            }
+            padding-left: 30px;
+            box-sizing: border-box;
+        }
+        .werk {
+            flex: 1 40%;
+            padding-left: 20px;
+            position: relative;
+            transition: padding-left .15s ease-in-out;
+            &:after {
+                transition: left .15s ease-in-out;
+                content: "";
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                top: 2px;
+                left: 0;
+                margin: auto;
+                display: block;
+                background-image: url(../../../../../assets/arrow.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+        .actual, .previous, .delta {
+            flex: 1 25%;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+        .previous {
+            color: $yellow-text;
+        }
+        .actual {
+            color: $lighten-cyan-text;
+        }
+    }
+}
+
+::ng-deep .mat-form-field {
+    max-width: 140px;
+}
+
+::ng-deep .mat-tooltip.after {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        height: 0;
+        content: "";
+        display: block;
+        border-top: 6px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 8px solid rgba(0, 0, 0, 0.4);
+    }
+}
+
+::ng-deep .mat-tooltip.above {
+    border: 0;
+    background-color: rgba(0,0,0,.4);
+    position: relative;
+    overflow: initial !important;
+    &:after {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        width: 0;
+        content: "";
+        display: block;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgba(0,0,0,.4);
+    }
+}

@@ -56,7 +56,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate(['order-intake'])
+            this.router.navigate(['order-intake'], { replaceUrl: true })
           }
           this.loader.Hide()
         })
@@ -65,7 +65,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
         try {
           this.rollupData()
         } catch (err) {
-          this.router.navigate(['order-intake'])
+          this.router.navigate(['order-intake'], { replaceUrl: true })
         }
         this.loader.Hide()
       }
@@ -143,9 +143,9 @@ export class OrderIntakeSubLvl2Component implements OnInit {
   forward(): void {
     if (this.data.lastTap2) {
       if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, skipLocationChange: true })
+        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, skipLocationChange: true })
+        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       }
     }
   }
@@ -155,7 +155,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       type: 'region',
       key: encodeURI(ProductID)
     }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, skipLocationChange: true })
+    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
   }
   
   goRegion(RegionID): void {
@@ -163,7 +163,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       type: 'product',
       key: encodeURI(RegionID)
     }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute, skipLocationChange: true })
+    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute })
   }
 
 }

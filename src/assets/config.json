@@ -141,6 +141,12 @@
 	},
 	"changelog": [
 		{
+			"version": "2.5.0",
+			"text": [
+				"Plant Stock level 2 & 3 done"
+			]
+		},
+		{
 			"version": "2.3.0",
 			"text": [
 				"Now the SW tries to update files (if they are new) on page load",

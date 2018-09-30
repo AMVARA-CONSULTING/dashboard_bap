@@ -46,7 +46,7 @@ export class ProductionProgramMainComponent implements OnInit {
     private title: Title,
     private dialog: MatDialog
   ) { 
-    title.setTitle('DIP - Production Program')
+    title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
 
   year: string = ''

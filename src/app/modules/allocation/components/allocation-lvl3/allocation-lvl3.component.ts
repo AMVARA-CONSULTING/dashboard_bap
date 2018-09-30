@@ -58,7 +58,7 @@ export class AllocationLvl3Component implements OnInit {
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.title.setTitle('DIP - Allocation')
+    this.title.setTitle(this.config.config.appTitle + ' - Allocation')
     this.loader.Show()
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
@@ -108,7 +108,7 @@ export class AllocationLvl3Component implements OnInit {
       this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle('DIP - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}

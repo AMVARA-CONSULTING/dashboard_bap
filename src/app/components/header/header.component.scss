@@ -11,6 +11,7 @@
     overflow: hidden;
     z-index: 99;
     background: $header-bg-color 40%;
+    transform: translate3d(0,0,0);
 }
 
 @keyframes rotate {

@@ -20,6 +20,10 @@
     width: 100%;
     left: 0;
     overflow-y: auto;
+    @supports (-webkit-overflow-scrolling: touch) {
+       position: initial;
+       padding-top: 0;
+    }
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {

@@ -33,7 +33,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     private router: Router,
     private title: Title
   ) {
-    title.setTitle('DIP - Order Intake')
+    title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.Show()
     this.activatedRoute.paramMap.subscribe(params => {
@@ -137,7 +137,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     } else {
       this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
     }
-    this.title.setTitle('DIP - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+(this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+(this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
     this.groupInfo['thisActual'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
     this.groupInfo['thisPrevious'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
     this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))

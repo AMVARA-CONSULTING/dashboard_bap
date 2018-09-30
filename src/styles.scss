@@ -24,12 +24,14 @@
 
 html, body {
     color: $semi-white;
+    background-color: $main-bg-body-color;
     background-image: url(assets/neurons.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
     font-size: 13.333px;
+    transform: translate3d(0,0,0,0);
 }
 
 button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-expansion-panel-content {
@@ -38,6 +40,10 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 
 .mat-select-content {
     background-color: $bg-white-lvl3-pure !important;
+}
+
+.mat-drawer-content {
+    width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -191,7 +197,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 }
 
 @media (min-width: 800px) {
-    .empty {
+    .data-header .empty {
         opacity: 0;
     }
 }

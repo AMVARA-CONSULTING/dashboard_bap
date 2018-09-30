@@ -34,7 +34,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     private router: Router,
     private title: Title
   ) {
-    title.setTitle('DIP - Order Intake')
+    title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.Show()
     this.activatedRoute.params.subscribe(params => {
@@ -113,7 +113,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       regions: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]),
       products: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])
     }
-    this.title.setTitle('DIP - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     this.groupInfo.progressValue1 = this.ZoneID != null ? this.groupInfo.zoneActual : this.groupInfo.plantActual

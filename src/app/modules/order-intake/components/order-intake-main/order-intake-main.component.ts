@@ -46,7 +46,7 @@ export class OrderIntakeMainComponent implements OnInit {
     private router: Router,
     private title: Title
   ) {
-    title.setTitle('DIP - Order Intake')
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake')
   }
 
   ready: boolean = false

@@ -30,7 +30,7 @@ export class ProductionProgramLvl2Component implements OnInit {
     private router: Router,
     private title: Title
   ) {
-    title.setTitle('DIP - Production Program')
+    title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
     this.loader.Show()
     this.activatedRoute.paramMap.subscribe(params => {
@@ -165,7 +165,7 @@ export class ProductionProgramLvl2Component implements OnInit {
       regions: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 10 : 9),
       products: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 12 : 11)
     }
-    this.title.setTitle('DIP - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     this.groupInfo.progress1 = this.ZoneID != null ?

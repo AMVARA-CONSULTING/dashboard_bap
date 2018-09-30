@@ -1,12 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <meta charset="utf-8">
-    <title>DIP</title>
+    <title>DIP - Super Fast And Sexy Report</title>
     <base href="/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1976d2">
   </head>
@@ -38,20 +42,33 @@
           right: 0;
           bottom: 0;
           margin: auto;
+          z-index: 99;
+        }
+        .amvaraLoading:before {
+          content: "";
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          background-color: rgba(24, 24, 32, 0.92);
         }
         .amvaraLoadingLogo {
           display: block;
           position: relative;
-          height: 300px;
-          width: 300px;
+          height: 200px;
+          width: 200px;
+          margin: 0 auto;
         }
         .outside {
           display: block;
           position: absolute;
-          height: 177px;
-          width: 234px;
+          height: 200px;
+          width: 200px;
           top: 0;
-          left: 30px;
+          margin: auto;
+          left: 0;
+          right: 0;
           background-image: url(assets/loader_circle_outside.svg);
           background-repeat: no-repeat;
           background-size: cover;
@@ -63,10 +80,12 @@
         .middle {
           display: block;
           position: absolute;
-          height: 177px;
-          width: 234px;
+          height: 200px;
+          width: 200px;
           top: 0;
-          left: 30px;
+          margin: auto;
+          left: 0;
+          right: 0;
           background-image: url(assets/loader_circle_middle.svg);
           background-repeat: no-repeat;
           background-size: cover;
@@ -79,10 +98,12 @@
         .inside {
           display: block;
           position: absolute;
-          height: 177px;
-          width: 234px;
+          height: 200px;
+          width: 200px;
           top: 0;
-          left: 30px;
+          margin: auto;
+          left: 0;
+          right: 0;
           background-image: url(assets/loader_circle_inside.svg);
           background-repeat: no-repeat;
           background-size: cover;
@@ -95,12 +116,14 @@
           display: block;
           position: absolute;
           height: 343px;
-          width: 234px;
-          top: 0;
-          left: 30px;
+          width: 200px;
+          top: 40px;
+          margin: auto;
+          left: 0;
+          right: 0;
           background-image: url(assets/dip_title.svg);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: contain;
         }
         .loadingTitle {
           position: fixed;
@@ -130,5 +153,6 @@
         <div class="loadingTitle">Daten Informations Platform</div>
       </div>
     </dip-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
   </body>
 </html>

@@ -1,4 +1,4 @@
-<header></header>
+<header *ngIf="data.accessGranted"></header>
 <mat-sidenav-container>
     <mat-sidenav mode="push" position="end" [(opened)]="data.sidenavOpened">
         <ul class="links">

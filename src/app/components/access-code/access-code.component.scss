@@ -1,0 +1,72 @@
+
+:host {
+    display: block;
+    position: fixed;
+    height: 400px;
+    width: 80%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 100px;
+    color: #fafafa;
+}
+
+.mat-form-field {
+    width: 100%;
+    font-size: 30pt;
+}
+
+.hint {
+    font-size: 20pt;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    &:hover:after {
+        width: 100%;
+    }
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0%;
+        height: 1px;
+        left: 0;
+        margin: auto;
+        right: 0;
+        bottom: -4px;
+        border-radius: 5px;
+        background-color: #FAFAFA;
+        transition: width .2s ease-in-out;
+    }
+}
+
+input {
+    caret-color: #1e88e5;
+}
+
+::ng-deep .mat-form-field-label {
+    color: #1e88e5 !important;
+}
+
+::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
+    background-color: #1e88e5 !important;
+}
+
+button {
+    margin-bottom: 30px;
+    font-size: 15pt;
+    padding: 5px 35px;
+}
+
+::ng-deep button:not([disabled]) {
+    background-color: #1e88e5;
+    color: white !important;
+}
+
+.the-code {
+    font-size: 20pt;
+    margin-bottom: 30px;
+    b {
+        color: #1e88e5;
+    }
+}

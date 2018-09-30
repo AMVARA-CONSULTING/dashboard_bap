@@ -1,0 +1,26 @@
+<ng-container *ngIf="!stateRegister">
+  <mat-form-field>
+    <input spellcheck="false" autocomplete="off" (ngModelChange)="codeChange($event)" [(ngModel)]="code" ngDefaultControl placeholder="Access Code" matInput />
+  </mat-form-field>
+  <div (click)="stateRegister = true" class="hint">Get the Access Code</div>
+</ng-container>
+<ng-container *ngIf="stateRegister">
+  <ng-container *ngIf="!granted">
+    <form [formGroup]="rForm" (ngSubmit)="submit(rForm.value)">
+      <mat-form-field>
+        <input formControlName="name" ngDefaultControl placeholder="Name" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="email" type="email" ngDefaultControl placeholder="Email" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="tel" ngDefaultControl placeholder="Telephone" matInput />
+      </mat-form-field>
+      <button [disabled]="!rForm.valid" mat-raised-button>Submit</button>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="granted">
+    <div class="the-code">The access code is <b>TheSexiestReport</b></div>
+  </ng-container>
+  <div (click)="stateRegister = false" class="hint">Return</div>
+</ng-container>

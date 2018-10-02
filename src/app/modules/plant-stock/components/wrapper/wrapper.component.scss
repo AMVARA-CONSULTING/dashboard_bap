@@ -16,7 +16,8 @@
     bottom: 0;
     height: calc(100% - 32px);
     padding-top: 70px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     width: 100%;
     left: 0;
     overflow-y: auto;

@@ -37,12 +37,13 @@
     "ngx-json-viewer": "^2.3.1",
     "number-to-locale-string": "^1.2.0",
     "rxjs": "^6.0.0",
+    "web-animations-js": "^2.3.1",
     "webpack-bundle-analyzer": "^3.0.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.8.0-beta.3",
-    "@angular/cli": "^6.2.3",
+    "@angular/cli": "^7.0.0-rc.1",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
     "@types/jasmine": "~2.8.6",

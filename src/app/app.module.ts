@@ -46,8 +46,13 @@ import { SelectYearComponent } from './dialogs/select-year/select-year.component
 import { HttpClient } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { NavigationGuard } from './guards/navigation-guard.guard';
+import { AccessCodeComponent } from './components/access-code/access-code.component';
+import { AccessGranted } from './guards/access-granted.guard';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -60,7 +65,8 @@ export function createTranslateLoader(http: HttpClient) {
     HeaderComponent,
     LoaderComponent,
     FooterComponent,
-    NewUpdateComponent
+    NewUpdateComponent,
+    AccessCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,11 @@ export function createTranslateLoader(http: HttpClient) {
     PlantStockModule,
     AboutModule,
     HelpModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
     // Angular Material Modules
     MatTooltipModule,
     MatSidenavModule,
@@ -86,7 +97,7 @@ export function createTranslateLoader(http: HttpClient) {
           deps: [HttpClient],
       }
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],
   entryComponents: [
     SelectYearComponent,
@@ -100,6 +111,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConfigService,
     ToolsService,
     NavigationGuard,
+    AccessGranted,
     {
       // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,

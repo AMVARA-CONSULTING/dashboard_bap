@@ -6,20 +6,27 @@
 }
 
 .data-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 30px;
     line-height: 30px;
     position: relative;
     padding: 0 30px 0 15px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     .empty {
-        flex: 1 70%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 70%;
+                flex: 1 70%;
         padding-left: 5px;
         position: relative;
     }
     .report-date, .glyph {
-        flex: 1 15%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 15%;
+                flex: 1 15%;
         text-align: right;
         font-size: 12px;
         letter-spacing: 1px;
@@ -27,15 +34,23 @@
 }
 
 .overview {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     max-height: 0;
     overflow: hidden;
+    -webkit-transition: all .6s ease-in-out;
+    -o-transition: all .6s ease-in-out;
     transition: all .6s ease-in-out;
     border-color: rgba($color: #000, $alpha: .2);
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
-        flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     }
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
+    background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
+    background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
@@ -50,43 +65,62 @@
         border-bottom: 3px solid rgba($color: #000, $alpha: .4);
     }
     .graphic {
-        flex: 1 60%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 60%;
+                flex: 1 60%;
+        max-width: 60%;
         padding: 30px;
         padding-bottom: 15px;
         @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
-            flex: 1 100%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 100%;
+                    flex: 1 100%;
             height: 240px;
             border-bottom: 3px solid rgba($color: #000, $alpha: .4);
         }
     }
     .simple {
-        flex: 1 40%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 40%;
+                flex: 1 40%;
+        max-width: 40%;
         border-left: 3px solid rgba($color: #000, $alpha: .4);
         padding: 30px;
         @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
-            flex: 1 100%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 100%;
+                    flex: 1 100%;
             border-left-width: 0;
             .headers {
                 padding-right: 0 !important
             }
             .previous {
-                flex: 0 0 95px !important;
+                -webkit-box-flex: 0 !important;
+                    -ms-flex: 0 0 95px !important;
+                        flex: 0 0 95px !important;
             }
         }
         .headers, .overview-group {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
             width: 100%;
             line-height: 40px;
             padding: 0 15px;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
             .empty, .actual, .previous {
-                flex: 1;
+                -webkit-box-flex: 1;
+                    -ms-flex: 1;
+                        flex: 1;
             }
             .actual, .previous {
                 text-align: right;
             }
         }
         .overview-group {
+            -webkit-transition: background .1s ease-in-out;
+            -o-transition: background .1s ease-in-out;
             transition: background .1s ease-in-out;
             border-radius: 5px;
             cursor: pointer;
@@ -110,9 +144,13 @@
     display: block;
     position: relative;
     .zone-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         padding: 12px 30px 12px 15px;
         position: relative;
+        -webkit-transition: border-bottom .15s ease-in-out;
+        -o-transition: border-bottom .15s ease-in-out;
         transition: border-bottom .15s ease-in-out;
         border-bottom: 1px solid transparent;
         &:hover {
@@ -121,12 +159,16 @@
         background-color: $bg-white-lvl1;
         cursor: pointer;
         .title {
-            flex: 1 70%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 70%;
+                    flex: 1 70%;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         .actual, .previous {
-            flex: 1 15%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 15%;
+                    flex: 1 15%;
             text-align: right;
             font-weight: bold;
             font-size: 16px;
@@ -139,11 +181,15 @@
         }
     }
     .plant {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         padding: 12px 30px 12px 15px;
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
+        -webkit-transition: border-bottom .15s ease-in-out;
+        -o-transition: border-bottom .15s ease-in-out;
         transition: border-bottom .15s ease-in-out;
         &:hover {
             border-bottom-color: $yellow-text;
@@ -153,7 +199,8 @@
                 left: 10px;
             }
             padding-left: 30px;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
         }
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
@@ -162,11 +209,17 @@
             background-color: $bg-white-lvl4;
         }
         .title {
+            -webkit-transition: padding-left .15s ease-in-out;
+            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
-            flex: 1 70%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 70%;
+                    flex: 1 70%;
             padding-left: 20px;
             position: relative;
             &:after {
+                -webkit-transition: left .15s ease-in-out;
+                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -189,7 +242,9 @@
             color: $yellow-text;
         }
         .actual, .previous {
-            flex: 1 15%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 15%;
+                    flex: 1 15%;
             text-align: right;
             font-size: 12px;
         }

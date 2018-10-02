@@ -23,6 +23,8 @@ export class DataService {
     })
   }
 
+  accessGranted: boolean = false
+
   currentLevel: number = 0
 
   backButton: boolean = false

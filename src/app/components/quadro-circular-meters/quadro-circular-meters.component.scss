@@ -2,14 +2,23 @@
 @import '../../other/colors';
 
 :host {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex: 1 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 100%;
+            flex: 1 100%;
     height: 128px;
     position: relative;
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
+    background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
+    background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     border-bottom: 3px solid black;
     .meter {
-        flex: 1 25%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 25%;
+                flex: 1 25%;
         height: 100%;
         &:not(:first-child) {
             border-left: 3px solid black;

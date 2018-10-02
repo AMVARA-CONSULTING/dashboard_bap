@@ -4,12 +4,14 @@
 :host {
     display: block;
     padding: 30px 20px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 ::ng-deep .mat-expansion-panel {
     background-color: transparent;
-    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
 }
 
 ::ng-deep .mat-expansion-panel-header-title, ::ng-deep .mat-expansion-indicator:after {
@@ -39,6 +41,8 @@
                 right: 0;
                 margin: auto;
                 height: 2px;
+                -webkit-transition: width .2s ease-in-out;
+                -o-transition: width .2s ease-in-out;
                 transition: width .2s ease-in-out;
                 width: 0;
                 background-color: $lighten-cyan-text

@@ -117,7 +117,7 @@ export class ProductionProgramMainComponent implements OnInit {
     const yearCache = localStorage.getItem('production-year')
     if (yearCache && this.year != yearCache) this.router.navigate(['/production-program', yearCache], { replaceUrl: true })
     this.year = yearCache
-    if (!this.years.includes(this.year)) {
+    if (this.years.indexOf(this.year) == -1) {
       localStorage.setItem('production-year', this.years[0])
       this.router.navigate(['/production-program', this.years[0]], { replaceUrl: true })
     } else {

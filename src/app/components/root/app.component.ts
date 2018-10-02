@@ -6,7 +6,6 @@ import {  LocationStrategy } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { NewUpdateComponent } from '../../dialogs/new-update/new-update.component';
-import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'dip-root',
@@ -23,7 +22,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
-    private sw: SwUpdate
   ) {
     location.onPopState(() => {
       if (this.data.currentLevel == 1 && this.data.title != 'order_intake') {
@@ -37,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.sw.isEnabled) {
+    /*if (this.sw.isEnabled) {
       this.sw.available.subscribe(() => {
         console.log("%cNew version detected!", "color:green;")
         let dialogRef = this.dialog.open(NewUpdateComponent, {
@@ -50,7 +48,7 @@ export class AppComponent implements OnInit {
           }
         })
       })
-    }
+    }*/
   }
 
   preventUpdate: boolean = false

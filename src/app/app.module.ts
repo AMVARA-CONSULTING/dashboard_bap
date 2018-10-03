@@ -46,7 +46,6 @@ import { SelectYearComponent } from './dialogs/select-year/select-year.component
 import { HttpClient } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { NavigationGuard } from './guards/navigation-guard.guard';
 import { AccessCodeComponent } from './components/access-code/access-code.component';
 import { AccessGranted } from './guards/access-granted.guard';
@@ -98,7 +97,7 @@ export function createTranslateLoader(http: HttpClient) {
           deps: [HttpClient],
       }
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],
   entryComponents: [
     SelectYearComponent,

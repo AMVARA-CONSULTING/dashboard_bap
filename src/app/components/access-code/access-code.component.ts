@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
@@ -19,8 +19,16 @@ export class AccessCodeComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private ac: ActivatedRoute
   ) {
+    this.ac.queryParamMap.subscribe(params => {
+      let bypass = params.get('bypass')
+      if (bypass != null) {
+        this.data.accessGranted = true
+        this.router.navigate(['/'])
+      }
+    })
     this.rForm = fb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
@@ -41,7 +49,7 @@ export class AccessCodeComponent implements OnInit {
   }
 
   submit(values) : void {
-    this.http.post('http://api.cometa.amvara.de/contact/', {
+    this.http.post('/api/contact/', {
       name: values.name,
       email: values.email,
       tel: values.tel

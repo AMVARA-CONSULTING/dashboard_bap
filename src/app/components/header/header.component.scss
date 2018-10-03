@@ -1,25 +1,43 @@
 @import '../../other/colors';
 
 :host {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 70px;
     position: fixed;
     top: 0;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     left: 0;
     width: 100%;
     overflow: hidden;
     z-index: 99;
     background: $header-bg-color 40%;
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
 }
+
+@-webkit-keyframes rotate {
+    0% {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
 
 @keyframes rotate {
     0% {
-      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
     }
   }
 
@@ -28,7 +46,9 @@
     height: inherit;
     position: relative;
     width: 300px;
-    flex: initial;
+    -webkit-box-flex: initial;
+        -ms-flex: initial;
+            flex: initial;
     outline: 0;
     line-height: 70px;
     font-size: 45px;
@@ -37,7 +57,8 @@
     padding-left: 70px;
     &.running {
         .outer, .middle, .inter {
-            animation-play-state: running;
+            -webkit-animation-play-state: running;
+                    animation-play-state: running;
         }
     }
     .outer {
@@ -52,11 +73,16 @@
         background-image: url(assets/loader_circle_outside.svg);
         background-size: contain;
         background-repeat: no-repeat;
-        animation-play-state: paused;
-        animation-name: rotate;
-        animation-duration: 1.3s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        -webkit-animation-play-state: paused;
+                animation-play-state: paused;
+        -webkit-animation-name: rotate;
+                animation-name: rotate;
+        -webkit-animation-duration: 1.3s;
+                animation-duration: 1.3s;
+        -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
     }
     .middle {
         display: block;
@@ -70,12 +96,17 @@
         background-image: url(assets/loader_circle_middle.svg);
         background-size: contain;
         background-repeat: no-repeat;
-        animation-play-state: paused;
-        animation-name: rotate;
+        -webkit-animation-play-state: paused;
+                animation-play-state: paused;
+        -webkit-animation-name: rotate;
+                animation-name: rotate;
         animation-direction: reverse;
-        animation-duration: 1.3s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        -webkit-animation-duration: 1.3s;
+                animation-duration: 1.3s;
+        -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
     }
     .inter {
         display: block;
@@ -89,24 +120,37 @@
         background-image: url(assets/loader_circle_inside.svg);
         background-size: contain;
         background-repeat: no-repeat;
-        animation-play-state: paused;
-        animation-name: rotate;
-        animation-duration: 1.3s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        -webkit-animation-play-state: paused;
+                animation-play-state: paused;
+        -webkit-animation-name: rotate;
+                animation-name: rotate;
+        -webkit-animation-duration: 1.3s;
+                animation-duration: 1.3s;
+        -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
     }
 }
 
 .links {
-    flex: initial;
+    -webkit-box-flex: initial;
+        -ms-flex: initial;
+            flex: initial;
     display: none;
     height: inherit;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     @media (min-width: 800px) {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     li {
-        flex: initial;
+        -webkit-box-flex: initial;
+            -ms-flex: initial;
+                flex: initial;
         list-style-type: none;
         height: inherit;
         line-height: 70px;
@@ -127,6 +171,8 @@
             left: 0;
             right: 0;
             bottom: 0;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
             transition: all .2s ease-in-out;
             background-color: $yellow-text;
         }
@@ -147,7 +193,9 @@
     &.active .icon .wrapper {
         .top {
             top: 50%;
-            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
             background-color: $yellow-text;
         }
         .middle {
@@ -157,7 +205,9 @@
         }
         .bottom {
             bottom: 50%;
-            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
             background-color: $yellow-text;
         }
     }
@@ -177,6 +227,8 @@
             .top {
                 position: absolute;
                 top: 0;
+                -webkit-transition: all .15s ease-in-out;
+                -o-transition: all .15s ease-in-out;
                 transition: all .15s ease-in-out;
                 left: 0;
                 height: 1px;
@@ -190,6 +242,8 @@
                 margin: auto;
                 left: 0;
                 height: 1px;
+                -webkit-transition: all .15s ease-in-out;
+                -o-transition: all .15s ease-in-out;
                 transition: all .15s ease-in-out;
                 width: 100%;
                 background-color: #d0d0d0;
@@ -197,6 +251,8 @@
             .bottom {
                 position: absolute;
                 bottom: 0;
+                -webkit-transition: all .15s ease-in-out;
+                -o-transition: all .15s ease-in-out;
                 transition: all .15s ease-in-out;
                 left: 0;
                 height: 1px;

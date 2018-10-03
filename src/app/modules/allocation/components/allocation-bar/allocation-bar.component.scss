@@ -5,7 +5,8 @@
     display: block;
     width: 100%;
     padding: 30px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     position: relative;
 }
 
@@ -23,6 +24,8 @@
 .bar {
     display: block;
     height: 20px;
+    -webkit-transition: width 1s ease-in-out .5s;
+    -o-transition: width 1s ease-in-out .5s;
     transition: width 1s ease-in-out .5s;
     background-color: $yellow-text-material;
     border-radius: 10px;
@@ -33,6 +36,8 @@
         display: block;
         height: 20px;
         border-radius: 10px;
+        -webkit-transition: width 1s ease-in-out .5s;
+        -o-transition: width 1s ease-in-out .5s;
         transition: width 1s ease-in-out .5s;
         background-color: $cyan-text-material;
     }

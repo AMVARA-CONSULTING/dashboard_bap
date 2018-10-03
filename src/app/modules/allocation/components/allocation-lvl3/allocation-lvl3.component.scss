@@ -17,10 +17,13 @@
     line-height: 30px;
     width: 100%;
     text-align: right;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .select-plant {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 35px;
     width: 100%;
@@ -28,16 +31,23 @@
     line-height: 35px;
     padding: 0 15px;
     .selector {
-        flex: 40%;
+        -webkit-box-flex: 40%;
+            -ms-flex: 40%;
+                flex: 40%;
     }
     .program_allocation {
-        flex: 1;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
         text-align: right;
     }
     .program, .allocation, .percent {
-        flex: 1 20%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 20%;
+                flex: 1 20%;
         padding-right: 10px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         text-align: right;
     }
     .percent {
@@ -59,10 +69,13 @@
 }
 
 header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     background-color: $bg-white-lvl4;
     padding: 0 15px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     height: 40px;
     &.return {
         background-color: $bg-white-lvl1;
@@ -71,13 +84,18 @@ header {
         background-color: $bg-white-lvl3;
     }
     .month {
-        flex: 1 40%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 40%;
+                flex: 1 40%;
         cursor: pointer;
         div {
             padding: 12px 20px;
             position: relative;
-            box-sizing: border-box;    
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;    
             &:after {
+                -webkit-transition: left .15s ease-in-out;
+                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -88,7 +106,9 @@ header {
                 left: -6px;
                 margin: auto;
                 display: block;
-                transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                        transform: rotate(180deg);
                 background-image: url(assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
@@ -97,24 +117,33 @@ header {
     }
     .program, .allocation {
         padding: 12px 10px 12px 0;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
     }
     .program, .allocation, .percent {
-        flex: 1 20%;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 20%;
+                flex: 1 20%;
         text-align: right;
     }
 }
 
 .content-wrapper {
     .group-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 15px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         background-color: $bg-white-lvl1;
     }
     .row {
-        user-select: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
         cursor: pointer;
         &:nth-child(odd) {
             background-color: $bg-white-lvl4;
@@ -123,29 +152,42 @@ header {
             background-color: $bg-white-lvl3;
         }
         border-bottom: 1px solid transparent;
+        -webkit-transition: border-bottom .15s ease-in-out;
+        -o-transition: border-bottom .15s ease-in-out;
         transition: border-bottom .15s ease-in-out;
         &:hover {
             border-bottom-color: $yellow-text;
         }
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 15px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         &:hover .month {
             padding-left: 10px;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
         }
         .month {
-            flex: 1 40%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 40%;
+                    flex: 1 40%;
             padding-left: 0;
             position: relative;
+            -webkit-transition: padding-left .15s ease-in-out;
+            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
         }
         .program, .allocation {
-            flex: 1 20%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 20%;
+                    flex: 1 20%;
             text-align: right;
             padding-right: 10px;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
         }
         .program {
             color: $yellow-text;
@@ -154,7 +196,9 @@ header {
             color: $lighten-cyan-text;
         }
         .percent {
-            flex: 1 20%;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 20%;
+                    flex: 1 20%;
             text-align: right;
         }
     }

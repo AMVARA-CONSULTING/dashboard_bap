@@ -1,5 +1,5 @@
 {
-    "version": "2.5.0",
+    "version": "2.6.0",
 	"language": "en",
 	"appTitle": "Skill Tech",
 	"scenario": "dev",
@@ -140,6 +140,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.6.0",
+			"text": [
+				"Fixed footer background color"
+			]
+		},
 		{
 			"version": "2.5.0",
 			"text": [

@@ -13,11 +13,22 @@
   <div class="delta">&Delta;</div>
 </header>
 <div class="content-wrapper">
-  <div class="group-header">TOTAL</div>
+  <div class="group-header">
+    <div class="werk">TOTAL</div>
+    <div class="actual">{{ totalActual | toNumber }}</div>
+    <div class="previous">{{ totalPrevious | toNumber }}</div>
+    <div class="delta">{{ totalDelta | toNumber:true }}</div>
+  </div>
+  <div class="group-header return arrow-right">
+    <div class="werk" (click)="returnToMain()"><div matTooltip="Return to main level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{ werk }}</div></div>
+    <div class="actual">{{ werkActual | toNumber }}</div>
+    <div class="previous">{{ werkPrevious | toNumber }}</div>
+    <div class="delta">{{ werkDelta | toNumber:true }}</div>
+  </div>
   <div class="row" (click)="goHofbestand(hofb.key)" *ngFor="let hofb of hofbestands | keyvalue">
     <div class="werk">{{ hofb.value[0][config.config.reports.trucks.columns.plant_stock.hofbestandName[config.config.language]] }}</div>
     <div class="actual">{{ data.sumByIndex(hofb.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
     <div class="previous">{{ data.sumByIndex(hofb.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
-    <div class="delta">{{ data.sumByIndex(hofb.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+    <div class="delta">{{ data.sumByIndex(hofb.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber:true }}</div>
   </div>
 </div>

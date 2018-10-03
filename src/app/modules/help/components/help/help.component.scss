@@ -8,6 +8,7 @@
             box-sizing: border-box;
     max-width: 1000px;
     margin: 0 auto;
+    touch-action: pan-y !important;
 }
 
 .contact-info {

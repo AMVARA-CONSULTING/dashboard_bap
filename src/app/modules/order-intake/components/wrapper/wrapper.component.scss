@@ -28,6 +28,7 @@
         position: relative;
         padding-top: 0;
     }
+    touch-action: pan-y !important;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {

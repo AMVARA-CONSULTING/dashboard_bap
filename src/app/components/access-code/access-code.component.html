@@ -16,7 +16,7 @@
       <mat-form-field>
         <input formControlName="tel" ngDefaultControl placeholder="Telephone" matInput />
       </mat-form-field>
-      <button [disabled]="!rForm.valid" mat-raised-button>Submit</button>
+      <button class="access" [disabled]="!rForm.valid" mat-raised-button>Submit</button>
     </form>
   </ng-container>
   <ng-container *ngIf="granted">

@@ -3,11 +3,16 @@ import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from '@services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
+  host: {
+    '(swiperight)': 'data.go("plant-stock")',
+    '(swipeleft)': 'data.go("help")'
+  }
 })
 export class AboutComponent implements OnInit {
 
@@ -16,6 +21,7 @@ export class AboutComponent implements OnInit {
     private translate: TranslateService,
     private snack: MatSnackBar,
     public data: DataService,
+    private router: Router
   ) {
     data.currentLevel = 1
   }

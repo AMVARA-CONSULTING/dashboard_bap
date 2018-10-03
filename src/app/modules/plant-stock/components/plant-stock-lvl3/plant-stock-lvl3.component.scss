@@ -144,6 +144,55 @@ header {
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         background-color: $bg-white-lvl1;
+        &.return {
+            .werk {
+                cursor: pointer;
+                &:hover {
+                    padding-left: 30px;
+                    &:before {
+                        left: 3px;
+                    }
+                }
+                -webkit-transition: padding-left .15s ease-in-out;
+                -o-transition: padding-left .15s ease-in-out;
+                transition: padding-left .15s ease-in-out;
+                padding-left: 20px;
+                position: relative;
+                &:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    left: -7px;
+                    height: 13px;
+                    width: 13px;
+                    -webkit-transition: left .15s ease-in-out;
+                    -o-transition: left .15s ease-in-out;
+                    transition: left .15s ease-in-out;
+                    background-image: url(../../../../../assets/arrow.svg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    transform: rotate(180deg);
+                } 
+            }
+        }
+        .werk {
+            flex: 1 40%;
+        }
+        .actual, .previous, .delta {
+            flex: 1 25%;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+        .actual {
+            color: $lighten-cyan-text;
+        }
+        .previous {
+            color: $yellow-text;
+        }
     }
     .row {
         -webkit-user-select: none;

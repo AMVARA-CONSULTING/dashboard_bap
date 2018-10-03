@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'access-code',
@@ -22,6 +23,11 @@ export class AccessCodeComponent implements OnInit {
     private snack: MatSnackBar,
     private ac: ActivatedRoute
   ) {
+    if (!environment.production) {
+      this.data.accessGranted = true
+      this.router.navigate(['/'])
+      return
+    }
     this.ac.queryParamMap.subscribe(params => {
       let bypass = params.get('bypass')
       if (bypass != null) {

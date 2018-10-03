@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ContactInfo } from '@other/interfaces';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'help',
   templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss']
+  styleUrls: ['./help.component.scss'],
+  host: {
+    '(swiperight)': 'data.go("about")',
+    '(swipeleft)': 'data.go("order-intake")'
+  }
 })
 export class HelpComponent implements OnInit {
 

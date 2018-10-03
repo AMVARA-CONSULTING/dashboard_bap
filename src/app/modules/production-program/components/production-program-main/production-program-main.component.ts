@@ -31,7 +31,9 @@ import * as moment from 'moment'
     ])
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1'
+    '[style.opacity]': 'loader.show ? 0 : 1',
+    '(swiperight)': 'data.go("order-intake")',
+    '(swipeleft)': 'data.go("allocation")'
   }
 })
 export class ProductionProgramMainComponent implements OnInit {

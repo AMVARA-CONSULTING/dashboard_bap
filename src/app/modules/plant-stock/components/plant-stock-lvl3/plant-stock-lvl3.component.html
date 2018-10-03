@@ -13,7 +13,24 @@
   <div class="delta">&Delta;</div>
 </header>
 <div class="content-wrapper">
-  <div class="group-header">TOTAL</div>
+  <div class="group-header">
+    <div class="werk">TOTAL</div>
+    <div class="actual">{{ totalActual | toNumber }}</div>
+    <div class="previous">{{ totalPrevious | toNumber }}</div>
+    <div class="delta">{{ totalDelta | toNumber:true }}</div>
+  </div>
+  <div class="group-header return arrow-right">
+    <div class="werk" (click)="returnToMain()"><div matTooltip="Return to main level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{ werk }}</div></div>
+    <div class="actual">{{ werkActual | toNumber }}</div>
+    <div class="previous">{{ werkPrevious | toNumber }}</div>
+    <div class="delta">{{ werkDelta | toNumber:true }}</div>
+  </div>
+  <div class="group-header return arrow-right">
+    <div class="werk" (click)="returnToLvl2()"><div matTooltip="Return to werkbestand level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{ hofb }}</div></div>
+    <div class="actual">{{ hofbActual | toNumber }}</div>
+    <div class="previous">{{ hofbPrevious | toNumber }}</div>
+    <div class="delta">{{ hofbDelta | toNumber:true }}</div>
+  </div>
   <div class="group-header">REGIONS</div>
   <div class="row" *ngFor="let region of regions | keyvalue">
     <div class="werk">{{ region.value[0][config.config.reports.trucks.columns.plant_stock.regionName[config.config.language]] }}</div>

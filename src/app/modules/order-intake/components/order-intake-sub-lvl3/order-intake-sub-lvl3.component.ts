@@ -10,7 +10,10 @@ import * as moment from 'moment';
 @Component({
   selector: 'order-intake-sub-lvl3',
   templateUrl: './order-intake-sub-lvl3.component.html',
-  styleUrls: ['./order-intake-sub-lvl3.component.scss']
+  styleUrls: ['./order-intake-sub-lvl3.component.scss'],
+  host: {
+    '(swiperight)': 'return()'
+  }
 })
 export class OrderIntakeSubLvl3Component implements OnInit {
 

@@ -1,5 +1,5 @@
 {
-    "version": "2.6.0",
+    "version": "2.7.0",
 	"language": "en",
 	"appTitle": "Skill Tech",
 	"scenario": "dev",
@@ -140,6 +140,14 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.7.0",
+			"text": [
+				"Added Swipe between pages and levels",
+				"Added return button on Plant Stock Levels",
+				"Minor bugfixes"
+			]
+		},
 		{
 			"version": "2.6.0",
 			"text": [

@@ -13,7 +13,6 @@ import * as moment from 'moment';
   styleUrls: ['./order-intake-sub-lvl2.component.scss'],
   host: {
     '(swiperight)': "return()",
-    '(swipeleft)': "forward()"
   }
 })
 export class OrderIntakeSubLvl2Component implements OnInit {

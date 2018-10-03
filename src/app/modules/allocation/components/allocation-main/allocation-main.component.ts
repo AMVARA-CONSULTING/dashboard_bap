@@ -27,7 +27,9 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
     ])
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1'
+    '[style.opacity]': 'loader.show ? 0 : 1',
+    '(swiperight)': 'data.go("production-program")',
+    '(swipeleft)': 'data.go("plant-stock")'
   }
 })
 export class AllocationMainComponent implements OnInit {

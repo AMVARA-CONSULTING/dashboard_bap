@@ -29,11 +29,10 @@ import * as moment from 'moment';
       ])
     ])
   ],
-  /*host: {
-    '(swipeleft)': "recoverLvl2()"
-  }*/
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1'
+    '[style.opacity]': 'loader.show ? 0 : 1',
+    '(swiperight)': 'data.go("help")',
+    '(swipeleft)': 'data.go("production-program")'
   }
 })
 export class OrderIntakeMainComponent implements OnInit {

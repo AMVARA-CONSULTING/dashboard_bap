@@ -10,7 +10,10 @@ import * as moment from 'moment'
 @Component({
   selector: 'production-program-lvl3',
   templateUrl: './production-program-lvl3.component.html',
-  styleUrls: ['./production-program-lvl3.component.scss']
+  styleUrls: ['./production-program-lvl3.component.scss'],
+  host: {
+    '(swiperight)': 'return()'
+  }
 })
 export class ProductionProgramLvl3Component implements OnInit {
 

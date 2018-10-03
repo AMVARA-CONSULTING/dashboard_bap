@@ -25,7 +25,10 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
       state('true', style({ opacity: 1, height: '35px', overflow: 'initial' })),
       transition('false => true', animate('250ms', style({ opacity: 1, height: '35px', overflow: 'initial' })))
     ])
-  ]
+  ],
+  host: {
+    '(swiperight)': 'returnToParent()'
+  }
 })
 export class AllocationLvl3Component implements OnInit {
 

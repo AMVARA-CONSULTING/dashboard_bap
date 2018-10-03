@@ -22,7 +22,9 @@ import * as moment from 'moment';
     ]),
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1'
+    '[style.opacity]': 'loader.show ? 0 : 1',
+    '(swiperight)': 'data.go("allocation")',
+    '(swipeleft)': 'data.go("about")'
   }
 })
 export class PlantStockMainComponent implements OnInit {
@@ -100,11 +102,18 @@ export class PlantStockMainComponent implements OnInit {
     }
     this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
+    this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.actual)
+    this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.previous)
+    this.totalDelta = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.delta)
     this.werkbestands = Object.assign({},this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]))
     setTimeout(() => {
       this.ready = true
     })
   }
+
+  totalActual: number = 0
+  totalPrevious: number = 0
+  totalDelta: number = 0
 
   werkbestands
 

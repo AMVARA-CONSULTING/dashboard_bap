@@ -51,13 +51,13 @@ input {
     background-color: #1e88e5 !important;
 }
 
-button {
+button.access {
     margin-bottom: 30px;
     font-size: 15pt;
     padding: 5px 35px;
 }
 
-::ng-deep button:not([disabled]) {
+::ng-deep button.access:not([disabled]) {
     background-color: #1e88e5;
     color: white !important;
 }

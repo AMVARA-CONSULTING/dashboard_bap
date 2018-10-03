@@ -12,7 +12,11 @@ export class DataService {
     private connection: ConnectionService,
     private router: Router,
     private ac: ActivatedRoute
-    ) { }
+  ) { }
+  
+  go(page): void {
+    this.router.navigate(['/'+page])
+  }
 
   init() {
     this.connection.monitor().subscribe(isConnected => {

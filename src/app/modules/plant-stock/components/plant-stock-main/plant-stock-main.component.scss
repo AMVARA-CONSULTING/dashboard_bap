@@ -144,6 +144,21 @@ header {
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         background-color: $bg-white-lvl1;
+        .werk {
+            flex: 1 40%;
+        }
+        .actual, .previous, .delta {
+            flex: 1 25%;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+        .actual {
+            color: $lighten-cyan-text;
+        }
+        .previous {
+            color: $yellow-text;
+        }
     }
     .row {
         -webkit-user-select: none;

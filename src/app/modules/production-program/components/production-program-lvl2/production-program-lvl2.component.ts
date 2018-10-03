@@ -11,6 +11,9 @@ import * as moment from 'moment';
   selector: 'production-program-lvl2',
   templateUrl: './production-program-lvl2.component.html',
   styleUrls: ['./production-program-lvl2.component.scss'],
+  host: {
+    '(swiperight)': 'return()'
+  }
 })
 export class ProductionProgramLvl2Component implements OnInit {
 

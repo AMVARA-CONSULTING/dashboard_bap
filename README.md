@@ -1,6 +1,6 @@
 # DIP - Data Informations Platform
 
-[![DIP](https://img.shields.io/badge/DIP-stable-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)[![DIP](https://img.shields.io/badge/dependencies-up%20to%20date-yellow.svg)](http://git.amvara.de/daimler/dip-more-2.0)
+[![DIP](https://img.shields.io/badge/DIP-stable-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)   [![DIP](https://img.shields.io/badge/dependencies-up%20to%20date-yellow.svg)](http://git.amvara.de/daimler/dip-more-2.0)
 
 ## Development server
 

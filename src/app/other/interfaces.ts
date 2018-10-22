@@ -10,7 +10,10 @@ export interface Config {
     translations: 'en' | 'de' | any,
     changelog: any,
     appTitle: string,
-    languageCodes: any
+    languageCodes: any,
+    cognosRepository: string,
+    cognosDomain: string,
+    target: string
 }
 
 export interface ContactInfo {

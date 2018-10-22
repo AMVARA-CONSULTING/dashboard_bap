@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
@@ -24,7 +24,10 @@ export class AboutComponent implements OnInit {
     private router: Router
   ) {
     data.currentLevel = 1
+    this.version = VERSION.full
   }
+
+  version
 
   ngOnInit() {
     console.log(this.config.config.language)

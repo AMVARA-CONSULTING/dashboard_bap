@@ -54,7 +54,8 @@ const routes: Routes = [
 
 // Enable route parameters inheritance
 export const routingConfiguration: ExtraOptions = {
-  paramsInheritanceStrategy: 'always'
+  paramsInheritanceStrategy: 'always',
+  useHash: true
 }
 
 @NgModule({

@@ -28,6 +28,11 @@ export class DipQuadroCircularMetersComponent implements OnInit {
     this.reserve = isNaN(value) ? 0 : Math.abs(value)
   }
 
+  @Input() customerValue: number = 0
+  @Input() planValue: number = 0
+  @Input() totalValue: number = 0
+  @Input() reserveValue: number = 0
+
   clockwise_actual: boolean = false
   clockwise_previous: boolean = false
 

@@ -1,8 +1,9 @@
 {
-    "version": "2.7.0",
+    "version": "2.9.0",
 	"language": "en",
-	"appTitle": "Skill Tech",
+	"appTitle": "BAP",
 	"scenario": "dev",
+	"target": "trucks",
 	"delay": 2000,
 	"copyright": "AMVARA",
 	"license": "SFASR",
@@ -42,16 +43,16 @@
 		},
 		"trucks": {
 			"dev": {
-				"orderIntake": "i708A7E1DB96A4B89BD24E902ADB9852A",
+				"orderIntake": "i163A764B930D4E748310CF5053D29578",
 				"allocation": "i464B15BB96434390A9D6C35C67886434",
-				"stock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"planning": "i1CB7F34FB34C457AA79DAC5EF88BB136"
+				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
+				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136"
 			},
 			"prod": {
 				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
 				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
-				"stock": "iDDEA70370FFF48208E4E541101AF961A",
-				"planning": "iB6DC3F11EE314AB081930985C3C57787"
+				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
+				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787"
 			},
 			"columns": {
 				"orderIntake": {
@@ -76,7 +77,11 @@
 					"dateShort": 10,
 					"dateFull": 11,
 					"actual": 12,
-					"previous": 13
+					"previous": 13,
+					"shouldBeNumber": [12, 13]
+				},
+				"productionProgram": {
+					"shouldBeNumber": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 				},
 				"allocation": {
 					"plantKey": 0,
@@ -101,7 +106,7 @@
 					"runDate": 18,
 					"shouldBeNumber": [14, 15]
 				},
-				"plant_stock": {
+				"plantStock": {
 					"plantKey": 0,
 					"plantName": {
 						"en": 2,
@@ -133,13 +138,21 @@
 			}
 		}
 	},
-	"translations": {
-		"dateMiddle": {
-			"en": "of",
-			"de": "von"
-		}
-	},
 	"changelog": [
+		{
+			"version": "2.9.0",
+			"text": [
+				"Implement circular progress bars on Plant Stock",
+				"Fix mouseover on Plant Stock Level 3",
+				"Fix app titles"
+			]
+		},
+		{
+			"version": "2.8.0",
+			"text": [
+				"Adapted for Cognos Analytics"
+			]
+		},
 		{
 			"version": "2.7.0",
 			"text": [

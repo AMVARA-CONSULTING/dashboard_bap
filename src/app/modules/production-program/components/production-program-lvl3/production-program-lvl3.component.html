@@ -91,7 +91,16 @@
       </div>
       <div class="reserve">{{ data.sumByIndex(groupInfo.regionsPlain, 22) | toNumber }}</div>
     </div>
-    <dip-quadro-circular-meters [customer]="groupInfo.progress1 || 0" [plan]="groupInfo.progress2 || 0" [total]="groupInfo.progress3 || 0" [reserve]="groupInfo.progress4 || 0" *ngIf="ready && groupInfo"></dip-quadro-circular-meters>
+    <dip-quadro-circular-meters
+      [customer]="groupInfo.progress1 || 0"
+      [plan]="groupInfo.progress2 || 0"
+      [total]="groupInfo.progress3 || 0"
+      [reserve]="groupInfo.progress4 || 0"
+      [customerValue]="groupInfo.progress1Value || 0"
+      [planValue]="groupInfo.progress2Value || 0"
+      [totalValue]="groupInfo.progress3Value || 0"
+      [reserveValue]="groupInfo.progress4Value || 0"
+    *ngIf="ready && groupInfo"></dip-quadro-circular-meters>
     <ng-container *ngIf="ProductID != null">
       <div class="title-header">
         <div class="title">{{ 'regions' | translate }}</div>

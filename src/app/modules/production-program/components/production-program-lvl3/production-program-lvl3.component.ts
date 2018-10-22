@@ -59,10 +59,10 @@ export class ProductionProgramLvl3Component implements OnInit {
       }
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
-        this.api.getProductionProgramData().subscribe(data => {
-          this.plandate = moment(data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
-          this.data.productionProgramData = data
-          this.productionProgramData = data.filter(dat => dat[13] == this.year)
+        this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(res => {
+          this.plandate = moment(res.data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.data.productionProgramData = res.data
+          this.productionProgramData = res.data.filter(dat => dat[13] == this.year)
           if (this.ZoneID != null) {
             if (this.RegionID != null) {
               const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID && item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID)
@@ -80,19 +80,6 @@ export class ProductionProgramLvl3Component implements OnInit {
               this.years = Object.keys(this.data.classifyByIndex(tmp, 13))
             }
           }
-          // Transform numeric values to real numeric values, also checking NaN or null
-          this.productionProgramData.forEach((row, index, rows) => {
-            rows[index][15] = isNaN(rows[index][15]) ? 0 : parseFloat(rows[index][15])
-            rows[index][16] = isNaN(rows[index][16]) ? 0 : parseFloat(rows[index][16])
-            rows[index][17] = isNaN(rows[index][17]) ? 0 : parseFloat(rows[index][17])
-            rows[index][18] = isNaN(rows[index][18]) ? 0 : parseFloat(rows[index][18])
-            rows[index][19] = isNaN(rows[index][19]) ? 0 : parseFloat(rows[index][19])
-            rows[index][20] = isNaN(rows[index][20]) ? 0 : parseFloat(rows[index][20])
-            rows[index][21] = isNaN(rows[index][21]) ? 0 : parseFloat(rows[index][21])
-            rows[index][22] = isNaN(rows[index][22]) ? 0 : parseFloat(rows[index][22])
-            rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
-            rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
-          })
           try {
             this.rollupData()
           } catch (err) {
@@ -224,14 +211,18 @@ export class ProductionProgramLvl3Component implements OnInit {
     }
     if (this.RegionID != null) {
       this.groupInfo.products = this.data.classifyByIndex(this.groupInfo.productsPlain, this.config.config.language == 'en' ? 12 : 11)
-      this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
+      this.groupInfo.productKeys = Object.keys(this.groupInfo.products).sort()
     } else {
       this.groupInfo.regions = this.data.classifyByIndex(this.groupInfo.regionsPlain, this.config.config.language == 'en' ? 10 : 9)
-      this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
+      this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions).sort()
     }
     this.title.setTitle(this.config.config.appTitle + ' - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+
     (this.RegionID != null ? this.RegionID : this.ProductID))
-    this.groupInfo.progress1 = this.RegionID != null ?
+    this.groupInfo.progress1Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 15) : this.data.sumByIndex(this.groupInfo.regionsPlain, 15)
+    this.groupInfo.progress2Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 16) : this.data.sumByIndex(this.groupInfo.regionsPlain, 16)
+    this.groupInfo.progress3Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 17) : this.data.sumByIndex(this.groupInfo.regionsPlain, 17)
+    this.groupInfo.progress4Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 22) : this.data.sumByIndex(this.groupInfo.regionsPlain, 22)
+    this.groupInfo.progress1 = this.RegionID != null ? 
       this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.plantCustomer) : 
       this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.groupInfo.plantCustomer)
     this.groupInfo.progress2 = this.RegionID != null ?

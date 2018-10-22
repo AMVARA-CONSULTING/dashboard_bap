@@ -48,12 +48,7 @@ const routes: Routes = [
     GraphicComponent,
     OrderIntakeSubLvl2Component,
     OrderIntakeWrapperComponent,
-    OrderIntakeSubLvl3Component,
-    // DIP Own Components
-    DipCircularMetersComponent
-  ],
-  exports: [
-    DipCircularMetersComponent
+    OrderIntakeSubLvl3Component
   ]
 })
 export class OrderIntakeModule { }

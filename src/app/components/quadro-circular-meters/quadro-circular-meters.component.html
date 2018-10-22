@@ -1,23 +1,23 @@
 <div class="meter">
-  <div class="container" [matTooltip]="(customer | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="customer">
+  <div class="container" [matTooltip]="customerValue" matTooltipPosition="above" matTooltipClass="customer">
     <div class="percent cyan">{{ customer }}%</div>
     <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="#555555" [color]="'#00acc1'"></round-progress>
   </div>
 </div>
 <div class="meter">
-  <div class="container" [matTooltip]="(plan | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="plan">
+  <div class="container" [matTooltip]="planValue" matTooltipPosition="above" matTooltipClass="plan">
       <div class="percent">{{ plan }}%</div>
     <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="plan" background="#555555" [color]="'white'"></round-progress>
   </div>
 </div>
 <div class="meter">
-  <div class="container" [matTooltip]="(total | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="total">
+  <div class="container" [matTooltip]="totalValue" matTooltipPosition="above" matTooltipClass="total">
       <div class="percent orange">{{ total }}%</div>
     <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="#555555" [color]="'#f8b03b'"></round-progress>
   </div>
 </div>
 <div class="meter">
-  <div class="container" [matTooltip]="(reserve | toNumber) + '%'" matTooltipPosition="above" matTooltipClass="reserve">
+  <div class="container" [matTooltip]="reserveValue" matTooltipPosition="above" matTooltipClass="reserve">
       <div class="percent">{{ reserve }}%</div>
     <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="reserve" background="#555555" [color]="'white'"></round-progress>
   </div>

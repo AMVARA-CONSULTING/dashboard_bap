@@ -23,6 +23,12 @@ export class AccessCodeComponent implements OnInit {
     private snack: MatSnackBar,
     private ac: ActivatedRoute
   ) {
+    const grantedDomains = ['ibiss-analytics-int.es.corpintra.net', 'ibiss-analytics.es.corpintra.net']
+    if (grantedDomains.indexOf(location.hostname) > -1) {
+      this.data.accessGranted = true
+      this.router.navigate(['/'])
+      return
+    }
     if (!environment.production) {
       this.data.accessGranted = true
       this.router.navigate(['/'])
@@ -60,7 +66,6 @@ export class AccessCodeComponent implements OnInit {
       email: values.email,
       tel: values.tel
     }).subscribe((res: any) => {
-      console.log(res)
       if (res.success) {
         this.granted = true
       } else {

@@ -15,7 +15,8 @@ export class ConfigService {
 
   load() : Promise<void> {
     return new Promise(resolve => {
-      this.http.get('assets/config.json').subscribe(config => {
+      const configFile = location.hostname.indexOf('corpintra.net') > -1 ? 'cognos.json' : 'config.json'
+      this.http.get('assets/'+configFile).subscribe(config => {
         this.config = config as Config
         console.log(config)
         const search: any = this.tools.getJsonFromUrl()

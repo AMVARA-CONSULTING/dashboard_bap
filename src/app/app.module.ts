@@ -53,6 +53,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { CognosService } from '@services/cognos.service';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -111,7 +112,15 @@ export function createTranslateLoader(http: HttpClient) {
     ConfigService,
     ToolsService,
     NavigationGuard,
+    CognosService,
     AccessGranted,
+    {
+      // Check if a user is logged and manages the login system
+      provide: APP_INITIALIZER,
+      useFactory: (cognosService: CognosService) => () => cognosService.load(),
+      deps: [CognosService],
+      multi: true
+    },
     {
       // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,

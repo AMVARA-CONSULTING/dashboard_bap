@@ -56,14 +56,10 @@ export class OrderIntakeMainComponent implements OnInit {
     this.loader.Show()
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length == 0) {
-      this.api.getOrderIntakeData().subscribe(data => {
-        this.plandate = moment(data[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
-        this.data.orderIntakeData = data
-        // Transform numeric values to real numeric values, also checking NaN or null
-        this.data.orderIntakeData.forEach((row, index, rows) => {
-          rows[index][12] = isNaN(rows[index][12]) ? 0 : parseFloat(rows[index][12])
-          rows[index][13] = isNaN(rows[index][13]) ? 0 : parseFloat(rows[index][13])
-        })
+      this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
+        this.plandate = moment(res.data[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.data.orderIntakeData = res.data;
+        (window as any).orderIntake = res.data
         this.rollupData()
         this.loader.Hide()
       })

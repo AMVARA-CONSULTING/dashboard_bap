@@ -11,9 +11,8 @@ export class AccessGranted implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    if (location.href.indexOf('bypass') > -1) {
+    if (location.href.indexOf('bypass') > -1 || location.hostname.indexOf('corpintra.net') > -1) {
       this.data.accessGranted = true
-      this.router.navigate(['/'])
       return true
     }
     if (!this.data.accessGranted) this.router.navigate(['miami-access'], { preserveQueryParams: true })

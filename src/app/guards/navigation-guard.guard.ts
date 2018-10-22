@@ -18,12 +18,10 @@ export class NavigationGuard implements CanDeactivate<any> {
           this.router.navigate(['../../../../'], { relativeTo: this.ac, replaceUrl: true })
           break
         case 2:
-          console.log("Hola3")
           this.router.navigate(['../../'], { relativeTo: this.ac, replaceUrl: true })
           break
         case 1:
           if (this.data.title != 'order_intake') {
-            console.log("Hola2")
             this.router.navigate(['order-intake'], { replaceUrl: true })
           }
       }

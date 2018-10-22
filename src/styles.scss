@@ -199,7 +199,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 }
 
 @media (min-width: 800px) {
-    .data-header .empty {
+    .data-header .empty, .plandate .empty {
         opacity: 0;
     }
 }

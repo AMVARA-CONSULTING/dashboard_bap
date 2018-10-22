@@ -24,7 +24,11 @@ export class GraphicComponent{
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {
+    this.activatedRoute.paramMap.subscribe(params => this.plantID = params.get('plant'))
+  }
+
+  plantID: string
 
   ngOnInit() {
   }
@@ -36,7 +40,7 @@ export class GraphicComponent{
   goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('YYYYMM')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['allocation', this.plantID, 'date', year])
   }
 
   width: number = 0

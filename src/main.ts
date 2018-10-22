@@ -6,15 +6,11 @@ import { environment } from './environments/environment';
 
 import 'hammerjs';
 import 'hammer-timejs';
+import './parsers.js';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
-  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for(let registration of registrations) {
-     registration.unregister()
-   } })
-})
+platformBrowserDynamic().bootstrapModule(AppModule)
 .catch(err => console.log(err));

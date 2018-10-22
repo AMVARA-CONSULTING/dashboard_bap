@@ -63,15 +63,9 @@ export class AllocationMainComponent implements OnInit {
       this.plant = params.get('plant')
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
-        this.api.getAllocationData().subscribe(data => {
-          this.plandate = moment(data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
-          this.data.allocationData = data
-          // Transform numeric values to real numeric values, also checking NaN or null
-          this.data.allocationData.forEach((row, index, rows) => {
-            this.config.config.reports.trucks.columns.allocation.shouldBeNumber.forEach(num => {
-              rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
-            })
-          })
+        this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation).subscribe(res => {
+          this.plandate = moment(res.data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.data.allocationData = res.data
           this.rollupData()
           this.loader.Hide()
         })

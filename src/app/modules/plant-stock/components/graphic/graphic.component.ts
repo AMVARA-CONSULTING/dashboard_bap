@@ -36,19 +36,17 @@ export class GraphicComponent implements OnInit, OnChanges {
   @Input() werks: any
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
     if (changes.werks.currentValue) {
       this.barsWidth = 100 / Object.keys(changes.werks.currentValue).length
       let total = 0
       for (let werk in changes.werks.currentValue) {
-        const total_werk_actual = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plant_stock.actual)
-        const total_werk_previous = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plant_stock.actual)
+        const total_werk_actual = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plantStock.actual)
+        const total_werk_previous = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plantStock.actual)
         if (total_werk_actual > total) total = total_werk_actual
         if (total_werk_previous > total) total = total_werk_previous
       }
       this.maxTotal = total
       this.werks = Object.assign({}, changes.werks.currentValue)
-      console.log("Total:", this.maxTotal)
       setTimeout(() => this.ready = true, 300)
     }
   }

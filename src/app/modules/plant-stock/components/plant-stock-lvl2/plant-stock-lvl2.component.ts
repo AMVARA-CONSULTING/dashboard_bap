@@ -44,20 +44,14 @@ export class PlantStockLvl2Component implements OnInit {
       this.werk = params.get('werk')
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
-        this.api.getPlantStockData().subscribe(data => {
-          this.plandate = moment(data[0][config.config.reports.trucks.columns.plant_stock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
-          this.data.plantStockData = data
-          // Transform numeric values to real numeric values, also checking NaN or null
-          this.data.plantStockData.forEach((row, index, rows) => {
-            config.config.reports.trucks.columns.plant_stock.shouldBeNumber.forEach(num => {
-              rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
-            });
-          })
+        this.api.getPlantStockData(this.config.config.reports[this.config.config.target][this.config.config.scenario].plantStock).subscribe(res => {
+          this.plandate = moment(res.data[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.data.plantStockData = res.data
           this.rollupData()
           this.loader.Hide()
         })
       } else {
-        this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plant_stock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
         this.loader.Hide()
       }
@@ -77,10 +71,10 @@ export class PlantStockLvl2Component implements OnInit {
 
   rollupData() {
     // Aliases
-    const plantKey = this.config.config.reports.trucks.columns.plant_stock.plantKey
-    const plantName = this.config.config.reports.trucks.columns.plant_stock.plantName
-    const werkbestandName = this.config.config.reports.trucks.columns.plant_stock.werkbestandName
-    const hofbestandName = this.config.config.reports.trucks.columns.plant_stock.hofbestandName
+    const plantKey = this.config.config.reports.trucks.columns.plantStock.plantKey
+    const plantName = this.config.config.reports.trucks.columns.plantStock.plantName
+    const werkbestandName = this.config.config.reports.trucks.columns.plantStock.werkbestandName
+    const hofbestandName = this.config.config.reports.trucks.columns.plantStock.hofbestandName
     //
     this.plants = this.data.plantStockData.reduce((r,a) => {
       r[a[plantKey]] = r[a[plantKey]] || ''
@@ -93,15 +87,17 @@ export class PlantStockLvl2Component implements OnInit {
     }
     this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
-    this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.actual)
-    this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.previous)
-    this.totalDelta = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plant_stock.delta)
+    this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
+    this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
+    this.totalDelta = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.delta)
     this.werkbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]))
     const filteredRowsByWerk = filteredRowsByPlant.filter(item => item[werkbestandName[this.config.config.language]] == this.werk)
-    this.werkActual = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plant_stock.actual)
-    this.werkPrevious = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plant_stock.previous)
-    this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plant_stock.delta)
+    this.werkActual = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.actual)
+    this.werkPrevious = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.previous)
+    this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.delta)
     this.hofbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]))
+    this.actualValue = this.tools.percent(this.werkActual, this.totalActual)
+    this.previousValue = this.tools.percent(this.werkPrevious, this.totalPrevious)
     setTimeout(() => {
       this.ready = true
     })
@@ -110,6 +106,9 @@ export class PlantStockLvl2Component implements OnInit {
   returnToMain(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
   }
+
+  actualValue
+  previousValue
 
   totalActual: number = 0
   totalPrevious: number = 0

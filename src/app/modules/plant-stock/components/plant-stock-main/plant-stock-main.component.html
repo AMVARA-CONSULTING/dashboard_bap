@@ -11,10 +11,10 @@
       <div class="delta">&Delta;</div>
     </div>
     <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue">
-      <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plant_stock.werkbestandName[config.config.language]] }}</div>
-      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
-      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
-      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+      <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
+      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
+      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber }}</div>
     </div>
   </div>
 </div>
@@ -39,9 +39,9 @@
     <div class="delta">{{ totalDelta | toNumber }}</div>
   </div>
   <div class="row" (click)="goWerk(werk.key)" *ngFor="let werk of werkbestands | keyvalue">
-    <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plant_stock.werkbestandName[config.config.language]] }}</div>
-    <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.actual) | toNumber }}</div>
-    <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.previous) | toNumber }}</div>
-    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plant_stock.delta) | toNumber }}</div>
+    <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
+    <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
+    <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
+    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber }}</div>
   </div>
 </div>

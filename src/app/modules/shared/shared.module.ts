@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -24,6 +25,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     NumberPipe,
     SelectYearComponent,
+    DipCircularMetersComponent,
     DipQuadroCircularMetersComponent
   ],
   imports: [
@@ -55,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     MatSelectModule,
     DipQuadroCircularMetersComponent,
+    DipCircularMetersComponent,
     RoundProgressModule,
     TranslateModule
   ]

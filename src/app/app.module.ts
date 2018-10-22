@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule, APP_INITIALIZER } from '@angular/core'
+import { NgModule, APP_INITIALIZER, Injectable } from '@angular/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 // Global Components
@@ -60,6 +60,23 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
+declare var Hammer: any;
+
+@Injectable()
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any> {
+    'swipe': { direction: Hammer.DIRECTION_HORIZONTAL }
+  }
+  buildHammer(element: HTMLElement) {
+    let mc = new Hammer(element, {
+      touchAction: "pan-y",
+    })
+    return mc
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +131,10 @@ export function createTranslateLoader(http: HttpClient) {
     NavigationGuard,
     CognosService,
     AccessGranted,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    },
     {
       // Check if a user is logged and manages the login system
       provide: APP_INITIALIZER,

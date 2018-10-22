@@ -1,5 +1,5 @@
 {
-    "version": "2.9.0",
+    "version": "2.10.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -139,6 +139,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.10.0",
+			"text": [
+				"DIP is now fully compatible with iOS devices"
+			]
+		},
 		{
 			"version": "2.9.0",
 			"text": [

@@ -9,8 +9,8 @@
     touch-action: pan-y !important;
 }
 
-::ng-deep .mat-expansion-panel {
-    background-color: transparent;
+::ng-deep .mat-expansion-panel, ::ng-deep .mat-expansion-panel-header {
+    background-color: transparent !important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
 }

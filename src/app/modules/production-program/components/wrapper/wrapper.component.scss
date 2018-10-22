@@ -17,10 +17,10 @@
     width: 100%;
     left: 0;
     overflow-y: auto;
-    @supports (-webkit-overflow-scrolling: touch) {
+    /*@supports (-webkit-overflow-scrolling: touch) {
        position: initial;
        padding-top: 0;
-    }
+    }*/
     touch-action: pan-y !important;
 }
 

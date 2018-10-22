@@ -55,6 +55,11 @@
     cursor: pointer;
     margin-left: 15px;
     padding-left: 70px;
+    .outer, .middle, .inter {
+        @supports (-webkit-overflow-scrolling: touch) {
+            animation: none !important;
+        }
+    }
     &.running {
         .outer, .middle, .inter {
             -webkit-animation-play-state: running;

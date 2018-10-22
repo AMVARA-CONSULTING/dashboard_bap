@@ -46,6 +46,11 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 
 .mat-drawer-content {
     width: 100%;
+    overflow: initial !important
+}
+
+.mat-drawer {
+    position: fixed !important
 }
 
 ::-webkit-scrollbar {

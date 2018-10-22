@@ -1,5 +1,7 @@
 # DIP - Data Informations Platform
 
+[![DIP](https://img.shields.io/badge/DIP-stable-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)
+
 ## Development server
 
 Run `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

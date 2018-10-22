@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.10.0
+
+- DIP is now fully compatible with iOS devices 😃
+
 ## 2.9.0
 
 - Implement circular progress bars on Plant Stock

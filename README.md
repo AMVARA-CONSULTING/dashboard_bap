@@ -1,6 +1,16 @@
 # DIP - Data Informations Platform
 
-[![DIP](https://img.shields.io/badge/DIP-stable-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)   [![DIP](https://img.shields.io/badge/dependencies-up%20to%20date-yellow.svg)](http://git.amvara.de/daimler/dip-more-2.0)
+[![DIP](https://img.shields.io/badge/DIP-stable-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)   [![DIP](https://img.shields.io/badge/dependencies-up%20to%20date-yellow.svg)](http://git.amvara.de/daimler/dip-more-2.0)   [![DIP](https://img.shields.io/badge/version-2.11.0-brightgreen.svg)](http://git.amvara.de/daimler/dip-more-2.0)
+
+## Links
+
+_Amvara's Website_: https://more.amvara.rocks/
+
+_iBISS Platform_: https://ibiss-analytics-int.es.corpintra.net/internal/bi/app/DIPRE/v2/
+
+## Changelog
+
+http://git.amvara.de/daimler/dip-more-2.0/blob/master/CHANGELOG.md
 
 ## Development server
 

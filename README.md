@@ -4,9 +4,9 @@
 
 ## Links
 
-Amvara's Website: https://more.amvara.rocks/
+*Amvara's Website*: https://more.amvara.rocks/
 
-iBISS Platform: https://ibiss-analytics-int.es.corpintra.net/internal/bi/app/DIPRE/v2/
+*iBISS Platform*: https://ibiss-analytics-int.es.corpintra.net/internal/bi/app/DIPRE/v2/
 
 ## Development server
 

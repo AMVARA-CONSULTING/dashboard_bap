@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.11.0
+
+- Negative percents on circular progress bars
+- Order Intake - Make actual day 1 line
+- Production Program - Correct barchart as in V1
+- Production Program - Better barchart positioning in mobile devices
+- Production Program - Fixed 3rd percent in L3 (only regions)
+- Allocation - Switch Program / Allocation columns order
+- Allocation - Readjust selectors to the top in L2+L3
+- Allocation - L2+L3 Total numbers
+- Allocation - Allocation percent inside of bar (also, not exclusively)
+- Allocation - Make program bar ever 100% and allocation % of program
+- [Swipe] Only goes to other reports, event still present in About & Help for convenience
+
 ## 2.10.0
 
 - DIP is now fully compatible with iOS devices 😎

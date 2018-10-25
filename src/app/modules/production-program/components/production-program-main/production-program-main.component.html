@@ -43,7 +43,10 @@
       <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{ 'production_program.total' | translate }}</div>
     </div>
     <div class="reserve">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">{{ 'production_program.reserve' | translate }}</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">
+        <span class="desktop">{{ 'production_program.reserve' | translate }}</span>
+        <span class="mobile">SR</span>
+      </div>
     </div>
   </header>
   <div class="zone" *ngFor="let zone of rowsGroupsGlobal | keyvalue">

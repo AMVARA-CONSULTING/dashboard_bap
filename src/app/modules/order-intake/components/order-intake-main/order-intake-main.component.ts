@@ -31,7 +31,7 @@ import * as moment from 'moment';
   ],
   host: {
     '[style.opacity]': 'loader.show ? 0 : 1',
-    '(swiperight)': 'data.go("help")',
+    '(swiperight)': 'data.go("plant-stock")',
     '(swipeleft)': 'data.go("production-program")'
   }
 })

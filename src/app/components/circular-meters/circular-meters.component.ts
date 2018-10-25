@@ -28,6 +28,9 @@ export class DipCircularMetersComponent implements OnInit {
   clockwise_actual: boolean = false
   clockwise_previous: boolean = false
 
+  actualNegative: boolean = false
+  previousNegative: boolean = false
+
   actual: number = 0
   previous: number = 0
 

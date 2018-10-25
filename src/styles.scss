@@ -49,6 +49,22 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     overflow: initial !important
 }
 
+.percent.negative:before {
+    content: "- ";
+}
+
+@media screen and (max-width: 800px) {
+    .graphic .zone {
+        top: 0 !important;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
+    .graphic .zone {
+        top: 0 !important;
+    }
+}
+
 .mat-drawer {
     position: fixed !important
 }
@@ -129,6 +145,20 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     border-top: 5px solid $cyan-text;
 }
 
+.mat-tooltip.reserve_g:after {
+    content: "";
+    bottom: -5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    height: 0;
+    width: 0;
+    margin: auto;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba($semi-white, .5);
+}
+
 .mat-tooltip.previous, .mat-tooltip.program {
     overflow: initial !important;
 }
@@ -149,8 +179,13 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 
 .mat-tooltip {
     font-size: 13px;
+    overflow: initial !important;
     background-color: $bg-white-lvl1;
     border: 1px solid rgba(255,255,255,.2);
+}
+
+.mat-tooltip.reserve {
+    border: 1px solid rgba($semi-white,.5);
 }
 
 .cyan {

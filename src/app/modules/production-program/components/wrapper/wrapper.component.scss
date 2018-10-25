@@ -32,6 +32,19 @@
     display: none;
 }
 
+@media (max-width: 600px) {
+    ::ng-deep .mobile {
+        display: inline !important;
+    }
+    ::ng-deep .desktop {
+        display: none;
+    }
+}
+
+::ng-deep .mobile {
+    display: none;
+}
+
 ::ng-deep .mat-select-value-text {
     color: $semi-white;
 }

@@ -66,6 +66,12 @@
         padding: 30px;
         max-width: 60%;
         padding-bottom: 15px;
+        @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
+            -ms-flex: 1 45%;
+                flex: 1 45%;
+            max-width: 45%;
+            padding-bottom: 30px;
+        }
     }
     .simple {
         -webkit-box-flex: 1;
@@ -74,6 +80,12 @@
         border-left: 3px solid rgba($color: #000, $alpha: .2);
         padding: 30px;
         max-width: 40%;
+        @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
+            -ms-flex: 1 55%;
+                flex: 1 55%;
+            max-width: 55%;
+            border-left: 0;
+        }
         .headers, .overview-group {
             display: -webkit-box;
             display: -ms-flexbox;

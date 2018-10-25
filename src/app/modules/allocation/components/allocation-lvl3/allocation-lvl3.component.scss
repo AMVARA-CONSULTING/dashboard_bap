@@ -10,6 +10,27 @@
     padding-left: 5px;
 }
 
+.total-allocation, .total-program {
+    flex: 1 20%;
+    text-align: right;
+    padding: 12px 10px 12px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.total-allocation {
+    color: $lighten-cyan-text;
+}
+
+.total-program {
+    color: $yellow-text-material;
+}
+
+.total-empty {
+    flex: 1 20%;
+    text-align: right;
+}
+
 .plandate {
     display: block;
     padding: 0 15px;

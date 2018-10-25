@@ -1,12 +1,12 @@
 <div class="meter">
   <div class="container" [matTooltip]="actualValue | toNumber" matTooltipPosition="above" matTooltipClass="actual">
-    <div class="percent cyan">{{ actual }}%</div>
+    <div [ngClass]="{'negative': !clockwise_actual}" class="percent cyan">{{ actual }}%</div>
     <round-progress [clockwise]="clockwise_actual" [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="60" [stroke]="13" [current]="actual" background="#555555" [color]="'#00acc1'"></round-progress>
   </div>
 </div>
 <div class="meter">
   <div class="container" [matTooltip]="previousValue | toNumber" matTooltipPosition="above" matTooltipClass="previous">
-      <div class="percent orange">{{ previous }}%</div>
+    <div [ngClass]="{'negative': !clockwise_previous}" class="percent orange">{{ previous }}%</div>
     <round-progress [clockwise]="clockwise_previous" [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="60" [stroke]="13" [current]="previous" background="#555555" [color]="'#f8b03b'"></round-progress>
   </div>
 </div>

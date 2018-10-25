@@ -1,10 +1,11 @@
-<div style="position:relative;width:calc(100% - 120px);height:100%;">
+<div style="position:relative;width:calc(100% - 60px);height:100%;">
   <div class="blackout"></div>
-  <div class="bar" matTooltipClass="above" [matTooltip]="programNumber | toNumber" matTooltipPosition="above" [style.width.%]="ready ? program : 0">
+  <div class="bar" matTooltipClass="above" [matTooltip]="programNumber | toNumber" matTooltipPosition="above">
     <div style="position:relative;width:100%;height:100%;">
-      <div matTooltipClass="above" [matTooltip]="partNumber | toNumber" matTooltipPosition="above" class="allocation" [style.width.%]="ready ? allocation : 0"></div>
+      <div matTooltipClass="above" [matTooltip]="partNumber | toNumber" matTooltipPosition="above" class="allocation" [style.width.%]="ready ? allocation : 0">
+        <span class="percent2">{{ (allocation | toNumber) + ' %' }}</span>
+      </div>
     </div>
   </div>
 </div>
-<div class="percent">{{ (allocation | toNumber) + ' %' }}</div>
-<div class="percentProgram">{{ (program | toNumber) + ' %' }}</div>
+<span class="percent">{{ (allocation | toNumber) + ' %' }}</span>

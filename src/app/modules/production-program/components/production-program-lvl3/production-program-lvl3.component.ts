@@ -51,10 +51,10 @@ export class ProductionProgramLvl3Component implements OnInit {
         this.PlantID = this.id
       }
       if (this.type2 == 'region') {
-        this.RegionID = this.region_id
+        this.RegionID = decodeURI(this.region_id)
         this.ProductID = null
       } else {
-        this.ProductID = this.region_id
+        this.ProductID = decodeURI(this.region_id)
         this.RegionID = null
       }
       // If no Order Intake rows were found, get them
@@ -200,8 +200,8 @@ export class ProductionProgramLvl3Component implements OnInit {
       plantTotal: this.data.sumByIndex(plantRows, 17),
       plantTotalDiff: this.data.sumByIndex(plantRows, 21),
       plantReserve: this.data.sumByIndex(plantRows, 22),
-      productsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 10 : 9] == this.RegionID),
-      regionsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.ProductID)
+      productsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 10 : 9] == this.region_id),
+      regionsPlain: zoneRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.region_id)
     }
     if (this.RegionID != null && this.groupInfo.productsPlain.length == 0) {
       this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
@@ -230,7 +230,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.groupInfo.plantPlan)
     this.groupInfo.progress3 = this.RegionID != null ?
       this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.groupInfo.plantTotal) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.groupInfo.planTotal)
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.groupInfo.plantTotal)
     this.groupInfo.progress4 = this.RegionID != null ?
       this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.groupInfo.plantReserve) :
       this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.groupInfo.plantReserve)

@@ -124,6 +124,8 @@ export class AllocationLvl3Component implements OnInit {
     let info = []
     Object.keys(months).forEach(month => {
       const monthCorrected = moment(month, 'YYYYMM').format('MM / YYYY')
+      this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
+      this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
       const program = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.program)
       const allocation = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.allocation)
       info.push({
@@ -142,6 +144,8 @@ export class AllocationLvl3Component implements OnInit {
     } else {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language]] == this.region_id)
     }
+    this.subtotalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
+    this.subtotalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     this.partNumber = this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.allocation)
     this.percentAllocation = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
     this.percentProgram = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
@@ -184,6 +188,11 @@ export class AllocationLvl3Component implements OnInit {
 
   regions
   products
+
+  totalProgram: number = 0
+  totalAllocation: number = 0
+  subtotalProgram: number = 0
+  subtotalAllocation: number = 0
 
 
 }

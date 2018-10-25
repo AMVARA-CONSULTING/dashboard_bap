@@ -30,7 +30,7 @@ export class AboutComponent implements OnInit {
   version
 
   ngOnInit() {
-    console.log(this.config.config.language)
+    
   }
 
   setLang(code: string) : void {

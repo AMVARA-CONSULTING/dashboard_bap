@@ -205,7 +205,7 @@ export class ProductionProgramLvl2Component implements OnInit {
       type: 'region',
       key: encodeURI(ProductID)
     }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['region', ProductID], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
   
   goRegion(RegionID): void {
@@ -213,7 +213,7 @@ export class ProductionProgramLvl2Component implements OnInit {
       type: 'product',
       key: encodeURI(RegionID)
     }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['product', RegionID], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
 }

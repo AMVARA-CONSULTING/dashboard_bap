@@ -24,7 +24,7 @@ import * as moment from 'moment';
   host: {
     '[style.opacity]': 'loader.show ? 0 : 1',
     '(swiperight)': 'data.go("allocation")',
-    '(swipeleft)': 'data.go("about")'
+    '(swipeleft)': 'data.go("order-intake")'
   }
 })
 export class PlantStockMainComponent implements OnInit {

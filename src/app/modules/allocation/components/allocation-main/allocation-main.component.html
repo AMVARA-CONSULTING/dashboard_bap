@@ -13,8 +13,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field></div>
-  <div class="program">{{ 'allocation.program' | translate }}</div>
   <div class="allocation">{{ 'allocation.allocation' | translate }}</div>
+  <div class="program">{{ 'allocation.program' | translate }}</div>
   <div class="percent"></div>
 </header>
 <div class="content-wrapper" [@list]="months.length">
@@ -23,8 +23,8 @@
     <ng-container *ngFor="let month of months">
       <div class="row" *ngIf="month.year == year" (click)="goMonth(month.month)">
         <div class="month">{{ getDate(month.month) }}</div>
-        <div class="program">{{ month.program | toNumber }}</div>
         <div class="allocation">{{ month.allocation | toNumber }}</div>
+        <div class="program">{{ month.program | toNumber }}</div>
         <div class="percent">{{ month.percent }}</div>
       </div>
     </ng-container>

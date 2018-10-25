@@ -146,6 +146,8 @@ export class AllocationLvl2Component implements OnInit {
     const maxProgram = Math.max(...info.map(mon => mon.program))
     const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
     filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth] == this.date)
+    this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
+    this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     this.partNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     this.percentAllocation = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
     this.percentProgram = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), maxProgram, false, false, false)
@@ -172,5 +174,7 @@ export class AllocationLvl2Component implements OnInit {
   regions
   products
 
+  totalProgram: number = 0
+  totalAllocation: number = 0
 
 }

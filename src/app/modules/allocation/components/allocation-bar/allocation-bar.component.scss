@@ -32,6 +32,7 @@
     overflow: hidden;
     position: relative;
     z-index: 99;
+    width: 100%;
     .allocation {
         display: block;
         height: 20px;
@@ -49,12 +50,20 @@
     height: 20px;
     top: 0;
     bottom: 0;
-    right: 90px;
+    right: 25px;
     text-align: right;
     width: 50px;
     line-height: 20px;
     font-size: 20px;
     color: $lighten-cyan-text;
+}
+
+.percent2 {
+    color: white;
+    text-align: right;
+    float: right;
+    line-height: 20px;
+    padding-right: 10px;
 }
 
 .percentProgram {

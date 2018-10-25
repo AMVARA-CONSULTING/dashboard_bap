@@ -54,13 +54,27 @@
         .previous {
             position: absolute;
             bottom: 0;
-            right: 0;
+            left: 0;
             border-radius: 3px;
             width: calc(50% - 5px);
             -webkit-transition: height .7s ease-in-out;
             -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: $yellow-text-material;
+            &.zero {
+                height: 0% !important;
+            }
+        }
+        .reserve {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+            width: calc(50% - 5px);
+            -webkit-transition: height .7s ease-in-out;
+            -o-transition: height .7s ease-in-out;
+            transition: height .7s ease-in-out;
+            background-color: rgba($semi-white, .5);
             &.zero {
                 height: 0% !important;
             }

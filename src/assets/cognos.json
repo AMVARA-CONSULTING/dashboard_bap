@@ -1,5 +1,5 @@
 {
-    "version": "2.10.0",
+    "version": "2.11.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -141,6 +141,22 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.11.0",
+			"text": [
+				"Negative percents on circular progress bars",
+				"Order Intake - Make actual day 1 line",
+				"Production Program - Correct barchart as in V1",
+				"Production Program - Better barchart positioning in mobile devices",
+				"Production Program - Fixed 3rd percent in L3 (only regions)",
+				"Allocation - Switch Program / Allocation columns order",
+				"Allocation - Readjust selectors to the top in L2+L3",
+				"Allocation - L2+L3 Total numbers",
+				"Allocation - Allocation percent inside of bar (also, not exclusively)",
+				"Allocation - Make program bar ever 100% and allocation % of program",
+				"[Swipe] Only goes to other reports, event still present in About & Help for convenience"
+			]
+		},
 		{
 			"version": "2.10.0",
 			"text": [

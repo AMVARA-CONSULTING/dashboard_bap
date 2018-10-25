@@ -8,6 +8,10 @@ _Amvara's Website_: https://more.amvara.rocks/
 
 _iBISS Platform_: https://ibiss-analytics-int.es.corpintra.net/internal/bi/app/DIPRE/v2/
 
+## Changelog
+
+http://git.amvara.de/daimler/dip-more-2.0/blob/master/CHANGELOG.md
+
 ## Development server
 
 Run `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

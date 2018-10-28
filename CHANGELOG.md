@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.12.0
+
+- Allocation - Barchart mouseover numbers
+- Allocation - Total numbers
+- Production Program - Year Filter on Graphics
+- Fixed contacts
+- Removed hover effect on graphics for mobile
+- Plant Stock - Barchart & Table clickable
+
 ## 2.11.0
 
 - Negative percents on circular progress bars

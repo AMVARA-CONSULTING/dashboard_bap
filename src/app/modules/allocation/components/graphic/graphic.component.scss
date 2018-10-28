@@ -4,7 +4,6 @@
 :host {
     display: block;
     height: 0;
-    border-bottom: 0 solid rgba(0,0,0,.4);
     background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
     background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
     background: -o-linear-gradient(top, transparent, $bg-white-lvl1);

@@ -22,7 +22,6 @@ import * as moment from 'moment';
     ]),
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1',
     '(swiperight)': 'data.go("allocation")',
     '(swipeleft)': 'data.go("order-intake")'
   }
@@ -49,7 +48,7 @@ export class PlantStockMainComponent implements OnInit {
     (window as any).router = router;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       // If no Plant Stock rows were found, get them
@@ -58,12 +57,12 @@ export class PlantStockMainComponent implements OnInit {
           this.plandate = moment(res.data[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.plantStockData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }

@@ -1,5 +1,5 @@
 {
-    "version": "2.11.0",
+    "version": "2.12.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -15,14 +15,14 @@
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
 	"contacts": [
 		{
-			"name": "Tim Valentin",
+			"name": "Steffen Schweiger",
 			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 211 953 4861"
+			"telephone": "+49 7271 71 2184"
 		}, 
 		{
-			"name": "Alexander Hörz",
+			"name": "Kai Blattmann",
 			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 211 953 3559"
+			"telephone": "+49 7271 71 5435"
 		}, 
 		{
 			"name": "Peter Hess",
@@ -141,6 +141,17 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.12.0",
+			"text": [
+				"Allocation - Barchart mouseover numbers",
+				"Allocation - Total numbers",
+				"Production Program - Year Filter on Graphics",
+				"Fixed contacts",
+				"Removed hover effect on graphics for mobile",
+				"Plant Stock - Barchart & Table clickable"
+			]
+		},
 		{
 			"version": "2.11.0",
 			"text": [

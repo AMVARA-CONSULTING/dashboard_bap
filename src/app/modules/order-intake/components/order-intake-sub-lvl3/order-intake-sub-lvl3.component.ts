@@ -38,7 +38,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
   ) {
     title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       if (params.get('type') == 'zone') {
         this.ZoneID = params.get('id')
@@ -69,7 +69,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
           } catch (err) {
             this.router.navigate(['order-intake'], { replaceUrl: true })
           }
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(data.orderIntakeData[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
@@ -78,7 +78,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
         } catch (err) {
           this.router.navigate(['order-intake'], { replaceUrl: true })
         }
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }

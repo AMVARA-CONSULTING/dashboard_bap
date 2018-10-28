@@ -1,5 +1,5 @@
 {
-    "version": "2.11.0",
+    "version": "2.12.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -139,6 +139,17 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.12.0",
+			"text": [
+				"Allocation - Barchart mouseover numbers",
+				"Allocation - Total numbers",
+				"Production Program - Year Filter on Graphics",
+				"Fixed contacts",
+				"Removed hover effect on graphics for mobile",
+				"Plant Stock - Barchart & Table clickable"
+			]
+		},
 		{
 			"version": "2.11.0",
 			"text": [

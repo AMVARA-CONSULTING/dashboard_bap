@@ -56,13 +56,13 @@
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
     }
     @media screen and (min-width: 800px) {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .4);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
     }
     .graphic {
         -webkit-box-flex: 1;
@@ -87,7 +87,7 @@
             -ms-flex: 1 40%;
                 flex: 1 40%;
         max-width: 40%;
-        border-left: 3px solid rgba($color: #000, $alpha: .4);
+        border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
         @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
             -webkit-box-flex: 1;

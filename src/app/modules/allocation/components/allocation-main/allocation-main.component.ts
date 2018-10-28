@@ -27,7 +27,6 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
     ])
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1',
     '(swiperight)': 'data.go("production-program")',
     '(swipeleft)': 'data.go("plant-stock")'
   }
@@ -58,7 +57,7 @@ export class AllocationMainComponent implements OnInit {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(this.config.config.appTitle + ' - Allocation')
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       // If no Allocation rows were found, get them
@@ -67,12 +66,12 @@ export class AllocationMainComponent implements OnInit {
           this.plandate = moment(res.data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.allocationData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.allocationData[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }

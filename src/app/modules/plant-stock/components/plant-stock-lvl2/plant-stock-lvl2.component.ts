@@ -38,7 +38,7 @@ export class PlantStockLvl2Component implements OnInit {
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.werk = params.get('werk')
@@ -48,17 +48,21 @@ export class PlantStockLvl2Component implements OnInit {
           this.plandate = moment(res.data[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.plantStockData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }
 
   ngOnInit() {
+  }
+
+  goWerk(werk) : void {
+    this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
   changePlant(plant) {

@@ -39,7 +39,7 @@ export class PlantStockLvl3Component implements OnInit {
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.werk = params.get('werk')
@@ -56,12 +56,12 @@ export class PlantStockLvl3Component implements OnInit {
             });
           })
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }
@@ -113,6 +113,10 @@ export class PlantStockLvl3Component implements OnInit {
     setTimeout(() => {
       this.ready = true
     })
+  }
+
+  goWerk(werk) : void {
+    this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
   returnToMain(): void {

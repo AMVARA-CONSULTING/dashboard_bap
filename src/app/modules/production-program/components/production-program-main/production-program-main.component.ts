@@ -31,7 +31,6 @@ import * as moment from 'moment'
     ])
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1',
     '(swiperight)': 'data.go("order-intake")',
     '(swipeleft)': 'data.go("allocation")'
   }
@@ -56,7 +55,7 @@ export class ProductionProgramMainComponent implements OnInit {
   plandate: string = ''
 
   ngOnInit() {
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.route.paramMap.subscribe(params => {
       this.year = params.get('year')
       // If no Production rows were found, get them
@@ -65,12 +64,12 @@ export class ProductionProgramMainComponent implements OnInit {
           this.plandate = moment(res.data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.productionProgramData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }
@@ -86,12 +85,12 @@ export class ProductionProgramMainComponent implements OnInit {
 
   changeYear(year: string, years?: string[]) : void  {
     localStorage.setItem('production-year', year)
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.router.navigate(['production-program', year], { replaceUrl: true })
     /*
     this.data.selectYear(year, years).then(year => {
       localStorage.setItem('production-year', year)
-      this.loader.Show()
+      this.loader.loading$.next(true)
       this.router.navigate(['production-program', year])
     }).catch(err => console.log(err))*/
   }

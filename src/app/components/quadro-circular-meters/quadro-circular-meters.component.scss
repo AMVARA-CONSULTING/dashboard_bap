@@ -14,14 +14,14 @@
     background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
     background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid rgba(black, .05);
     .meter {
         -webkit-box-flex: 1;
             -ms-flex: 1 25%;
                 flex: 1 25%;
         height: 100%;
         &:not(:first-child) {
-            border-left: 3px solid black;
+            border-left: 3px solid rgba(black, .35);
         }
         .container {
             width: 60px;

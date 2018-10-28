@@ -1,24 +1,24 @@
 <div class="meter">
   <div class="container" [matTooltip]="customerValue | toNumber" matTooltipPosition="above" matTooltipClass="customer">
     <div [ngClass]="{'negative': !clockwise_customer}" class="percent cyan">{{ customer }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="#555555" [color]="'#00acc1'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="rgb(0, 172, 193, .2)" color="#00acc1"></round-progress>
   </div>
 </div>
 <div class="meter">
   <div class="container" [matTooltip]="planValue | toNumber" matTooltipPosition="above" matTooltipClass="plan">
     <div [ngClass]="{'negative': !clockwise_plan}" class="percent">{{ plan }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="plan" background="#555555" [color]="'white'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="plan" background="rgba(255, 255, 255, .2)" color="#ffffff"></round-progress>
   </div>
 </div>
 <div class="meter">
   <div class="container" [matTooltip]="totalValue | toNumber" matTooltipPosition="above" matTooltipClass="total">
     <div [ngClass]="{'negative': !clockwise_total}" class="percent orange">{{ total }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="#555555" [color]="'#f8b03b'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="rgba(248, 176, 59, .2)" color="#f8b03b"></round-progress>
   </div>
 </div>
 <div class="meter">
   <div class="container" [matTooltip]="reserveValue | toNumber" matTooltipPosition="above" matTooltipClass="reserve">
     <div [ngClass]="{'negative': !clockwise_reserve}" class="percent">{{ reserve }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="reserve" background="#555555" [color]="'white'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="reserve" background="rgba(255, 255, 255, .2)" color="#ffffff"></round-progress>
   </div>
 </div>

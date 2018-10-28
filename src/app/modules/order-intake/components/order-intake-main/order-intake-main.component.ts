@@ -30,7 +30,6 @@ import * as moment from 'moment';
     ])
   ],
   host: {
-    '[style.opacity]': 'loader.show ? 0 : 1',
     '(swiperight)': 'data.go("plant-stock")',
     '(swipeleft)': 'data.go("production-program")'
   }
@@ -53,7 +52,7 @@ export class OrderIntakeMainComponent implements OnInit {
   plandate: string = ''
 
   ngOnInit() {
-    this.loader.Show()
+    this.loader.loading$.next(true)
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length == 0) {
       this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
@@ -61,12 +60,12 @@ export class OrderIntakeMainComponent implements OnInit {
         this.data.orderIntakeData = res.data;
         (window as any).orderIntake = res.data
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       })
     } else {
       this.plandate = moment(this.data.orderIntakeData[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
       this.rollupData()
-      this.loader.Hide()
+      this.loader.loading$.next(false)
     }
   }
 

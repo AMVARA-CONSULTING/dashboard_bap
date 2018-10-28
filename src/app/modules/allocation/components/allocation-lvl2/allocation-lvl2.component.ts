@@ -59,7 +59,7 @@ export class AllocationLvl2Component implements OnInit {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(config.config.appTitle + ' - Allocation')
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.date = params.get('date')
@@ -69,12 +69,12 @@ export class AllocationLvl2Component implements OnInit {
           this.plandate = moment(res.data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.allocationData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.allocationData[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   host: {
-    '[class.lighter]': 'loader.show',
+    '[class.lighter]': 'loading',
     '(click)': 'goHelp()'
   }
 })
@@ -20,7 +20,11 @@ export class FooterComponent implements OnInit {
     public loader: LoadingService,
     public data: DataService,
     private router: Router
-  ) { }
+  ) {
+    this.loader.loading$.subscribe(bol => this.loading = bol)
+  }
+
+  loading: boolean = false
 
   ngOnInit() {
   }

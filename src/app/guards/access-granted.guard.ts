@@ -15,7 +15,7 @@ export class AccessGranted implements CanActivate {
       this.data.accessGranted = true
       return true
     }
-    if (!this.data.accessGranted) this.router.navigate(['miami-access'], { preserveQueryParams: true })
+    if (!this.data.accessGranted) this.router.navigate(['miami-access'], { queryParamsHandling: 'merge' })
     return this.data.accessGranted
   }
 }

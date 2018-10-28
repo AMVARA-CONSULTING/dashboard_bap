@@ -35,7 +35,7 @@
   <div class="total-program">{{ subtotalProgram | toNumber }}</div>
   <div class="total-empty"></div>
 </header>
-<allocation-bar [programNumber]="programNumber" [allocation]="percentAllocation" [program]="percentProgram" [ready]="ready" [partNumber]="partNumber || 0"></allocation-bar>
+<allocation-bar [programNumber]="subtotalProgram" [allocation]="percentAllocation" [program]="subtotalProgram" [ready]="ready" [partNumber]="subtotalAllocation || 0"></allocation-bar>
 <div class="content-wrapper" [@list]="months.length">
   <div class="row-group">
     <div class="group-header" *ngIf="type == 'region'">{{ 'products' | translate }}</div>

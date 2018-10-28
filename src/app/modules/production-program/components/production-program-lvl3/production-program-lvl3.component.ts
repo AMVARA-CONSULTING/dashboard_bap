@@ -38,7 +38,7 @@ export class ProductionProgramLvl3Component implements OnInit {
   ) {
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.year = params.get('year')
       this.type = params.get('type')
@@ -85,7 +85,7 @@ export class ProductionProgramLvl3Component implements OnInit {
           } catch (err) {
             this.router.navigate(['production-program'], { replaceUrl: true })
           }
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
@@ -125,7 +125,7 @@ export class ProductionProgramLvl3Component implements OnInit {
         } catch (err) {
           this.router.navigate(['production-program'], { replaceUrl: true })
         }
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }
@@ -151,7 +151,7 @@ export class ProductionProgramLvl3Component implements OnInit {
 
   changeYear(year: string, years?: string[]) : void  {
     localStorage.setItem('production-year', year)
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
   }
 

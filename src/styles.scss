@@ -59,8 +59,8 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     }
 }
 
-@media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
-    .graphic .zone {
+@media (min-width: 300px) and (max-width: 1000px) and (orientation: landscape) {
+    .graphic .zone, .graphic .month, .graphic .werk {
         top: 0 !important;
     }
 }

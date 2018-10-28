@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoadingService {
 
-  // Shows the loading circle
-  public Show() : void {
-    this.show = true
+  constructor() {
+    this.loading$ = new BehaviorSubject<boolean>(false)
   }
 
-  // Hides the loading circle
-  public Hide() : void {
-    this.show = false
-  }
-
-  public show: boolean = false
+  loading$: BehaviorSubject<boolean>
 }

@@ -8,7 +8,11 @@ import { LoadingService } from '@services/loading.service';
 })
 export class LoaderComponent implements OnInit {
 
-  constructor(public loader: LoadingService) { }
+  constructor(public loader: LoadingService) {
+    this.loader.loading$.subscribe(bol => this.loading = bol)
+  }
+
+  loading: boolean = false
 
   ngOnInit() {
   }

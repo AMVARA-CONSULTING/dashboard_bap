@@ -54,7 +54,7 @@ export class GraphicComponent implements OnInit {
       }
       if (this.zones[zone].reserve > this.maxReserve) this.maxReserve = this.zones[zone].reserve
     }
-    this.rows = this._data.classifyByIndex(this._data.productionProgramData, 0)
+    this.rows = this._data.classifyByIndex(this._data.productionProgramData.filter(item => item[13] == myYear), 0)
     let tActual = 0
     for (var zone in this.zones) {
       if (this.zones[zone].actual > tActual) tActual = this.zones[zone].actual

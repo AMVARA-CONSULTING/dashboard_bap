@@ -26,9 +26,16 @@ export class GraphicComponent implements OnInit, OnChanges {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public data: DataService
-  ) { }
+  ) {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.plant = params.get('plant')
+      console.log(this.plant)
+    })
+  }
 
   ready: boolean = false
+
+  plant: string
 
   ngOnInit() {
   }
@@ -56,7 +63,7 @@ export class GraphicComponent implements OnInit, OnChanges {
   }
 
   goWerk(werk) : void {
-    this.router.navigate(['werk', encodeURI(werk)], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['plant-stock', this.plant, 'werk', encodeURI(werk)], { replaceUrl: true })
   }
 
   maxTotal: number = 0

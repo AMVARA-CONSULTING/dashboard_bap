@@ -62,7 +62,7 @@ export class AllocationLvl3Component implements OnInit {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(this.config.config.appTitle + ' - Allocation')
-    this.loader.Show()
+    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.date = params.get('date')
@@ -74,12 +74,12 @@ export class AllocationLvl3Component implements OnInit {
           this.plandate = moment(res.data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
           this.data.allocationData = res.data
           this.rollupData()
-          this.loader.Hide()
+          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = moment(this.data.allocationData[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
         this.rollupData()
-        this.loader.Hide()
+        this.loader.loading$.next(false)
       }
     })
   }
@@ -124,8 +124,6 @@ export class AllocationLvl3Component implements OnInit {
     let info = []
     Object.keys(months).forEach(month => {
       const monthCorrected = moment(month, 'YYYYMM').format('MM / YYYY')
-      this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
-      this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
       const program = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.program)
       const allocation = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.allocation)
       info.push({
@@ -138,6 +136,8 @@ export class AllocationLvl3Component implements OnInit {
     })
     const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
     filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth] == this.date)
+    this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
+    this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     const filteredRowsByPlant_copy2 = filteredRowsByPlant.concat()
     if (this.type == 'region') {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language]] == this.region_id)

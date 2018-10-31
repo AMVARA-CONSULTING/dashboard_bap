@@ -100,6 +100,14 @@ export class PlantStockLvl2Component implements OnInit {
     this.werkPrevious = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.previous)
     this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.delta)
     this.hofbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]))
+    if (this.hofbestands.hasOwnProperty("not defined")) {
+      this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'not defined'], { replaceUrl: true })
+      return
+    }
+    if (this.hofbestands.hasOwnProperty("nicht definiert")) {
+      this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'nicht definiert'], { replaceUrl: true })
+      return
+    }
     this.actualValue = this.tools.percent(this.werkActual, this.totalActual)
     this.previousValue = this.tools.percent(this.werkPrevious, this.totalPrevious)
     setTimeout(() => {

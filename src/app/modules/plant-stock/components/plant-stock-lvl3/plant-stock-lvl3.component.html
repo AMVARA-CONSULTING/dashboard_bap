@@ -10,7 +10,7 @@
       <div class="previous">Prev. Month</div>
       <div class="delta">&Delta;</div>
     </div>
-    <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue">
+    <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
       <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
       <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
@@ -44,7 +44,7 @@
     <div class="previous">{{ werkPrevious | toNumber }}</div>
     <div class="delta">{{ werkDelta | toNumber:true }}</div>
   </div>
-  <div class="group-header return arrow-right">
+  <div *ngIf="hofb != 'not defined' && hofb != 'nicht definiert'" class="group-header return arrow-right">
     <div class="werk" (click)="returnToLvl2()"><div matTooltip="Return to werkbestand level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{ hofb }}</div></div>
     <div class="actual">{{ hofbActual | toNumber }}</div>
     <div class="previous">{{ hofbPrevious | toNumber }}</div>

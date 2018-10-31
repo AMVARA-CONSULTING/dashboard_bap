@@ -1,5 +1,5 @@
 {
-    "version": "2.12.0",
+    "version": "2.13.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -141,6 +141,14 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.13.0",
+			"text": [
+				"Plant Stock - Set custom sorting",
+				"Plant Stock - not defined goes directly to L3",
+				"Production Program - SR header on L2 & L3"
+			]
+		},
 		{
 			"version": "2.12.0",
 			"text": [

@@ -140,7 +140,7 @@ export class ProductionProgramLvl2Component implements OnInit {
       totalTotal: this.data.sumByIndex(this.productionProgramData, 17),
       totalTotalDiff: this.data.sumByIndex(this.productionProgramData, 21),
       totalReserve: this.data.sumByIndex(this.productionProgramData, 22),
-      zoneTitle: rows[0][this.config.config.language == 'en' ? 2 : 1],
+      zoneTitle: rows[0][this.config.config.language == 'en' ? 1 : 2],
       plantTitle: rows[0][this.config.config.language == 'en' ? 7 : 6],
       zoneCustomer: this.data.sumByIndex(zoneRows, 15),
       zonePlan: this.data.sumByIndex(zoneRows, 16),

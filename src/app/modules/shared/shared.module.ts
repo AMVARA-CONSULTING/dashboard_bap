@@ -15,6 +15,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
+import { PlantStockSortingPipe } from '@pipes/plant-stock-sorting.pipe';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -26,7 +27,8 @@ export function createTranslateLoader(http: HttpClient) {
     NumberPipe,
     SelectYearComponent,
     DipCircularMetersComponent,
-    DipQuadroCircularMetersComponent
+    DipQuadroCircularMetersComponent,
+    PlantStockSortingPipe
   ],
   imports: [
     MatButtonModule,
@@ -59,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     DipQuadroCircularMetersComponent,
     DipCircularMetersComponent,
     RoundProgressModule,
-    TranslateModule
+    TranslateModule,
+    PlantStockSortingPipe
   ]
 })
 export class SharedModule { }

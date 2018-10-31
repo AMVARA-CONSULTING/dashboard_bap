@@ -1,7 +1,7 @@
 import { trigger, transition, query, style, group, animate } from "@angular/animations";
 
 export const swipeAnimation =  trigger('routerTransition', [
-    transition('1 => 2, 2 => 3', [
+    transition('1 => 2, 2 => 3, 1 => 3', [
       query(':enter, :leave', style({ overflow: 'hidden' })
         , { optional: true }),
       group([

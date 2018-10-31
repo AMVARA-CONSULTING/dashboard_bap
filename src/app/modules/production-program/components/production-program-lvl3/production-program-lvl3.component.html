@@ -24,7 +24,10 @@
         <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{ 'production_program.total' | translate }}</div>
       </div>
       <div class="reserve">
-        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">{{ 'production_program.reserve' | translate }}</div>
+        <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">
+          <span class="desktop">{{ 'production_program.reserve' | translate }}</span>
+          <span class="mobile">SR</span>
+        </div>
       </div>
     </header>
     <ng-container *ngIf="ZoneID != null && groupInfo">
@@ -39,7 +42,7 @@
         <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
       </div>
       <div class="header-row arrow zone" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</span></div>
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2]}}</span></div>
         <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
         <div class="total">
@@ -51,7 +54,7 @@
     </ng-container>
     <ng-container *ngIf="PlantID != null && groupInfo">
       <div class="header-row total">
-        <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1]}}</div>
+        <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2]}}</div>
         <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
         <div class="total">

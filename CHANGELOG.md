@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.14.0
+
+- Used -webkit-text-size-adjust: 100%; to prevent font size changing on portrait <-> landscape
+- Production Program - Show zones instead of plants in L1 table
+- Production Program - Correct height of reserve in L1
+- Production Program - Show SR
+
+## 2.13.0
+
+- Plant Stock - Set custom sorting
+- Plant Stock - not defined goes directly to L3
+- Production Program - SR header on L2 & L3
+
 ## 2.12.0
 
 - Allocation - Barchart mouseover numbers

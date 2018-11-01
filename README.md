@@ -12,6 +12,10 @@ _iBISS Platform_: https://ibiss-analytics-int.es.corpintra.net/internal/bi/app/D
 
 http://git.amvara.de/daimler/dip-more-2.0/blob/master/CHANGELOG.md
 
+## URL Params
+
+If you want to avoid the Access Code inside a production environment you can add ?bypass to the URL to omit it.
+
 ## Development server
 
 Run `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -30,7 +34,7 @@ You need to install these global packages to run the app correctly:
 
 You can install them using `npm install -g <package_name>`
 
-## Build
+## Build / Deployment
 
 - For more.amvara.rocks `npm run build`
 - For Cognos (corpintra.net) `npm run build-cognos`

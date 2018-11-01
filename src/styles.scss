@@ -23,6 +23,10 @@
             box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 html, body {
     color: $semi-white;
     background-color: $main-bg-body-color;

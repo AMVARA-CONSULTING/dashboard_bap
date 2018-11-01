@@ -14,7 +14,7 @@
       <div class="reserve">SR</div>
     </div>
     <div (click)="goZone(rowsGroupsGlobal[zone.key][0][0])" class="overview-group" *ngFor="let zone of rowsGroupsGlobal | keyvalue">
-      <div class="empty">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'es' ? 7 : 6)] }}</div>
+      <div class="empty">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)] }}</div>
       <div class="customer">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 16) | toNumber }}</div>
       <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}</div>

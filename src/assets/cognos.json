@@ -1,5 +1,5 @@
 {
-    "version": "2.13.0",
+    "version": "2.14.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -141,6 +141,15 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.14.0",
+			"text": [
+				"Used -webkit-text-size-adjust: 100%; to prevent font size changing on portrait <-> landscape",
+				"Production Program - Show zones instead of plants in L1 table",
+				"Production Program - Correct height of reserve in L1",
+				"Production Program - Show SR"
+			]
+		},
 		{
 			"version": "2.13.0",
 			"text": [

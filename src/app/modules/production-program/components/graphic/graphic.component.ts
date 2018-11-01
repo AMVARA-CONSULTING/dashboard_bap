@@ -65,7 +65,7 @@ export class GraphicComponent implements OnInit {
     for (var zone in this.zones) {
       let percent1 = (this.zones[zone].actual * 100) / tActual
       let percent2 = (this.zones[zone].previous * 100) / tActual
-      let percent3 = (this.zones[zone].reserve * 100) / this.maxReserve
+      let percent3 = (this.zones[zone].reserve * 100) / this.maxTotal
       this.zones[zone].percentActual = (parseInt(percent1.toString()) == 0 ? 1 : percent1).toFixed(0)
       this.zones[zone].percentPrevious = (parseInt(percent2.toString()) == 0 ? 1 : percent2).toFixed(0)
       this.zones[zone].percentReserve = (parseInt(percent3.toString()) == 0 ? 1 : percent3).toFixed(0)

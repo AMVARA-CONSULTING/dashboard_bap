@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.16.0
+
+- Graphical improvements
+- PS > Click on Barchart shows encoded string in Table
+- PP > L2 - progress circle \"customer\" blue is missing background color
+
 ## 2.15.0
 
 - Report title in header

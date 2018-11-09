@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.15.0
+
+- Report title in header
+- AL > Arrow closer to text
+- PS > Barchart order is INSIDE, OUTIDE; BODYBUILDER ... as in table
+- PS+other > Barcharts always more grouped, text centered, font-size smaller ... see attached screenshot as example
+- OI > L1 table ... remove Actual Month + prev. Month
+- Swipe > always move between reports
+- IE-Desktop > Progress circle missing background under some cicumstance
+- IE: TriggerReport does not trigger. Seeing in console: ERROR TypeError: Das Objekt unterstützt die Eigenschaft oder Methode remove nicht
+- AL: 280/12=23,33=2333% ... remove thousand separator from percentage numbers + remove -number outside bar + size bar max(100)
+- AL: when seeing 0 in barchart on L2+L3 paint grey
+
 ## 2.14.0
 
 - Used -webkit-text-size-adjust: 100%; to prevent font size changing on portrait <-> landscape

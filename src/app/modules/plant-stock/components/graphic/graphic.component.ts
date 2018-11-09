@@ -29,7 +29,6 @@ export class GraphicComponent implements OnInit, OnChanges {
   ) {
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
-      console.log(this.plant)
     })
   }
 
@@ -40,29 +39,25 @@ export class GraphicComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  @Input() werks: any
+  @Input() werks: any[] = []
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.werks.currentValue) {
-      this.barsWidth = 100 / Object.keys(changes.werks.currentValue).length
+    console.log(this.werks)
+    if (this.werks.length > 0) {
+      this.barsWidth = 100 / this.werks.length
       let total = 0
-      for (let werk in changes.werks.currentValue) {
-        const total_werk_actual = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plantStock.actual)
-        const total_werk_previous = this.data.sumByIndex(changes.werks.currentValue[werk], this.config.config.reports.trucks.columns.plantStock.actual)
+      this.werks.forEach(el => {
+        const total_werk_actual = this.data.sumByIndex(el.value, this.config.config.reports.trucks.columns.plantStock.actual)
+        const total_werk_previous = this.data.sumByIndex(el.value, this.config.config.reports.trucks.columns.plantStock.actual)
         if (total_werk_actual > total) total = total_werk_actual
         if (total_werk_previous > total) total = total_werk_previous
-      }
+      })
       this.maxTotal = total
-      this.werks = Object.assign({}, changes.werks.currentValue)
       setTimeout(() => this.ready = true, 300)
     }
   }
 
-  getCount() : number {
-    return Object.keys(this.werks || {}).length
-  }
-
-  goWerk(werk) : void {
+  goWerk(werk): void {
     this.router.navigate(['plant-stock', this.plant, 'werk', encodeURI(werk)], { replaceUrl: true })
   }
 

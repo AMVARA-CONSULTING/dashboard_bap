@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, OnInit, VERSION, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   selector: 'about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(swiperight)': 'data.go("plant-stock")',
     '(swipeleft)': 'data.go("help")'
@@ -30,16 +31,16 @@ export class AboutComponent implements OnInit {
   version
 
   ngOnInit() {
-    
+
   }
 
-  setLang(code: string) : void {
+  setLang(code: string): void {
     localStorage.setItem('lang', code)
     this.translate.use(code)
     this.snack.open('Language changed successfully!', 'OK', { duration: 3000 });
   }
 
-  reloadLang() : void {
+  reloadLang(): void {
     this.translate.reloadLang(this.config.config.language)
     this.snack.open('Language reloaded successfully!', 'OK', { duration: 3000 });
   }

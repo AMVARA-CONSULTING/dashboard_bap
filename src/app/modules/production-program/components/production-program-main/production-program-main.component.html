@@ -1,5 +1,5 @@
 <div class="data-header">
-  <div class="empty">{{ 'menu.'+data.title | translate }}</div>
+  <div class="empty"></div>
   <div class="report-date">{{ 'plandate' | translate }}: {{ plandate }}</div>
 </div>
 <div class="overview" [@overview]="ready">
@@ -34,13 +34,16 @@
       </mat-form-field>
     </div>
     <div class="customer">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">{{ 'production_program.customer' | translate }}</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">{{
+        'production_program.customer' | translate }}</div>
     </div>
     <div class="plan">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">{{ 'production_program.plan' | translate }}</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">{{
+        'production_program.plan' | translate }}</div>
     </div>
     <div class="total">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{ 'production_program.total' | translate }}</div>
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{
+        'production_program.total' | translate }}</div>
     </div>
     <div class="reserve">
       <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">
@@ -54,15 +57,23 @@
       <div class="title">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)] }}</div>
       <div class="customer">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 16) | toNumber }}</div>
-      <div class="total">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 21) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 21) | toNumber:true }}</div></div>
-      <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 24) != 0">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 24) | toNumber:true }}</div></div>
+      <div class="total">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 21) != 0">{{
+          data.sumByIndex(rowsGroupsGlobal[zone.key], 21) | toNumber:true }}</div>
+      </div>
+      <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsGlobal[zone.key], 24) != 0">{{
+          data.sumByIndex(rowsGroupsGlobal[zone.key], 24) | toNumber:true }}</div>
+      </div>
     </div>
     <div class="plant" (click)="goPlant(plant.key)" *ngFor="let plant of rowsGroupsDetail[zone.key] | keyvalue">
       <div class="title">{{ rowsGroupsDetail[zone.key][plant.key][0][(config.config.language == 'en' ? 7 : 6)] }}</div>
       <div class="customer">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 16) | toNumber }}</div>
-      <div class="total">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) != 0">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) | toNumber:true }}</div></div>
-      <div class="reserve">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) != 0">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) | toNumber:true }}</div></div>
+      <div class="total">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 17) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) != 0">{{
+          data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 21) | toNumber:true }}</div>
+      </div>
+      <div class="reserve">{{ data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 22) | toNumber }}<div *ngIf="data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) != 0">{{
+          data.sumByIndex(rowsGroupsDetail[zone.key][plant.key], 24) | toNumber:true }}</div>
+      </div>
     </div>
   </div>
 </div>

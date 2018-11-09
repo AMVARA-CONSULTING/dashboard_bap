@@ -1,4 +1,6 @@
-<div class="plandate"><div class="empty">{{ 'menu.'+data.title | translate }}</div>{{ 'plandate' | translate }}: {{ plandate }}</div>
+<div class="plandate">
+  <div class="empty"></div>{{ 'plandate' | translate }}: {{ plandate }}
+</div>
 <div class="overview" *ngIf="ready">
   <div class="graphic">
     <allocation-graphic [months]="months"></allocation-graphic>
@@ -6,7 +8,8 @@
 </div>
 <header *ngIf="ready">
   <div class="month">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
+    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="Change selected plant"
+      style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
@@ -20,7 +23,8 @@
 </header>
 <header class="return" *ngIf="ready">
   <div class="month" (click)="returnToMain()">
-    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{ monthMomentum }}</div>
+    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{
+      monthMomentum }}</div>
   </div>
   <div class="total-allocation">{{ totalAllocation | toNumber }}</div>
   <div class="total-program">{{ totalProgram | toNumber }}</div>
@@ -28,23 +32,30 @@
 </header>
 <header class="return2" *ngIf="ready">
   <div class="month" (click)="returnToParent()">
-    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after" style="display: inline-block">{{ 'region' | translate }} - {{ region_id }}</div>
-    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after" style="display: inline-block">{{ 'product' | translate }} - {{ region_id }}</div>
+    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
+      style="display: inline-block">{{ 'region' | translate }} - {{ region_id }}</div>
+    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
+      style="display: inline-block">{{ 'product' | translate }} - {{ region_id }}</div>
   </div>
   <div class="total-allocation">{{ subtotalAllocation | toNumber }}</div>
   <div class="total-program">{{ subtotalProgram | toNumber }}</div>
   <div class="total-empty"></div>
 </header>
-<allocation-bar [programNumber]="subtotalProgram" [allocation]="percentAllocation" [program]="subtotalProgram" [ready]="ready" [partNumber]="subtotalAllocation || 0"></allocation-bar>
+<allocation-bar [programNumber]="subtotalProgram" [allocation]="percentAllocation" [program]="subtotalProgram" [ready]="ready"
+  [partNumber]="subtotalAllocation || 0"></allocation-bar>
 <div class="content-wrapper" [@list]="months.length">
   <div class="row-group">
     <div class="group-header" *ngIf="type == 'region'">{{ 'products' | translate }}</div>
     <div class="group-header" *ngIf="type == 'product'">{{ 'regions' | translate }}</div>
     <div class="row" (click)="exchangeType(row.key)" *ngFor="let row of rows | keyvalue">
       <div class="month">{{ row.key }}</div>
-      <div class="allocation">{{ data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.allocation) | toNumber }}</div>
-      <div class="program">{{ data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.program) | toNumber }}</div>
-      <div class="percent">{{ tools.percent(data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.allocation), data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.program), true, true, true) }}</div>
+      <div class="allocation">{{ data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.allocation)
+        | toNumber }}</div>
+      <div class="program">{{ data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.program) |
+        toNumber }}</div>
+      <div class="percent">{{ tools.percent(data.sumByIndex(row.value,
+        config.config.reports.trucks.columns.allocation.allocation), data.sumByIndex(row.value,
+        config.config.reports.trucks.columns.allocation.program), true, true, true) }}</div>
     </div>
   </div>
 </div>

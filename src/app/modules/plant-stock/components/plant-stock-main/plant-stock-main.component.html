@@ -1,7 +1,9 @@
-<div class="plandate"><div class="empty">{{ 'menu.'+data.title | translate }}</div>{{ 'plandate' | translate }}: {{ plandate }}</div>
+<div class="plandate">
+  <div class="empty"></div>{{ 'plandate' | translate }}: {{ plandate }}
+</div>
 <div class="overview">
   <div class="graphic">
-    <plant-stock-graphic [werks]="werkbestands"></plant-stock-graphic>
+    <plant-stock-graphic [werks]="werkbestands | keyvalue | plantStockSorting"></plant-stock-graphic>
   </div>
   <div class="simple">
     <div class="headers">
@@ -11,10 +13,14 @@
       <div class="delta">&Delta;</div>
     </div>
     <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
-      <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
-      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
-      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
-      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber }}</div>
+      <div class="werk">{{
+        werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
+      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) |
+        toNumber }}</div>
+      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
+        toNumber }}</div>
+      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) |
+        toNumber }}</div>
     </div>
   </div>
 </div>
@@ -26,7 +32,8 @@
           {{ plant.value }}
         </mat-option>
       </mat-select>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
   <div class="actual">{{ plandate }}</div>
   <div class="previous">Prev. Month</div>
   <div class="delta">&Delta;</div>
@@ -39,9 +46,13 @@
     <div class="delta">{{ totalDelta | toNumber }}</div>
   </div>
   <div class="row" (click)="goWerk(werk.key)" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
-    <div class="werk">{{ werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
-    <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
-    <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
-    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber }}</div>
+    <div class="werk">{{
+      werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
+    <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) |
+      toNumber }}</div>
+    <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
+      toNumber }}</div>
+    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber
+      }}</div>
   </div>
 </div>

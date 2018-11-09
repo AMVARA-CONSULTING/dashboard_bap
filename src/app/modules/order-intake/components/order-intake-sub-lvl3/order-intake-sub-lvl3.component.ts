@@ -12,7 +12,8 @@ import * as moment from 'moment';
   templateUrl: './order-intake-sub-lvl3.component.html',
   styleUrls: ['./order-intake-sub-lvl3.component.scss'],
   host: {
-    '(swiperight)': 'return()'
+    '(swiperight)': 'data.go("plant-stock")',
+    '(swipeleft)': 'data.go("production-program")'
   }
 })
 export class OrderIntakeSubLvl3Component implements OnInit {
@@ -83,7 +84,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     })
   }
 
-  goAnother(key) : void {
+  goAnother(key): void {
     if (this.RegionID != null) {
       this.router.navigate(['../../', 'product', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true })
     } else {
@@ -103,9 +104,9 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     }
     // Gettings rows only for the zone selected
     let zoneRows = this.data.orderIntakeData.reduce((r, a) => {
-        r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] = r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] || []
-        r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]].push(a)
-        return r
+      r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] = r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] || []
+      r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]].push(a)
+      return r
     }, {})[rows[0][this.config.config.reports.trucks.columns.orderIntake.groupKey]]
     // Getting rows only for the plant selected
     let plantRows = this.data.orderIntakeData.reduce((r, a) => {
@@ -135,14 +136,14 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     } else {
       this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+(this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' + (this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
     this.groupInfo['thisActual'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
     this.groupInfo['thisPrevious'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
-    this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.actual))
-    this.groupInfo['progress2'] = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows,this.config.config.reports.trucks.columns.orderIntake.previous))
+    this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.actual))
+    this.groupInfo['progress2'] = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.previous))
     this.groupInfo['sub3rows'] = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
     this.groupKeys = Object.keys(this.groupInfo.sub3rows)
-    this.groupInfo = Object.assign({},this.groupInfo)
+    this.groupInfo = Object.assign({}, this.groupInfo)
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }
@@ -151,18 +152,18 @@ export class OrderIntakeSubLvl3Component implements OnInit {
 
   subRows
 
-  percent(part: number, total: number) : number {
+  percent(part: number, total: number): number {
     return parseInt(((part * 100) / total).toFixed(0))
   }
 
   ngOnInit() {
   }
 
-  returnToMain() : void {
+  returnToMain(): void {
     this.router.navigate(['/'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  return() : void {
+  return(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 

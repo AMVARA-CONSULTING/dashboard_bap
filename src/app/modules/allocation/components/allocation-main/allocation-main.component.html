@@ -1,4 +1,6 @@
-<div class="plandate"><div class="empty">{{ 'menu.'+data.title | translate }}</div> {{ 'plandate' | translate }}: {{ plandate }}</div>
+<div class="plandate">
+  <div class="empty"></div> {{ 'plandate' | translate }}: {{ plandate }}
+</div>
 <div class="overview">
   <div class="graphic">
     <allocation-graphic [months]="months"></allocation-graphic>
@@ -6,13 +8,15 @@
 </div>
 <header>
   <div class="month">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
+    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="Change selected plant"
+      style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
         </mat-option>
       </mat-select>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
   <div class="allocation">{{ 'allocation.allocation' | translate }}</div>
   <div class="program">{{ 'allocation.program' | translate }}</div>
   <div class="percent"></div>

@@ -13,11 +13,12 @@ import * as moment from 'moment';
   templateUrl: './plant-stock-lvl3.component.html',
   styleUrls: ['./plant-stock-lvl3.component.scss'],
   host: {
-    '(swiperight)': 'returnToLvl2()'
+    '(swiperight)': 'data.go("allocation")',
+    '(swipeleft)': 'data.go("order-intake")'
   }
 })
 export class PlantStockLvl3Component implements OnInit {
-  
+
   ready: boolean = false
 
   plandate: string = ''
@@ -82,7 +83,7 @@ export class PlantStockLvl3Component implements OnInit {
     const regionName = this.config.config.reports.trucks.columns.plantStock.regionName
     const productName = this.config.config.reports.trucks.columns.plantStock.productName
     //
-    this.plants = this.data.plantStockData.reduce((r,a) => {
+    this.plants = this.data.plantStockData.reduce((r, a) => {
       r[a[plantKey]] = r[a[plantKey]] || ''
       r[a[plantKey]] = a[plantName[this.config.config.language]]
       return r
@@ -91,7 +92,7 @@ export class PlantStockLvl3Component implements OnInit {
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
+    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
@@ -115,7 +116,7 @@ export class PlantStockLvl3Component implements OnInit {
     })
   }
 
-  goWerk(werk) : void {
+  goWerk(werk): void {
     this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 

@@ -1,11 +1,12 @@
-<div style="position:relative;width:calc(100% - 60px);height:100%;">
+<div style="position:relative;width:100%;height:100%;">
   <div class="blackout"></div>
-  <div class="bar" matTooltipClass="above" [matTooltip]="programNumber | toNumber" matTooltipPosition="above">
+  <div class="bar" [ngClass]="{'grey': zero}" matTooltipClass="above" [matTooltip]="programNumber | toNumber:false:false"
+    matTooltipPosition="above">
     <div style="position:relative;width:100%;height:100%;">
-      <div matTooltipClass="above" [matTooltip]="partNumber | toNumber" matTooltipPosition="above" class="allocation" [style.width.%]="ready ? allocation : 0">
-        <span class="percent2">{{ (allocation | toNumber) + ' %' }}</span>
+      <div matTooltipClass="above" [matTooltip]="partNumber | toNumber:false:false" matTooltipPosition="above" class="allocation"
+        [style.width.%]="ready ? allocation : 0">
+        <span class="percent2">{{ (allocation | toNumber:false:false) + ' %' }}</span>
       </div>
     </div>
   </div>
 </div>
-<span class="percent">{{ (allocation | toNumber) + ' %' }}</span>

@@ -12,14 +12,15 @@ import * as moment from 'moment'
   templateUrl: './production-program-lvl3.component.html',
   styleUrls: ['./production-program-lvl3.component.scss'],
   host: {
-    '(swiperight)': 'return()'
+    '(swiperight)': 'data.go("order-intake")',
+    '(swipeleft)': 'data.go("allocation")'
   }
 })
 export class ProductionProgramLvl3Component implements OnInit {
 
   ZoneID: any = null
   PlantID: any = null
-  
+
   RegionID: any = null
   ProductID: any = null
 
@@ -130,11 +131,11 @@ export class ProductionProgramLvl3Component implements OnInit {
     })
   }
 
-  goForProduct(key) : void {
+  goForProduct(key): void {
     this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  goForRegion(key) : void {
+  goForRegion(key): void {
     this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
@@ -149,7 +150,7 @@ export class ProductionProgramLvl3Component implements OnInit {
 
   groupInfo: any
 
-  changeYear(year: string, years?: string[]) : void  {
+  changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
     this.loader.loading$.next(true)
     this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
@@ -165,9 +166,9 @@ export class ProductionProgramLvl3Component implements OnInit {
     }
     // Gettings rows only for the zone selected
     let zoneRows = this.productionProgramData.reduce((r, a) => {
-        r[a[0]] = r[a[0]] || []
-        r[a[0]].push(a)
-        return r
+      r[a[0]] = r[a[0]] || []
+      r[a[0]].push(a)
+      return r
     }, {})[rows[0][0]]
     // Getting rows only for the plant selected
     let plantRows = this.productionProgramData.reduce((r, a) => {
@@ -216,14 +217,14 @@ export class ProductionProgramLvl3Component implements OnInit {
       this.groupInfo.regions = this.data.classifyByIndex(this.groupInfo.regionsPlain, this.config.config.language == 'en' ? 10 : 9)
       this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions).sort()
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle)+' - '+
-    (this.RegionID != null ? this.RegionID : this.ProductID))
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' +
+      (this.RegionID != null ? this.RegionID : this.ProductID))
     this.groupInfo.progress1Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 15) : this.data.sumByIndex(this.groupInfo.regionsPlain, 15)
     this.groupInfo.progress2Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 16) : this.data.sumByIndex(this.groupInfo.regionsPlain, 16)
     this.groupInfo.progress3Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 17) : this.data.sumByIndex(this.groupInfo.regionsPlain, 17)
     this.groupInfo.progress4Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 22) : this.data.sumByIndex(this.groupInfo.regionsPlain, 22)
-    this.groupInfo.progress1 = this.RegionID != null ? 
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.plantCustomer) : 
+    this.groupInfo.progress1 = this.RegionID != null ?
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.plantCustomer) :
       this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.groupInfo.plantCustomer)
     this.groupInfo.progress2 = this.RegionID != null ?
       this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.groupInfo.plantPlan) :
@@ -239,18 +240,18 @@ export class ProductionProgramLvl3Component implements OnInit {
     setTimeout(() => this.ready = true)
   }
 
-  percent(part: number, total: number) : number {
+  percent(part: number, total: number): number {
     return parseInt(((part * 100) / total).toFixed(0))
   }
 
   ngOnInit() {
   }
 
-  return() : void {
+  return(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  returnToMain() : void {
+  returnToMain(): void {
     this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
@@ -271,7 +272,7 @@ export class ProductionProgramLvl3Component implements OnInit {
     }
     this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
-  
+
   goRegion(RegionID): void {
     this.data.lastTap = {
       type: 'product',

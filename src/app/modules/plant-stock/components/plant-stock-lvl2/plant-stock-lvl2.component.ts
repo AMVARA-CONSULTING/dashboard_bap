@@ -13,7 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './plant-stock-lvl2.component.html',
   styleUrls: ['./plant-stock-lvl2.component.scss'],
   host: {
-    '(swiperight)': 'returnToMain()'
+    '(swiperight)': 'data.go("allocation")',
+    '(swipeleft)': 'data.go("order-intake")'
   }
 })
 export class PlantStockLvl2Component implements OnInit {
@@ -61,7 +62,7 @@ export class PlantStockLvl2Component implements OnInit {
   ngOnInit() {
   }
 
-  goWerk(werk) : void {
+  goWerk(werk): void {
     this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
@@ -80,7 +81,7 @@ export class PlantStockLvl2Component implements OnInit {
     const werkbestandName = this.config.config.reports.trucks.columns.plantStock.werkbestandName
     const hofbestandName = this.config.config.reports.trucks.columns.plantStock.hofbestandName
     //
-    this.plants = this.data.plantStockData.reduce((r,a) => {
+    this.plants = this.data.plantStockData.reduce((r, a) => {
       r[a[plantKey]] = r[a[plantKey]] || ''
       r[a[plantKey]] = a[plantName[this.config.config.language]]
       return r
@@ -89,7 +90,7 @@ export class PlantStockLvl2Component implements OnInit {
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
+    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)

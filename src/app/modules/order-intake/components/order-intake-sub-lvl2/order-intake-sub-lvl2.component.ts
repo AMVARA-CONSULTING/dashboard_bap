@@ -12,7 +12,8 @@ import * as moment from 'moment';
   templateUrl: './order-intake-sub-lvl2.component.html',
   styleUrls: ['./order-intake-sub-lvl2.component.scss'],
   host: {
-    '(swiperight)': "return()",
+    '(swiperight)': 'data.go("plant-stock")',
+    '(swipeleft)': 'data.go("production-program")'
   }
 })
 export class OrderIntakeSubLvl2Component implements OnInit {
@@ -78,9 +79,9 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     }
     // Gettings rows only for the zone selected
     let zoneRows = this.data.orderIntakeData.reduce((r, a) => {
-        r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] = r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] || []
-        r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]].push(a)
-        return r
+      r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] = r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]] || []
+      r[a[this.config.config.reports.trucks.columns.orderIntake.groupKey]].push(a)
+      return r
     }, {})[rows[0][this.config.config.reports.trucks.columns.orderIntake.groupKey]]
     // Getting rows only for the plant selected
     let plantRows = this.data.orderIntakeData.reduce((r, a) => {
@@ -107,30 +108,30 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       regions: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]),
       products: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     this.groupInfo.progressValue1 = this.ZoneID != null ? this.groupInfo.zoneActual : this.groupInfo.plantActual
     this.groupInfo.progressValue2 = this.ZoneID != null ? this.groupInfo.zonePrevious : this.groupInfo.plantPrevious
     this.groupInfo.progress1 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneActual, this.groupInfo.totalActual) : 
+      this.percent(this.groupInfo.zoneActual, this.groupInfo.totalActual) :
       this.percent(this.groupInfo.plantActual, this.groupInfo.zoneActual)
     this.groupInfo.progress2 = this.ZoneID != null ?
       this.percent(this.groupInfo.zonePrevious, this.groupInfo.totalPrevious) :
       this.percent(this.groupInfo.plantPrevious, this.groupInfo.zonePrevious)
-    
+
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }
 
-  percent(part: number, total: number) : number {
+  percent(part: number, total: number): number {
     return parseInt(((part * 100) / total).toFixed(0))
   }
 
   ngOnInit() {
   }
 
-  return() : void {
+  return(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
   }
 
@@ -151,7 +152,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     }
     this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
   }
-  
+
   goRegion(RegionID): void {
     this.data.lastTap = {
       type: 'product',

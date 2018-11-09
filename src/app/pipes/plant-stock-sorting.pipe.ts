@@ -1,34 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApiService } from '@services/api.service';
+import memo from 'memo-decorator'
 
 @Pipe({
   name: 'plantStockSorting'
 })
 export class PlantStockSortingPipe implements PipeTransform {
 
-  constructor(
-    private api: ApiService
-  ) {}
-
+  @memo((...args: any[]): string => JSON.stringify(args)) // Pipe cache
   transform(values: any[]): any[] {
-    console.log(values)
-    if (this.api.corpintra) {
-      return values.sort((a,b) => {
-        switch(b.key) {
-          case "Inside plant":
-          case "Garden":
-            return 1
-          case "Outside plant":
-          case "Basement":
-            return 0
-          case "Bodybuilder":
-          case "Housebuilder":
-            return -1
-        }
-      })
-    } else {
-      return values
-    }
+    if (!values) return []
+    const a = values[1]
+    const b = values[2]
+    const c = values[0]
+    return [a, b, c]
   }
 
 }

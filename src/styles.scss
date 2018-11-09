@@ -14,13 +14,21 @@
 
 * {
     font-family: "CorpoS", sans-serif;
-}
-
-* {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+}
+
+
+
+@include mobile {
+    .werk .title {
+        font-size: 8pt !important
+    }
+    .zone .title {
+        font-size: 8pt !important
+    }
 }
 
 html {
@@ -250,4 +258,10 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .inlineBlock {
     display: inline-block;
+}
+
+.allocation-selector .mat-select-value {
+    max-width: initial !important;
+    width: initial !important;
+    padding-right: 10px;
 }

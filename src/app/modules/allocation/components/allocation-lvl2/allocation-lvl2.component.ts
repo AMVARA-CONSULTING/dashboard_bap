@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { LoadingService } from '@services/loading.service';
 import { Title } from '@angular/platform-browser';
@@ -13,6 +13,7 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
   selector: 'allocation-lvl2',
   templateUrl: './allocation-lvl2.component.html',
   styleUrls: ['./allocation-lvl2.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('list', [
       transition('* => *', [
@@ -27,7 +28,8 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
     ])
   ],
   host: {
-    '(swiperight)': 'returnToMain()'
+    '(swiperight)': 'data.go("production-program")',
+    '(swipeleft)': 'data.go("plant-stock")'
   }
 })
 export class AllocationLvl2Component implements OnInit {
@@ -79,33 +81,33 @@ export class AllocationLvl2Component implements OnInit {
     })
   }
 
-  changePlant(plant: string) : void {
+  changePlant(plant: string): void {
     this.router.navigate(['allocation', plant, 'date', this.date], { replaceUrl: true })
   }
 
   ngOnInit() {
   }
 
-  goRegion(key) : void {
+  goRegion(key): void {
     this.router.navigate(['region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  goProduct(key) : void {
+  goProduct(key): void {
     this.router.navigate(['product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  goMonth(date) : void {
+  goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('DDYYYY')
     this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  getDate(month) : string {
+  getDate(month): string {
     return moment(month, 'MM / YYYY').format('MMMM YYYY')
   }
 
   rollupData() {
-    this.plants = this.data.allocationData.reduce((r,a) => {
+    this.plants = this.data.allocationData.reduce((r, a) => {
       r[a[0]] = r[a[0]] || ''
       r[a[0]] = a[this.config.config.language == 'en' ? 4 : 3]
       return r
@@ -114,15 +116,15 @@ export class AllocationLvl2Component implements OnInit {
       this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}
     let filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
-    this.years = Object.keys(filteredRowsByPlant.reduce((r,a) => {
-        r[a[17].substring(0,4)] = r[a[17].substring(0,4)] || []
-        return r
-      }, {})
+    this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
+      r[a[17].substring(0, 4)] = r[a[17].substring(0, 4)] || []
+      return r
+    }, {})
     )
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
@@ -162,7 +164,7 @@ export class AllocationLvl2Component implements OnInit {
 
   }
 
-  returnToMain() : void {
+  returnToMain(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 

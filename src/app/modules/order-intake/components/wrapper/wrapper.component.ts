@@ -7,7 +7,7 @@ import { swipeAnimation } from 'app/app.transitions';
 @Component({
   selector: 'order-intake-wrapper',
   templateUrl: './wrapper.component.html',
-  styleUrls:['./wrapper.component.scss'],
+  styleUrls: ['./wrapper.component.scss'],
   animations: [swipeAnimation],
   host: {
     '[@routerTransition]': 'getLevel()'

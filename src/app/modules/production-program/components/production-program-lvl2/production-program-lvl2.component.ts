@@ -12,7 +12,8 @@ import * as moment from 'moment';
   templateUrl: './production-program-lvl2.component.html',
   styleUrls: ['./production-program-lvl2.component.scss'],
   host: {
-    '(swiperight)': 'return()'
+    '(swiperight)': 'data.go("order-intake")',
+    '(swipeleft)': 'data.go("allocation")'
   }
 })
 export class ProductionProgramLvl2Component implements OnInit {
@@ -101,7 +102,7 @@ export class ProductionProgramLvl2Component implements OnInit {
 
   groupInfo: any
 
-  changeYear(year: string, years?: string[]) : void  {
+  changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
     this.loader.loading$.next(true)
     this.router.navigate(['production-program', year, this.type, this.id], { replaceUrl: true })
@@ -117,9 +118,9 @@ export class ProductionProgramLvl2Component implements OnInit {
     }
     // Gettings rows only for the zone selected
     let zoneRows = this.productionProgramData.reduce((r, a) => {
-        r[a[0]] = r[a[0]] || []
-        r[a[0]].push(a)
-        return r
+      r[a[0]] = r[a[0]] || []
+      r[a[0]].push(a)
+      return r
     }, {})[rows[0][0]]
     // Getting rows only for the plant selected
     let plantRows = this.productionProgramData.reduce((r, a) => {
@@ -155,15 +156,15 @@ export class ProductionProgramLvl2Component implements OnInit {
       regions: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 10 : 9),
       products: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 12 : 11)
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Production Program - '+(this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions).sort()
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products).sort()
-    this.groupInfo.progress1Value =  this.ZoneID != null ? this.groupInfo.zoneCustomer : this.groupInfo.plantCustomer
-    this.groupInfo.progress2Value =  this.ZoneID != null ? this.groupInfo.zonePlan : this.groupInfo.plantPlan
-    this.groupInfo.progress3Value =  this.ZoneID != null ? this.groupInfo.zoneTotal : this.groupInfo.plantTotal
-    this.groupInfo.progress4Value =  this.ZoneID != null ? this.groupInfo.zoneReserve : this.groupInfo.plantReserve
+    this.groupInfo.progress1Value = this.ZoneID != null ? this.groupInfo.zoneCustomer : this.groupInfo.plantCustomer
+    this.groupInfo.progress2Value = this.ZoneID != null ? this.groupInfo.zonePlan : this.groupInfo.plantPlan
+    this.groupInfo.progress3Value = this.ZoneID != null ? this.groupInfo.zoneTotal : this.groupInfo.plantTotal
+    this.groupInfo.progress4Value = this.ZoneID != null ? this.groupInfo.zoneReserve : this.groupInfo.plantReserve
     this.groupInfo.progress1 = this.ZoneID != null ?
-      this.percent(this.groupInfo.zoneCustomer, this.groupInfo.totalCustomer) : 
+      this.percent(this.groupInfo.zoneCustomer, this.groupInfo.totalCustomer) :
       this.percent(this.groupInfo.plantCustomer, this.groupInfo.zoneCustomer)
     this.groupInfo.progress2 = this.ZoneID != null ?
       this.percent(this.groupInfo.zonePlan, this.groupInfo.totalPlan) :
@@ -179,14 +180,14 @@ export class ProductionProgramLvl2Component implements OnInit {
     setTimeout(() => this.ready = true)
   }
 
-  percent(part: number, total: number) : number {
+  percent(part: number, total: number): number {
     return parseInt(((part * 100) / total).toFixed(0))
   }
 
   ngOnInit() {
   }
 
-  return() : void {
+  return(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
@@ -207,7 +208,7 @@ export class ProductionProgramLvl2Component implements OnInit {
     }
     this.router.navigate(['region', ProductID], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
-  
+
   goRegion(RegionID): void {
     this.data.lastTap = {
       type: 'product',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   selector: 'footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.lighter]': 'loading',
     '(click)': 'goHelp()'

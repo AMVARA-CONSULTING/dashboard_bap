@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'dip-quadro-circular-meters',
   templateUrl: './quadro-circular-meters.component.html',
-  styleUrls: ['./quadro-circular-meters.component.scss']
+  styleUrls: ['./quadro-circular-meters.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DipQuadroCircularMetersComponent implements OnInit {
 
@@ -11,7 +12,7 @@ export class DipQuadroCircularMetersComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   @Input('customer') set setCustomer(value: number) {
     this.customer = isNaN(value) ? 0 : Math.abs(value)
     this.clockwise_customer = value >= 0

@@ -60,14 +60,14 @@ import 'core-js/es7/reflect';
  * user can disable parts of macroTask/DomEvents patch by setting following flags
  */
 
- // (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
- // (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
- // (window as any).__zone_symbol__BLACK_LISTED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
+// (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+// (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
+// (window as any).__zone_symbol__BLACK_LISTED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
 
- /*
- * in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js
- * with the following flag, it will bypass `zone.js` patch for IE/Edge
- */
+/*
+* in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js
+* with the following flag, it will bypass `zone.js` patch for IE/Edge
+*/
 (window as any).__Zone_enable_cross_context_check = true;
 
 /***************************************************************************************************
@@ -82,20 +82,30 @@ import 'number-to-locale-string'
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-(function() {
-    Object.setPrototypeOf = Object.setPrototypeOf || ({__proto__: []} instanceof Array ? setProtoOf : mixinProperties);
-  
-    function setProtoOf(obj, proto) {
-      obj.__proto__ = proto;
-      return obj;
-    }
-  
-    function mixinProperties(obj, proto) {
-      for (const prop in proto) {
-        if (!obj.hasOwnProperty(prop)) {
-          obj[prop] = proto[prop];
-        }
+(function () {
+  Object.setPrototypeOf = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties);
+
+  function setProtoOf(obj, proto) {
+    obj.__proto__ = proto;
+    return obj;
+  }
+
+  function mixinProperties(obj, proto) {
+    for (const prop in proto) {
+      if (!obj.hasOwnProperty(prop)) {
+        obj[prop] = proto[prop];
       }
-      return obj;
     }
-  })();
+    return obj;
+  }
+})();
+
+// Support .remove() in IE 9+
+// https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
+if (!('remove' in Element.prototype)) {
+  (Element.prototype['remove'] as any) = function () {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}

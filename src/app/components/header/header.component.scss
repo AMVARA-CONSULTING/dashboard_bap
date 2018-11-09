@@ -267,3 +267,17 @@
         }
     }
 }
+
+.page-title {
+    @include mobile {
+        display: block;
+    }
+    display: none;
+    position: fixed;
+    margin: auto;
+    width: 150px;
+    left: 120px;
+    right: 0;
+    top: 28px;
+    text-transform: uppercase;
+}

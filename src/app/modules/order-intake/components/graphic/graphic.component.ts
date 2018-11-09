@@ -35,7 +35,7 @@ export class GraphicComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.zoneKeys = []
-    let zones = changes.data.currentValue.reduce((r,a) => {
+    let zones = changes.data.currentValue.reduce((r, a) => {
       r[a[0]] = r[a[0]] || []
       r[a[0]].push(a)
       return r
@@ -65,7 +65,7 @@ export class GraphicComponent implements OnInit, OnChanges {
     setTimeout(() => this.ready = true, 300)
   }
 
-  goZone(ZoneID) : void {
+  goZone(ZoneID): void {
     this.router.navigate(['zone', ZoneID], { relativeTo: this.route, replaceUrl: true })
   }
 

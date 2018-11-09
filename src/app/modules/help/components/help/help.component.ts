@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContactInfo } from '@other/interfaces';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
   host: {
     '(swiperight)': 'data.go("about")',
     '(swipeleft)': 'data.go("order-intake")'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HelpComponent implements OnInit {
 

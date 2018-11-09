@@ -76,25 +76,25 @@ export class AllocationMainComponent implements OnInit {
     })
   }
 
-  changePlant(plant: string) : void {
+  changePlant(plant: string): void {
     this.router.navigate(['allocation', plant], { replaceUrl: true })
   }
 
   ngOnInit() {
   }
 
-  goMonth(date) : void {
+  goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('YYYYMM')
     this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
-  getDate(month) : string {
+  getDate(month): string {
     return moment(month, 'MM / YYYY').format('MMMM YYYY')
   }
 
   rollupData() {
-    this.plants = this.data.allocationData.reduce((r,a) => {
+    this.plants = this.data.allocationData.reduce((r, a) => {
       r[a[0]] = r[a[0]] || ''
       r[a[0]] = a[this.config.config.language == 'en' ? 4 : 3]
       return r
@@ -103,15 +103,15 @@ export class AllocationMainComponent implements OnInit {
       this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation - '+(this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}
     const filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
-    this.years = Object.keys(filteredRowsByPlant.reduce((r,a) => {
-        r[a[17].substring(0,4)] = r[a[17].substring(0,4)] || []
-        return r
-      }, {})
+    this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
+      r[a[17].substring(0, 4)] = r[a[17].substring(0, 4)] || []
+      return r
+    }, {})
     )
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,13 +9,14 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'access-code',
   templateUrl: './access-code.component.html',
-  styleUrls: ['./access-code.component.scss']
+  styleUrls: ['./access-code.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccessCodeComponent implements OnInit {
 
   rForm: FormGroup
 
-  constructor (
+  constructor(
     private data: DataService,
     private router: Router,
     private fb: FormBuilder,
@@ -51,7 +52,7 @@ export class AccessCodeComponent implements OnInit {
   ngOnInit() {
   }
 
-  codeChange(code) : void {
+  codeChange(code): void {
     if (code == 'TheSexiestReport') {
       setTimeout(() => {
         this.data.accessGranted = true
@@ -60,7 +61,7 @@ export class AccessCodeComponent implements OnInit {
     }
   }
 
-  submit(values) : void {
+  submit(values): void {
     this.http.post('/api/contact/', {
       name: values.name,
       email: values.email,

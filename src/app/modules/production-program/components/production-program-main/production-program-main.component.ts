@@ -46,7 +46,7 @@ export class ProductionProgramMainComponent implements OnInit {
     private router: Router,
     private title: Title,
     private dialog: MatDialog
-  ) { 
+  ) {
     title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
 
@@ -79,11 +79,11 @@ export class ProductionProgramMainComponent implements OnInit {
   getKeysCount() {
     return Object.keys(this.rowsGroupsGlobal).length || 0
   }
-  
+
   byYear: any
   years: string[] = []
 
-  changeYear(year: string, years?: string[]) : void  {
+  changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
     this.loader.loading$.next(true)
     this.router.navigate(['production-program', year], { replaceUrl: true })
@@ -99,7 +99,7 @@ export class ProductionProgramMainComponent implements OnInit {
   rowsGroupsDetail: any = {}
 
 
-  rollupData() : void {
+  rollupData(): void {
     this.byYear = this.data.classifyByIndex(this.data.productionProgramData, 13)
     this.years = Object.keys(this.byYear)
     const yearCache = localStorage.getItem('production-year')
@@ -119,14 +119,14 @@ export class ProductionProgramMainComponent implements OnInit {
     }
   }
 
-  goZone(ZoneID: string) : void {
+  goZone(ZoneID: string): void {
     this.router.navigate(['zone', ZoneID], { relativeTo: this.route, replaceUrl: true })
   }
 
-  goPlant(PlantID: string) : void {
+  goPlant(PlantID: string): void {
     this.router.navigate(['plant', PlantID], { relativeTo: this.route, replaceUrl: true })
   }
-  
+
   ready: boolean = false
 
 }

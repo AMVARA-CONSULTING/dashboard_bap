@@ -46,7 +46,7 @@
     </div>
     <div class="header-row arrow zone" (click)="return()">
       <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-          groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2]}}</span></div>
+          groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2].trim() }}</span></div>
       <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
       <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
       <div class="total">
@@ -58,7 +58,7 @@
   </ng-container>
   <ng-container *ngIf="PlantID != null && groupInfo">
     <div class="header-row total">
-      <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2]}}</div>
+      <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 1 : 2].trim() }}</div>
       <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
       <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
       <div class="total">
@@ -68,7 +68,7 @@
       <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
     </div>
     <div class="header-row arrow plant lvl2" (click)="returnToMain()">
-      <div class="title">{{ groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6]}}</div>
+      <div class="title">{{ groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6].trim() }}</div>
       <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
       <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>
       <div class="total">
@@ -80,7 +80,7 @@
   </ng-container>
   <div class="header-row arrow plant" *ngIf="RegionID != null && groupInfo" (click)="return()">
     <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-        groupInfo.productsPlain[0][config.config.language == 'en' ? 10 : 9]}}</span></div>
+        groupInfo.productsPlain[0][config.config.language == 'en' ? 10 : 9].trim() }}</span></div>
     <div class="customer">{{ data.sumByIndex(groupInfo.productsPlain, 15) | toNumber }}</div>
     <div class="plan">{{ data.sumByIndex(groupInfo.productsPlain, 16) | toNumber }}</div>
     <div class="total">
@@ -91,7 +91,7 @@
     <div class="reserve">{{ data.sumByIndex(groupInfo.productsPlain, 22) | toNumber }}</div>
   </div>
   <div class="header-row arrow plant" *ngIf="ProductID != null && groupInfo" (click)="return()">
-    <div class="title">{{ groupInfo.regionsPlain[0][config.config.language == 'en' ? 12 : 11]}}</div>
+    <div class="title">{{ groupInfo.regionsPlain[0][config.config.language == 'en' ? 12 : 11].trim() }}</div>
     <div class="customer">{{ data.sumByIndex(groupInfo.regionsPlain, 15) | toNumber }}</div>
     <div class="plan">{{ data.sumByIndex(groupInfo.regionsPlain, 16) | toNumber }}</div>
     <div class="total">
@@ -109,7 +109,7 @@
       <div class="title">{{ 'regions' | translate }}</div>
     </div>
     <div class="lvl2-row" (click)="goForRegion(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
-      <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.language == 'en' ? 10 : 9]]}}</div>
+      <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.language == 'en' ? 10 : 9]].trim() }}</div>
       <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 15) |
         toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(groupInfo.regions[RegionKey], 16) | toNumber }}</div>
@@ -126,7 +126,7 @@
       <div class="title">{{ 'products' | translate }}</div>
     </div>
     <div class="lvl2-row" (click)="goForProduct(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
-      <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.language == 'en' ? 12 : 11]]}}</div>
+      <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.language == 'en' ? 12 : 11]].trim() }}</div>
       <div matTooltipPosition="after" class="customer cyan">{{ data.sumByIndex(groupInfo.products[ProductKey], 15) |
         toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(groupInfo.products[ProductKey], 16) | toNumber }}</div>

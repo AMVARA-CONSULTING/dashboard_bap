@@ -1,5 +1,5 @@
 {
-	"version": "2.15.0",
+	"version": "2.16.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -160,6 +160,14 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.16.0",
+			"text": [
+				"Graphical improvements",
+				"PS > Click on Barchart shows encoded string in Table",
+				"PP > L2 - progress circle \"customer\" blue is missing background color"
+			]
+		},
 		{
 			"version": "2.15.0",
 			"text": [

@@ -23,10 +23,10 @@
 
 
 @include mobile {
-    .werk .title {
+    .graphic .werk .title {
         font-size: 8pt !important
     }
-    .zone .title {
+    .graphic .zone .title {
         font-size: 8pt !important
     }
 }
@@ -75,6 +75,18 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     .graphic .zone, .graphic .month, .graphic .werk {
         top: 0 !important;
     }
+}
+
+.mat-expansion-panel-header {
+    border-bottom: 1px solid rgba($yellow-text-material, .8);
+}
+
+.mat-expansion-panel-content {
+    margin-top: 10px;
+}
+
+.mat-expanded .mat-expansion-panel-content {
+    margin-top: 30px;
 }
 
 .mat-drawer {

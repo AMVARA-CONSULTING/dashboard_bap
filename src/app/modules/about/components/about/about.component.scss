@@ -7,6 +7,8 @@
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     touch-action: pan-y !important;
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 ::ng-deep .mat-expansion-panel, ::ng-deep .mat-expansion-panel-header {

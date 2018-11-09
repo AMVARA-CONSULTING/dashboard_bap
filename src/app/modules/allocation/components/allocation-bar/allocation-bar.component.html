@@ -4,7 +4,7 @@
     matTooltipPosition="above">
     <div style="position:relative;width:100%;height:100%;">
       <div matTooltipClass="above" [matTooltip]="partNumber | toNumber:false:false" matTooltipPosition="above" class="allocation"
-        [style.width.%]="ready ? allocation : 0">
+        [style.width.%]="ready ? (allocation >= 100 ? 100 : allocation) : 0">
         <span class="percent2">{{ (allocation | toNumber:false:false) + ' %' }}</span>
       </div>
     </div>

@@ -69,6 +69,7 @@
         &.zero {
             height: 0% !important;
         }
+        max-height: 100%;
         border-radius: 3px;
         -webkit-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;

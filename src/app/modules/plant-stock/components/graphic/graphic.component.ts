@@ -42,7 +42,6 @@ export class GraphicComponent implements OnInit, OnChanges {
   @Input() werks: any[] = []
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.werks)
     if (this.werks.length > 0) {
       this.barsWidth = 100 / this.werks.length
       let total = 0
@@ -58,7 +57,7 @@ export class GraphicComponent implements OnInit, OnChanges {
   }
 
   goWerk(werk): void {
-    this.router.navigate(['plant-stock', this.plant, 'werk', encodeURI(werk)], { replaceUrl: true })
+    this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
   maxTotal: number = 0

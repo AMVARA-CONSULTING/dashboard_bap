@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { LoadingService } from '@services/loading.service';
 import { Title } from '@angular/platform-browser';
@@ -29,8 +29,7 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
   host: {
     '(swiperight)': 'data.go("production-program")',
     '(swipeleft)': 'data.go("plant-stock")'
-  },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  }
 })
 export class AllocationLvl3Component implements OnInit {
 

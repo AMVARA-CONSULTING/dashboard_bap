@@ -7,6 +7,6 @@
         <div matTooltipPosition="above" matTooltipClass="reserve_g" [matTooltip]="_data.sumByIndex(rows[zoneKey], 22) | toNumber" [ngClass]="{zero: !ready}" class="reserve" [style.height.%]="zones[zoneKey].percentReserve"></div>
       </div>
     </div>
-    <div class="title">{{ zones[zoneKey].title }}</div>
+    <div class="title">{{ zones[zoneKey].title.trim() }}</div>
   </div>
 </div>

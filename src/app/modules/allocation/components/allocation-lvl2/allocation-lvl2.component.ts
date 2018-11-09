@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { LoadingService } from '@services/loading.service';
 import { Title } from '@angular/platform-browser';
@@ -13,7 +13,6 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
   selector: 'allocation-lvl2',
   templateUrl: './allocation-lvl2.component.html',
   styleUrls: ['./allocation-lvl2.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('list', [
       transition('* => *', [

@@ -1,7 +1,7 @@
 <div class="meter">
   <div class="container" [matTooltip]="customerValue | toNumber" matTooltipPosition="above" matTooltipClass="customer">
     <div [ngClass]="{'negative': !clockwise_customer}" class="percent cyan">{{ customer }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="rgb(0, 172, 193, .2)" color="#00acc1"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="customer" background="rgba(0, 172, 193, .2)" color="#00acc1"></round-progress>
   </div>
 </div>
 <div class="meter">

@@ -89,6 +89,7 @@
         max-width: 40%;
         border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
+        padding-right: 20px;
         @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
             -webkit-box-flex: 1;
                 -ms-flex: 1 50%;
@@ -136,9 +137,13 @@
             }
             .actual {
                 color: $lighten-cyan-text;
+                font-size: 1.2em;
+                font-weight: bold;
             }
             .previous {
                 color: $yellow-text;
+                font-size: 1.2em;
+                font-weight: bold;
             }
         }
     }
@@ -151,7 +156,10 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        padding: 12px 30px 12px 15px;
+        padding: 12px 20px 12px 20px;
+        @include mobile {
+            padding: 12px 20px 12px 15px;
+        }
         position: relative;
         -webkit-transition: border-bottom .15s ease-in-out;
         -o-transition: border-bottom .15s ease-in-out;
@@ -188,7 +196,10 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        padding: 12px 30px 12px 15px;
+        padding: 12px 20px 12px 20px;
+        @include mobile {
+            padding: 12px 20px 12px 15px;
+        }
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;

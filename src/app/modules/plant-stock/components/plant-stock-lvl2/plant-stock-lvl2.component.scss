@@ -12,7 +12,10 @@
 
 .plandate {
     display: block;
-    padding: 0 15px;
+    padding: 0 20px;
+    @include mobile {
+        padding: 0 15px;
+    }
     height: 30px;
     line-height: 30px;
     width: 100%;
@@ -63,6 +66,7 @@
         max-width: 40%;
         border-left: 3px solid rgba($color: #000, $alpha: .2);
         padding: 30px;
+        padding-right: 20px;
         .headers, .overview-group {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -95,9 +99,17 @@
             }
             .actual {
                 color: $lighten-cyan-text;
+                font-size: 1.1em;
+                font-weight: bold;
             }
             .previous {
                 color: $yellow-text;
+                font-size: 1.1em;
+                font-weight: bold;
+            }
+            .delta {
+                font-size: 1.1em;
+                font-weight: bold;
             }
         }
     }

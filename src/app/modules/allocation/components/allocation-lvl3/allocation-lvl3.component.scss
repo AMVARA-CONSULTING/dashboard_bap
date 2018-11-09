@@ -33,7 +33,10 @@
 
 .plandate {
     display: block;
-    padding: 0 15px;
+    padding: 0 20px 0 15px;
+    @include mobile {
+        padding: 0 15px;
+    }
     height: 30px;
     line-height: 30px;
     width: 100%;
@@ -94,7 +97,10 @@ header {
     display: -ms-flexbox;
     display: flex;
     background-color: $bg-white-lvl4;
-    padding: 0 15px;
+    padding: 0 20px;
+    @include mobile {
+        padding: 0 15px;
+    }
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     height: 40px;
@@ -155,7 +161,10 @@ header {
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        padding: 12px 15px;
+        padding: 12px 20px;
+        @include mobile {
+            padding: 12px 15px;
+        }
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         background-color: $bg-white-lvl1;
@@ -183,7 +192,10 @@ header {
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        padding: 12px 15px;
+        padding: 12px 20px;
+        @include mobile {
+            padding: 12px 15px;
+        }
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         &:hover .month {

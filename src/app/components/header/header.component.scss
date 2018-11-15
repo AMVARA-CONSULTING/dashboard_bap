@@ -51,9 +51,9 @@
             flex: initial;
     outline: 0;
     line-height: 70px;
-    font-size: 45px;
+    font-size: 35px;
     cursor: pointer;
-    margin-left: 15px;
+    margin-left: 30px;
     padding-left: 70px;
     .outer, .middle, .inter {
         @supports (-webkit-overflow-scrolling: touch) {
@@ -165,7 +165,7 @@
         cursor: pointer;
         position: relative;
         &:hover:after, &.active:after {
-            height: 3px;
+            height: 1px;
             width: 100%;
         }
         &:after {
@@ -176,7 +176,7 @@
             margin: auto;
             left: 0;
             right: 0;
-            bottom: 0;
+            bottom: 8px;
             -webkit-transition: all .2s ease-in-out;
             -o-transition: all .2s ease-in-out;
             transition: all .2s ease-in-out;

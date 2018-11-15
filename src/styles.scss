@@ -44,6 +44,9 @@ html, body {
     background-attachment: fixed;
     font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
     font-size: 13.333px;
+    @include desktop {
+        font-size: 15px;
+    }
     -webkit-transform: translate3d(0,0,0,0);
             transform: translate3d(0,0,0,0);
 }

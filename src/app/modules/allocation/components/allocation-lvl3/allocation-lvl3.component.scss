@@ -13,6 +13,9 @@
 .total-allocation, .total-program {
     flex: 1 20%;
     text-align: right;
+    @include desktop {
+        flex: 0 0 150px;
+    }
     padding: 12px 10px 12px 0;
     box-sizing: border-box;
     font-size: 15px;
@@ -29,11 +32,14 @@
 .total-empty {
     flex: 1 20%;
     text-align: right;
+    @include desktop {
+        flex: 0 0 150px;
+    }
 }
 
 .plandate {
     display: block;
-    padding: 0 20px 0 15px;
+    padding: 0 40px;
     @include mobile {
         padding: 0 15px;
     }
@@ -70,6 +76,9 @@
             -ms-flex: 1 20%;
                 flex: 1 20%;
         padding-right: 10px;
+        @include desktop {
+            flex: 0 0 150px;
+        }
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         text-align: right;
@@ -97,7 +106,7 @@ header {
     display: -ms-flexbox;
     display: flex;
     background-color: $bg-white-lvl4;
-    padding: 0 20px;
+    padding: 0 40px;
     @include mobile {
         padding: 0 15px;
     }
@@ -152,6 +161,9 @@ header {
             -ms-flex: 1 20%;
                 flex: 1 20%;
         text-align: right;
+        @include desktop {
+            flex: 0 0 150px;
+        }
     }
 }
 
@@ -161,7 +173,7 @@ header {
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        padding: 12px 20px;
+        padding: 12px 40px;
         @include mobile {
             padding: 12px 15px;
         }
@@ -192,7 +204,7 @@ header {
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        padding: 12px 20px;
+        padding: 12px 40px;
         @include mobile {
             padding: 12px 15px;
         }
@@ -218,6 +230,9 @@ header {
                 -ms-flex: 1 20%;
                     flex: 1 20%;
             text-align: right;
+            @include desktop {
+                flex: 0 0 150px;
+            }
             padding-right: 10px;
             -webkit-box-sizing: border-box;
                     box-sizing: border-box;
@@ -233,6 +248,9 @@ header {
                 -ms-flex: 1 20%;
                     flex: 1 20%;
             text-align: right;
+            @include desktop {
+                flex: 0 0 150px;
+            }
         }
     }
 }

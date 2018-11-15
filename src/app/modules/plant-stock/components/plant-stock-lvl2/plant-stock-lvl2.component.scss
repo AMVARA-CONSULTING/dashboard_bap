@@ -12,7 +12,7 @@
 
 .plandate {
     display: block;
-    padding: 0 20px;
+    padding: 0 40px;
     @include mobile {
         padding: 0 15px;
     }
@@ -121,6 +121,9 @@ header {
     display: flex;
     background-color: $bg-white-lvl3;
     padding: 0 15px;
+    @include desktop {
+        padding: 0 40px;
+    }
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     height: 40px;
@@ -136,6 +139,9 @@ header {
         -webkit-box-flex: 1;
             -ms-flex: 1 25%;
                 flex: 1 25%;
+        @include desktop {
+            flex: 0 0 150px;
+        }
         text-align: right;
     }
     .previous {
@@ -153,6 +159,9 @@ header {
         display: flex;
         width: 100%;
         padding: 12px 15px;
+        @include desktop {
+            padding: 12px 40px;
+        }
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         background-color: $bg-white-lvl1;
@@ -197,6 +206,9 @@ header {
             flex: 1 25%;
             text-align: right;
             padding-right: 10px;
+            @include desktop {
+                flex: 0 0 150px;
+            }
             box-sizing: border-box;
         }
         .actual {
@@ -230,6 +242,9 @@ header {
         display: flex;
         width: 100%;
         padding: 12px 15px;
+        @include desktop {
+            padding: 12px 40px;
+        }
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         &:hover .werk {
@@ -272,6 +287,9 @@ header {
                     flex: 1 25%;
             text-align: right;
             padding-right: 10px;
+            @include desktop {
+                flex: 0 0 150px;
+            }
             -webkit-box-sizing: border-box;
                     box-sizing: border-box;
         }

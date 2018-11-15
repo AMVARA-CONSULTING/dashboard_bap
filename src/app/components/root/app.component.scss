@@ -70,3 +70,16 @@
         }
     }
 }
+
+.menu-swipper {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 20px;
+    z-index: 999;
+    @include desktop {
+        display: none;
+    }
+}

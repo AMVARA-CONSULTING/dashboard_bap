@@ -1,5 +1,5 @@
 {
-	"version": "2.16.0",
+	"version": "2.17.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -11,6 +11,8 @@
 		"en": "English",
 		"de": "Deutsch"
 	},
+	"heartbeat": 300000,
+	"simulateUnauthorized": true,
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
 	"contacts": [
@@ -162,6 +164,16 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.17.0",
+			"text": [
+				"Barchart percent without decorators",
+				"Allocation fix months range",
+				"Implemented Heartbeat & Reload to maintain cookies session",
+				"Correct arrow in PS",
+				""
+			]
+		},
 		{
 			"version": "2.16.0",
 			"text": [

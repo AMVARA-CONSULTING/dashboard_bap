@@ -16,6 +16,7 @@
     font-family: "CorpoS", sans-serif;
     margin: 0;
     padding: 0;
+    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 }
@@ -33,6 +34,10 @@
 
 html {
     -webkit-text-size-adjust: 100%;
+}
+
+.mat-select-panel {
+    background: $main-bg-body-color !important;
 }
 
 html, body {
@@ -275,7 +280,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     display: inline-block;
 }
 
-.allocation-selector .mat-select-value {
+.mat-form-field .mat-select-value {
     max-width: initial !important;
     width: initial !important;
     padding-right: 10px;

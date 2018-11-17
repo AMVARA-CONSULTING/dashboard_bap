@@ -104,8 +104,8 @@ export class AllocationMainComponent implements OnInit {
       return
     }
     this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
-    const dateNow: moment.Moment = moment()
-    const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
+    const dateNow: moment.Moment = moment().startOf('month')
+    const dateNextEightMonths: moment.Moment = moment().add(12, 'months').endOf('month')
     let months = {}
     const filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
     this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
@@ -122,6 +122,7 @@ export class AllocationMainComponent implements OnInit {
     let info = []
     Object.keys(months).forEach(month => {
       const monthCorrected = moment(month, 'YYYYMM').format('MM / YYYY')
+      console.log(monthCorrected)
       const program = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.program)
       const allocation = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.allocation)
       info.push({

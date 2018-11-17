@@ -43,7 +43,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { environment } from '../environments/environment';
 import { ToolsService } from '@services/tools.service';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavigationGuard } from './guards/navigation-guard.guard';
@@ -54,6 +54,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CognosService } from '@services/cognos.service';
+import { CookiesExpiredComponent } from './dialogs/cookies-expired/cookies-expired.component';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -61,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { AuthInterceptor } from '@services/http-interceptor';
 
 declare var Hammer: any;
 
@@ -84,7 +86,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     LoaderComponent,
     FooterComponent,
     NewUpdateComponent,
-    AccessCodeComponent
+    AccessCodeComponent,
+    CookiesExpiredComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +122,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   entryComponents: [
     SelectYearComponent,
-    NewUpdateComponent
+    NewUpdateComponent,
+    CookiesExpiredComponent
   ],
   providers: [
     LoadingService,
@@ -131,6 +135,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     NavigationGuard,
     CognosService,
     AccessGranted,
+    AuthInterceptor,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig
@@ -147,6 +152,12 @@ export class MyHammerConfig extends HammerGestureConfig {
       provide: APP_INITIALIZER,
       useFactory: (configService: ConfigService) => () => configService.load(),
       deps: [ConfigService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      deps: [ConfigService, ApiService],
       multi: true
     }
   ],

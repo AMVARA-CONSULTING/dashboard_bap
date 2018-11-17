@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
-import { delay } from  'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { ConfigService } from './config.service';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
+import * as moment from 'moment';
 
 declare var XML, JKL: any
 
@@ -13,10 +15,38 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private config: ConfigService
+    private config: ConfigService,
+    private dialog: MatDialog
   ) {
     this.corpintra = location.hostname.indexOf('corpintra.net') > -1
+    if (!this.corpintra) {
+      const datum = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')
+      for (let prop in this.reportDates) {
+        this.reportDates[prop] = datum
+      }
+    }
   }
+
+  reportDates = {
+    orderIntake: '',
+    productionProgram: '',
+    allocation: '',
+    plantStock: ''
+  }
+
+  reloadDialog: MatDialogRef<CookiesExpiredComponent>
+
+  openCookiesPopup() : void {
+    if( !this.reloadDialog ) this.reloadDialog = this.dialog.open(CookiesExpiredComponent, { 
+      panelClass: 'newUpdate',
+      disableClose: true,
+      closeOnNavigation: false
+    })
+  }
+
+  authorized: boolean = true
+
+  heartbeat: Subscription
 
   cognosLink(url) : string {
     return url.replace('80','443').replace('http:', 'https:')
@@ -43,14 +73,16 @@ export class ApiService {
     return rows
   }
 
-  getLastReportLink(json) : string {
+  getLastReportLink(json, dateEntry: string) : string {
     if (Array.isArray(json.feed.entry)) {
       json.feed.entry.forEach(function(entry, i) {
         if (entry.title['#text'] == 'HTML') {
+          this.reportDates[dateEntry] = json.feed.entry[i].updated
           return json.feed.entry[i].link['-href']
         }
       })
     } else {
+      this.reportDates[dateEntry] = json.feed.entry.updated
       return json.feed.entry.link['-href']
     }
   }
@@ -64,7 +96,7 @@ export class ApiService {
           let nextLink = json.feed.entry.link['-href']
           this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
             json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json)
+            const xmlLink = this.getLastReportLink(json, 'orderIntake')
             if (!xmlLink) {
               observer.next({ success: false, data: [], error: 'OI - Fail at getting last HTML report link.' })
               observer.complete()
@@ -110,7 +142,6 @@ export class ApiService {
           let nextLink = json.feed.entry.link['-href']
           this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
             json = this.transcode(data)
-            console.dir(json)
             let xmlLink = ''
             if (Array.isArray(json.feed.entry)) {
               json.feed.entry.forEach(function(entry, i) {
@@ -120,6 +151,7 @@ export class ApiService {
               })
             } else {
               xmlLink = json.feed.entry.link['-href']
+              this.reportDates.productionProgram = json.feed.entry.updated
             }
             if (xmlLink) {
               this.http.get(this.cognosLink(xmlLink), { responseType: 'text' }).subscribe(data => {
@@ -167,7 +199,7 @@ export class ApiService {
           let nextLink = json.feed.entry.link['-href']
           this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
             json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json)
+            const xmlLink = this.getLastReportLink(json, 'allocation')
             if (!xmlLink) {
               observer.next({ success: false, data: [], error: 'ALOC - Fail at getting last HTML report link.' })
               observer.complete()
@@ -214,7 +246,7 @@ export class ApiService {
           let nextLink = json.feed.entry.link['-href']
           this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
             json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json)
+            const xmlLink = this.getLastReportLink(json, 'plantStock')
             if (!xmlLink) {
               observer.next({ success: false, data: [], error: 'PS - Fail at getting last HTML report link.' })
               observer.complete()

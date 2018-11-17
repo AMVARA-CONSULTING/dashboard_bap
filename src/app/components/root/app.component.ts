@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
-import {  LocationStrategy } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { NewUpdateComponent } from '../../dialogs/new-update/new-update.component';
+import { LocationStrategy } from '@angular/common';
+import { Router } from '@angular/router';
+import { timer, interval } from 'rxjs';
+import { ApiService } from '@services/api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'dip-root',
@@ -18,20 +19,30 @@ export class AppComponent implements OnInit {
     public data: DataService,
     private translate: TranslateService,
     private config: ConfigService,
-    private location: LocationStrategy,
+    private _location: LocationStrategy,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    private api: ApiService,
+    private http: HttpClient
   ) {
-    location.onPopState(() => {
+    if (this.config.config.simulateUnauthorized > 0) {
+      timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false)
+    }
+    if (this.api.corpintra || location.hostname == 'localhost') {
+      // Heartbeat
+      this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ =>
+        this.http.get(location.pathname+'keep.alive', {observe: 'response', responseType: 'text'})
+        .subscribe()
+      )
+    }
+    this._location.onPopState(() => {
       if (this.data.currentLevel == 1 && this.data.title != 'order_intake') {
         this.router.navigate(['order-intake'], { replaceUrl: true })
       }
       //history.go(1)
     })
     data.init()
-    translate.setDefaultLang('en')
-    translate.use(localStorage.getItem('lang') || config.config.language)
+    this.translate.setDefaultLang('en')
+    this.translate.use(localStorage.getItem('lang') || config.config.language)
   }
 
   ngOnInit() {

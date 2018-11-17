@@ -13,7 +13,9 @@ export interface Config {
     languageCodes: any,
     cognosRepository: string,
     cognosDomain: string,
-    target: string
+    target: string,
+    simulateUnauthorized: number,
+    heartbeat: number
 }
 
 export interface ContactInfo {

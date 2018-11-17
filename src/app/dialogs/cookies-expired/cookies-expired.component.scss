@@ -1,0 +1,31 @@
+
+@import '../../other/colors';
+
+.reload-icon {
+    display: block;
+    height: 120px;
+    width: 120px;
+    background-image: url(assets/update.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 10px auto 30px;
+}
+
+p {
+    text-align: center;
+    line-height: 25px;
+    font-size: 16px;
+    color: white;
+    &.title {
+        font-size: 18px;
+        color: $yellow-text;
+    }
+}
+
+h2 {
+    color: $yellow-text;
+}
+
+button {
+    color: $yellow-text;
+}

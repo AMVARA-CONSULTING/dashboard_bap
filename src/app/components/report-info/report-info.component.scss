@@ -1,0 +1,50 @@
+
+@import '../../other/colors.scss';
+
+:host {
+    display: block;
+    margin: 25px 0 15px;
+}
+
+.container {
+    display: flex;
+    @include mobile {
+        flex-wrap: wrap;
+    }
+}
+
+.title {
+    color: $yellow-text;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.prop {
+    flex: 1;
+    @include mobile {
+        flex: 0 0 120px;
+    }
+    color: rgba(white, .4);
+}
+
+.value {
+    flex: 1;
+    @include desktop {
+        flex: 0 0 120px;
+    }
+}
+
+.id, .date {
+    padding-left: 20px;
+    @include mobile {
+        padding-left: 0;
+    }
+}
+
+.name, .id, .date {
+    display: flex;
+    flex: 1 100%;
+    span:nth-child(2) {
+        margin-left: 10px;
+    }
+}

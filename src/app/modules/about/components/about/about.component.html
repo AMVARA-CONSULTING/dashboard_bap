@@ -61,8 +61,11 @@
           {{ 'about.technical_information' | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    Version: {{ config.config.version }}<br />
     Service Worker Status: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
+    <report-info title="Order Intake" type="orderIntake"></report-info>
+    <report-info title="Production program" type="productionProgram"></report-info>
+    <report-info title="allocation" type="allocation"></report-info>
+    <report-info title="plant stock" type="plantStock"></report-info>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -82,3 +85,4 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+<div class="version">Version: {{ config.config.version }}</div>

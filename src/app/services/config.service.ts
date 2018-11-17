@@ -19,7 +19,8 @@ export class ConfigService {
       this.http.get('assets/'+configFile).subscribe(config => {
         this.config = config as Config
         console.log(config)
-        const search: any = this.tools.getJsonFromUrl()
+        const search: any = this.tools.getJsonFromUrl();
+        this.config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0
         search.delay = search.delay ? search.delay * 1000 : null
         this.config.language = localStorage.getItem('lang') || this.config.language
         setTimeout(() => resolve(), search.delay || this.config.delay)

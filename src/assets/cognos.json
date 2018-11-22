@@ -1,5 +1,5 @@
 {
-	"version": "2.17.0",
+	"version": "2.18.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -50,7 +50,7 @@
 				"orderIntake": "i163A764B930D4E748310CF5053D29578",
 				"allocation": "i464B15BB96434390A9D6C35C67886434",
 				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136"
+				"productionProgram": "i5F3D9FCAF8054F5790152C1251DE3552"
 			},
 			"prod": {
 				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
@@ -164,6 +164,14 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.18.0",
+			"text": [
+				"Minor visual fixes",
+				"Update ProductionProgram ReportID",
+				"Fix bug in Allocation report that treats number as decimals"
+			]
+		},
 		{
 			"version": "2.17.0",
 			"text": [

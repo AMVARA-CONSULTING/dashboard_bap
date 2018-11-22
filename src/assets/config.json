@@ -1,5 +1,5 @@
 {
-	"version": "2.17.0",
+	"version": "2.18.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -162,6 +162,14 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.18.0",
+			"text": [
+				"Minor visual fixes",
+				"Update ProductionProgram ReportID",
+				"Fix bug in Allocation report that treats number as decimals"
+			]
+		},
 		{
 			"version": "2.17.0",
 			"text": [

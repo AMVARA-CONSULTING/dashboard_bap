@@ -5,10 +5,12 @@ export class ToolsService {
 
   constructor() { }
 
+  xsrf_token
+
   getJsonFromUrl() {
     var query = location.search.substr(1)
     var result = {}
-    query.split("&").forEach(function(part) {
+    query.split("&").forEach(function (part) {
       var item = part.split("=")
       result[item[0]] = decodeURIComponent(item[1])
     });
@@ -16,7 +18,7 @@ export class ToolsService {
   }
 
   // Get current year
-  getYear() : number {
+  getYear(): number {
     return (new Date()).getFullYear()
   }
 
@@ -28,12 +30,12 @@ export class ToolsService {
   }
 
   /* Return a truthy number */
-  removeCommas(x: string) : number {
-    return +x.toString().replace(/,|./g,'')
+  removeCommas(x: string): number {
+    return +x.toString().replace(/,|./g, '')
   }
 
   /* Return a percent number with/without sign */
-  percent(part: number, total: number, sign?: boolean, space_between?: boolean, zeroSign?: boolean) : number | string {
+  percent(part: number, total: number, sign?: boolean, space_between?: boolean, zeroSign?: boolean): number | string {
     sign = sign || false
     space_between = space_between || false
     zeroSign = zeroSign || false

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Config } from '@other/interfaces';
 import { ToolsService } from '@services/tools.service';
 
@@ -13,10 +13,10 @@ export class ConfigService {
 
   config: Config
 
-  load() : Promise<void> {
+  load(): Promise<void> {
     return new Promise(resolve => {
       const configFile = location.hostname.indexOf('corpintra.net') > -1 ? 'cognos.json' : 'config.json'
-      this.http.get('assets/'+configFile).subscribe(config => {
+      this.http.get('assets/' + configFile).subscribe(config => {
         this.config = config as Config
         console.log(config)
         const search: any = this.tools.getJsonFromUrl();

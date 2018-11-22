@@ -112,7 +112,7 @@ export class AllocationLvl3Component implements OnInit {
     let months = {}
     let filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
     this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
-      r[a[17].substring(0, 4)] = r[a[17].substring(0, 4)] || []
+      r[a[17].toString().substring(0, 4)] = r[a[17].toString().substring(0, 4)] || []
       return r
     }, {})
     )

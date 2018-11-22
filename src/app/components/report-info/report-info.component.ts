@@ -25,13 +25,13 @@ export class ReportInfoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const type = changes.type.currentValue
     this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type]
-    this.date = moment(this.api.reportDates[type], 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]').format('DD/MM/YYYY')
-    this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]').format('HH:mm')
-    switch(this.id) {
+    this.date = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('DD/MM/YYYY')
+    this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm')
+    switch (this.id) {
       case "i163A764B930D4E748310CF5053D29578":
         this.name = 'MobileCockpit_V2_14.3_dev'
         break
-      case "i1CB7F34FB34C457AA79DAC5EF88BB136":
+      case "i5F3D9FCAF8054F5790152C1251DE3552":
         this.name = 'Planning_Truck_new'
         break
       case "i464B15BB96434390A9D6C35C67886434":

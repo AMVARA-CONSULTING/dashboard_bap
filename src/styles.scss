@@ -64,6 +64,32 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     background-color: $bg-white-lvl3-pure !important;
 }
 
+@include desktop {
+    .plant .title, 
+    .row .month, 
+    .lvl2-row .title, 
+    .lvl3-row .title,
+    .row .werk {
+        padding-left: 30px !important;
+    }
+    .header-row {
+        .actual, .previous {
+            font-size: 1.2rem !important;
+            font-weight: bold;
+        }
+    }
+    header .mat-form-field {
+        margin-left: 0 !important;
+    }
+    .plandate {
+        margin-top: 20px !important;
+        letter-spacing: 1px;
+    }
+    plant-stock-wrapper .plandate {
+        margin-bottom: -20px;
+    }
+}
+
 .mat-drawer-content {
     width: 100%;
     overflow: initial !important
@@ -71,6 +97,10 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 
 .percent.negative:before {
     content: "- ";
+}
+
+.mat-expansion-panel-header-title {
+    color: $semi-white !important;
 }
 
 @media screen and (max-width: 800px) {

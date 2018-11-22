@@ -29,6 +29,7 @@
 
 .value {
     flex: 1;
+    white-space: nowrap;
     @include desktop {
         flex: 0 0 120px;
     }

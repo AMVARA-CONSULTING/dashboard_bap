@@ -5,6 +5,8 @@ import { ConfigService } from './config.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
+import jcognos from 'jcognos'
+import { ToolsService } from './tools.service';
 
 declare var XML, JKL: any
 
@@ -16,7 +18,8 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private config: ConfigService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tools: ToolsService
   ) {
     this.corpintra = location.hostname.indexOf('corpintra.net') > -1
     if (!this.corpintra) {
@@ -36,8 +39,8 @@ export class ApiService {
 
   reloadDialog: MatDialogRef<CookiesExpiredComponent>
 
-  openCookiesPopup() : void {
-    if( !this.reloadDialog ) this.reloadDialog = this.dialog.open(CookiesExpiredComponent, { 
+  openCookiesPopup(): void {
+    if (!this.reloadDialog) this.reloadDialog = this.dialog.open(CookiesExpiredComponent, {
       panelClass: 'newUpdate',
       disableClose: true,
       closeOnNavigation: false
@@ -48,8 +51,8 @@ export class ApiService {
 
   heartbeat: Subscription
 
-  cognosLink(url) : string {
-    return url.replace('80','443').replace('http:', 'https:')
+  cognosLink(url): string {
+    return url.replace('80', '443').replace('http:', 'https:')
   }
 
   transcode(data) {
@@ -58,24 +61,24 @@ export class ApiService {
     return JSON.parse(dumper.dump(xotree.parseXML(data)))
   }
 
-  htmlToJson(data, element) : any[] {
-    let htmlDoc = new DOMParser().parseFromString(data, "text/html")
-    let table = htmlDoc.querySelectorAll(element)
-    let rows = []
+  htmlToJson(data, element): any[] {
+    const htmlDoc = new DOMParser().parseFromString(data, "text/html")
+    const table = htmlDoc.querySelectorAll(element)
+    const rows = []
     for (let i = 0; i < table.length; i++) {
-      let row = []
+      const row = []
       for (let t = 0; t < table[i].childNodes.length; t++) {
-          row.push(table[i].childNodes[t].innerText)
+        row.push(table[i].childNodes[t].innerText)
       }
-        rows.push(row)
+      rows.push(row)
     }
     rows.shift()
     return rows
   }
 
-  getLastReportLink(json, dateEntry: string) : string {
+  getLastReportLink(json, dateEntry: string): string {
     if (Array.isArray(json.feed.entry)) {
-      json.feed.entry.forEach(function(entry, i) {
+      json.feed.entry.forEach(function (entry, i) {
         if (entry.title['#text'] == 'HTML') {
           this.reportDates[dateEntry] = json.feed.entry[i].updated
           return json.feed.entry[i].link['-href']
@@ -88,20 +91,14 @@ export class ApiService {
   }
 
   // Get Order Intake Data from Report (temporarily from JSON File)
-  getOrderIntakeData(ReportID: string) : Observable<{success: boolean, data?: any[], error?: string, more?: any}> {
+  getOrderIntakeData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {
       return new Observable(observer => {
-        this.http.get(this.config.config.cognosRepository+ReportID, { responseType: 'text' }).subscribe(data => {
-          let json = this.transcode(data)
-          let nextLink = json.feed.entry.link['-href']
-          this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
-            json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json, 'orderIntake')
-            if (!xmlLink) {
-              observer.next({ success: false, data: [], error: 'OI - Fail at getting last HTML report link.' })
-              observer.complete()
-            }
-            this.http.get(this.cognosLink(xmlLink), { responseType: 'text' }).subscribe(data => {
+        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          const nextLink = json.data[0]._meta.links.outputs.url
+          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+            const nextLink = json.data[0]._meta.links.content.url
+            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_OI] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber.forEach(num => {
@@ -124,7 +121,7 @@ export class ApiService {
         })
       })
     } else {
-      return new Observable( observer => {
+      return new Observable(observer => {
         this.http.get('assets/reports/order_intake.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()
@@ -132,45 +129,27 @@ export class ApiService {
       })
     }
   }
-
   // Get Production Program Data from Report (tmp JSON file)
-  getProductionProgramData(ReportID: string) : Observable<{success: boolean, data?: any[], error?: string, more?: any}> {
+  getProductionProgramData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {
       return new Observable(observer => {
-        this.http.get(this.config.config.cognosRepository+ReportID, { responseType: 'text' }).subscribe(data => {
-          let json = this.transcode(data)
-          let nextLink = json.feed.entry.link['-href']
-          this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
-            json = this.transcode(data)
-            let xmlLink = ''
-            if (Array.isArray(json.feed.entry)) {
-              json.feed.entry.forEach(function(entry, i) {
-                if (entry.title['#text'] == 'HTML') {
-                  xmlLink = json.feed.entry[i].link['-href']
-                }
-              })
-            } else {
-              xmlLink = json.feed.entry.link['-href']
-              this.reportDates.productionProgram = json.feed.entry.updated
-            }
-            if (xmlLink) {
-              this.http.get(this.cognosLink(xmlLink), { responseType: 'text' }).subscribe(data => {
-                const rows = this.htmlToJson(data, '[lid=Liste1] tr')
-                rows.forEach((row, index, rows) => {
-                  this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber.forEach(num => {
-                    rows[index][num] = isNaN(rows[index][num]) || !rows[index][num] ? 0 : parseFloat(rows[index][num])
-                  })
+        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          const nextLink = json.data[0]._meta.links.outputs.url
+          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+            const nextLink = json.data[0]._meta.links.content.url
+            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
+              const rows = this.htmlToJson(data, '[lid=Liste1] tr')
+              rows.forEach((row, index, rows) => {
+                this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber.forEach(num => {
+                  rows[index][num] = isNaN(rows[index][num]) || !rows[index][num] ? 0 : parseFloat(rows[index][num])
                 })
-                observer.next({ success: true, data: rows })
-                observer.complete()
-              }, err => {
-                observer.next({ success: false, data: [], error: 'PP - Fail at getting report table data.', more: err })
-                observer.complete()
               })
-            } else {
-              observer.next({ success: false, data: [], error: 'PP - Fail at getting last HTML report link.' })
+              observer.next({ success: true, data: rows })
               observer.complete()
-            }
+            }, err => {
+              observer.next({ success: false, data: [], error: 'PP - Fail at getting report table data.', more: err })
+              observer.complete()
+            })
           }, err => {
             observer.next({ success: false, data: [], error: 'PP - Fail at getting last report versions.', more: err })
             observer.complete()
@@ -181,7 +160,7 @@ export class ApiService {
         })
       })
     } else {
-      return new Observable( observer => {
+      return new Observable(observer => {
         this.http.get('assets/reports/production_program.fake.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()
@@ -191,23 +170,17 @@ export class ApiService {
   }
 
   // Get Allocation Data from Report (tmp JSON file)
-  getAllocationData(ReportID: string) : Observable<{success: boolean, data?: any[], error?: string, more?: any}> {
+  getAllocationData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {
       return new Observable(observer => {
-        this.http.get(this.config.config.cognosRepository+ReportID, { responseType: 'text' }).subscribe(data => {
-          let json = this.transcode(data)
-          let nextLink = json.feed.entry.link['-href']
-          this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
-            json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json, 'allocation')
-            if (!xmlLink) {
-              observer.next({ success: false, data: [], error: 'ALOC - Fail at getting last HTML report link.' })
-              observer.complete()
-            }
-            this.http.get(this.cognosLink(xmlLink), { responseType: 'text' }).subscribe(data => {
+        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          const nextLink = json.data[0]._meta.links.outputs.url
+          this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+            const nextLink = json.data[0]._meta.links.content.url
+            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=Final] tr')
               rows.forEach((row, index, rows) => {
-                rows[index][17] = rows[index][17].toString().replace('-','')
+                rows[index][17] = rows[index][17].toString().replace('-', '')
                 this.config.config.reports.trucks.columns.allocation.shouldBeNumber.forEach(num => {
                   rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
                 })
@@ -228,8 +201,8 @@ export class ApiService {
         })
       })
     } else {
-      return new Observable( observer => {
-        this.http.get('assets/reports/allocation.fake.json').subscribe((res: any[]) => {
+      return new Observable(observer => {
+        this.http.get('assets/reports/allocation.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -238,20 +211,14 @@ export class ApiService {
   }
 
   // Get Plant Stock Data from Report (tmp JSON file)
-  getPlantStockData(ReportID: string) : Observable<{success: boolean, data?: any[], error?: string, more?: any}> {
+  getPlantStockData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {
       return new Observable(observer => {
-        this.http.get(this.config.config.cognosRepository+ReportID, { responseType: 'text' }).subscribe(data => {
-          let json = this.transcode(data)
-          let nextLink = json.feed.entry.link['-href']
-          this.http.get(this.cognosLink(nextLink), { responseType: 'text' }).subscribe(data => {
-            json = this.transcode(data)
-            const xmlLink = this.getLastReportLink(json, 'plantStock')
-            if (!xmlLink) {
-              observer.next({ success: false, data: [], error: 'PS - Fail at getting last HTML report link.' })
-              observer.complete()
-            }
-            this.http.get(this.cognosLink(xmlLink), { responseType: 'text' }).subscribe(data => {
+        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          const nextLink = json.data[0]._meta.links.outputs.url
+          this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+            const nextLink = json.data[0]._meta.links.content.url
+            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_PS] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.plantStock.shouldBeNumber.forEach(num => {
@@ -274,7 +241,7 @@ export class ApiService {
         })
       })
     } else {
-      return new Observable( observer => {
+      return new Observable(observer => {
         this.http.get('assets/reports/plant_stock.fake.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { timer, interval } from 'rxjs';
 import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'dip-root',
@@ -30,8 +31,8 @@ export class AppComponent implements OnInit {
     if (this.api.corpintra || location.hostname == 'localhost') {
       // Heartbeat
       this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ =>
-        this.http.get(location.pathname+'keep.alive', {observe: 'response', responseType: 'text'})
-        .subscribe()
+        this.http.get(location.pathname + 'keep.alive.txt', { observe: 'response', responseType: 'text' }).pipe(retry(3))
+          .subscribe()
       )
     }
     this._location.onPopState(() => {
@@ -67,5 +68,5 @@ export class AppComponent implements OnInit {
   close() {
     this.data.sidenavOpened = !this.data.sidenavOpened
   }
-  
+
 }

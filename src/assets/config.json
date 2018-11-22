@@ -1,5 +1,5 @@
 {
-	"version": "2.18.0",
+	"version": "2.19.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -162,6 +162,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.19.0",
+			"text": [
+				"Fix new REST API urls and other bugs due to last update"
+			]
+		},
 		{
 			"version": "2.18.0",
 			"text": [

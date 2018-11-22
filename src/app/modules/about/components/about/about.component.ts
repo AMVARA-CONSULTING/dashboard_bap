@@ -26,15 +26,6 @@ export class AboutComponent implements OnInit {
     public data: DataService,
     private api: ApiService
   ) {
-    forkJoin(
-      this.api.getPlantStockData(this.config.config.reports[this.config.config.target][this.config.config.scenario].plantStock),
-      this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram),
-      this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation),
-      this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake)
-    ).subscribe(_ => {
-      this.reportDates = Object.assign({}, this.api.reportDates)
-      console.log("AMVARA Reports", this.reportDates)
-    })
     data.currentLevel = 1
     this.version = VERSION.full
   }

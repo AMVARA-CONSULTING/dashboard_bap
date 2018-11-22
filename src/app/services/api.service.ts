@@ -5,7 +5,6 @@ import { ConfigService } from './config.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
-import jcognos from 'jcognos'
 import { ToolsService } from './tools.service';
 
 declare var XML, JKL: any
@@ -98,6 +97,7 @@ export class ApiService {
           const nextLink = json.data[0]._meta.links.outputs.url
           this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
             const nextLink = json.data[0]._meta.links.content.url
+            this.reportDates.orderIntake = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_OI] tr')
               rows.forEach((row, index, rows) => {
@@ -137,6 +137,7 @@ export class ApiService {
           const nextLink = json.data[0]._meta.links.outputs.url
           this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
             const nextLink = json.data[0]._meta.links.content.url
+            this.reportDates.productionProgram = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=Liste1] tr')
               rows.forEach((row, index, rows) => {
@@ -175,8 +176,9 @@ export class ApiService {
       return new Observable(observer => {
         this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
           const nextLink = json.data[0]._meta.links.outputs.url
-          this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
             const nextLink = json.data[0]._meta.links.content.url
+            this.reportDates.allocation = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=Final] tr')
               rows.forEach((row, index, rows) => {
@@ -216,8 +218,9 @@ export class ApiService {
       return new Observable(observer => {
         this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
           const nextLink = json.data[0]._meta.links.outputs.url
-          this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
             const nextLink = json.data[0]._meta.links.content.url
+            this.reportDates.plantStock = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_PS] tr')
               rows.forEach((row, index, rows) => {

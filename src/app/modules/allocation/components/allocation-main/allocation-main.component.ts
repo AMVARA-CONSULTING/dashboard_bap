@@ -122,7 +122,6 @@ export class AllocationMainComponent implements OnInit {
     let info = []
     Object.keys(months).forEach(month => {
       const monthCorrected = moment(month, 'YYYYMM').format('MM / YYYY')
-      console.log(monthCorrected)
       const program = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.program)
       const allocation = this.data.sumByIndex(filteredRowsByPlant.filter(aloc => aloc[17] == month), this.config.config.reports.trucks.columns.allocation.allocation)
       info.push({

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
@@ -13,7 +13,8 @@ export class ReportInfoComponent implements OnInit, OnChanges {
 
   constructor(
     private config: ConfigService,
-    private api: ApiService
+    private api: ApiService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -25,6 +26,27 @@ export class ReportInfoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const type = changes.type.currentValue
     this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type]
+    if (this.api.reportDates[type].length == 0) {
+      switch (type) {
+        case "orderIntake":
+          this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(_ => this.rollup(type))
+          break;
+        case "productionProgram":
+          this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(_ => this.rollup(type))
+          break
+        case "allocation":
+          this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation).subscribe(_ => this.rollup(type))
+          break
+        case "plantStock":
+          this.api.getPlantStockData(this.config.config.reports[this.config.config.target][this.config.config.scenario].plantStock).subscribe(_ => this.rollup(type))
+          break
+      }
+    } else {
+      this.rollup(type)
+    }
+  }
+
+  rollup(type: string): void {
     this.date = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('DD/MM/YYYY')
     this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm')
     switch (this.id) {
@@ -42,6 +64,7 @@ export class ReportInfoComponent implements OnInit, OnChanges {
         break
       default:
     }
+    this.ref.detectChanges()
   }
 
   date: string = ''

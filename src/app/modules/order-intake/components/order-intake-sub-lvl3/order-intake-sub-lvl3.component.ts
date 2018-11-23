@@ -57,7 +57,6 @@ export class OrderIntakeSubLvl3Component implements OnInit {
           this.RegionID = null
         }
       } catch (err) {
-        console.log(err)
         this.router.navigate(['order-intake'], { replaceUrl: true })
       }
       // If no Order Intake rows were found, get them

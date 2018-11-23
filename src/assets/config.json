@@ -13,23 +13,25 @@
 	},
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
-	"contacts": [
-		{
-			"name": "Ralf Roeber",
-			"description": "Coordinator",
-			"telephone": "+34 717 10 26 03"
-		},
-		{
-			"name": "Alex Barba",
-			"description": "Programmer",
-			"telephone": "+34 640 91 59 83"
-		},
-		{
-			"name": "Luís Torroja",
-			"description": "Designer",
-			"telephone": "+34 670 61 74 71"
-		}
-	],
+	"contacts": {
+		"trucks": [
+			{
+				"name": "Ralf Roeber",
+				"description": "Coordinator",
+				"telephone": "+34 717 10 26 03"
+			},
+			{
+				"name": "Alex Barba",
+				"description": "Programmer",
+				"telephone": "+34 640 91 59 83"
+			},
+			{
+				"name": "Luís Torroja",
+				"description": "Designer",
+				"telephone": "+34 670 61 74 71"
+			}
+		]
+	},
 	"reports": {
 		"vans": {
 			"dev": {

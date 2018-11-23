@@ -15,23 +15,42 @@
 	"simulateUnauthorized": true,
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
-	"contacts": [
-		{
-			"name": "Steffen Schweiger",
-			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 7271 71 2184"
-		},
-		{
-			"name": "Kai Blattmann",
-			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 7271 71 5435"
-		},
-		{
-			"name": "Peter Hess",
-			"description": "IT",
-			"telephone": "+49 160 864 7725"
-		}
-	],
+	"contacts": {
+		"trucks": [
+			{
+				"name": "Steffen Schweiger",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 2184"
+			},
+			{
+				"name": "Kai Blattmann",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 5435"
+			},
+			{
+				"name": "Peter Hess",
+				"description": "IT",
+				"telephone": "+49 160 864 7725"
+			}
+		],
+		"vans": [
+			{
+				"name": "Steffen Schweiger",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 2184"
+			},
+			{
+				"name": "Kai Blattmann",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 5435"
+			},
+			{
+				"name": "Peter Hess",
+				"description": "IT",
+				"telephone": "+49 160 864 7725"
+			}
+		]
+	},
 	"reports": {
 		"vans": {
 			"dev": {

@@ -98,7 +98,7 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'zone',
       key: ZoneID
     }
-    this.router.navigate(['order-intake','zone', ZoneID], { replaceUrl: true })
+    this.router.navigate(['order-intake','zone', ZoneID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   /** Go to /order-intake/plant/:id
@@ -109,15 +109,15 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'plant',
       key: PlantID
     }
-    this.router.navigate(['order-intake', 'plant', PlantID], { replaceUrl: true })
+    this.router.navigate(['order-intake', 'plant', PlantID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   recoverLvl2(): void {
     if (this.data.lastTap != null) {
       if (this.data.lastTap.type == 'plant') {
-        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { replaceUrl: true })
+        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       } else {
-        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { replaceUrl: true })
+        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       }
     }
   }

@@ -7,7 +7,8 @@ const routes: Routes = [
   { 
     path: '', 
     pathMatch: 'full', 
-    redirectTo: '/order-intake' 
+    redirectTo: 'order-intake',
+    
   },
   {
     path: 'miami-access',

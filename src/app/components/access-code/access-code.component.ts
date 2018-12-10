@@ -56,6 +56,7 @@ export class AccessCodeComponent implements OnInit {
     if (code == 'TheSexiestReport') {
       setTimeout(() => {
         this.data.accessGranted = true
+        localStorage.setItem('accessGranted', 'yes')
         this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       }, 500)
     }
@@ -69,6 +70,7 @@ export class AccessCodeComponent implements OnInit {
     }).subscribe((res: any) => {
       if (res.success) {
         this.granted = true
+        localStorage.setItem('accessGranted', 'yes')
       } else {
         this.granted = false
         this.snack.open('An error ocurred.', 'OK')

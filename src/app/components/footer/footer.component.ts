@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.lighter]': 'loading',
-    '(click)': 'goHelp()'
+    '[class.lighter]': 'loading'
   }
 })
 export class FooterComponent implements OnInit {

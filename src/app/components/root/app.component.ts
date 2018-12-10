@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
     private http: HttpClient,
     private ac: ActivatedRoute
   ) {
-    console.log('AMVARA',this.ac.root)
     if (this.config.config.simulateUnauthorized > 0) {
       timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false)
     }

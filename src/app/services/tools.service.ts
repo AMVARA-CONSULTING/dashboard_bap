@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class ToolsService {
@@ -15,6 +16,31 @@ export class ToolsService {
       result[item[0]] = decodeURIComponent(item[1])
     });
     return result
+  }
+
+  getPlanDate(text: string, moment, config: ConfigService, firstMonth?: boolean): string {
+    firstMonth = firstMonth || false
+    if (firstMonth) {
+      if (text.lastIndexOf('.') > -1) {
+        return moment(text, 'MM.DD.YYYY').format('DD/MM/YYYY')
+      } else if (text.indexOf('/') > -1){
+        return moment(text, 'MM/DD/YYYY').format('DD/MM/YYYY')
+      } else if (text.indexOf('-') > -1){
+        return moment(text, 'YYYY-MM-DD').format('DD/MM/YYYY')
+      } else {
+        return moment(text, 'MMM DD, YYYY').format('DD/MM/YYYY')
+      }
+    } else {
+      if (text.lastIndexOf('.') > -1) {
+        return moment(text, 'DD.MM.YYYY').format('DD/MM/YYYY')
+      } else if (text.indexOf('/') > -1){
+        return moment(text, 'DD/MM/YYYY').format('DD/MM/YYYY')
+      } else if (text.indexOf('-') > -1){
+        return moment(text, 'YYYY-MM-DD').format('DD/MM/YYYY')
+      } else {
+        return moment(text, 'MMM DD, YYYY').format('DD/MM/YYYY')
+      }
+    }
   }
 
   // Get current year

@@ -20,7 +20,7 @@
       <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
         toNumber }}</div>
       <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) |
-        toNumber }}</div>
+        toNumber:true }}</div>
     </div>
   </div>
 </div>
@@ -73,7 +73,7 @@
     <div class="previous">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plantStock.previous) |
       toNumber }}</div>
     <div class="delta">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plantStock.delta) |
-      toNumber }}</div>
+      toNumber:true }}</div>
   </div>
   <div class="group-header">PRODUCTS</div>
   <div class="row" *ngFor="let product of products | keyvalue">
@@ -84,6 +84,6 @@
     <div class="previous">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plantStock.previous) |
       toNumber }}</div>
     <div class="delta">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plantStock.delta) |
-      toNumber }}</div>
+      toNumber:true }}</div>
   </div>
 </div>

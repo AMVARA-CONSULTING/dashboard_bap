@@ -1,12 +1,15 @@
 {
-	"version": "2.19.0",
+	"version": "2.22.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
 	"target": "trucks",
-	"delay": 1000,
+	"delay": 0,
 	"copyright": "DAIMLER",
-	"license": "TE/SO",
+	"license": {
+		"trucks": "TE/SO",
+		"vans": "VAN/VSO"
+	},
 	"languageCodes": {
 		"en": "English",
 		"de": "Deutsch"
@@ -54,14 +57,16 @@
 	"reports": {
 		"vans": {
 			"dev": {
-				"allocation": "x",
-				"stock": "x",
-				"planning": "x"
+				"orderIntake": "i69C423E3AC364872BE300BA0F509BA2B",
+				"allocation": "i3735A9BA1184494984C8A1EAF6065A5F",
+				"plantStock": "i451877E0BD424B47931B6DBE97B24B20",
+				"productionProgram": "i3D66E69BC5714D1989D7E9DF82A4E735"
 			},
 			"prod": {
-				"allocation": "x",
-				"stock": "x",
-				"planning": "x"
+				"orderIntake": "i5F21FA7DBAF64A539EDBDEC44E297D23",
+				"allocation": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
+				"plantStock": "i2EAF00D6E22B4519A494072EB13916BC",
+				"productionProgram": "i5A7CE73C7BFC4115A641B5564E39DD66"
 			}
 		},
 		"trucks": {
@@ -183,6 +188,27 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.22.0",
+			"text": [
+				"Fix missing signs in Plant Stock",
+				"Fix reports distances in About",
+				"Fix different plandates",
+				"Change plandate titles"
+			]
+		},
+		{
+			"version": "2.21.0",
+			"text": [
+				"Dynamic plandate detection"
+			]
+		},
+		{
+			"version": "2.20.0",
+			"text": [
+				"Fix footer links"
+			]
+		},
 		{
 			"version": "2.19.0",
 			"text": [

@@ -1,5 +1,5 @@
 {
-	"version": "2.19.0",
+	"version": "2.22.0",
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -164,6 +164,18 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.21.0",
+			"text": [
+				"Dynamic plandate detection"
+			]
+		},
+		{
+			"version": "2.20.0",
+			"text": [
+				"Fix footer links"
+			]
+		},
 		{
 			"version": "2.19.0",
 			"text": [

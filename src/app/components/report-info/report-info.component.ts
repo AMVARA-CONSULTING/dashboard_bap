@@ -56,7 +56,7 @@ export class ReportInfoComponent implements OnInit, OnChanges {
         break
       case "i5F3D9FCAF8054F5790152C1251DE3552":
       case "iE45E9B03BFD149A7AA969EB1666FE431":
-        this.name = 'Planning_Truck_new'
+        this.name = 'Planning_Truck'
         break
       case "i464B15BB96434390A9D6C35C67886434":
       case "i13B57CE92EDD481E97F423F04E86DD35":

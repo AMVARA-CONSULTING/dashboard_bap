@@ -1,5 +1,5 @@
 {
-	"version": "2.22.0",
+	"version": "2.23.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -77,7 +77,7 @@
 				"productionProgram": "i5F3D9FCAF8054F5790152C1251DE3552"
 			},
 			"prod": {
-				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
+				"orderIntake": "i8FE1CDBDAB774436822C5C5B34F35B20",
 				"allocation": "i13B57CE92EDD481E97F423F04E86DD35",
 				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
 				"productionProgram": "iE45E9B03BFD149A7AA969EB1666FE431"
@@ -188,6 +188,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.23.0",
+			"text": [
+				"Fix report names in production"
+			]
+		},
 		{
 			"version": "2.22.0",
 			"text": [

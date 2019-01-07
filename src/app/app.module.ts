@@ -63,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { AuthInterceptor } from '@services/http-interceptor';
+import { APP_BASE_HREF } from '@angular/common';
 
 declare var Hammer: any;
 
@@ -159,6 +160,10 @@ export class MyHammerConfig extends HammerGestureConfig {
       useClass: AuthInterceptor,
       deps: [ConfigService, ApiService],
       multi: true
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
     }
   ],
   bootstrap: [AppComponent]

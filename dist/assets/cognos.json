@@ -1,5 +1,5 @@
 {
-	"version": "2.22.0",
+	"version": "2.23.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -188,6 +188,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.23.0",
+			"text": [
+				"Fix report names in production"
+			]
+		},
 		{
 			"version": "2.22.0",
 			"text": [

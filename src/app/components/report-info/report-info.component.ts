@@ -51,15 +51,19 @@ export class ReportInfoComponent implements OnInit, OnChanges {
     this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm')
     switch (this.id) {
       case "i163A764B930D4E748310CF5053D29578":
+      case "iCC8FBA845B4F4DD29EA456169E5D7FAD":
         this.name = 'MobileCockpit_V2_14.3_dev'
         break
       case "i5F3D9FCAF8054F5790152C1251DE3552":
+      case "iE45E9B03BFD149A7AA969EB1666FE431":
         this.name = 'Planning_Truck_new'
         break
       case "i464B15BB96434390A9D6C35C67886434":
+      case "i13B57CE92EDD481E97F423F04E86DD35":
         this.name = 'Allocation_Truck'
         break
       case "i63BB42DBA849409A9E68354C67DF4AE7":
+      case "iDDEA70370FFF48208E4E541101AF961A":
         this.name = 'Plant_Stock_Truck'
         break
       default:

@@ -27,19 +27,19 @@ export class AccessCodeComponent implements OnInit {
     const grantedDomains = ['ibiss-analytics-int.es.corpintra.net', 'ibiss-analytics.es.corpintra.net']
     if (grantedDomains.indexOf(location.hostname) > -1) {
       this.data.accessGranted = true
-      this.router.navigate(['/'])
+      this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       return
     }
     if (!environment.production) {
       this.data.accessGranted = true
-      this.router.navigate(['/'])
+      this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       return
     }
     this.ac.queryParamMap.subscribe(params => {
       let bypass = params.get('bypass')
       if (bypass != null) {
         this.data.accessGranted = true
-        this.router.navigate(['/'])
+        this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       }
     })
     this.rForm = fb.group({
@@ -56,7 +56,8 @@ export class AccessCodeComponent implements OnInit {
     if (code == 'TheSexiestReport') {
       setTimeout(() => {
         this.data.accessGranted = true
-        this.router.navigate(['/'])
+        localStorage.setItem('accessGranted', 'yes')
+        this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       }, 500)
     }
   }
@@ -69,6 +70,7 @@ export class AccessCodeComponent implements OnInit {
     }).subscribe((res: any) => {
       if (res.success) {
         this.granted = true
+        localStorage.setItem('accessGranted', 'yes')
       } else {
         this.granted = false
         this.snack.open('An error ocurred.', 'OK')

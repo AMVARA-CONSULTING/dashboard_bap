@@ -21,7 +21,7 @@ export class HelpComponent implements OnInit {
     public data: DataService
   ) {
     data.currentLevel = 1
-    this.contacts = config.config.contacts
+    this.contacts = config.config.contacts[this.config.config.target]
   }
 
   ngOnInit() {

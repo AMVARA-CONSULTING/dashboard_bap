@@ -3,7 +3,7 @@ import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
 import { LocationStrategy } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { timer, interval } from 'rxjs';
 import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
     private _location: LocationStrategy,
     private router: Router,
     private api: ApiService,
-    private http: HttpClient
+    private http: HttpClient,
+    private ac: ActivatedRoute
   ) {
     if (this.config.config.simulateUnauthorized > 0) {
       timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false)
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
     }
     this._location.onPopState(() => {
       if (this.data.currentLevel == 1 && this.data.title != 'order_intake') {
-        this.router.navigate(['order-intake'], { replaceUrl: true })
+        this.router.navigate(['order-intake'], { replaceUrl: true, queryParamsHandling: 'merge' })
       }
       //history.go(1)
     })

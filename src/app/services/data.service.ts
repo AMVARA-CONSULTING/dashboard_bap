@@ -15,7 +15,7 @@ export class DataService {
   ) { }
   
   go(page): void {
-    this.router.navigate(['/'+page])
+    this.router.navigate(['/'+page], { queryParamsHandling: 'merge' })
   }
 
   init() {

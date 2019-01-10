@@ -8,6 +8,7 @@ import { trigger, state, style, transition, animate, query, stagger } from '@ang
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import * as moment from 'moment'
+import { ToolsService } from '@services/tools.service';
 
 @Component({
   selector: 'production-program-main',
@@ -45,7 +46,8 @@ export class ProductionProgramMainComponent implements OnInit {
     private config: ConfigService,
     private router: Router,
     private title: Title,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tools: ToolsService
   ) {
     title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
@@ -61,13 +63,13 @@ export class ProductionProgramMainComponent implements OnInit {
       // If no Production rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(res => {
-          this.plandate = moment(res.data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.plandate = this.tools.getPlanDate(res.data[0][14], moment, this.config)
           this.data.productionProgramData = res.data
           this.rollupData()
           this.loader.loading$.next(false)
         })
       } else {
-        this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
         this.rollupData()
         this.loader.loading$.next(false)
       }
@@ -87,12 +89,6 @@ export class ProductionProgramMainComponent implements OnInit {
     localStorage.setItem('production-year', year)
     this.loader.loading$.next(true)
     this.router.navigate(['production-program', year], { replaceUrl: true })
-    /*
-    this.data.selectYear(year, years).then(year => {
-      localStorage.setItem('production-year', year)
-      this.loader.loading$.next(true)
-      this.router.navigate(['production-program', year])
-    }).catch(err => console.log(err))*/
   }
 
   rowsGroupsGlobal: any

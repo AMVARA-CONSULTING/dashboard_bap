@@ -6,6 +6,7 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment'
+import { ToolsService } from '@services/tools.service';
 
 @Component({
   selector: 'production-program-lvl3',
@@ -35,7 +36,8 @@ export class ProductionProgramLvl3Component implements OnInit {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private tools: ToolsService
   ) {
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
@@ -61,7 +63,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(res => {
-          this.plandate = moment(res.data[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.plandate = this.tools.getPlanDate(res.data[0][14], moment, this.config)
           this.data.productionProgramData = res.data
           this.productionProgramData = res.data.filter(dat => dat[13] == this.year)
           if (this.ZoneID != null) {
@@ -89,7 +91,7 @@ export class ProductionProgramLvl3Component implements OnInit {
           this.loader.loading$.next(false)
         })
       } else {
-        this.plandate = moment(this.data.productionProgramData[0][14], 'DD.MM.YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
         this.productionProgramData = this.data.productionProgramData.filter(dat => dat[13] == this.year)
         if (this.ZoneID != null) {
           if (this.RegionID != null) {

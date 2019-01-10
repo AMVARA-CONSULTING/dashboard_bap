@@ -67,13 +67,13 @@ export class AllocationLvl2Component implements OnInit {
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation).subscribe(res => {
-          this.plandate = moment(res.data[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.plandate = this.tools.getPlanDate(res.data[0][18], moment, this.config)
           this.data.allocationData = res.data
           this.rollupData()
           this.loader.loading$.next(false)
         })
       } else {
-        this.plandate = moment(this.data.allocationData[0][18], 'MMM DD, YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = this.tools.getPlanDate(this.data.allocationData[0][18], moment, this.config)
         this.rollupData()
         this.loader.loading$.next(false)
       }

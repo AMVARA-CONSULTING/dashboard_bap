@@ -6,6 +6,7 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
+import { ToolsService } from '@services/tools.service';
 
 @Component({
   selector: 'order-intake-sub-lvl2',
@@ -32,7 +33,8 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private tools: ToolsService
   ) {
     title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
@@ -46,7 +48,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length == 0) {
         this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
-          this.plandate = moment(res.data[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+          this.plandate = this.tools.getPlanDate(res.data[0][11], moment, this.config, true)
           this.data.orderIntakeData = res.data
           try {
             this.rollupData()
@@ -56,7 +58,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
           this.loader.loading$.next(false)
         })
       } else {
-        this.plandate = moment(data.orderIntakeData[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true)
         try {
           this.rollupData()
         } catch (err) {

@@ -1,12 +1,15 @@
 {
-	"version": "2.19.0",
+	"version": "2.23.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
 	"target": "trucks",
-	"delay": 1000,
+	"delay": 0,
 	"copyright": "DAIMLER",
-	"license": "TE/SO",
+	"license": {
+		"trucks": "TE/SO",
+		"vans": "VAN/VSO"
+	},
 	"languageCodes": {
 		"en": "English",
 		"de": "Deutsch"
@@ -15,34 +18,55 @@
 	"simulateUnauthorized": true,
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
-	"contacts": [
-		{
-			"name": "Steffen Schweiger",
-			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 7271 71 2184"
-		},
-		{
-			"name": "Kai Blattmann",
-			"description": "Berichtswesen Ordercenter",
-			"telephone": "+49 7271 71 5435"
-		},
-		{
-			"name": "Peter Hess",
-			"description": "IT",
-			"telephone": "+49 160 864 7725"
-		}
-	],
+	"contacts": {
+		"trucks": [
+			{
+				"name": "Steffen Schweiger",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 2184"
+			},
+			{
+				"name": "Kai Blattmann",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 7271 71 5435"
+			},
+			{
+				"name": "Peter Hess",
+				"description": "IT",
+				"telephone": "+49 160 864 7725"
+			}
+		],
+		"vans": [
+			{
+				"name": "Tim Valentin",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 211 953 4861"
+			},
+			{
+				"name": "Alexander Hörz",
+				"description": "Berichtswesen Ordercenter",
+				"telephone": "+49 211 953 3559"
+			},
+			{
+				"name": "Peter Hess",
+				"description": "IT",
+				"telephone": "+49 160 864 7725"
+			}
+		]
+	},
 	"reports": {
 		"vans": {
 			"dev": {
-				"allocation": "x",
-				"stock": "x",
-				"planning": "x"
+				"orderIntake": "i69C423E3AC364872BE300BA0F509BA2B",
+				"allocation": "i3735A9BA1184494984C8A1EAF6065A5F",
+				"plantStock": "i451877E0BD424B47931B6DBE97B24B20",
+				"productionProgram": "i3D66E69BC5714D1989D7E9DF82A4E735"
 			},
 			"prod": {
-				"allocation": "x",
-				"stock": "x",
-				"planning": "x"
+				"orderIntake": "i5F21FA7DBAF64A539EDBDEC44E297D23",
+				"allocation": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
+				"plantStock": "i2EAF00D6E22B4519A494072EB13916BC",
+				"productionProgram": "i5A7CE73C7BFC4115A641B5564E39DD66"
 			}
 		},
 		"trucks": {
@@ -54,9 +78,9 @@
 			},
 			"prod": {
 				"orderIntake": "i163A764B930D4E748310CF5053D29578",
-				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
+				"allocation": "i13B57CE92EDD481E97F423F04E86DD35",
 				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
-				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787"
+				"productionProgram": "iE45E9B03BFD149A7AA969EB1666FE431"
 			},
 			"columns": {
 				"orderIntake": {
@@ -164,6 +188,33 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.23.0",
+			"text": [
+				"Fix report names in production"
+			]
+		},
+		{
+			"version": "2.22.0",
+			"text": [
+				"Fix missing signs in Plant Stock",
+				"Fix reports distances in About",
+				"Fix different plandates",
+				"Change plandate titles"
+			]
+		},
+		{
+			"version": "2.21.0",
+			"text": [
+				"Dynamic plandate detection"
+			]
+		},
+		{
+			"version": "2.20.0",
+			"text": [
+				"Fix footer links"
+			]
+		},
 		{
 			"version": "2.19.0",
 			"text": [

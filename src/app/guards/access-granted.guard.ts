@@ -11,7 +11,7 @@ export class AccessGranted implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    if (location.href.indexOf('bypass') > -1 || location.hostname.indexOf('corpintra.net') > -1) {
+    if (location.href.indexOf('bypass') > -1 || location.hostname.indexOf('corpintra.net') > -1 || location.hostname.indexOf('localhost') > -1 || localStorage.getItem('accessGranted') === 'yes') {
       this.data.accessGranted = true
       return true
     }

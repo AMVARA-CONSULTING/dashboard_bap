@@ -20,7 +20,7 @@
       <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
         toNumber }}</div>
       <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) |
-        toNumber }}</div>
+        toNumber:true }}</div>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
     <div class="werk">TOTAL</div>
     <div class="actual">{{ totalActual | toNumber }}</div>
     <div class="previous">{{ totalPrevious | toNumber }}</div>
-    <div class="delta">{{ totalDelta | toNumber }}</div>
+    <div class="delta">{{ totalDelta | toNumber:true }}</div>
   </div>
   <div class="row" (click)="goWerk(werk.key)" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
     <div class="werk">{{
@@ -52,7 +52,7 @@
       toNumber }}</div>
     <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
       toNumber }}</div>
-    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber
+    <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) | toNumber:true
       }}</div>
   </div>
 </div>

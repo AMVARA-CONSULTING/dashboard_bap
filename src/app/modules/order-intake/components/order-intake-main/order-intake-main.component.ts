@@ -7,6 +7,7 @@ import { trigger, transition, style, animate, query, stagger, state } from '@ang
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
+import { ToolsService } from '@services/tools.service';
 
 @Component({
   selector: 'order-intake-main',
@@ -42,7 +43,8 @@ export class OrderIntakeMainComponent implements OnInit {
     private loader: LoadingService,
     private config: ConfigService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private tools: ToolsService
   ) {
     this.title.setTitle(this.config.config.appTitle + ' - Order Intake')
   }
@@ -56,14 +58,14 @@ export class OrderIntakeMainComponent implements OnInit {
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length == 0) {
       this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
-        this.plandate = moment(res.data[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+        this.plandate = this.tools.getPlanDate(res.data[0][11], moment, this.config, true)
         this.data.orderIntakeData = res.data;
         (window as any).orderIntake = res.data
         this.rollupData()
         this.loader.loading$.next(false)
       })
     } else {
-      this.plandate = moment(this.data.orderIntakeData[0][11], 'MM/DD/YYYY').format(this.config.config.language == 'en' ? 'DD/MM/YYYY' : 'DD.MM.YYYY')
+      this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true)
       this.rollupData()
       this.loader.loading$.next(false)
     }
@@ -98,7 +100,7 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'zone',
       key: ZoneID
     }
-    this.router.navigate(['order-intake','zone', ZoneID], { replaceUrl: true })
+    this.router.navigate(['order-intake','zone', ZoneID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   /** Go to /order-intake/plant/:id
@@ -109,15 +111,15 @@ export class OrderIntakeMainComponent implements OnInit {
       type: 'plant',
       key: PlantID
     }
-    this.router.navigate(['order-intake', 'plant', PlantID], { replaceUrl: true })
+    this.router.navigate(['order-intake', 'plant', PlantID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   recoverLvl2(): void {
     if (this.data.lastTap != null) {
       if (this.data.lastTap.type == 'plant') {
-        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { replaceUrl: true })
+        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       } else {
-        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { replaceUrl: true })
+        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       }
     }
   }

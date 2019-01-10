@@ -1,18 +1,12 @@
 <div class="title">{{ title | uppercase }}</div>
 <div class="container">
   <div class="name">
-    <div class="prop">ReportName:</div>
-    <div class="value">{{ name }}</div>
+    <span class="prop">ReportName:</span> <span class="val">{{ name }}</span>
   </div>
   <div class="id">
-    <div class="prop">ID:</div>
-    <div class="value">{{ id }}</div>
+    <span class="prop">ID:</span> <span class="val">{{ id }}</span>
   </div>
   <div class="date">
-    <div class="prop">Date:</div>
-    <div class="value">
-      <span>{{ date }}</span>
-      <span>{{ hour }}</span>
-    </div>
+    <span class="prop">Date:</span> <span class="val">{{ date }} {{ hour }}</span>
   </div>
 </div>

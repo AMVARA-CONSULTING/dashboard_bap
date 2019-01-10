@@ -1,3 +1,2 @@
-<div class="left">{{ config.config.copyright }} • {{ config.config.license }}</div>
-<div class="right">
-    <!--<span class="connection" [ngClass]="{'connected': data.online}">{{ data.online ? ('connected' | translate) : ('not_connected' | translate) }}</span>-->v{{ config.config.version }} • {{ config.config.language | uppercase }}</div>
+<div class="left" routerLink="/help">{{ config.config.copyright }} • {{ config.config.license[config.config.target] }}</div>
+<div class="right" routerLink="/about">v{{ config.config.version }} • {{ config.config.language | uppercase }}</div>

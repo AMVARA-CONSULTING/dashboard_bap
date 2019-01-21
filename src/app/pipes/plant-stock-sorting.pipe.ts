@@ -9,6 +9,7 @@ export class PlantStockSortingPipe implements PipeTransform {
   @memo((...args: any[]): string => JSON.stringify(args)) // Pipe cache
   transform(values: any[]): any[] {
     if (!values) return []
+    if (values.length < 3) return values
     const a = values[1]
     const b = values[2]
     const c = values[0]

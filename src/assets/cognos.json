@@ -189,6 +189,12 @@
 	},
 	"changelog": [
 		{
+			"version": "2.24.0",
+			"text": [
+				"Fix plant stock categories when there is less than 3 items"
+			]
+		},
+		{
 			"version": "2.23.0",
 			"text": [
 				"Fix report names in production"

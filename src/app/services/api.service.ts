@@ -122,7 +122,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/order_intake.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/order_intake.fake.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -204,7 +204,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/allocation.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/allocation.fake.json').subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
           observer.complete()
         })

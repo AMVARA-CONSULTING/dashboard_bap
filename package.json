@@ -2,14 +2,13 @@
   "name": "dip",
   "version": "2.18.0",
   "scripts": {
-    "preinstall": "npm install -g json",
     "ng": "ng",
     "start": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\" && ng build --prod --aot && json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\"",
-    "build-cognos": "json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.cognos.html'\" && ng build --prod --aot && cd dist && rename index.cognos.html index.html"
+    "build": "npx json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\" && npx ng build --prod --aot && npx json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\"",
+    "build-cognos": "npx json -I -f .\\angular.json -e \"this.projects.dip.architect.build.options.index='src/index.cognos.html'\" && npx ng build --prod --aot && cd dist && rename index.cognos.html index.html"
   },
   "private": true,
   "dependencies": {

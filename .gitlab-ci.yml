@@ -6,8 +6,6 @@ stages:
   - deploy
 
 deploy:
-  variables:
-    CI_DEBUG_TRACE: "true"
   stage: deploy
   script:
     - route=$(pwd)

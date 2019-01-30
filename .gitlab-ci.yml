@@ -11,4 +11,4 @@ deploy:
     - route=$(pwd)
     - npm install
     - npx ng build --prod --aot --build-optimizer --output-path=dist
-    - rsync -raz $route/dist root@cometa.amvara.de:/home/amvara/projects/dip-more/
+    - cp -rf ./dist/* /home/amvara/projects/dip-more/

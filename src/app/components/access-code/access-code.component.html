@@ -19,7 +19,7 @@
       <button class="access" [disabled]="!rForm.valid" mat-raised-button>Submit</button>
     </form>
   </ng-container>
-  <ng-container *ngIf="granted">
+  <ng-container *ngIf="granted | async">
     <div class="the-code">We have sent you an email with the access code, also review the spam folder.</div>
   </ng-container>
   <div (click)="stateRegister = false" class="hint">Return</div>

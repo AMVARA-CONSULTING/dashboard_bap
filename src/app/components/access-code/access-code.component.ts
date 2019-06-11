@@ -14,6 +14,9 @@ import { environment } from '../../../environments/environment';
 })
 export class AccessCodeComponent implements OnInit {
 
+  origin = ''
+  lang = ''
+
   rForm: FormGroup
 
   constructor(
@@ -36,13 +39,15 @@ export class AccessCodeComponent implements OnInit {
       return
     }
     this.ac.queryParamMap.subscribe(params => {
+      this.lang = params.get('lang')
+      this.origin = params.get('origin')
       let bypass = params.get('bypass')
       if (bypass != null) {
         this.data.accessGranted = true
         this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       }
     })
-    this.rForm = fb.group({
+    this.rForm = this.stateRegisterfb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'tel': ['', Validators.required]
@@ -66,7 +71,9 @@ export class AccessCodeComponent implements OnInit {
     this.http.post('/api/contact/', {
       name: values.name,
       email: values.email,
-      tel: values.tel
+      tel: values.tel,
+      origin: this.origin,
+      lang: this.lang
     }).subscribe((res: any) => {
       if (res.success) {
         this.granted = true

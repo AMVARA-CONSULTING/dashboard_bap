@@ -5,7 +5,7 @@
   <div (click)="stateRegister = true" class="hint">Get the Access Code</div>
 </ng-container>
 <ng-container *ngIf="stateRegister">
-  <ng-container *ngIf="!granted">
+  <ng-container *ngIf="!(granted | async)">
     <form [formGroup]="rForm" (ngSubmit)="submit(rForm.value)">
       <mat-form-field>
         <input formControlName="name" ngDefaultControl placeholder="Name" matInput />

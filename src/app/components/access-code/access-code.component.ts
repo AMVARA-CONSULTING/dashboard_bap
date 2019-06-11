@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'access-code',
@@ -75,11 +76,10 @@ export class AccessCodeComponent implements OnInit {
       origin: this.origin,
       lang: this.lang
     }).subscribe((res: any) => {
+      this.granted.next(res.success)
       if (res.success) {
-        this.granted = true
         localStorage.setItem('accessGranted', 'yes')
       } else {
-        this.granted = false
         this.snack.open('An error ocurred.', 'OK')
       }
     })
@@ -87,7 +87,7 @@ export class AccessCodeComponent implements OnInit {
 
   code: string = ''
 
-  granted: boolean = false
+  granted = new BehaviorSubject<boolean>(false)
 
   stateRegister: boolean = false
 

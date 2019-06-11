@@ -47,7 +47,7 @@ export class AccessCodeComponent implements OnInit {
         this.router.navigate(['/'], { queryParamsHandling: 'merge' })
       }
     })
-    this.rForm = this.stateRegisterfb.group({
+    this.rForm = this.fb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'tel': ['', Validators.required]

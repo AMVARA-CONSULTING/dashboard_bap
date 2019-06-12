@@ -6,15 +6,18 @@
 </ng-container>
 <ng-container *ngIf="stateRegister">
   <ng-container *ngIf="!(granted | async)">
-    <form [formGroup]="rForm" (ngSubmit)="submit(rForm.value)">
+    <h2>Please enter the information to obtain (or receive) the access code</h2>
+    <br />
+    <div>Required *</div>
+    <form [formGroup]="rForm" spellcheck="false" autocomplete="off" (ngSubmit)="submit(rForm.value)">
       <mat-form-field>
-        <input formControlName="name" ngDefaultControl placeholder="Name" matInput />
+        <input formControlName="name" ngDefaultControl placeholder="Name *" matInput />
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="email" type="email" ngDefaultControl placeholder="Email" matInput />
+        <input formControlName="email" type="email" ngDefaultControl placeholder="Email *" matInput />
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="tel" ngDefaultControl placeholder="Telephone" matInput />
+        <input onlyNumbers formControlName="tel" ngDefaultControl placeholder="Telephone *" matInput />
       </mat-form-field>
       <button class="access" [disabled]="!rForm.valid" mat-raised-button>Submit</button>
     </form>

@@ -64,6 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { AuthInterceptor } from '@services/http-interceptor';
 import { APP_BASE_HREF } from '@angular/common';
+import {  OnlyNumbers } from './directives/only-numbers.directive';
 
 declare var Hammer: any;
 
@@ -88,7 +89,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     FooterComponent,
     NewUpdateComponent,
     AccessCodeComponent,
-    CookiesExpiredComponent
+    CookiesExpiredComponent,
+    OnlyNumbers
   ],
   imports: [
     BrowserModule,

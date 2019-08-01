@@ -1,5 +1,5 @@
 {
-	"version": "2.24.0",
+	"version": "2.27.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -188,6 +188,18 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.27.0",
+			"text": [
+				"Fixed total numbers bug region owns multiple plants"
+			]
+		},
+		{
+			"version": "2.25.0",
+			"text": [
+				"Fix scrambling"
+			]
+		},
 		{
 			"version": "2.24.0",
 			"text": [

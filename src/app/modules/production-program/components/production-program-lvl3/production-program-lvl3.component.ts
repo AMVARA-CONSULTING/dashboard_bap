@@ -173,11 +173,18 @@ export class ProductionProgramLvl3Component implements OnInit {
       return r
     }, {})[rows[0][0]]
     // Getting rows only for the plant selected
+    // If type is plant group by plant sub id
+    let reducedIndexForZoneLevel = 3
+    let reducedSelector = rows[0][3]
+    if (this.type == 'zone') {
+      reducedIndexForZoneLevel = this.config.config.language == 'en' ? 10 : 9
+      reducedSelector = this.region_id
+    }
     let plantRows = this.productionProgramData.reduce((r, a) => {
-      r[a[3]] = r[a[3]] || []
-      r[a[3]].push(a)
+      r[a[reducedIndexForZoneLevel]] = r[a[reducedIndexForZoneLevel]] || []
+      r[a[reducedIndexForZoneLevel]].push(a)
       return r
-    }, {})[rows[0][3]]
+    }, {})[reducedSelector]
     // Collect data info for data headers
     this.groupInfo = {
       zone: this.ZoneID != null,

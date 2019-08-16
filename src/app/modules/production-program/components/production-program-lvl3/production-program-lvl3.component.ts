@@ -233,17 +233,17 @@ export class ProductionProgramLvl3Component implements OnInit {
     this.groupInfo.progress3Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 17) : this.data.sumByIndex(this.groupInfo.regionsPlain, 17)
     this.groupInfo.progress4Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 22) : this.data.sumByIndex(this.groupInfo.regionsPlain, 22)
     this.groupInfo.progress1 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.plantCustomer) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.groupInfo.plantCustomer)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.groupInfo.zoneCustomer) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.groupInfo.zoneCustomer)
     this.groupInfo.progress2 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.groupInfo.plantPlan) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.groupInfo.plantPlan)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.groupInfo.zonePlan) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.groupInfo.zonePlan)
     this.groupInfo.progress3 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.groupInfo.plantTotal) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.groupInfo.plantTotal)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.groupInfo.zoneTotal) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.groupInfo.zoneTotal)
     this.groupInfo.progress4 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.groupInfo.plantReserve) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.groupInfo.plantReserve)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.groupInfo.zoneReserve) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.groupInfo.zoneReserve)
     this.groupInfo = Object.assign({}, this.groupInfo)
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)

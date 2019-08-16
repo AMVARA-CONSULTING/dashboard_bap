@@ -2,10 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.17.0
-
-- Fixed percentage value showing 100% in LVL 3 when it should not
-
 ## 2.16.0
 
 - Graphical improvements

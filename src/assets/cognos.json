@@ -189,6 +189,12 @@
 	},
 	"changelog": [
 		{
+			"version": "2.28.0",
+			"text": [
+				"Fixed percentage value showing 100% in LVL 3 when it should not"
+			]
+		},
+		{
 			"version": "2.27.0",
 			"text": [
 				"Fixed total numbers bug region owns multiple plants"

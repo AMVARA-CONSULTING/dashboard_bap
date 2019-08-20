@@ -70,17 +70,17 @@
 			}
 		},
 		"trucks": {
-			"dev": {
+		    "dev": {
 				"orderIntake": "i163A764B930D4E748310CF5053D29578",
-				"allocation": "i464B15BB96434390A9D6C35C67886434",
+				"allocation": "iE4370500092E48F8950BA176D318D153",
 				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"productionProgram": "i5F3D9FCAF8054F5790152C1251DE3552"
+				"productionProgram": "i5565E38F8A3B4B41920FC7D33D54C333"
 			},
 			"prod": {
 				"orderIntake": "i8FE1CDBDAB774436822C5C5B34F35B20",
-				"allocation": "i13B57CE92EDD481E97F423F04E86DD35",
+				"allocation": "iADCD47BE42994DF392219CDDBB86186D",
 				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
-				"productionProgram": "iE45E9B03BFD149A7AA969EB1666FE431"
+				"productionProgram": "iF5C9F3DECFFF4D22A80F0CCAC716AA0D"
 			},
 			"columns": {
 				"orderIntake": {

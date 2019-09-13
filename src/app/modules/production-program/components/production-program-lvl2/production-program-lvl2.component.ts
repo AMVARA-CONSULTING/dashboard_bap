@@ -36,6 +36,7 @@ export class ProductionProgramLvl2Component implements OnInit {
     private title: Title,
     private tools: ToolsService
   ) {
+    (window as any).pp2 = this;
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
     this.loader.loading$.next(true)

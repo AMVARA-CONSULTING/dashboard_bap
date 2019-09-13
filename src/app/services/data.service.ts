@@ -12,7 +12,9 @@ export class DataService {
     private connection: ConnectionService,
     private router: Router,
     private ac: ActivatedRoute
-  ) { }
+  ) { 
+    (window as any).data = this;
+  }
   
   go(page): void {
     this.router.navigate(['/'+page], { queryParamsHandling: 'merge' })

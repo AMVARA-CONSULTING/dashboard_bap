@@ -38,6 +38,7 @@ export class PlantStockLvl3Component implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
+    (window as any).ps3 = this;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.loader.loading$.next(true)

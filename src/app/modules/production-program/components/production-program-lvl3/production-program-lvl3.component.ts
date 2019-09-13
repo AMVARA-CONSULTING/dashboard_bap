@@ -39,6 +39,7 @@ export class ProductionProgramLvl3Component implements OnInit {
     private title: Title,
     private tools: ToolsService
   ) {
+    (window as any).pp3 = this;
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
     this.loader.loading$.next(true)
@@ -180,7 +181,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       reducedIndexForZoneLevel = this.config.config.language == 'en' ? 10 : 9
       reducedSelector = this.region_id
     }
-    let plantRows = this.productionProgramData.reduce((r, a) => {
+    let plantRows = rows.reduce((r, a) => {
       r[a[reducedIndexForZoneLevel]] = r[a[reducedIndexForZoneLevel]] || []
       r[a[reducedIndexForZoneLevel]].push(a)
       return r

@@ -24,7 +24,9 @@ export class GraphicComponent implements OnInit {
     private config: ConfigService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    (window as any).pp_graphic = this;
+  }
 
   ready: boolean = false
 

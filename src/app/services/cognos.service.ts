@@ -8,7 +8,9 @@ export class CognosService {
   constructor(
     private http: HttpClient,
     private tools: ToolsService
-  ) { }
+  ) {
+    (window as any).cognos = this;
+  }
 
   getCookie(name) {
     const value = "; " + document.cookie

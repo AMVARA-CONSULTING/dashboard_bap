@@ -36,6 +36,7 @@ export class OrderIntakeSubLvl2Component implements OnInit {
     private title: Title,
     private tools: ToolsService
   ) {
+    (window as any).oi2 = this;
     title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
     this.loader.loading$.next(true)

@@ -27,6 +27,7 @@ export class GraphicComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     public data: DataService
   ) {
+    (window as any).ps_graphic = this;
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
     })

@@ -22,7 +22,7 @@ export class OrderIntakeWrapperComponent implements OnInit {
   ngOnInit() {
   }
 
-  @ViewChild('o') outlet: RouterOutlet
+  @ViewChild('o', { static: true }) outlet: RouterOutlet
 
   getLevel() {
     this.data.currentLevel = +this.outlet.activatedRouteData['level']

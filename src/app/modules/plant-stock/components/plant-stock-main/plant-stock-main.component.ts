@@ -45,6 +45,7 @@ export class PlantStockMainComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
+    (window as any).ps1 = this;
     (window as any).router = router;
     (window as any).moment = moment
     moment.locale(this.config.config.language)

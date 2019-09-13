@@ -24,7 +24,9 @@ export class GraphicComponent implements OnInit, OnChanges {
     private config: ConfigService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    (window as any).oi_graphic = this;
+  }
 
   ready: boolean = false
 

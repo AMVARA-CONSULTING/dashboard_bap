@@ -4,7 +4,9 @@ import { ConfigService } from './config.service';
 @Injectable()
 export class ToolsService {
 
-  constructor() { }
+  constructor() {
+    (window as any).tools = this;
+  }
 
   xsrf_token
 
@@ -27,8 +29,10 @@ export class ToolsService {
         return moment(text, 'MM/DD/YYYY').format('DD/MM/YYYY')
       } else if (text.indexOf('-') > -1){
         return moment(text, 'YYYY-MM-DD').format('DD/MM/YYYY')
-      } else {
+      } else if (text.indexOf(',') > -1) {
         return moment(text, 'MMM DD, YYYY').format('DD/MM/YYYY')
+      } else {
+        return moment(text, 'YYYYMMDD').format('DD/MM/YYYY')
       }
     } else {
       if (text.lastIndexOf('.') > -1) {
@@ -37,8 +41,10 @@ export class ToolsService {
         return moment(text, 'DD/MM/YYYY').format('DD/MM/YYYY')
       } else if (text.indexOf('-') > -1){
         return moment(text, 'YYYY-MM-DD').format('DD/MM/YYYY')
-      } else {
+      } else if (text.indexOf(',') > -1) {
         return moment(text, 'MMM DD, YYYY').format('DD/MM/YYYY')
+      } else {
+        return moment(text, 'YYYYMMDD').format('DD/MM/YYYY')
       }
     }
   }

@@ -9,7 +9,9 @@ export class ConfigService {
   constructor(
     private http: HttpClient,
     private tools: ToolsService
-  ) { }
+  ) {
+    (window as any).config = this;
+  }
 
   config: Config
 

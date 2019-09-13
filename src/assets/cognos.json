@@ -1,5 +1,5 @@
 {
-	"version": "2.27.0",
+	"version": "2.29.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -188,6 +188,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.29.0",
+			"text": [
+				"#1928 - Fix total numbers on production program LVL 3"
+			]
+		},
 		{
 			"version": "2.28.0",
 			"text": [

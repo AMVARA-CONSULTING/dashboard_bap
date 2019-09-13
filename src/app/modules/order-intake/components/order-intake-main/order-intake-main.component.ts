@@ -46,6 +46,7 @@ export class OrderIntakeMainComponent implements OnInit {
     private title: Title,
     private tools: ToolsService
   ) {
+    (window as any).oi1 = this;
     this.title.setTitle(this.config.config.appTitle + ' - Order Intake')
   }
 

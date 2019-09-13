@@ -54,6 +54,7 @@ export class AllocationMainComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
+    (window as any).a1 = this;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(this.config.config.appTitle + ' - Allocation')

@@ -20,6 +20,7 @@ export class ApiService {
     private dialog: MatDialog,
     private tools: ToolsService
   ) {
+    (window as any).api = this;
     this.corpintra = location.hostname.indexOf('corpintra.net') > -1
     if (!this.corpintra) {
       const datum = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')

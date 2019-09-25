@@ -1,5 +1,5 @@
 {
-	"version": "2.29.0",
+	"version": "2.30.0",
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -188,6 +188,20 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.30.0",
+			"text": [
+				"#1958 - Save current first level dropdown selection into localStorage",
+				"#1958 - Code cleanup",
+				"#1958 - Upgraded Angular to 8.2.7 and all packages",
+				"#1958 - Implemented differential polyfill loading",
+				"#1958 - Automatic version control showing at about page",
+				"#1958 - Remove old or unused files, packages and code",
+				"#1958 - Moved all non-main files to assets folder, living the root only for Angular files",
+				"#1958 - Code splitting in submodules done right",
+				"#1958 - Preload all submodules on page load asyncronously"
+			]
+		},
 		{
 			"version": "2.29.0",
 			"text": [

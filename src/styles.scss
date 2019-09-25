@@ -6,12 +6,12 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(/assets/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: url(^assets/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
     src: local('Material Icons'),
         local('MaterialIcons-Regular'),
-        url(/assets/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-        url(/assets/iconfont/MaterialIcons-Regular.woff) format('woff'),
-        url(/assets/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+        url(^assets/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+        url(^assets/iconfont/MaterialIcons-Regular.woff) format('woff'),
+        url(^assets/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
@@ -34,12 +34,12 @@
 
 @font-face {
     font-family: CorpoS;
-    src: url(assets/c063003t.ttf) format('truetype');
+    src: url(^assets/c063003t.ttf) format('truetype');
 }
 
 @font-face {
     font-family: CorpoSDem;
-    src: url(assets/c063004t.ttf) format('truetype');
+    src: url(^assets/c063004t.ttf) format('truetype');
 }
 
 * {
@@ -73,7 +73,7 @@ html {
 html, body {
     color: $semi-white;
     background-color: $main-bg-body-color;
-    background-image: url(assets/neurons.jpg);
+    background-image: url(^assets/neurons.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

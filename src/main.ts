@@ -6,7 +6,7 @@ import { environment } from './environments/environment';
 
 import 'hammerjs';
 import 'hammer-timejs';
-import './parsers.js';
+//import './parsers.js';
 
 if (environment.production) {
   enableProdMode();

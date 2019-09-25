@@ -112,18 +112,12 @@ export class ProductionProgramLvl3Component implements OnInit {
           }
         }
         // Transform numeric values to real numeric values, also checking NaN or null
-        this.productionProgramData.forEach((row, index, rows) => {
-          rows[index][15] = isNaN(rows[index][15]) ? 0 : parseFloat(rows[index][15])
-          rows[index][16] = isNaN(rows[index][16]) ? 0 : parseFloat(rows[index][16])
-          rows[index][17] = isNaN(rows[index][17]) ? 0 : parseFloat(rows[index][17])
-          rows[index][18] = isNaN(rows[index][18]) ? 0 : parseFloat(rows[index][18])
-          rows[index][19] = isNaN(rows[index][19]) ? 0 : parseFloat(rows[index][19])
-          rows[index][20] = isNaN(rows[index][20]) ? 0 : parseFloat(rows[index][20])
-          rows[index][21] = isNaN(rows[index][21]) ? 0 : parseFloat(rows[index][21])
-          rows[index][22] = isNaN(rows[index][22]) ? 0 : parseFloat(rows[index][22])
-          rows[index][23] = isNaN(rows[index][23]) ? 0 : parseFloat(rows[index][23])
-          rows[index][24] = isNaN(rows[index][24]) ? 0 : parseFloat(rows[index][24])
-        })
+        // DEPRECATED
+        /* this.productionProgramData.forEach((row, index, rows) => {
+          this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber.forEach(i => {
+            rows[index][i] = isNaN(rows[index][i]) ? 0 : parseFloat(rows[index][i])
+          });
+        }) */
         try {
           this.rollupData()
         } catch (err) {

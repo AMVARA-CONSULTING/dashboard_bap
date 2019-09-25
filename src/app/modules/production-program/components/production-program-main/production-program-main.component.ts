@@ -49,7 +49,6 @@ export class ProductionProgramMainComponent implements OnInit {
     private dialog: MatDialog,
     private tools: ToolsService
   ) {
-    (window as any).pp1 = this;
     title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
 

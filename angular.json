@@ -23,7 +23,7 @@
               "src/assets",
               "src/manifest.json",
               "src/manifest.json",
-              "src/keep.alive.txt"
+              "src/more.html"
             ],
             "styles": [
               {
@@ -45,7 +45,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": false,
               "vendorChunk": false,

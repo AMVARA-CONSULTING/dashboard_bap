@@ -55,11 +55,11 @@ export class ApiService {
     return url.replace('80', '443').replace('http:', 'https:')
   }
 
-  transcode(data) {
+  /* transcode(data) {
     const xotree = new XML.ObjTree()
     const dumper = new JKL.Dumper()
     return JSON.parse(dumper.dump(xotree.parseXML(data)))
-  }
+  } */
 
   htmlToJson(data, element): any[] {
     const htmlDoc = new DOMParser().parseFromString(data, "text/html")

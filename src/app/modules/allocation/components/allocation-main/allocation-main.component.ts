@@ -55,7 +55,6 @@ export class AllocationMainComponent implements OnInit {
     private router: Router
   ) {
     (window as any).a1 = this;
-    (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(this.config.config.appTitle + ' - Allocation')
     this.loader.loading$.next(true)
@@ -78,6 +77,7 @@ export class AllocationMainComponent implements OnInit {
   }
 
   changePlant(plant: string): void {
+    localStorage.setItem('allocation-plant', plant)
     this.router.navigate(['allocation', plant], { replaceUrl: true })
   }
 
@@ -104,6 +104,9 @@ export class AllocationMainComponent implements OnInit {
       this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
+    
+    const plantCache = localStorage.getItem('allocation-plant')
+    if (plantCache && this.plant != plantCache) this.router.navigate(['/allocation', plantCache], { replaceUrl: true })
     this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment().startOf('month')
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months').endOf('month')

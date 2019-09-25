@@ -45,7 +45,6 @@ export class PlantStockMainComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    (window as any).ps1 = this;
     (window as any).router = router;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
@@ -76,6 +75,7 @@ export class PlantStockMainComponent implements OnInit {
   }
 
   changePlant(plant) {
+    localStorage.setItem('plant-stock-plant', plant)
     this.router.navigate(['plant-stock', plant], { replaceUrl: true })
   }
 
@@ -94,6 +94,8 @@ export class PlantStockMainComponent implements OnInit {
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
+    const plantCache = localStorage.getItem('plant-stock-plant')
+    if (plantCache && plantCache != this.plant) this.router.navigate(['plant-stock', plantCache], { replaceUrl: true })
     this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - '+((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)

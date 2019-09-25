@@ -175,7 +175,7 @@
             -webkit-box-sizing: border-box;
                     box-sizing: border-box;
         }
-        .customer, .plan, .total, {
+        .customer, .plan, .total {
             -webkit-box-flex: 1;
                 -ms-flex: 1 20%;
                     flex: 1 20%;
@@ -261,7 +261,7 @@
                 left: 0;
                 margin: auto;
                 display: block;
-                background-image: url(../../../../../assets/arrow.svg);
+                background-image: url(^assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -271,7 +271,7 @@
             -webkit-box-sizing: border-box;
                     box-sizing: border-box;
         }
-        .customer, .plan, .total, {
+        .customer, .plan, .total {
             -webkit-box-flex: 1;
                 -ms-flex: 1 20%;
                     flex: 1 20%;

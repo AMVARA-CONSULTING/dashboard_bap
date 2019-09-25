@@ -3,9 +3,9 @@ import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from '@services/data.service';
-import { Router } from '@angular/router';
-import { ApiService } from '@services/api.service';
-import { forkJoin } from 'rxjs';
+import * as moment from 'moment';
+import { dependencies } from '../../../../../../package.json';
+import { ToolsService } from '@services/tools.service.js';
 
 @Component({
   selector: 'about',
@@ -24,14 +24,27 @@ export class AboutComponent implements OnInit {
     private translate: TranslateService,
     private snack: MatSnackBar,
     public data: DataService,
-    private api: ApiService
+    private _tools: ToolsService
   ) {
     data.currentLevel = 1
-    this.version = VERSION.full
+    this.angularVersion = VERSION.full
+    // @ts-ignore
+    this.momentVersion = this._tools.formatVersion(dependencies.moment)
+    this.hammerVersion = this._tools.formatVersion(dependencies.hammerjs)
+    this.ngx_translateVersion = this._tools.formatVersion(dependencies["@ngx-translate/core"])
+    this.progressVersion = this._tools.formatVersion(dependencies["angular-svg-round-progressbar"])
+    this.connectionVersion = this._tools.formatVersion(dependencies["ng-connection-service"])
+    this.jsonViewerVersion = this._tools.formatVersion(dependencies["ngx-json-viewer"])
   }
 
-  version
-
+  jsonViewerVersion
+  connectionVersion
+  progressVersion
+  ngx_translateVersion
+  momentVersion
+  hammerVersion
+  angularVersion
+''
   reportDates
 
   ngOnInit() {

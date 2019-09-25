@@ -57,14 +57,14 @@
             -webkit-transition: left .15s ease-in-out;
             -o-transition: left .15s ease-in-out;
             transition: left .15s ease-in-out;
-            background-image: url(../../../assets/arrow.svg);
+            background-image: url(^assets/arrow.svg);
             background-size: contain;
             background-repeat: no-repeat;
         } 
         &:hover {
             &:before {
                 left: 18px;
-                background-image: url(../../../assets/arrow.yellow.svg);
+                background-image: url(^assets/arrow.yellow.svg);
             }
             color: $yellow-text;
         }

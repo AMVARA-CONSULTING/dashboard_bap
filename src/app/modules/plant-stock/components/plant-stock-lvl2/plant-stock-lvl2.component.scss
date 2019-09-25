@@ -192,7 +192,7 @@ header {
                     -webkit-transition: left .15s ease-in-out;
                     -o-transition: left .15s ease-in-out;
                     transition: left .15s ease-in-out;
-                    background-image: url(../../../../../assets/arrow.svg);
+                    background-image: url(^assets/arrow.svg);
                     background-size: contain;
                     background-repeat: no-repeat;
                     transform: rotate(180deg);
@@ -276,7 +276,7 @@ header {
                 left: 0;
                 margin: auto;
                 display: block;
-                background-image: url(../../../../../assets/arrow.svg);
+                background-image: url(^assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }

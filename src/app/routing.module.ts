@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions, PreloadAllModules } from '@angular/router';
 import { AccessGranted } from './guards/access-granted.guard';
 import { AccessCodeComponent } from '@components/access-code/access-code.component';
 
@@ -15,38 +15,38 @@ const routes: Routes = [
     component: AccessCodeComponent
   },
   { 
-    path: 'order-intake', 
-    loadChildren: './modules/order-intake/order-intake.module#OrderIntakeModule', 
+    path: 'order-intake',
+    loadChildren: () => import('./modules/order-intake/order-intake.module').then(m => m.OrderIntakeModule),
     data: { title: 'order_intake' },
     canActivate: [AccessGranted]
   },
   {
     path: 'production-program', 
-    loadChildren: './modules/production-program/production-program.module#ProductionProgramModule',
+    loadChildren: () => import('./modules/production-program/production-program.module').then(m => m.ProductionProgramModule),
     data: { title: 'production_program' },
     canActivate: [AccessGranted]
   },
   {
     path: 'allocation',
-    loadChildren: './modules/allocation/allocation.module#AllocationModule',
+    loadChildren: () => import('./modules/allocation/allocation.module').then(m => m.AllocationModule),
     data: { title: 'allocation' },
     canActivate: [AccessGranted]
   },
   {
     path: 'plant-stock',
-    loadChildren: './modules/plant-stock/plant-stock.module#PlantStockModule',
+    loadChildren: () => import('./modules/plant-stock/plant-stock.module').then(m => m.PlantStockModule),
     data: { title: 'plant_stock' },
     canActivate: [AccessGranted]
   },
   { 
     path: 'about',
-    loadChildren: './modules/about/about.module#AboutModule',
+    loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule),
     data: { title: 'about' },
     canActivate: [AccessGranted]
   },
   { 
     path: 'help', 
-    loadChildren: './modules/help/help.module#HelpModule',
+    loadChildren: () => import('./modules/help/help.module').then(m => m.HelpModule),
     data: { title: 'help' },
     canActivate: [AccessGranted]
   }
@@ -56,6 +56,7 @@ const routes: Routes = [
 // Enable route parameters inheritance
 export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always',
+  preloadingStrategy: PreloadAllModules,
   useHash: true
 }
 

@@ -38,7 +38,6 @@ export class PlantStockLvl3Component implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    (window as any).ps3 = this;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.loader.loading$.next(true)
@@ -52,11 +51,12 @@ export class PlantStockLvl3Component implements OnInit {
           this.plandate = this.tools.getPlanDate(res.data[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
           this.data.plantStockData = res.data
           // Transform numeric values to real numeric values, also checking NaN or null
-          this.data.plantStockData.forEach((row, index, rows) => {
+          // DEPRECATED
+          /* this.data.plantStockData.forEach((row, index, rows) => {
             config.config.reports.trucks.columns.plantStock.shouldBeNumber.forEach(num => {
               rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
             });
-          })
+          }) */
           this.rollupData()
           this.loader.loading$.next(false)
         })

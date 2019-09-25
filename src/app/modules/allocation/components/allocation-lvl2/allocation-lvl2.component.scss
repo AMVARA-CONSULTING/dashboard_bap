@@ -142,7 +142,7 @@ header {
                 -webkit-transform: rotate(180deg);
                     -ms-transform: rotate(180deg);
                         transform: rotate(180deg);
-                background-image: url(assets/arrow.svg);
+                background-image: url(^assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -236,7 +236,7 @@ header {
                 left: 0;
                 margin: auto;
                 display: block;
-                background-image: url(../../../../../assets/arrow.svg);
+                background-image: url(^assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }

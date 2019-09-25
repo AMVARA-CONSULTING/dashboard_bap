@@ -4,7 +4,7 @@ import { ConfigService } from './config.service';
 @Injectable()
 export class ToolsService {
 
-  constructor() {
+  constructor( ) {
     (window as any).tools = this;
   }
 
@@ -47,6 +47,10 @@ export class ToolsService {
         return moment(text, 'YYYYMMDD').format('DD/MM/YYYY')
       }
     }
+  }
+
+  formatVersion(string): string {
+    return 'v'+string.replace(/[^0-9.]/g, '')
   }
 
   // Get current year

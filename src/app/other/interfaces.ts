@@ -16,6 +16,43 @@ export interface Config {
     target: string,
     simulateUnauthorized: number,
     heartbeat: number
+    capabilities: any
+}
+
+export interface UserCapabilities {
+    admin: boolean
+    mobile: boolean
+    trucks: SectionCapability
+    vans: SectionCapability
+    list: string[]
+}
+
+export interface SectionCapability {
+    order_intake: boolean
+    production_program: boolean
+    allocation: boolean
+    plant_stock: boolean
+}
+
+export interface UserPreferences {
+    timeZoneID: string
+    skin: string
+    format: string
+    backgroundSessionLogging: string
+    showHints: string
+    userName: string
+    type: string
+    homePage: string
+    url: string
+    accessibilityFeatures: boolean
+    isAnonymous: boolean
+    productLocale: string
+    showHiddenObjects: boolean
+    id: string
+    biDirectionalFeaturesEnabled: boolean
+    defaultName: string
+    contentLocale: string
+    baseTextDirection: string
 }
 
 export interface ContactInfo {

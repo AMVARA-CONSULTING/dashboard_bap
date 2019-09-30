@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToolsService } from './tools.service';
+import { UserPreferences, UserCapabilities } from '@other/interfaces';
+import { Observable } from 'rxjs/internal/Observable';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable()
 export class CognosService {
@@ -18,15 +22,27 @@ export class CognosService {
     if (parts.length == 2) return parts.pop().split(";").shift()
   }
 
-  load(): Promise<void> {
+  userPreferences: UserPreferences
+
+  userCapabilities: UserCapabilities
+  
+  
+  // Get visitor user preferences from Cognos REST API
+  getCognosUserPreferences(): Observable<UserPreferences> {
+    return this.http.get<UserPreferences>('/internal/bi/v1/users/~/preferences', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } })
+  }
+
+  load(CapabilitiesReportID): Promise<void> {
     return new Promise(resolve => {
       this.http.get('/internal/bi/v1/ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg', { observe: 'response', responseType: 'text' })
         .subscribe(
           success => {
+            // Retrieve XSRF Token
             this.tools.xsrf_token = this.getCookie('XSRF-TOKEN')
-            return resolve()
+            this.loadCapabilities(CapabilitiesReportID, resolve)
           },
           err => {
+            // Login
             if (location.hostname.indexOf('corpintra.net') == -1) return resolve()
             const app: HTMLElement = document.querySelector('dip-root')
             app.style.display = 'none'
@@ -36,13 +52,92 @@ export class CognosService {
             iframe.style.border = '0'
             iframe.src = '/internal/bi/?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&amp;ui_appbar=false&amp;ui_navbar=false&amp;format=HTML&amp;Download=false'
             document.body.appendChild(iframe)
+            // AMVARA_triggerReport sended login is done
             window.addEventListener('complete', () => {
-              iframe.remove()
               this.tools.xsrf_token = this.getCookie('XSRF-TOKEN')
-              app.style.display = ''
-              return resolve()
+              this.loadCapabilities(CapabilitiesReportID, resolve, iframe, app)
             })
           })
     })
+  }
+
+  loadCapabilities(CapabilitiesReportID, resolve, iframe?, app?) {
+    // Do a request to know the preferences and basic info of the logged user
+    this.getCognosUserPreferences().subscribe(preferences => {
+      this.userPreferences = preferences
+      // Retrieve the report containing a list of users and their permissions to view reports
+      this.getUserCapabilities(CapabilitiesReportID)
+      .pipe(
+        catchError(error => {
+          alert("Fail at retrieving permissions list, please contact the system administrator.")
+          return of({ success: false, data: []})
+        })
+      )
+      .subscribe(data => {
+        if (data.success) {
+          let users = data.data
+          const userFiltered = users.filter(user => user[0] = this.userPreferences.userName)
+          if (userFiltered.length === 0) {
+            alert(`Your username ${this.userPreferences.userName} was not found in user capabilities list, please contact the system administrator.`)
+            return
+          }
+          const user = userFiltered[0]
+          this.userCapabilities = {
+            admin: user[1] == "1",
+            mobile: user[2] == "1",
+            trucks: {
+              order_intake: user[3] == "1",
+              production_program: user[7] == "1",
+              allocation: user[9] == "1",
+              plant_stock: user[5] == "1"
+            },
+            vans: {
+              order_intake: user[4] == "1",
+              production_program: user[8] == "1",
+              allocation: user[10] == "1",
+              plant_stock: user[6] == "1"
+            },
+            list: user[11].replace(/\'/g, '').split(',')
+          }
+          console.log(this.userCapabilities)
+          if (iframe) iframe.remove()
+          if (app) app.style.display = ''
+          return resolve()
+        } else {
+          alert("Fail at retrieving permissions list, please contact the system administrator.")
+        }
+      })
+    })
+}
+  
+
+  // Get user capabilites retrieving them from Security_Report
+  getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
+    if (location.hostname.indexOf('corpintra.net') > -1) {
+      return new Observable(observer => {
+        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+          const nextLink = json.data[0]._meta.links.outputs.url
+          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
+            const nextLink = json.data[0]._meta.links.content.url
+            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
+              const rows = this.tools.htmlToJson(data, '[lid=List1] tr')
+              observer.next({ success: true, data: rows })
+              observer.complete()
+            }, err => {
+              observer.next({ success: false, data: [], error: 'CAP - Fail at getting report table data.', more: err })
+              observer.complete()
+            })
+          }, err => {
+            observer.next({ success: false, data: [], error: 'CAP - Fail at getting last report versions.', more: err })
+            observer.complete()
+          })
+        }, err => {
+          observer.next({ success: false, data: [], error: 'CAP - Fail at retrieving report info.', more: err })
+          observer.complete()
+        })
+      })
+    } else {
+      // Nothing to do here, yet
+    }
   }
 }

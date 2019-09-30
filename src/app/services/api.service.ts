@@ -61,21 +61,6 @@ export class ApiService {
     return JSON.parse(dumper.dump(xotree.parseXML(data)))
   } */
 
-  htmlToJson(data, element): any[] {
-    const htmlDoc = new DOMParser().parseFromString(data, "text/html")
-    const table = htmlDoc.querySelectorAll(element)
-    const rows = []
-    for (let i = 0; i < table.length; i++) {
-      const row = []
-      for (let t = 0; t < table[i].childNodes.length; t++) {
-        row.push(table[i].childNodes[t].innerText)
-      }
-      rows.push(row)
-    }
-    rows.shift()
-    return rows
-  }
-
   getLastReportLink(json, dateEntry: string): string {
     if (Array.isArray(json.feed.entry)) {
       json.feed.entry.forEach(function (entry, i) {
@@ -100,7 +85,7 @@ export class ApiService {
             const nextLink = json.data[0]._meta.links.content.url
             this.reportDates.orderIntake = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
-              const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_OI] tr')
+              const rows = this.tools.htmlToJson(data, '[lid=AMVARA_DATA_OI] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber.forEach(num => {
                   rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
@@ -140,7 +125,7 @@ export class ApiService {
             const nextLink = json.data[0]._meta.links.content.url
             this.reportDates.productionProgram = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
-              const rows = this.htmlToJson(data, '[lid=Liste1] tr')
+              const rows = this.tools.htmlToJson(data, '[lid=Liste1] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber.forEach(num => {
                   rows[index][num] = isNaN(rows[index][num]) || !rows[index][num] ? 0 : parseFloat(rows[index][num])
@@ -181,7 +166,7 @@ export class ApiService {
             const nextLink = json.data[0]._meta.links.content.url
             this.reportDates.allocation = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
-              const rows = this.htmlToJson(data, '[lid=Final] tr')
+              const rows = this.tools.htmlToJson(data, '[lid=Final] tr')
               rows.forEach((row, index, rows) => {
                 rows[index][17] = rows[index][17].toString().replace('-', '')
                 this.config.config.reports.trucks.columns.allocation.shouldBeNumber.forEach(num => {
@@ -223,7 +208,7 @@ export class ApiService {
             const nextLink = json.data[0]._meta.links.content.url
             this.reportDates.plantStock = json.data[0].modificationTime
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
-              const rows = this.htmlToJson(data, '[lid=AMVARA_DATA_PS] tr')
+              const rows = this.tools.htmlToJson(data, '[lid=AMVARA_DATA_PS] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.plantStock.shouldBeNumber.forEach(num => {
                   rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])

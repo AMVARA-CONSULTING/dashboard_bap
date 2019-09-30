@@ -19,6 +19,22 @@ export class ToolsService {
     });
     return result
   }
+  
+
+  htmlToJson(data, element): any[] {
+    const htmlDoc = new DOMParser().parseFromString(data, "text/html")
+    const table = htmlDoc.querySelectorAll(element)
+    const rows = []
+    for (let i = 0; i < table.length; i++) {
+      const row = []
+      for (let t = 0; t < table[i].childNodes.length; t++) {
+        row.push(table[i].childNodes[t].innerText)
+      }
+      rows.push(row)
+    }
+    rows.shift()
+    return rows
+  }
 
   getPlanDate(text: string, moment, config: ConfigService, firstMonth?: boolean): string {
     firstMonth = firstMonth || false

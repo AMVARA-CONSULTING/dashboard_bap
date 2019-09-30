@@ -130,17 +130,10 @@ export class MyHammerConfig extends HammerGestureConfig {
       useClass: MyHammerConfig
     },
     {
-      // Check if a user is logged and manages the login system
-      provide: APP_INITIALIZER,
-      useFactory: (cognosService: CognosService) => () => cognosService.load(),
-      deps: [CognosService],
-      multi: true
-    },
-    {
       // This loads the config.json file before the App is initialized
       provide: APP_INITIALIZER,
       useFactory: (configService: ConfigService) => () => configService.load(),
-      deps: [ConfigService],
+      deps: [ConfigService, CognosService, ApiService],
       multi: true
     },
     {

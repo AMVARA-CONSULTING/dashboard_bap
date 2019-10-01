@@ -20,7 +20,7 @@
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
 	"capabilities": {
-		"dev": "iAB9921347E3D42E99E316F247A99CDD2",
+		"dev": "i0D837BEE13B741709DF4576372FEEB32",
 		"prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
 	},
 	"contacts": {

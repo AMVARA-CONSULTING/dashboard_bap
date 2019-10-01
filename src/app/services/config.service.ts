@@ -27,7 +27,7 @@ export class ConfigService {
         const search: any = this.tools.getJsonFromUrl();
         this.config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0
         this.config.target = search.target ? search.target : this.config.target
-        this.config.debug = search.debug ? search.debug : this.config.debug
+        this.config.debug = search.debug ? search.debug == "true" : this.config.debug
         search.delay = search.delay ? search.delay * 1000 : null
         this.config.language = localStorage.getItem('lang') || this.config.language
         if (corpintra) {

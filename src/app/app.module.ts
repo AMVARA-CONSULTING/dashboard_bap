@@ -40,7 +40,6 @@ import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavigationGuard } from './guards/navigation-guard.guard';
 import { AccessCodeComponent } from './components/access-code/access-code.component';
-import { AccessGranted } from './guards/access-granted.guard';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -123,7 +122,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     ToolsService,
     NavigationGuard,
     CognosService,
-    AccessGranted,
     AuthInterceptor,
     {
       provide: HAMMER_GESTURE_CONFIG,

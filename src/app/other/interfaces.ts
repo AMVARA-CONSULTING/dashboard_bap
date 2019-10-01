@@ -1,5 +1,6 @@
 export interface Config {
     version: string,
+    debug: boolean
     language: string,
     reports: any,
     delay: number,
@@ -17,6 +18,11 @@ export interface Config {
     simulateUnauthorized: number,
     heartbeat: number
     capabilities: any
+}
+
+export interface HeaderLink {
+    link: string
+    text: string
 }
 
 export interface UserCapabilities {

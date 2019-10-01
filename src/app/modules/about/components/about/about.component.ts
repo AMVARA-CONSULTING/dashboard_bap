@@ -6,6 +6,8 @@ import { DataService } from '@services/data.service';
 import * as moment from 'moment';
 import { dependencies } from '../../../../../../package.json';
 import { ToolsService } from '@services/tools.service.js';
+import { BehaviorSubject } from 'rxjs';
+import { CognosService } from '@services/cognos.service.js';
 
 @Component({
   selector: 'about',
@@ -24,7 +26,8 @@ export class AboutComponent implements OnInit {
     private translate: TranslateService,
     private snack: MatSnackBar,
     public data: DataService,
-    private _tools: ToolsService
+    private _tools: ToolsService,
+    private _cognos: CognosService
   ) {
     data.currentLevel = 1
     this.angularVersion = VERSION.full
@@ -48,7 +51,18 @@ export class AboutComponent implements OnInit {
   reportDates
 
   ngOnInit() {
-
+    // Only show available reports info, this prevents the user from seeing things it shouldn't see
+    let reportInfos: ReportInfo[] = [
+      { title: 'Order Intake', type: 'orderIntake' },
+      { title: 'Production program', type: 'productionProgram' },
+      { title: 'Allocation', type: 'allocation' },
+      { title: 'Plant stock', type: 'plantStock' }
+    ]
+    const availableLinks = this._cognos.getLinksWithAccess(this.config.config).map(link => link.text)
+    if (this.config.config.debug) console.log(availableLinks)
+    reportInfos = reportInfos.filter(report => availableLinks.indexOf(report.title.toLowerCase().replace(/\ /g, '_')) > -1)
+    this.reportInfos.next(reportInfos)
+    if (this.config.config.debug) console.log(reportInfos)
   }
 
   setLang(code: string): void {
@@ -64,4 +78,11 @@ export class AboutComponent implements OnInit {
 
   showConfig: boolean = false
 
+  reportInfos = new BehaviorSubject<ReportInfo[]>([])
+
+}
+
+export interface ReportInfo {
+  title: string
+  type: string
 }

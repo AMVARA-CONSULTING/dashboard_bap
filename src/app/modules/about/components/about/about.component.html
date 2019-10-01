@@ -62,10 +62,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     Service Worker Status: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
-    <report-info title="Order Intake" type="orderIntake"></report-info>
-    <report-info title="Production program" type="productionProgram"></report-info>
-    <report-info title="allocation" type="allocation"></report-info>
-    <report-info title="plant stock" type="plantStock"></report-info>
+    <report-info *ngFor="let report of reportInfos | async" [title]="report.title" [type]="report.type"></report-info>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

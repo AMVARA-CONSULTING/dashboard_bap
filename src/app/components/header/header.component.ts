@@ -4,6 +4,9 @@ import { DataService } from '@services/data.service';
 import { Router } from '@angular/router';
 import { ToolsService } from '@services/tools.service';
 import { ConfigService } from '@services/config.service';
+import { BehaviorSubject } from 'rxjs';
+import { HeaderLink } from '@other/interfaces';
+import { CognosService } from '@services/cognos.service';
 
 @Component({
   selector: 'header',
@@ -16,12 +19,14 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   constructor(
     public loader: LoadingService,
     public data: DataService,
-    private router: Router,
-    private tools: ToolsService,
     public config: ConfigService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private _cognos: CognosService
   ) {
     this.loader.loading$.subscribe(bol => this.loading = bol)
+    // Load available links for the header, only those will be visible
+    const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))
+    this.reports.next(links)
   }
 
   loading: boolean = false
@@ -36,5 +41,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   openSidenav(): void {
     this.data.sidenavOpened = !this.data.sidenavOpened
   }
+
+  reports = new BehaviorSubject<HeaderLink[]>([])
 
 }

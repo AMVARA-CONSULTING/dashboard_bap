@@ -1,5 +1,6 @@
 {
-	"version": "2.30.0",
+	"version": "2.31.0",
+	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
 	"scenario": "dev",
@@ -19,8 +20,8 @@
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
 	"capabilities": {
-		"dev": "i0D837BEE13B741709DF4576372FEEB32",
-		"prod": ""
+		"dev": "iAB9921347E3D42E99E316F247A99CDD2",
+		"prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
 	},
 	"contacts": {
 		"trucks": [
@@ -192,6 +193,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.31.0",
+			"text": [
+				"#1966 - Implemented security in reports"
+			]
+		},
 		{
 			"version": "2.30.0",
 			"text": [

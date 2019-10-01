@@ -8,6 +8,8 @@ import { timer, interval } from 'rxjs';
 import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
+import { HeaderLink } from '@other/interfaces';
+import { CognosService } from '@services/cognos.service';
 
 @Component({
   selector: 'dip-root',
@@ -24,7 +26,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private api: ApiService,
     private http: HttpClient,
-    private ac: ActivatedRoute
+    private ac: ActivatedRoute,
+    private _cognos: CognosService
   ) {
     if (this.config.config.simulateUnauthorized > 0) {
       timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false)
@@ -45,6 +48,17 @@ export class AppComponent implements OnInit {
     data.init()
     this.translate.setDefaultLang('en')
     this.translate.use(localStorage.getItem('lang') || config.config.language)
+    if (config.config.debug) console.log(location.hash)
+    // If going to a report, check it has access, and if not, redirect to another one with access
+    if (location.hash.indexOf('help') == -1 && location.hash.indexOf('about') == -1) {
+      const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))
+      if (links.length > 0) {
+        this.router.navigate([links[0].link])
+      } else {
+        // Unable to access to any report, then main page is Help
+        this.router.navigate(['/help'])
+      }
+    }
   }
 
   ngOnInit() {

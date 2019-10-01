@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToolsService } from './tools.service';
-import { UserPreferences, UserCapabilities } from '@other/interfaces';
+import { UserPreferences, UserCapabilities, HeaderLink, Config } from '@other/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { of } from 'rxjs/internal/observable/of';
@@ -25,6 +25,26 @@ export class CognosService {
   userPreferences: UserPreferences
 
   userCapabilities: UserCapabilities
+
+  // Gets the available reports based on the user capabilities object
+  getLinksWithAccess(config: Config) {
+    let links: HeaderLink[] = [
+      { link: '/order-intake', text: 'order_intake' },
+      { link: '/production-program', text: 'production_program' },
+      { link: '/allocation', text: 'allocation' },
+      { link: '/plant-stock', text: 'plant_stock' }
+    ]
+    if (location.hostname.indexOf('corpintra.net') > -1) {
+      const scenarioProperties = Object.assign({}, this.userCapabilities[config.target])
+      for (let prop in scenarioProperties) {
+        if (!scenarioProperties[prop]) delete scenarioProperties[prop]
+      }
+      const haveAccessTo = Object.keys(scenarioProperties)
+      return links.filter(link => haveAccessTo.indexOf(link.text) > -1)
+    } else {
+      return links
+    }
+  }
   
   
   // Get visitor user preferences from Cognos REST API
@@ -32,14 +52,14 @@ export class CognosService {
     return this.http.get<UserPreferences>('/internal/bi/v1/users/~/preferences', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } })
   }
 
-  load(CapabilitiesReportID): Promise<void> {
+  load(CapabilitiesReportID, config: Config): Promise<void> {
     return new Promise(resolve => {
       this.http.get('/internal/bi/v1/ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg', { observe: 'response', responseType: 'text' })
         .subscribe(
           success => {
             // Retrieve XSRF Token
             this.tools.xsrf_token = this.getCookie('XSRF-TOKEN')
-            this.loadCapabilities(CapabilitiesReportID, resolve)
+            this.loadCapabilities(CapabilitiesReportID, resolve, config)
           },
           err => {
             // Login
@@ -55,13 +75,13 @@ export class CognosService {
             // AMVARA_triggerReport sended login is done
             window.addEventListener('complete', () => {
               this.tools.xsrf_token = this.getCookie('XSRF-TOKEN')
-              this.loadCapabilities(CapabilitiesReportID, resolve, iframe, app)
+              this.loadCapabilities(CapabilitiesReportID, resolve, config, iframe, app)
             })
           })
     })
   }
 
-  loadCapabilities(CapabilitiesReportID, resolve, iframe?, app?) {
+  loadCapabilities(CapabilitiesReportID, resolve, config: Config, iframe?, app?) {
     // Do a request to know the preferences and basic info of the logged user
     this.getCognosUserPreferences().subscribe(preferences => {
       this.userPreferences = preferences
@@ -82,6 +102,7 @@ export class CognosService {
             return
           }
           const user = userFiltered[0]
+          if (config.debug) console.log(user)
           this.userCapabilities = {
             admin: user[1] == "1",
             mobile: user[2] == "1",
@@ -99,7 +120,7 @@ export class CognosService {
             },
             list: user[11].replace(/\'/g, '').split(',')
           }
-          console.log(this.userCapabilities)
+          if (config.debug) console.log(this.userCapabilities)
           if (iframe) iframe.remove()
           if (app) app.style.display = ''
           return resolve()

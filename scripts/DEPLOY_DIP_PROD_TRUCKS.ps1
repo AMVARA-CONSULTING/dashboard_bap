@@ -29,6 +29,7 @@ $configFile = $baseFolder+"assets\cognos.json"
 $config = Get-Content $configFile -Encoding UTF8 -Raw | ConvertFrom-Json
 $config.scenario = "prod"
 $config.target = "trucks"
+$config.debug = $False
 $config | ConvertTo-Json -Depth 50 | set-content $configFile
 
 # Edit Manifest JSON file to have the correct parameters

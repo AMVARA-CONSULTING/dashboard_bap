@@ -22,8 +22,6 @@ export class CognosService {
     if (parts.length == 2) return parts.pop().split(";").shift()
   }
 
-  userPreferences: UserPreferences
-
   userCapabilities: UserCapabilities
 
   // Gets the available reports based on the user capabilities object
@@ -44,12 +42,6 @@ export class CognosService {
     } else {
       return links
     }
-  }
-  
-  
-  // Get visitor user preferences from Cognos REST API
-  getCognosUserPreferences(): Observable<UserPreferences> {
-    return this.http.get<UserPreferences>('/internal/bi/v1/users/~/preferences', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } })
   }
 
   load(CapabilitiesReportID, config: Config): Promise<void> {
@@ -83,75 +75,59 @@ export class CognosService {
 
   loadCapabilities(CapabilitiesReportID, resolve, config: Config, iframe?, app?) {
     // Do a request to know the preferences and basic info of the logged user
-    this.getCognosUserPreferences().subscribe(preferences => {
-      this.userPreferences = preferences
-      // Retrieve the report containing a list of users and their permissions to view reports
-      this.getUserCapabilities(CapabilitiesReportID)
-      .pipe(
-        catchError(error => {
-          alert("Fail at retrieving permissions list, please contact the system administrator.")
-          return of({ success: false, data: []})
-        })
-      )
-      .subscribe(data => {
-        if (data.success) {
-          let users = data.data
-          const userFiltered = users.filter(user => user[0] = this.userPreferences.userName)
-          if (userFiltered.length === 0) {
-            alert(`Your username ${this.userPreferences.userName} was not found in user capabilities list, please contact the system administrator.`)
-            return
-          }
-          const user = userFiltered[0]
-          if (config.debug) console.log(user)
-          this.userCapabilities = {
-            admin: user[1] == "1",
-            mobile: user[2] == "1",
-            trucks: {
-              order_intake: user[3] == "1",
-              production_program: user[7] == "1",
-              allocation: user[9] == "1",
-              plant_stock: user[5] == "1"
-            },
-            vans: {
-              order_intake: user[4] == "1",
-              production_program: user[8] == "1",
-              allocation: user[10] == "1",
-              plant_stock: user[6] == "1"
-            },
-            list: user[11].replace(/\'/g, '').split(',')
-          }
-          if (config.debug) console.log(this.userCapabilities)
-          if (iframe) iframe.remove()
-          if (app) app.style.display = ''
-          return resolve()
-        } else {
-          alert("Fail at retrieving permissions list, please contact the system administrator.")
-        }
+    // Retrieve the report containing a list of users and their permissions to view reports
+    this.getUserCapabilities(CapabilitiesReportID)
+    .pipe(
+      catchError(error => {
+        alert("Fail at retrieving permissions list, please contact the system administrator.")
+        return of({ success: false, data: []})
       })
+    )
+    .subscribe(data => {
+      if (data.success) {
+        let users = data.data
+        if (users.length === 0) {
+          alert(`Your username was not found in user capabilities list, please contact the system administrator.`)
+          return
+        }
+        const user = users[0]
+        if (config.debug) console.log(user)
+        this.userCapabilities = {
+          admin: user[1] == "1",
+          mobile: user[2] == "1",
+          trucks: {
+            order_intake: user[3] == "1",
+            production_program: user[7] == "1",
+            allocation: user[9] == "1",
+            plant_stock: user[5] == "1"
+          },
+          vans: {
+            order_intake: user[4] == "1",
+            production_program: user[8] == "1",
+            allocation: user[10] == "1",
+            plant_stock: user[6] == "1"
+          },
+          list: user[11].replace(/\'/g, '').split(',')
+        }
+        if (config.debug) console.log(this.userCapabilities)
+        if (iframe) iframe.remove()
+        if (app) app.style.display = ''
+        return resolve()
+      } else {
+        alert("Fail at retrieving permissions list, please contact the system administrator.")
+      }
     })
-}
+  }
   
 
   // Get user capabilites retrieving them from Security_Report
   getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
-          const nextLink = json.data[0]._meta.links.outputs.url
-          this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
-            const nextLink = json.data[0]._meta.links.content.url
-            this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
-              const rows = this.tools.htmlToJson(data, '[lid=List1] tr')
-              observer.next({ success: true, data: rows })
-              observer.complete()
-            }, err => {
-              observer.next({ success: false, data: [], error: 'CAP - Fail at getting report table data.', more: err })
-              observer.complete()
-            })
-          }, err => {
-            observer.next({ success: false, data: [], error: 'CAP - Fail at getting last report versions.', more: err })
-            observer.complete()
-          })
+        this.http.get(`/internal/bi/v1/disp/rds/reportData/report/${ReportID}?fmt=HTMLFragment`, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((data: any) => {
+          const rows = this.tools.htmlToJson(data, '[lid=List1] tr')
+          observer.next({ success: true, data: rows })
+          observer.complete()
         }, err => {
           observer.next({ success: false, data: [], error: 'CAP - Fail at retrieving report info.', more: err })
           observer.complete()

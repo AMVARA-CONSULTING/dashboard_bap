@@ -196,7 +196,8 @@
 		{
 			"version": "2.31.0",
 			"text": [
-				"#1966 - Implemented security in reports"
+				"#1966 - Implemented security in reports",
+				"#1966 - Fixed incorrect menu items in mobile view"
 			]
 		},
 		{

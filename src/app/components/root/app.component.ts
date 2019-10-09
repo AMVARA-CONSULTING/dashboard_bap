@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
     data.init()
     this.translate.setDefaultLang('en')
     this.translate.use(localStorage.getItem('lang') || config.config.language)
-    if (config.config.debug) console.log(location.hash)
     // If going to a report, check it has access, and if not, redirect to another one with access
     if (location.hash.indexOf('help') == -1 && location.hash.indexOf('about') == -1) {
       const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))

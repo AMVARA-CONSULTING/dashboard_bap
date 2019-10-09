@@ -124,8 +124,8 @@ export class CognosService {
   getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get(`/internal/bi/v1/disp/rds/reportData/report/${ReportID}?fmt=HTMLFragment`, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((data: any) => {
-          const rows = this.tools.htmlToJson(data, '[lid=List1] tr')
+        this.http.get(`/internal/bi/v1/disp/rds/reportData/report/${ReportID}?fmt=HTMLFragment`, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token }, responseType: 'text' }).subscribe((data: any) => {
+          const rows = this.tools.htmlToJson(data, 'table#List1 tr')
           observer.next({ success: true, data: rows })
           observer.complete()
         }, err => {

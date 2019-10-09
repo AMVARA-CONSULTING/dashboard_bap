@@ -23,6 +23,7 @@ export class ConfigService {
       const configFile = corpintra ? 'cognos.json' : 'config.json'
       this.http.get('assets/' + configFile).subscribe(config => {
         this.config = config as Config
+        (window as any).config = config
         if (this.config.debug) console.log(config)
         const search: any = this.tools.getJsonFromUrl();
         this.config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0

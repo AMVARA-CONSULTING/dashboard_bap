@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'dip-root',
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
     // If going to a report, check it has access, and if not, redirect to another one with access
     if (location.hash.indexOf('help') == -1 && location.hash.indexOf('about') == -1) {
       const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))
+      this.reports.next(links)
       if (links.length > 0) {
         this.router.navigate([links[0].link])
       } else {
@@ -79,6 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   preventUpdate: boolean = false
+  reports = new BehaviorSubject<HeaderLink[]>([])
 
   close() {
     this.data.sidenavOpened = !this.data.sidenavOpened

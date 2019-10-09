@@ -2,14 +2,7 @@
 <mat-sidenav-container>
     <mat-sidenav mode="push" position="end" [(opened)]="data.sidenavOpened">
         <ul class="links">
-            <li (click)="close()" routerLink="/order-intake" routerLinkActive="active">{{ 'menu.order_intake' |
-                translate }}</li>
-            <li (click)="close()" routerLink="/production-program" routerLinkActive="active">{{
-                'menu.production_program' | translate }}</li>
-            <li (click)="close()" routerLink="/allocation" routerLinkActive="active">{{ 'menu.allocation' | translate
-                }}</li>
-            <li (click)="close()" routerLink="/plant-stock" routerLinkActive="active">{{ 'menu.plant_stock' | translate
-                }}</li>
+            <li *ngFor="let link of reports | async" [routerLink]="link.link" (click)="close()" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
             <li (click)="close()" routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
             <li (click)="close()" routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
         </ul>

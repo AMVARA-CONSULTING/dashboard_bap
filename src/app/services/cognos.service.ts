@@ -62,7 +62,7 @@ export class CognosService {
             iframe.style.height = '100%'
             iframe.style.width = '100%'
             iframe.style.border = '0'
-            iframe.src = '/internal/bi/?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&amp;ui_appbar=false&amp;ui_navbar=false&amp;format=HTML&amp;Download=false'
+            iframe.src = '/internal/bi/?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&ui_appbar=false&ui_navbar=false&format=HTML&Download=false'
             document.body.appendChild(iframe)
             // AMVARA_triggerReport sended login is done
             window.addEventListener('complete', () => {
@@ -106,8 +106,7 @@ export class CognosService {
             production_program: user[8] == "1",
             allocation: user[10] == "1",
             plant_stock: user[6] == "1"
-          },
-          list: user[11].replace(/\'/g, '').split(',')
+          }
         }
         if (config.debug) console.log(this.userCapabilities)
         if (iframe) iframe.remove()

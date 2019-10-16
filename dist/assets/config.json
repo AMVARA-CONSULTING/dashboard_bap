@@ -1,91 +1,63 @@
 {
-	"version": "2.32.0",
-	"debug": true,
+	"version": "2.31.0",
+	"debug": false,
 	"language": "en",
-	"appTitle": "DIP",
+	"appTitle": "BAP",
 	"scenario": "dev",
 	"target": "trucks",
-	"delay": 0,
-	"copyright": "DAIMLER",
-	"license": {
-		"trucks": "TE/SO",
-		"vans": "VAN/VSO"
-	},
+	"delay": 2000,
+	"copyright": "AMVARA",
+	"license": "SFASR",
 	"languageCodes": {
 		"en": "English",
 		"de": "Deutsch"
 	},
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
-	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
-	"cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
-	"capabilities": {
-		"dev": "i606D0768D6AC4241AADD880B4B72EC06",
-		"prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
-	},
 	"contacts": {
 		"trucks": [
 			{
-				"name": "Steffen Schweiger",
-				"description": "Berichtswesen Ordercenter",
-				"telephone": "+49 7271 71 2184"
+				"name": "Ralf Roeber",
+				"description": "Coordinator",
+				"telephone": "+34 717 10 26 03"
 			},
 			{
-				"name": "Kai Blattmann",
-				"description": "Berichtswesen Ordercenter",
-				"telephone": "+49 7271 71 5435"
+				"name": "Alex Barba",
+				"description": "Programmer",
+				"telephone": "+34 640 91 59 83"
 			},
 			{
-				"name": "Peter Hess",
-				"description": "IT",
-				"telephone": "+49 160 864 7725"
-			}
-		],
-		"vans": [
-			{
-				"name": "Tim Valentin",
-				"description": "Berichtswesen Ordercenter",
-				"telephone": "+49 211 953 4861"
-			},
-			{
-				"name": "Alexander Hörz",
-				"description": "Berichtswesen Ordercenter",
-				"telephone": "+49 211 953 3559"
-			},
-			{
-				"name": "Peter Hess",
-				"description": "IT",
-				"telephone": "+49 160 864 7725"
+				"name": "Luís Torroja",
+				"description": "Designer",
+				"telephone": "+34 670 61 74 71"
 			}
 		]
 	},
 	"reports": {
 		"vans": {
 			"dev": {
-				"orderIntake": "i69C423E3AC364872BE300BA0F509BA2B",
-				"allocation": "i3735A9BA1184494984C8A1EAF6065A5F",
-				"plantStock": "i451877E0BD424B47931B6DBE97B24B20",
-				"productionProgram": "i3D66E69BC5714D1989D7E9DF82A4E735"
+				"allocation": "x",
+				"stock": "x",
+				"planning": "x"
 			},
 			"prod": {
-				"orderIntake": "i5F21FA7DBAF64A539EDBDEC44E297D23",
-				"allocation": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
-				"plantStock": "i2EAF00D6E22B4519A494072EB13916BC",
-				"productionProgram": "i5A7CE73C7BFC4115A641B5564E39DD66"
+				"allocation": "x",
+				"stock": "x",
+				"planning": "x"
 			}
 		},
 		"trucks": {
-		    "dev": {
+			"dev": {
 				"orderIntake": "i163A764B930D4E748310CF5053D29578",
-				"allocation": "iE4370500092E48F8950BA176D318D153",
+				"allocation": "i464B15BB96434390A9D6C35C67886434",
 				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"productionProgram": "i5565E38F8A3B4B41920FC7D33D54C333"
+				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136"
 			},
 			"prod": {
-				"orderIntake": "i8FE1CDBDAB774436822C5C5B34F35B20",
-				"allocation": "iADCD47BE42994DF392219CDDBB86186D",
+				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
+				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
 				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
-				"productionProgram": "iF5C9F3DECFFF4D22A80F0CCAC716AA0D"
+				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787"
 			},
 			"columns": {
 				"orderIntake": {
@@ -194,39 +166,6 @@
 	},
 	"changelog": [
 		{
-			"version": "2.32.0",
-			"text": [
-				"#1966 - Support for new Security Report IF"
-			]
-		},
-		{
-			"version": "2.31.0",
-			"text": [
-				"#1966 - Implemented security in reports",
-				"#1966 - Fixed incorrect menu items in mobile view"
-			]
-		},
-		{
-			"version": "2.30.0",
-			"text": [
-				"#1958 - Save current first level dropdown selection into localStorage",
-				"#1958 - Code cleanup",
-				"#1958 - Upgraded Angular to 8.2.7 and all packages",
-				"#1958 - Implemented differential polyfill loading",
-				"#1958 - Automatic version control showing at about page",
-				"#1958 - Remove old or unused files, packages and code",
-				"#1958 - Moved all non-main files to assets folder, living the root only for Angular files",
-				"#1958 - Code splitting in submodules done right",
-				"#1958 - Preload all submodules on page load asyncronously"
-			]
-		},
-		{
-			"version": "2.29.0",
-			"text": [
-				"#1928 - Fix total numbers on production program LVL 3"
-			]
-		},
-		{
 			"version": "2.28.0",
 			"text": [
 				"Fixed percentage value showing 100% in LVL 3 when it should not"
@@ -239,30 +178,21 @@
 			]
 		},
 		{
+			"version": "2.26.0",
+			"text": [
+				"Design Review 2019"
+			]
+		},
+		{
 			"version": "2.25.0",
 			"text": [
 				"Fix scrambling"
 			]
 		},
 		{
-			"version": "2.24.0",
-			"text": [
-				"Fix plant stock categories when there is less than 3 items"
-			]
-		},
-		{
 			"version": "2.23.0",
 			"text": [
 				"Fix report names in production"
-			]
-		},
-		{
-			"version": "2.22.0",
-			"text": [
-				"Fix missing signs in Plant Stock",
-				"Fix reports distances in About",
-				"Fix different plandates",
-				"Change plandate titles"
 			]
 		},
 		{

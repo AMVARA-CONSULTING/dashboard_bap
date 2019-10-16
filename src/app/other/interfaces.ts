@@ -30,7 +30,6 @@ export interface UserCapabilities {
     mobile: boolean
     trucks: SectionCapability
     vans: SectionCapability
-    list: string[]
 }
 
 export interface SectionCapability {

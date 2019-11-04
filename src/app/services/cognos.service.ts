@@ -85,27 +85,29 @@ export class CognosService {
     )
     .subscribe(data => {
       if (data.success) {
-        let users = data.data
-        if (users.length === 0) {
-          alert(`Your username was not found in user capabilities list, please contact the system administrator.`)
-          return
-        }
-        const user = users[0]
-        if (config.debug) console.log(user)
+        let rows = data.data.reduce((r, a) => {
+          const re = new RegExp(/CAMID\(\"\:0201_DIPRE\:_(.*)\"\)/g)
+          const match = re.exec(a.searchPath)
+          if (match) {
+            r.push(match[1])
+          }
+          return r
+        }, [])
+        if (config.debug) console.log(rows)
         this.userCapabilities = {
-          admin: user[1] == "1",
-          mobile: user[2] == "1",
+          admin: rows.indexOf('Global_Function_Groups‬:DIPRE_Admins') > -1,
+          mobile: rows.indexOf('Global_Function_Groups‬:DIPRE_Mobile') > -1,
           trucks: {
-            order_intake: user[3] == "1",
-            production_program: user[7] == "1",
-            allocation: user[9] == "1",
-            plant_stock: user[5] == "1"
+            order_intake: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Order Intake') > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Production Program') > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Allocation') > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Plant Stock') > -1
           },
           vans: {
-            order_intake: user[4] == "1",
-            production_program: user[8] == "1",
-            allocation: user[10] == "1",
-            plant_stock: user[6] == "1"
+            order_intake: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Order Intake') > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Production Program') > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Allocation') > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Plant Stock') > -1
           }
         }
         if (config.debug) console.log(this.userCapabilities)
@@ -123,9 +125,14 @@ export class CognosService {
   getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get(`/internal/bi/v1/disp/rds/reportData/report/${ReportID}?fmt=HTMLFragment`, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token }, responseType: 'text' }).subscribe((data: any) => {
-          const rows = this.tools.htmlToJson(data, 'table#List1 tr')
-          observer.next({ success: true, data: rows })
+        this.http.get(`/internal/bi/v1/identity`, {
+          headers: {
+            'X-XSRF-TOKEN': this.tools.xsrf_token,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          responseType: 'json'
+        }).subscribe((rows: any) => {
+          observer.next({ success: true, data: rows.data })
           observer.complete()
         }, err => {
           observer.next({ success: false, data: [], error: 'CAP - Fail at retrieving report info.', more: err })

@@ -98,16 +98,16 @@ export class CognosService {
           admin: rows.indexOf('Global_Function_Groups‬:DIPRE_Admins') > -1,
           mobile: rows.indexOf('Global_Function_Groups‬:DIPRE_Mobile') > -1,
           trucks: {
-            order_intake: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Order Intake') > -1,
-            production_program: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Production Program') > -1,
-            allocation: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Allocation') > -1,
-            plant_stock: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_Truck_Management_Plant Stock') > -1
+            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake') > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program') > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation') > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock') > -1
           },
           vans: {
-            order_intake: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Order Intake') > -1,
-            production_program: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Production Program') > -1,
-            allocation: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Allocation') > -1,
-            plant_stock: rows.indexOf('Project_Function_Groups:Business Function:DIPRE_VAN_Management_Plant Stock') > -1
+            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake') > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program') > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation') > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock') > -1
           }
         }
         if (config.debug) console.log(this.userCapabilities)

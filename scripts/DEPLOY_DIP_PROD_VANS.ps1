@@ -1,4 +1,3 @@
-
 # AMVARA
 # 2019-10-01 ABP Modify script deploy path and better code
 # 2019-09-30 ABP Add manifest modification
@@ -37,7 +36,7 @@ echo "Modifying cognos.json..."
 $configFile = $baseFolder+"assets\cognos.json"
 $config = Get-Content $configFile -Encoding UTF8 -Raw | ConvertFrom-Json
 $config.scenario = "prod"
-$config.target = "trucks"
+$config.target = "vans"
 $config.debug = $False
 $config | ConvertTo-Json -Depth 50 | set-content $configFile
 

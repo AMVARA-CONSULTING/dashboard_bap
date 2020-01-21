@@ -71,8 +71,8 @@ export class AccessCodeComponent implements OnInit {
       name: values.name,
       email: values.email,
       tel: values.tel,
-      origin: this.origin,
-      lang: this.lang
+      origin: this.origin || 'undefined',
+      lang: this.lang || 'undefined'
     }).subscribe((res: any) => {
       this.granted.next(res.success)
       if (res.success) {

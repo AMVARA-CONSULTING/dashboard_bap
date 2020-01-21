@@ -55,26 +55,6 @@ export class ApiService {
     return url.replace('80', '443').replace('http:', 'https:')
   }
 
-  /* transcode(data) {
-    const xotree = new XML.ObjTree()
-    const dumper = new JKL.Dumper()
-    return JSON.parse(dumper.dump(xotree.parseXML(data)))
-  } */
-
-  getLastReportLink(json, dateEntry: string): string {
-    if (Array.isArray(json.feed.entry)) {
-      json.feed.entry.forEach(function (entry, i) {
-        if (entry.title['#text'] == 'HTML') {
-          this.reportDates[dateEntry] = json.feed.entry[i].updated
-          return json.feed.entry[i].link['-href']
-        }
-      })
-    } else {
-      this.reportDates[dateEntry] = json.feed.entry.updated
-      return json.feed.entry.link['-href']
-    }
-  }
-
   // Get Order Intake Data from Report (temporarily from JSON File)
   getOrderIntakeData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {

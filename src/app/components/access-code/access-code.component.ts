@@ -1,11 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { DataService } from '@services/data.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '@services/data.service';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'access-code',
@@ -25,7 +24,6 @@ export class AccessCodeComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
-    private snack: MatSnackBar,
     private ac: ActivatedRoute
   ) {
     const grantedDomains = ['ibiss-analytics-int.es.corpintra.net', 'ibiss-analytics.es.corpintra.net']
@@ -69,7 +67,7 @@ export class AccessCodeComponent implements OnInit {
   }
 
   submit(values): void {
-    this.http.post('/api/contact/', {
+    this.http.post('https://more.amvara.rocks/api/contact/', {
       name: values.name,
       email: values.email,
       tel: values.tel,
@@ -80,7 +78,7 @@ export class AccessCodeComponent implements OnInit {
       if (res.success) {
         localStorage.setItem('accessGranted', 'yes')
       } else {
-        this.snack.open('An error ocurred.', 'OK')
+        alert('An error ocurred.')
       }
     })
   }

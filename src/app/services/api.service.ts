@@ -6,6 +6,7 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
 import { ToolsService } from './tools.service';
+import { map } from 'rxjs/internal/operators/map';
 
 declare var XML, JKL: any
 
@@ -55,6 +56,30 @@ export class ApiService {
     return url.replace('80', '443').replace('http:', 'https:')
   }
 
+  /**
+   * Function to convert CSV string data to JSOn Array data
+   * @param csv string csv data
+   * @param numeralFields array of indexes which should parsed as numeral
+   * @param removeHeaders provide true to remove first line of headers
+   */
+  csvToJson(csv: any, numeralFields: number[], removeHeaders: boolean = true) {
+    const lines: any[] = csv.split("\n")
+    const data = []
+    if (removeHeaders) lines.splice(0, 1)
+    const length = lines.length
+    let i = 1
+    for ( ; i < length; i++ ) {
+      // Remove empty lines
+      if (lines[i].trim().length == 0) continue
+      const values = lines[i].split("\t")
+      numeralFields.forEach(num => {
+        values[num] = isNaN(values[num]) ? 0 : parseFloat(values[num])
+      })
+      data.push(values)
+    }
+    return data
+  }
+
   // Get Order Intake Data from Report (temporarily from JSON File)
   getOrderIntakeData(ReportID: string): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (this.corpintra) {
@@ -88,7 +113,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/order_intake.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/Order_Intake.csv', { responseType: 'text' }).pipe(
+          map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber))
+        ).subscribe((res: any[]) => {
+          console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -128,7 +156,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/production_program.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/Planning.csv', { responseType: 'text' }).pipe(
+          map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber))
+        ).subscribe((res: any[]) => {
+          console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -170,7 +201,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/allocation.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/allocation.json').pipe(
+          // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.allocation.shouldBeNumber))
+        ).subscribe((res: any[]) => {
+          // console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -211,7 +245,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/plant_stock.json').subscribe((res: any[]) => {
+        this.http.get('assets/reports/plant_stock.json').pipe(
+          // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.plantStock.shouldBeNumber))
+        ).subscribe((res: any[]) => {
+          // console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })

@@ -113,10 +113,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/Order_Intake.csv', { responseType: 'text' }).pipe(
-          map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber))
+        this.http.get('assets/reports/Order_Intake.json').pipe(
+          // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber))
         ).subscribe((res: any[]) => {
-          console.log(res)
+          // console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -156,10 +156,10 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/Planning.csv', { responseType: 'text' }).pipe(
-          map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber))
+        this.http.get('assets/reports/Planning.json').pipe(
+          // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber))
         ).subscribe((res: any[]) => {
-          console.log(res)
+          // console.log(res)
           observer.next({ success: true, data: res })
           observer.complete()
         })
@@ -201,7 +201,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/allocation.json').pipe(
+        this.http.get('assets/reports/Allocation.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.allocation.shouldBeNumber))
         ).subscribe((res: any[]) => {
           // console.log(res)
@@ -245,7 +245,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/plant_stock.json').pipe(
+        this.http.get('assets/reports/Plant_Stock.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.plantStock.shouldBeNumber))
         ).subscribe((res: any[]) => {
           // console.log(res)

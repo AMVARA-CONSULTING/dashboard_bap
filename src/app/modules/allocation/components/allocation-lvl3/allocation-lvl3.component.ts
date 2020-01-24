@@ -136,7 +136,7 @@ export class AllocationLvl3Component implements OnInit {
       })
     })
     const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
-    filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth] == this.date)
+    filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth].replace(/\-/,'') == this.date)
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     const filteredRowsByPlant_copy2 = filteredRowsByPlant.concat()

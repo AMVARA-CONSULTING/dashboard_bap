@@ -123,8 +123,7 @@ export class AllocationLvl2Component implements OnInit {
     this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
       r[a[17].toString().substring(0, 4)] = r[a[17].toString().substring(0, 4)] || []
       return r
-    }, {})
-    )
+    }, {}))
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
       if (alocDate.isBetween(dateNow, dateNextEightMonths, null, '[]')) {
@@ -146,7 +145,10 @@ export class AllocationLvl2Component implements OnInit {
     })
     const maxProgram = Math.max(...info.map(mon => mon.program))
     const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
-    filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.yearMonth] == this.date)
+    filteredRowsByPlant = filteredRowsByPlant.filter(item => {
+      console.log(this.date)
+      return item[this.config.config.reports.trucks.columns.allocation.yearMonth].replace(/\-/, '') == this.date
+    })
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     this.partNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)

@@ -10,5 +10,5 @@ deploy:
   script:
     - route=$(pwd)
     - npm install
-    - npx ng build --prod --aot --build-optimizer --output-path=dist
+    - npm run build
     - sudo cp -rf ./dist/* /home/amvara/projects/dip-more/

@@ -1,6 +1,6 @@
 
 @import 'app/other/colors';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "material-theme";
 
 @font-face {
     font-family: 'Material Icons';
@@ -70,9 +70,31 @@ html {
     background: $main-bg-body-color !important;
 }
 
+@include lightTheme {
+    color: $text-color;
+    .mat-drawer-container {
+        color: $text-color;
+    }
+    .mat-expansion-panel-content {
+        color: $text-color;
+        .prop {
+            color: $text-color !important;
+        }
+    }
+    .mat-expansion-panel-header-title {
+        color: $text-color !important;
+    }
+    .changelog > ul > li > ul > li {
+        color: $text-color !important;
+    }
+}
+
 html, body {
     color: $semi-white;
     background-color: $main-bg-body-color;
+    @include lightTheme {
+        background-color: $main-bg-body-color-light;
+    }
     background-image: url(^assets/neurons.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -235,6 +257,11 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid $cyan-text;
+}
+@include lightTheme {
+    .mat-tooltip.actual:after, .mat-tooltip.allocation:after {
+        border-top: 5px solid $cyan-text-light;
+    }
 }
 
 .mat-tooltip.reserve_g:after {

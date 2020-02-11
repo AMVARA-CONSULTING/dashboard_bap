@@ -1,12 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
-import { Router } from '@angular/router';
-import { ToolsService } from '@services/tools.service';
 import { ConfigService } from '@services/config.service';
 import { BehaviorSubject } from 'rxjs';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
+import { FormControl } from '@angular/forms';
+import { throwToolbarMixedModesError } from '@angular/material';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'header',
@@ -27,11 +28,26 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     // Load available links for the header, only those will be visible
     const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))
     this.reports.next(links)
+    const lightThemeStorage = localStorage.getItem('light_theme')
+    if (lightThemeStorage === 'yes') {
+      this.lightTheme.setValue(true)
+    }
   }
+
+  lightTheme = new FormControl(false)
 
   loading: boolean = false
 
   ngOnInit() {
+    this.lightTheme.valueChanges.pipe(
+      tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
+    ).subscribe(light => {
+      if (light) {
+        document.body.setAttribute('theme', 'light')
+      } else {
+        document.body.setAttribute('theme', 'dark')
+      }
+    })
   }
 
   ngAfterViewChecked() {

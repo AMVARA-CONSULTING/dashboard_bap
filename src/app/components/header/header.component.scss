@@ -19,6 +19,13 @@
             transform: translate3d(0,0,0);
 }
 
+
+@include lightTheme {
+    :host {
+        background: $header-bg-color-light !important;
+    }
+}
+
 @-webkit-keyframes rotate {
     0% {
       -webkit-transform: rotate(0deg);
@@ -285,4 +292,13 @@
     right: 0;
     top: 28px;
     text-transform: uppercase;
+}
+
+:host::ng-deep .mat-slide-toggle {
+    height: 70px;
+    margin-left: 15px;
+    .mat-slide-toggle-content {
+        font-size: 13px;
+        font-family: "CorpoS";
+    }
 }

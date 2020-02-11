@@ -56,6 +56,7 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { AuthInterceptor } from '@services/http-interceptor';
 import { APP_BASE_HREF } from '@angular/common';
 import { OnlyNumbers } from './directives/only-numbers.directive';
+import { MatSlideToggleModule } from '@angular/material'
 
 declare var Hammer: any;
 
@@ -92,6 +93,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     // Angular Material Modules
     MatTooltipModule,

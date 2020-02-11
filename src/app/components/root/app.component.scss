@@ -6,6 +6,12 @@
     background-color: $main-bg-body-color;
 }
 
+@include lightTheme {
+    :host {
+        background-color: $main-bg-body-color-light !important;
+    }
+}
+
 .content {
     margin-top: 70px;
     margin-bottom: 32px;

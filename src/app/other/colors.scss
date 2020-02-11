@@ -8,16 +8,36 @@ $main-bg-color: #101010;
 
 $transparency: .6;
 
+// Dark Theme
+$main-shady-color: #181820;
 $header-bg-color: rgba($color: #17181F, $alpha: .85);
-$main-bg-body-color: rgba($color: #181820, $alpha: .92);
+$main-bg-body-color: rgba($color: $main-shady-color, $alpha: .92);
 $main-bg-content-color: rgba($color: #202020, $alpha: .4);
 $bg-white-lvl1: rgba($color: #343445, $alpha: .5);
 $bg-white-lvl2: rgba($color: #292931, $alpha: $transparency);
 $bg-white-lvl2-5: rgba($color: #252527, $alpha: $transparency);
-$bg-white-lvl4: rgba($color: #181820, $alpha: $transparency);
+$bg-white-lvl4: rgba($color: $main-shady-color, $alpha: $transparency);
 $bg-white-lvl3-pure: #202029;
-$bg-white-lvl3: rgba($color: #202029, $alpha: .4);
+$bg-white-lvl3: rgba($color: $bg-white-lvl3-pure, $alpha: .4);
 $bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
+
+// Light theme
+$text-color: lighten(black, 5);
+$main-bg-body-color-light: darken(white, 3);
+$header-bg-color-light: darken($main-bg-body-color-light, 15);
+$cyan-text-light: darken($cyan-text, 40);
+
+@mixin lightTheme {
+	body[theme="light"] {
+        @content;
+    }
+}
+
+@mixin darkTheme {
+	body[theme="dark"] {
+        @content;
+    }
+}
 
 // Mixins
 @mixin ie {

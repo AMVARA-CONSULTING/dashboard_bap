@@ -10,7 +10,11 @@
   <meta name="theme-color" content="#1976d2">
   <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
-<body>
+<body theme="dark">
+  <script>
+    var lightThemeStorage = localStorage.getItem('light_theme')
+    if (lightThemeStorage === 'yes') document.body.setAttribute('theme', 'light')
+  </script>
   <dip-root>
     <style>
       html,

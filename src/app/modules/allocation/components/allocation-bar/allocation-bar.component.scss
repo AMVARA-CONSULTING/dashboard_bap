@@ -44,6 +44,12 @@
     }
 }
 
+@include lightTheme {
+    .bar.allocation {
+        background-color: $cyan-text-light !important;
+    }
+}
+
 .percent {
     position: absolute;
     margin: auto;

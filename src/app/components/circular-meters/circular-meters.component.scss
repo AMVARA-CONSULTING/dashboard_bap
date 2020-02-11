@@ -46,6 +46,12 @@
     border-color: $cyan-text;
 }
 
+@include lightTheme {
+    ::ng-deep .mat-tooltip.actual {
+        border-color: $cyan-text-light;
+    }
+}
+
 ::ng-deep .mat-tooltip.previous {
     border-color: $yellow-text;
 }

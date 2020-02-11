@@ -46,6 +46,12 @@
     border-color: $cyan-text !important;
 }
 
+@include lightTheme {
+    ::ng-deep .mat-tooltip.customer {
+        border-color: $cyan-text-light !important;
+    }
+}
+
 ::ng-deep .mat-tooltip.total {
     border-color: $yellow-text !important;
 }

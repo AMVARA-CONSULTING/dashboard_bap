@@ -9,6 +9,7 @@
   <li *ngFor="let link of reports | async" [routerLink]="link.link" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
   <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
   <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
+  <mat-slide-toggle [formControl]="lightTheme" color="primary">Light Theme</mat-slide-toggle>
 </ul>
 <div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
   <div class="icon">

@@ -4,13 +4,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
 import { LocationStrategy } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { timer, interval } from 'rxjs';
 import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
-import { retry } from 'rxjs/operators';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
-import { BehaviorSubject } from 'rxjs';
+import { timer } from 'rxjs/internal/observable/timer';
+import { interval } from 'rxjs/internal/observable/interval';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { retry } from 'rxjs/internal/operators/retry';
 
 @Component({
   selector: 'dip-root',

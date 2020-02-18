@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable, Subscription } from 'rxjs';
 import { ConfigService } from './config.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
 import { ToolsService } from './tools.service';
-import { map } from 'rxjs/internal/operators/map';
-
-declare var XML, JKL: any
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class ApiService {

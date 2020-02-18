@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable()
-export class LoadingService {
-
-  constructor() {
-    this.loading$ = new BehaviorSubject<boolean>(false)
-  }
-
-  loading$: BehaviorSubject<boolean>
-}
+export class LoadingService { loading$ = new BehaviorSubject<boolean>(false) }

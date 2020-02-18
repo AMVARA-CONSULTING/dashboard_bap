@@ -2,12 +2,11 @@ import { Component, OnInit, ChangeDetectorRef, AfterViewChecked, ChangeDetection
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { ConfigService } from '@services/config.service';
-import { BehaviorSubject } from 'rxjs';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
 import { FormControl } from '@angular/forms';
-import { throwToolbarMixedModesError } from '@angular/material';
 import { tap } from 'rxjs/internal/operators/tap';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'header',

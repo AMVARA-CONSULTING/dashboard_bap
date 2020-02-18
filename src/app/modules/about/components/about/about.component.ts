@@ -3,11 +3,10 @@ import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from '@services/data.service';
-import * as moment from 'moment';
 import { dependencies } from '../../../../../../package.json';
 import { ToolsService } from '@services/tools.service.js';
-import { BehaviorSubject } from 'rxjs';
 import { CognosService } from '@services/cognos.service.js';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'about',

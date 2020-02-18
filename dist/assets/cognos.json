@@ -1,5 +1,5 @@
 {
-	"version": "2.34.0",
+	"version": "2.35.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -193,6 +193,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.35.0",
+			"text": [
+				"#2335 - Fix bad calculation on PP LVL 3"
+			]
+		},
 		{
 			"version": "2.34.0",
 			"text": [

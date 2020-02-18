@@ -206,7 +206,7 @@ export class ProductionProgramLvl3Component implements OnInit {
       plantTotalDiff: this.data.sumByIndex(plantRows, 21),
       plantReserve: this.data.sumByIndex(plantRows, 22),
       productsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 10 : 9] == this.region_id),
-      regionsPlain: zoneRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.region_id)
+      regionsPlain: plantRows.filter(item => item[this.config.config.language == 'en' ? 12 : 11] == this.region_id)
     }
     if (this.RegionID != null && this.groupInfo.productsPlain.length == 0) {
       this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })

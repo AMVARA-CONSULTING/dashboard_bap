@@ -12,6 +12,8 @@ import { timer } from 'rxjs/internal/observable/timer';
 import { interval } from 'rxjs/internal/observable/interval';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { retry } from 'rxjs/internal/operators/retry';
+import { FormControl } from '@angular/forms';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'dip-root',
@@ -19,6 +21,8 @@ import { retry } from 'rxjs/internal/operators/retry';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  lightTheme = new FormControl(false)
 
   constructor(
     public data: DataService,
@@ -64,6 +68,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lightTheme.valueChanges.pipe(
+      tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
+    ).subscribe(light => {
+      if (light) {
+        document.body.setAttribute('theme', 'light')
+      } else {
+        document.body.setAttribute('theme', 'dark')
+      }
+    })
     /*if (this.sw.isEnabled) {
       this.sw.available.subscribe(() => {
         console.log("%cNew version detected!", "color:green;")

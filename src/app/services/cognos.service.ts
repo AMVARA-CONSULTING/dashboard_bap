@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToolsService } from './tools.service';
-import { UserPreferences, UserCapabilities, HeaderLink, Config } from '@other/interfaces';
+import { UserCapabilities, HeaderLink, Config } from '@other/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { of } from 'rxjs/internal/observable/of';
@@ -89,7 +89,7 @@ export class CognosService {
           const re = new RegExp(/CAMID\(\"\:0201_DIPRE\:_(.*)\"\)/g)
           const match = re.exec(a.searchPath)
           if (match) {
-            r.push(match[1])
+            r.push(match[1].toUpperCase())
           }
           return r
         }, [])
@@ -98,16 +98,16 @@ export class CognosService {
           admin: rows.indexOf('Global_Function_Groups‬:DIPRE_Admins') > -1,
           mobile: rows.indexOf('Global_Function_Groups‬:DIPRE_Mobile') > -1,
           trucks: {
-            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake') > -1,
-            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program') > -1,
-            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation') > -1,
-            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock') > -1
+            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toUpperCase()) > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toUpperCase()) > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toUpperCase()) > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toUpperCase()) > -1
           },
           vans: {
-            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake') > -1,
-            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program') > -1,
-            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation') > -1,
-            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock') > -1
+            order_intake: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toUpperCase()) > -1,
+            production_program: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toUpperCase()) > -1,
+            allocation: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toUpperCase()) > -1,
+            plant_stock: rows.indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toUpperCase()) > -1
           }
         }
         if (config.debug) console.log(this.userCapabilities)

@@ -7,6 +7,9 @@ stages:
 
 deploy:
   stage: deploy
+  only:
+    refs:
+      - master
   script:
     - route=$(pwd)
     - npm install

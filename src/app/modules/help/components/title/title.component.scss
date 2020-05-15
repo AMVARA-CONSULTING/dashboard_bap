@@ -10,3 +10,8 @@
     border-bottom: 1px solid $yellow-text;
     margin-bottom: 30px;
 }
+@include lightTheme {
+    :host {
+        color: $light-grey4;
+    }
+}

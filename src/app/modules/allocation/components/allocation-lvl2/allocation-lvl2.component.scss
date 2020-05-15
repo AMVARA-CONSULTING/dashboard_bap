@@ -314,3 +314,68 @@ header {
         border-top: 10px solid rgba(0,0,0,.4);
     }
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        background-color: white;
+        .overview {
+            background: -webkit-linear-gradient(top, white, $light-grey2);
+            background: -o-linear-gradient(top, white, $light-grey2);
+            background: linear-gradient(to bottom, white, $light-grey2);
+            .simple {
+                border-left-color: transparent;
+                .customer {
+                    color: $petrol !important;
+                }
+                .plan,
+                .reserve {
+                    color: $light-grey3 !important;
+                }
+            }
+            .data-header {
+                background-color: white;
+            }
+        }
+        header {
+            background-color: $light-grey2 !important;
+            .month {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+            .total-allocation {
+                color: $petrol;
+                font-weight: bold;
+            }
+            .total-program {
+                color: $orange;
+                font-weight: bold;
+            }
+            border-bottom: 2px solid white;
+        }
+        .group-header {
+            background-color: white !important;
+            color: $light-grey3;
+            font-weight: bold;
+        }
+        .row {
+            background-color: $light-grey2 !important;
+            border-bottom: 2px solid white !important;
+            .month {
+                color: $light-grey4 !important;
+                font-weight: bold;
+            }
+            .percent {
+                color: $light-grey3 !important;
+                font-weight: bold;
+            }
+            .allocation {
+                color: $petrol !important;
+                font-weight: bold;
+            }
+            .program {
+                color: $orange !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -47,9 +47,9 @@
     width: 100%;
     max-height: 0;
     overflow: hidden;
-    -webkit-transition: all .6s ease-in-out;
-    -o-transition: all .6s ease-in-out;
-    transition: all .6s ease-in-out;
+    // -webkit-transition: all .6s ease-in-out;
+    // -o-transition: all .6s ease-in-out;
+    // transition: all .6s ease-in-out;
     border-color: rgba($color: #000, $alpha: .2);
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         -ms-flex-wrap: wrap;
@@ -158,11 +158,60 @@
 }
 
 @include lightTheme {
-    ::ng-deep .overview .simple .overview-group .actual {
+    :host::ng-deep .overview .simple .overview-group .actual {
         color: $cyan-text-light !important; 
     }
     .zone .zone-header .actual {
         color: $cyan-text-light !important; 
+    }
+    :host {
+        background-color: white;
+        .zone {
+            .zone-header {
+                background-color: white;
+                .title {
+                    color: $light-grey3;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $petrol !important;
+                }
+                .previous {
+                    color: $orange !important;
+                }
+            }
+            .plant {
+                background-color: $light-grey2;
+                border-bottom: 2px solid white;
+                .title {
+                    color: $light-grey4 !important;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $light-grey3 !important;
+                    font-weight: bold;
+                }
+                .previous {
+                    color: $light-grey3 !important;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    :host .overview {
+        background: -webkit-linear-gradient(top, white, $light-grey2);
+        background: -o-linear-gradient(top, white, $light-grey2);
+        background: linear-gradient(to bottom, white, $light-grey2);
+        border-bottom-color: $light-grey2;
+        .simple {
+            border-left-color: transparent;
+            .actual {
+                color: $petrol !important;
+            }
+            .previous {
+                color: $orange !important;
+            }
+        }
     }
 }
 

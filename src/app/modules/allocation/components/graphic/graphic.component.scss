@@ -108,3 +108,27 @@
 ::ng-deep .mat-tooltip.allocation {
     border-color: $cyan-text;
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        background: none;
+        .program {
+            border-color: $orange;
+        }
+        .allocation {
+            border-color: $petrol;
+        }
+        .month {
+            .allocation {
+                background-color: $petrol !important;
+            }
+            .program {
+                background-color: $orange !important;
+            }
+            .date {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+        }
+    }
+}

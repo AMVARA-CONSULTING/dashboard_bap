@@ -45,8 +45,13 @@
 }
 
 @include lightTheme {
-    .bar.allocation {
-        background-color: $cyan-text-light !important;
+    :host {
+        .bar {
+            background-color: $orange !important;
+            .allocation {
+                background-color: $petrol !important;
+            }
+        }
     }
 }
 

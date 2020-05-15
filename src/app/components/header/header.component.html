@@ -2,14 +2,14 @@
   <div class="inter"></div>
   <div class="middle"></div>
   <div class="outer"></div>
-  <span>{{ config.config.appTitle }}</span>
+  <span class="logo-title">{{ config.config.appTitle }}</span>
 </div>
 <div class="page-title">{{ 'menu.'+data.title | translate }}</div>
 <ul class="links">
   <li *ngFor="let link of reports | async" [routerLink]="link.link" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
   <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
   <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
-  <mat-slide-toggle [formControl]="lightTheme" color="primary">Light Theme</mat-slide-toggle>
+  <mat-slide-toggle [formControl]="data.lightTheme" color="primary">LIGHT THEME</mat-slide-toggle>
 </ul>
 <div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
   <div class="icon">

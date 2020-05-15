@@ -55,3 +55,29 @@
 ::ng-deep .mat-tooltip.total {
     border-color: $yellow-text !important;
 }
+
+@include lightTheme {
+    :host {
+        .cyan {
+            color: $petrol;
+        }
+        .orange {
+            color: $orange;
+        }
+        .meter {
+            border-left-color: transparent;
+        }
+        border-bottom-color: $light-grey2;
+        background: -webkit-linear-gradient(top, white, $light-grey2);
+        background: -o-linear-gradient(top, white, $light-grey2);
+        background: linear-gradient(to bottom, white, $light-grey2);
+    }
+    ::ng-deep {
+        .mat-tooltip.actual {
+            border-color: $petrol;
+        }
+        .mat-tooltip.previous {
+            border-color: $orange;
+        }
+    }
+}

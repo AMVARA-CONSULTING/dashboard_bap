@@ -3,7 +3,7 @@ import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
 import { LocationStrategy } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { HeaderLink } from '@other/interfaces';
@@ -12,7 +12,6 @@ import { timer } from 'rxjs/internal/observable/timer';
 import { interval } from 'rxjs/internal/observable/interval';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { retry } from 'rxjs/internal/operators/retry';
-import { FormControl } from '@angular/forms';
 import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
@@ -22,7 +21,8 @@ import { tap } from 'rxjs/internal/operators/tap';
 })
 export class AppComponent implements OnInit {
 
-  lightTheme = new FormControl(false)
+  preventUpdate = false;
+  reports = new BehaviorSubject<HeaderLink[]>([]);
 
   constructor(
     public data: DataService,
@@ -32,51 +32,49 @@ export class AppComponent implements OnInit {
     private router: Router,
     private api: ApiService,
     private http: HttpClient,
-    private ac: ActivatedRoute,
     private _cognos: CognosService
   ) {
     if (this.config.config.simulateUnauthorized > 0) {
-      timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false)
+      timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);
     }
-    if (this.api.corpintra || location.hostname == 'localhost') {
+    if (this.api.corpintra || location.hostname === 'localhost') {
       // Heartbeat
       this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ =>
         this.http.get(location.pathname + 'assets/keep.alive.txt', { observe: 'response', responseType: 'text' }).pipe(retry(3))
           .subscribe()
-      )
+      );
     }
     this._location.onPopState(() => {
-      if (this.data.currentLevel == 1 && this.data.title != 'order_intake') {
-        this.router.navigate(['order-intake'], { replaceUrl: true, queryParamsHandling: 'merge' })
+      if (this.data.currentLevel === 1 && this.data.title !== 'order_intake') {
+        this.router.navigate(['order-intake'], { replaceUrl: true, queryParamsHandling: 'merge' });
       }
-      //history.go(1)
-    })
-    data.init()
-    this.translate.setDefaultLang('en')
-    this.translate.use(localStorage.getItem('lang') || config.config.language)
+    });
+    data.init();
+    this.translate.setDefaultLang('en');
+    this.translate.use(localStorage.getItem('lang') || config.config.language);
     // If going to a report, check it has access, and if not, redirect to another one with access
-    if (location.hash.indexOf('help') == -1 && location.hash.indexOf('about') == -1) {
-      const links = this._cognos.getLinksWithAccess(Object.assign({}, this.config.config))
-      this.reports.next(links)
+    const links = this._cognos.getLinksWithAccess({ ...this.config.config });
+    this.reports.next(links);
+    if (!location.hash.includes('help') && !location.hash.includes('about')) {
       if (links.length > 0) {
-        this.router.navigate([links[0].link])
+        this.router.navigate([links[0].link]);
       } else {
         // Unable to access to any report, then main page is Help
-        this.router.navigate(['/help'])
+        this.router.navigate(['/help']);
       }
     }
   }
 
   ngOnInit() {
-    this.lightTheme.valueChanges.pipe(
+    this.data.lightTheme.valueChanges.pipe(
       tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
     ).subscribe(light => {
       if (light) {
-        document.body.setAttribute('theme', 'light')
+        document.body.setAttribute('theme', 'light');
       } else {
-        document.body.setAttribute('theme', 'dark')
+        document.body.setAttribute('theme', 'dark');
       }
-    })
+    });
     /*if (this.sw.isEnabled) {
       this.sw.available.subscribe(() => {
         console.log("%cNew version detected!", "color:green;")
@@ -93,11 +91,8 @@ export class AppComponent implements OnInit {
     }*/
   }
 
-  preventUpdate: boolean = false
-  reports = new BehaviorSubject<HeaderLink[]>([])
-
   close() {
-    this.data.sidenavOpened = !this.data.sidenavOpened
+    this.data.sidenavOpened = !this.data.sidenavOpened;
   }
 
 }

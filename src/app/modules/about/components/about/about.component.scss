@@ -25,6 +25,15 @@
     color: white;
 }
 
+@include lightTheme {
+    :host {
+        a {
+            color: $petrol !important;
+            font-weight: bold;
+        }
+    }
+}
+
 .software {
     ul li {
         list-style-type: none;
@@ -59,6 +68,13 @@ p a, p span {
     text-decoration: none;
 }
 
+@include lightTheme {
+    :host p span {
+        color: $petrol !important;
+        font-weight: bold;
+    }
+}
+
 p {
     line-height: 25px;
 }
@@ -70,6 +86,12 @@ p {
 ::ng-deep .segment-value {
     color: $lighten-cyan-text !important;
     margin-left: 10px !important;
+}
+
+@include lightTheme {
+    :host::ng-deep .segment-value {
+        color: $petrol !important;
+    }
 }
 
 .changelog {

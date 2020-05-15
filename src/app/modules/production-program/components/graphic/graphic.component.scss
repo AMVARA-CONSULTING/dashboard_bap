@@ -91,3 +91,31 @@
 ::ng-deep .previous {
     border-color: $yellow-text-material;
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        .actual {
+            border-color: $petrol;
+        }
+        .previous {
+            border-color: $orange;
+        }
+        .zone {
+            .bars {
+                .actual {
+                    background-color: $petrol !important;
+                }
+                .previous {
+                    background-color: $orange !important;
+                }
+                .reserve {
+                    background-color: grey !important;
+                }
+            }
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+        }
+    }
+}

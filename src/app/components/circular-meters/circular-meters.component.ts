@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'dip-circular-meters',
@@ -6,15 +7,14 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   styleUrls: ['./circular-meters.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DipCircularMetersComponent implements OnInit {
+export class DipCircularMetersComponent {
 
-  constructor() { }
+  constructor(
+    public data: DataService
+  ) { }
 
-  ngOnInit() {
-  }
-
-  @Input() actualValue: number
-  @Input() previousValue: number
+  @Input() actualValue: number;
+  @Input() previousValue: number;
 
   @Input('actual') set setActual(value: number) {
     this.actual = isNaN(value) ? 0 : Math.abs(value)

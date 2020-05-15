@@ -98,18 +98,18 @@ export class PlantStockLvl3Component implements OnInit {
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
     this.totalDelta = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.delta)
-    this.werkbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]))
+    this.werkbestands = { ...this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]) }
     const filteredRowsByWerk = filteredRowsByPlant.filter(item => item[werkbestandName[this.config.config.language]] == this.werk)
     this.werkActual = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.actual)
     this.werkPrevious = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.previous)
     this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.delta)
-    this.hofbestands = Object.assign({}, this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]))
+    this.hofbestands = { ...this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]) }
     const filteredRowsByHofbestand = filteredRowsByWerk.filter(item => item[hofbestandName[this.config.config.language]] == this.hofb)
     this.hofbActual = this.data.sumByIndex(filteredRowsByHofbestand, this.config.config.reports.trucks.columns.plantStock.actual)
     this.hofbPrevious = this.data.sumByIndex(filteredRowsByHofbestand, this.config.config.reports.trucks.columns.plantStock.previous)
     this.hofbDelta = this.data.sumByIndex(filteredRowsByHofbestand, this.config.config.reports.trucks.columns.plantStock.delta)
-    this.regions = Object.assign({}, this.data.classifyByIndex(filteredRowsByHofbestand, regionName[this.config.config.language]))
-    this.products = Object.assign({}, this.data.classifyByIndex(filteredRowsByHofbestand, productName[this.config.config.language]))
+    this.regions = { ...this.data.classifyByIndex(filteredRowsByHofbestand, regionName[this.config.config.language]) }
+    this.products = { ...this.data.classifyByIndex(filteredRowsByHofbestand, productName[this.config.config.language]) }
     this.actualValue = +this.tools.percent(this.hofbActual, this.werkActual)
     this.previousValue = +this.tools.percent(this.hofbPrevious, this.werkPrevious)
     setTimeout(() => {

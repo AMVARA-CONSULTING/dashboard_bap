@@ -24,8 +24,14 @@ $bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
 // Light theme
 $text-color: lighten(black, 5);
 $main-bg-body-color-light: darken(white, 3);
-$header-bg-color-light: darken($main-bg-body-color-light, 15);
+$header-bg-color-light: white;
 $cyan-text-light: darken($cyan-text, 40);
+$petrol: #17687F;
+$orange: #E59123;
+$light-grey1: #F2F2F2;
+$light-grey2: #E6E6E6;
+$light-grey3: #666666;
+$light-grey4: #333333;
 
 @mixin lightTheme {
 	body[theme="light"] {

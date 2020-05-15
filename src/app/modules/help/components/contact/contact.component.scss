@@ -16,6 +16,13 @@
     font-weight: bold
 }
 
+@include lightTheme {
+    :host::ng-deep name {
+        color: $petrol !important;
+        font-weight: bold;
+    }
+}
+
 ::ng-deep tel {
     color: $yellow-text;
 }

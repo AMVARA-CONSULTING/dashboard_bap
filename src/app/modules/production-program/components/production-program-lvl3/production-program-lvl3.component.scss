@@ -364,3 +364,78 @@
         border-right: 8px solid rgba(0, 0, 0, 0.4);
     }
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        .data-header,
+        header {
+            background-color: white !important;
+        }
+        background-color: white;
+        .header-row,
+        .overview .header-row.lvl2 {
+            background-color: $light-grey2 !important;
+            .title {
+                color: $light-grey4;
+            }
+            & > div {
+                font-weight: bold;
+            }
+            .customer {
+                color: $petrol !important;
+            }
+            .total {
+                color: $orange !important;
+            }
+            .plan,
+            .reserve {
+                color: $light-grey3 !important;
+            }
+            border-bottom: 2px solid white;
+        }
+        .title-header {
+            background-color: white !important;
+            .title {
+                color: $light-grey3;
+                font-weight: bold;
+            }
+            .customer,
+            .plan,
+            .total,
+            .reserve {
+                font-weight: bold;
+            }
+            .customer {
+                color: $petrol !important;
+            }
+            .total {
+                color: $orange !important;
+            }
+            .plan,
+            .reserve {
+                color: $light-grey3 !important;
+            }
+        }
+        .lvl2-row {
+            background-color: $light-grey2 !important;
+            border-bottom: 2px solid white !important;
+            .title {
+                color: $light-grey4 !important;
+                font-weight: bold;
+            }
+            .plan,
+            .reserve {
+                color: $light-grey3 !important;
+                font-weight: bold;
+            }
+            .customer {
+                color: $petrol !important;
+                font-weight: bold;
+            }
+            .total {
+                color: $orange !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

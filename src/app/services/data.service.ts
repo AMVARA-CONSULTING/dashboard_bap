@@ -3,30 +3,33 @@ import { MatDialog } from '@angular/material';
 import { SelectYearComponent } from '../dialogs/select-year/select-year.component';
 import { ConnectionService } from 'ng-connection-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Injectable()
 export class DataService {
+
+  lightTheme = new FormControl(false);
 
   constructor(
     private dialog: MatDialog,
     private connection: ConnectionService,
     private router: Router,
     private ac: ActivatedRoute
-  ) { 
+  ) {
     (window as any).data = this;
   }
-  
+
   go(page): void {
-    this.router.navigate(['/'+page], { queryParamsHandling: 'merge' })
+    this.router.navigate(['/' + page], { queryParamsHandling: 'merge' })
   }
 
   init() {
     this.connection.monitor().subscribe(isConnected => {
-      this.online = isConnected
-    })
+      this.online = isConnected;
+    });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) this.title = this.ac.root.firstChild.snapshot.data['title']
-    })
+    });
   }
 
   accessGranted: boolean = false
@@ -54,7 +57,7 @@ export class DataService {
   online: boolean = true
 
   // Contains the title of the current page
-  title: string = ''
+  title: string = '';
 
   /**
    * Classifies an array collection based on an index

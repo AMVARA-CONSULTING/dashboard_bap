@@ -33,7 +33,7 @@ export class CognosService {
       { link: '/plant-stock', text: 'plant_stock' }
     ]
     if (location.hostname.indexOf('corpintra.net') > -1) {
-      const scenarioProperties = Object.assign({}, this.userCapabilities[config.target])
+      const scenarioProperties = { ...this.userCapabilities[config.target] }
       for (let prop in scenarioProperties) {
         if (!scenarioProperties[prop]) delete scenarioProperties[prop]
       }

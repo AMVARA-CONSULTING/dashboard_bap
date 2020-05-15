@@ -171,7 +171,7 @@ export class ProductionProgramLvl2Component implements OnInit {
     this.groupInfo.progress4 = this.ZoneID != null ?
       this.percent(this.groupInfo.zoneReserve, this.groupInfo.totalReserve) :
       this.percent(this.groupInfo.plantReserve, this.groupInfo.zoneReserve)
-    this.groupInfo = Object.assign({}, this.groupInfo)
+    this.groupInfo = { ...this.groupInfo }
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }

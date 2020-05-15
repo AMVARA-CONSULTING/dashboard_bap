@@ -424,3 +424,98 @@
 ::ng-deep .mat-option.mat-selected {
     color: $yellow-text !important;
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        background-color: white;
+        .overview {
+            background: -webkit-linear-gradient(top, white, $light-grey2);
+            background: -o-linear-gradient(top, white, $light-grey2);
+            background: linear-gradient(to bottom, white, $light-grey2);
+            .simple {
+                border-left-color: transparent;
+                .customer {
+                    color: $petrol !important;
+                }
+                .plan,
+                .reserve {
+                    color: $light-grey3 !important;
+                }
+            }
+            .data-header {
+                background-color: white;
+            }
+        }
+        header {
+            background-color: $light-grey2 !important;
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+            .actual {
+                color: $petrol;
+            }
+            .previous {
+                color: $orange;
+            }
+            border-bottom: 2px solid white;
+        }
+        .header-row.plant {
+            background-color: $light-grey2;
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+            .actual {
+                color: $petrol;
+            }
+            .previous {
+                color: $orange;
+            }
+        }
+        .zone-header {
+            background-color: white !important;
+            .title {
+                color: $light-grey3;
+                font-weight: bold;
+            }
+            .customer,
+            .plan,
+            .total,
+            .reserve {
+                font-weight: bold;
+            }
+            .customer {
+                color: $petrol !important;
+            }
+            .total {
+                color: $orange !important;
+            }
+            .plan,
+            .reserve {
+                color: $light-grey3 !important;
+            }
+        }
+        .plant {
+            background-color: $light-grey2 !important;
+            border-bottom: 2px solid white !important;
+            .title {
+                color: $light-grey4 !important;
+                font-weight: bold;
+            }
+            .plan,
+            .reserve {
+                color: $light-grey3 !important;
+                font-weight: bold;
+            }
+            .customer {
+                color: $petrol !important;
+                font-weight: bold;
+            }
+            .total {
+                color: $orange !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

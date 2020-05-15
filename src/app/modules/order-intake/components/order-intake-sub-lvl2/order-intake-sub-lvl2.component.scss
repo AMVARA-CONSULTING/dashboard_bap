@@ -249,3 +249,53 @@
         }
     }
 }
+
+@include lightTheme {
+    :host {
+        background-color: white;
+        .overview {
+            .data-header {
+                background-color: white;
+            }
+            .header-row.total,
+            .header-row.plant,
+            .header-row.zone {
+                background-color: $light-grey2;
+                .title {
+                    color: $light-grey4;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $petrol;
+                }
+                .previous {
+                    color: $orange;
+                }
+                border-bottom: 2px solid white;
+            }
+            .title-header {
+                background-color: white;
+                .title {
+                    color: $light-grey3;
+                    font-weight: bold;
+                }
+            }
+            .lvl2-row {
+                background-color: $light-grey2;
+                border-bottom: 2px solid white;
+                .title {
+                    color: $light-grey4 !important;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $light-grey3 !important;
+                    font-weight: bold;
+                }
+                .previous {
+                    color: $light-grey3 !important;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

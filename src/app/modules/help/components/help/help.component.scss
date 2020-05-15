@@ -12,6 +12,15 @@
     touch-action: pan-y !important;
 }
 
+@include lightTheme {
+    :host {
+        a {
+            color: $petrol !important;
+            font-weight: bold;
+        }
+    }
+}
+
 .contact-info {
     display: -webkit-box;
     display: -ms-flexbox;

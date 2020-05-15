@@ -144,7 +144,7 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     this.groupInfo['progress2'] = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.previous))
     this.groupInfo['sub3rows'] = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
     this.groupKeys = Object.keys(this.groupInfo.sub3rows)
-    this.groupInfo = Object.assign({}, this.groupInfo)
+    this.groupInfo = { ...this.groupInfo }
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)
   }

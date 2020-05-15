@@ -70,12 +70,38 @@
     }
 }
 
-::ng-deep .actual {
+:host::ng-deep .actual {
     border-color: $cyan-text;
     position: relative;
 }
 
-::ng-deep .previous {
+
+@include lightTheme {
+    :host::ng-deep {
+        .actual {
+            border-color: $petrol;
+        }
+        .previous {
+            border-color: $orange;
+        }
+        .zone {
+            .bars {
+                .actual {
+                    background-color: $petrol !important;
+                }
+                .previous {
+                    background-color: $orange !important;
+                }
+            }
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+:host::ng-deep .previous {
     border-color: $yellow-text;
     position: relative;
 }

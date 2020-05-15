@@ -32,7 +32,7 @@ export class ConfigService {
         search.delay = search.delay ? search.delay * 1000 : null
         this.config.language = localStorage.getItem('lang') || this.config.language
         if (corpintra) {
-          this.cognos.load(this.config.capabilities[this.config.scenario], Object.assign({}, this.config)).then(_ => {
+          this.cognos.load(this.config.capabilities[this.config.scenario], { ...this.config }).then(_ => {
             setTimeout(() => resolve(), search.delay || this.config.delay)
           })
         } else {

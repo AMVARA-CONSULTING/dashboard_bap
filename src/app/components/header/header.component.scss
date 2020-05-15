@@ -23,6 +23,20 @@
 @include lightTheme {
     :host {
         background: $header-bg-color-light !important;
+        box-shadow: 0 0 10px grey;
+        ul li,
+        .mat-slide-toggle {
+            font-weight: bold;
+            color: $light-grey4;
+        }
+        ul li.active:after,
+        ul li:hover:after {
+            height: 3px;
+        }
+        ul li::after {
+            bottom: 0;
+            background-color: $orange;
+        }
     }
 }
 
@@ -149,6 +163,23 @@
     }
 }
 
+@include lightTheme {
+    :host .logo {
+        .logo-title {
+            color: $light-grey4 !important;
+        }
+        .inter {
+            background-image: url(^assets/loader_circle_inside_light.svg);
+        }
+        .middle {
+            background-image: url(^assets/loader_circle_middle_light.svg);
+        }
+        .outer {
+            background-image: url(^assets/loader_circle_outside_light.svg);
+        }
+    }
+}
+
 .links {
     -webkit-box-flex: initial;
         -ms-flex: initial;
@@ -188,9 +219,9 @@
             left: 0;
             right: 0;
             bottom: 8px;
-            -webkit-transition: all .2s ease-in-out;
-            -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
+            -webkit-transition: width .2s ease-in-out;
+            -o-transition: width .2s ease-in-out;
+            transition: width .2s ease-in-out;
             background-color: $yellow-text;
         }
     }

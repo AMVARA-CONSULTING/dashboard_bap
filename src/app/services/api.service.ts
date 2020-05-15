@@ -154,7 +154,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/Planning.json').pipe(
+        this.http.get('assets/reports/Planning_fake.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.productionProgram.shouldBeNumber))
         ).subscribe((res: any[]) => {
           // console.log(res)

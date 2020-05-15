@@ -72,6 +72,9 @@ html {
 
 @include lightTheme {
     color: $text-color;
+    ::-webkit-scrollbar-track {
+        background-color: $light-grey2;
+    }
     .mat-drawer-container {
         color: $text-color;
     }
@@ -86,6 +89,54 @@ html {
     }
     .changelog > ul > li > ul > li {
         color: $text-color !important;
+    }
+    .mat-select-value-text {
+        color: $light-grey3;
+        font-weight: bold;
+    }
+    .mat-select-arrow {
+        color: $light-grey3 !important;
+    }
+    .mat-select-panel {
+        background: $light-grey1 !important;
+        .mat-option {
+            &.mat-selected .mat-option-text {
+                font-weight: bold;
+            }
+            .mat-option-text {
+                color: $light-grey3 !important;
+            }
+        }
+    }
+    .mat-sidenav-content header * {
+        font-weight: bold;
+        color: $light-grey3;
+    }
+}
+
+.data-header {
+    z-index: 99;
+}
+
+@include lightTheme {
+    .data-header,
+    .plandate {
+        margin-top: 10px;
+        color: $light-grey4;
+        font-weight: bold;
+    }
+    .mat-slide-toggle-content {
+        color: $light-grey4;
+    }
+    .headers div,
+    .overview-group div {
+        font-weight: bold;
+    }
+    .mat-drawer {
+        background-color: #F7F7F7 !important;
+        ul li {
+            color: $light-grey4;
+        }
     }
 }
 

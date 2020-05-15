@@ -345,3 +345,72 @@ header {
         border-top: 10px solid rgba(0,0,0,.4);
     }
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        background-color: white;
+        .overview {
+            background: -webkit-linear-gradient(top, white, $light-grey2);
+            background: -o-linear-gradient(top, white, $light-grey2);
+            background: linear-gradient(to bottom, white, $light-grey2);
+            .simple {
+                border-left-color: transparent;
+                .actual {
+                    color: $petrol !important;
+                }
+                .previous {
+                    color: $orange !important;
+                }
+            }
+            border-bottom-color: $light-grey2;
+            .data-header {
+                background-color: white;
+            }
+        }
+        header {
+            background-color: $light-grey2 !important;
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+            .actual {
+                color: $petrol;
+            }
+            .previous {
+                color: $orange;
+            }
+            border-bottom: 2px solid white;
+        }
+        .group-header {
+            background-color: white !important;
+            color: $light-grey3;
+            font-weight: bold;
+            .actual {
+                color: $petrol !important;
+            }
+            .previous {
+                color: $orange !important;
+            }
+        }
+        .row {
+            background-color: $light-grey2 !important;
+            border-bottom: 2px solid white !important;
+            .werk {
+                color: $light-grey4 !important;
+                font-weight: bold;
+            }
+            .delta {
+                color: $light-grey3 !important;
+                font-weight: bold;
+            }
+            .actual {
+                color: $petrol !important;
+                font-weight: bold;
+            }
+            .previous {
+                color: $orange !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

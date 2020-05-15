@@ -79,3 +79,26 @@
     border-color: $yellow-text;
     position: relative;
 }
+
+@include lightTheme {
+    :host::ng-deep {
+        .actual {
+            border-color: $petrol;
+        }
+        .previous {
+            border-color: $orange;
+        }
+        .werk {
+            .actual {
+                background-color: $petrol !important;
+            }
+            .previous {
+                background-color: $orange !important;
+            }
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+        }
+    }
+}

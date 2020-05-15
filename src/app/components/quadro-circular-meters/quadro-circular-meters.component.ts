@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'dip-quadro-circular-meters',
@@ -6,12 +7,12 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   styleUrls: ['./quadro-circular-meters.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DipQuadroCircularMetersComponent implements OnInit {
+export class DipQuadroCircularMetersComponent {
 
-  constructor() { }
+  constructor(
+    public data: DataService
+  ) { }
 
-  ngOnInit() {
-  }
 
   @Input('customer') set setCustomer(value: number) {
     this.customer = isNaN(value) ? 0 : Math.abs(value)

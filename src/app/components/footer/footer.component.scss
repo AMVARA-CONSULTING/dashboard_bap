@@ -21,3 +21,10 @@
     display: block;
     float: right;
 }
+
+@include lightTheme {
+    :host {
+        background-color: black;
+        color: white;
+    }
+}

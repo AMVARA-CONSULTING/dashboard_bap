@@ -1,5 +1,5 @@
 {
-	"version": "2.35.0",
+	"version": "2.37.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -193,6 +193,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.37.0",
+			"text": [
+				"#2295 - Add skin for Light Theme"
+			]
+		},
 		{
 			"version": "2.35.0",
 			"text": [

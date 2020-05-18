@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'report-info',
@@ -9,24 +10,25 @@ import * as moment from 'moment';
   styleUrls: ['./report-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReportInfoComponent implements OnInit, OnChanges {
+export class ReportInfoComponent implements OnChanges {
+
+  date = '';
+  id = '';
+  name = new BehaviorSubject<string>('x');
+  hour = '';
 
   constructor(
     private config: ConfigService,
-    private api: ApiService,
-    private ref: ChangeDetectorRef
+    private api: ApiService
   ) { }
 
-  ngOnInit() {
-  }
-
-  @Input() type: string = ''
-  @Input() title: string = ''
+  @Input() type = '';
+  @Input() title = '';
 
   ngOnChanges(changes: SimpleChanges) {
-    const type = changes.type.currentValue
-    this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type]
-    if (this.api.reportDates[type].length == 0) {
+    const type = changes.type.currentValue;
+    this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type];
+    if (this.api.reportDates[type].length === 0) {
       switch (type) {
         case "orderIntake":
           this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(_ => this.rollup(type))
@@ -42,38 +44,43 @@ export class ReportInfoComponent implements OnInit, OnChanges {
           break
       }
     } else {
-      this.rollup(type)
+      this.rollup(type);
     }
   }
 
   rollup(type: string): void {
     this.date = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('DD/MM/YYYY')
-    this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm')
-    switch (this.id) {
-      case "i163A764B930D4E748310CF5053D29578":
-      case "iCC8FBA845B4F4DD29EA456169E5D7FAD":
-        this.name = 'MobileCockpit_V2_14.3_dev'
-        break
-      case "i5F3D9FCAF8054F5790152C1251DE3552":
-      case "iE45E9B03BFD149A7AA969EB1666FE431":
-        this.name = 'Planning_Truck'
-        break
-      case "i464B15BB96434390A9D6C35C67886434":
-      case "i13B57CE92EDD481E97F423F04E86DD35":
-        this.name = 'Allocation_Truck'
-        break
-      case "i63BB42DBA849409A9E68354C67DF4AE7":
-      case "iDDEA70370FFF48208E4E541101AF961A":
-        this.name = 'Plant_Stock_Truck'
-        break
-      default:
+    this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm');
+    const scenarios = ['dev', 'prod'];
+    const targets = ['trucks', 'vans'];
+    const ids = {
+      orderIntake: [],
+      allocation: [],
+      plantStock: [],
+      productionProgram: []
+    };
+    // Collect ReportIDs for each Report, Scenario and Target
+    // tslint:disable-next-line: forin
+    for (const key of Object.keys(ids)) {
+      // tslint:disable-next-line: forin
+      for (const target of targets) {
+        // tslint:disable-next-line: forin
+        for (const scenario of scenarios) {
+          if (this.config.config.reports[target][scenario][key]) {
+            ids[key].push(this.config.config.reports[target][scenario][key]);
+          }
+        }
+      }
     }
-    this.ref.detectChanges()
+    // Check Order Intake
+    // tslint:disable-next-line: curly
+    if (ids.orderIntake.includes(this.id)) this.name.next('MobileCockpit_V2_14.3_dev');
+    // tslint:disable-next-line: curly
+    if (ids.productionProgram.includes(this.id)) this.name.next('Planning_Truck');
+    // tslint:disable-next-line: curly
+    if (ids.allocation.includes(this.id)) this.name.next('Allocation_Truck');
+    // tslint:disable-next-line: curly
+    if (ids.plantStock.includes(this.id)) this.name.next('Plant_Stock_Truck');
   }
-
-  date: string = ''
-  id: string = ''
-  name: string = 'x'
-  hour: string = ''
 
 }

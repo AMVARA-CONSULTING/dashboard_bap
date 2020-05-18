@@ -1,5 +1,5 @@
 {
-	"version": "2.37.0",
+	"version": "2.38.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -193,6 +193,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.38.0",
+			"text": [
+				"#2295 - Implement report title for dynamic IDs"
+			]
+		},
 		{
 			"version": "2.37.0",
 			"text": [

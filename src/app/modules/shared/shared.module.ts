@@ -17,6 +17,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { DipCircularMetersComponent } from '@components/circular-meters/circular-meters.component';
 import { PlantStockSortingPipe } from '@pipes/plant-stock-sorting.pipe';
 import { ReportInfoComponent } from '@components/report-info/report-info.component';
+import { ThemeSwitcherComponent } from '@components/theme-switcher/theme-switcher.component';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -30,7 +31,8 @@ export function createTranslateLoader(http: HttpClient) {
     DipCircularMetersComponent,
     DipQuadroCircularMetersComponent,
     PlantStockSortingPipe,
-    ReportInfoComponent
+    ReportInfoComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     MatButtonModule,
@@ -65,7 +67,8 @@ export function createTranslateLoader(http: HttpClient) {
     RoundProgressModule,
     ReportInfoComponent,
     TranslateModule,
-    PlantStockSortingPipe
+    PlantStockSortingPipe,
+    ThemeSwitcherComponent
   ]
 })
 export class SharedModule { }

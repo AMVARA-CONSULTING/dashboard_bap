@@ -2,14 +2,17 @@
   <div class="inter"></div>
   <div class="middle"></div>
   <div class="outer"></div>
-  <span class="logo-title">{{ config.config.appTitle }}</span>
+  <div class="meta-title">
+    <div class="app-title">{{ config.config.appTitle }}</div>
+    <div class="app-confidential">CONFIDENTIAL</div>
+  </div>
 </div>
 <div class="page-title">{{ 'menu.'+data.title | translate }}</div>
 <ul class="links">
   <li *ngFor="let link of reports | async" [routerLink]="link.link" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
   <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
   <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
-  <mat-slide-toggle [formControl]="data.lightTheme" color="primary">LIGHT THEME</mat-slide-toggle>
+  <app-theme-switcher></app-theme-switcher>
 </ul>
 <div class="menu-icon" [ngClass]="{'active': data.sidenavOpened}" (click)="openSidenav()">
   <div class="icon">

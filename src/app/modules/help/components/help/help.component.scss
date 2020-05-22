@@ -12,6 +12,10 @@
     touch-action: pan-y !important;
 }
 
+:host::ng-deep app-theme-switcher {
+    margin: 30px 0;
+}
+
 @include lightTheme {
     :host {
         a {

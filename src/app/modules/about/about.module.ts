@@ -17,7 +17,7 @@ const routes: Routes = [
     path: '', component: AboutComponent,
     data: { level: 1 },
   }
-]
+];
 
 @NgModule({
   imports: [

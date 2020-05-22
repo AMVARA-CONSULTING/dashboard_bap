@@ -14,6 +14,7 @@
     </p>
     <button (click)="reloadLang()" class="reload-translations" mat-raised-button>Reload language files</button>
     <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
+    <app-theme-switcher></app-theme-switcher>
     <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
   </mat-expansion-panel>
   <mat-expansion-panel>

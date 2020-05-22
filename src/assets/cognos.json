@@ -1,5 +1,5 @@
 {
-	"version": "2.38.0",
+	"version": "2.39.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -193,6 +193,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.39.0",
+			"text": [
+				"#2339 - Skinning modifications and new theme switcher"
+			]
+		},
 		{
 			"version": "2.38.0",
 			"text": [

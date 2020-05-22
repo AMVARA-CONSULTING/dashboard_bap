@@ -1,0 +1,70 @@
+
+@import '../../other/colors.scss';
+
+:host {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    width: 65px;
+    border: 1.5px solid rgba(darken($light-grey2, 30), .5);
+    border-radius: 50px;
+    align-self: center;
+    position: relative;
+    margin-left: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 7px rgba(darken($light-grey2, 30), .5);
+}
+
+@include lightTheme {
+    :host {
+        border-color: darken($light-grey2, 5);
+        box-shadow: 0 0 7px darken($light-grey2, 5);
+        .stepper {
+            left: 36px;
+            background-color: #F7E5C9;
+            border-color: #F7B54F;
+        }
+    }
+}
+
+.stepper {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: $light-grey3;
+    border: 2px solid $light-grey2;
+    transition: all .3s ease-in-out;
+}
+
+.sun {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    top: 0;
+    bottom: 0;
+    left: 8px;
+    margin: auto;
+    background-image: url(^assets/sun.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.moon {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    top: 0;
+    bottom: 0;
+    right: 8px;
+    margin: auto;
+    background-image: url(^assets/moon.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}

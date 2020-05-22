@@ -154,12 +154,9 @@
             padding: 12px 15px 12px 15px;
         }
         position: relative;
-        -webkit-transition: border-bottom .15s ease-in-out;
-        -o-transition: border-bottom .15s ease-in-out;
-        transition: border-bottom .15s ease-in-out;
         border-bottom: 1px solid transparent;
         &:hover {
-            border-bottom-color: $yellow-text;
+            border-bottom-color: $yellow-text !important
         }
         background-color: $bg-white-lvl1;
         cursor: pointer;
@@ -220,11 +217,8 @@
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
-        -webkit-transition: border-bottom .15s ease-in-out;
-        -o-transition: border-bottom .15s ease-in-out;
-        transition: border-bottom .15s ease-in-out;
         &:hover {
-            border-bottom-color: $yellow-text;
+            border-bottom-color: $yellow-text !important;
         }
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
@@ -474,7 +468,7 @@
             }
         }
         .zone-header {
-            background-color: white !important;
+            background-color: $light-grey2 !important;
             .title {
                 color: $light-grey3;
                 font-weight: bold;
@@ -497,8 +491,8 @@
             }
         }
         .plant {
-            background-color: $light-grey2 !important;
-            border-bottom: 2px solid white !important;
+            background-color: white !important;
+            border-bottom: 2px solid $light-grey2 !important;
             .title {
                 color: $light-grey4 !important;
                 font-weight: bold;

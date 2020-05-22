@@ -33,5 +33,8 @@
         "licenses": "Licenses",
         "technical_information": "Technical Information",
         "changelog": "Changelog"
+    },
+    "help": {
+        "lightTheme": "DIP offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast."
     }
 }

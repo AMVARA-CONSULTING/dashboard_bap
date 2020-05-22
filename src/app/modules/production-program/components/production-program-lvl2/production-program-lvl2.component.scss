@@ -204,12 +204,9 @@
         display: -ms-flexbox;
         display: flex;
         cursor: pointer;
-        -webkit-transition: border-bottom .15s ease-in-out;
-        -o-transition: border-bottom .15s ease-in-out;
-        transition: border-bottom .15s ease-in-out;
         border-bottom: 1px solid transparent;
         &:hover {
-            border-bottom-color: $yellow-text;
+            border-bottom-color: $yellow-text !important;
         }
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
@@ -371,7 +368,7 @@
             border-bottom: 2px solid white;
         }
         .title-header {
-            background-color: white !important;
+            background-color: $light-grey2 !important;
             .title {
                 color: $light-grey3;
                 font-weight: bold;
@@ -394,8 +391,8 @@
             }
         }
         .lvl2-row {
-            background-color: $light-grey2 !important;
-            border-bottom: 2px solid white !important;
+            background-color: white !important;
+            border-bottom: 2px solid $light-grey2 !important;
             .title {
                 color: $light-grey4 !important;
                 font-weight: bold;

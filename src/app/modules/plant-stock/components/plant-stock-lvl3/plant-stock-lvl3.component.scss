@@ -231,11 +231,8 @@ header {
             background-color: $bg-white-lvl3;
         }
         border-bottom: 1px solid transparent;
-        -webkit-transition: border-bottom .15s ease-in-out;
-        -o-transition: border-bottom .15s ease-in-out;
-        transition: border-bottom .15s ease-in-out;
         &:hover {
-            border-bottom-color: $yellow-text;
+            border-bottom-color: $yellow-text !important;
         }
         display: -webkit-box;
         display: -ms-flexbox;
@@ -334,7 +331,7 @@ header {
                     color: $orange !important;
                 }
             }
-            border-bottom-color: $light-grey2;
+            border-bottom-color: white;
             .data-header {
                 background-color: white;
             }
@@ -354,7 +351,7 @@ header {
             border-bottom: 2px solid white;
         }
         .group-header {
-            background-color: white !important;
+            background-color: $light-grey2 !important;
             color: $light-grey3;
             font-weight: bold;
             .actual {
@@ -365,8 +362,8 @@ header {
             }
         }
         .row {
-            background-color: $light-grey2 !important;
-            border-bottom: 2px solid white !important;
+            background-color: white !important;
+            border-bottom: 2px solid $light-grey2 !important;
             .werk {
                 color: $light-grey4 !important;
                 font-weight: bold;

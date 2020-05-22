@@ -71,14 +71,31 @@
         -ms-flex: initial;
             flex: initial;
     outline: 0;
-    line-height: 70px;
     @media (min-width: 800px) {
         margin-left: 30px;
     }
-    font-size: 35px;
+    .meta-title {
+        display: inline-block;
+        height: 50px;
+        margin-top: 17px;
+        .app-title {
+            letter-spacing: 7px;
+            line-height: 22px;
+        }
+        .app-confidential {
+            font-size: 9px;
+            color: $yellow-text;
+            letter-spacing: 1px;
+            margin: 5px 0 0 3px;
+        }
+    }
+    font-size: 33px;
     cursor: pointer;
     margin-left: 20px;
-    padding-left: 70px;
+    padding-left: 60px;
+    @media (min-width: 800px) {
+        padding-left: 70px;
+    }
     transition: margin-left .3s ease-in-out;
     .outer, .middle, .inter {
         @supports (-webkit-overflow-scrolling: touch) {
@@ -165,8 +182,12 @@
 
 @include lightTheme {
     :host .logo {
-        .logo-title {
+        .app-title {
             color: $light-grey4 !important;
+        }
+        .app-confidential {
+            font-weight: bold;
+            color: red;
         }
         .inter {
             background-image: url(^assets/loader_circle_inside_light.svg);
@@ -332,4 +353,8 @@
         font-size: 13px;
         font-family: "CorpoS";
     }
+}
+
+:host::ng-deep app-theme-switcher {
+    margin-left: 20px;
 }

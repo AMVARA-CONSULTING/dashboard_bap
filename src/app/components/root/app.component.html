@@ -5,7 +5,7 @@
             <li *ngFor="let link of reports | async" [routerLink]="link.link" (click)="close()" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
             <li (click)="close()" routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
             <li (click)="close()" routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
-            <mat-slide-toggle [formControl]="data.lightTheme" color="primary">LIGHT THEME</mat-slide-toggle>
+            <app-theme-switcher></app-theme-switcher>
         </ul>
     </mat-sidenav>
     <mat-sidenav-content class="content">

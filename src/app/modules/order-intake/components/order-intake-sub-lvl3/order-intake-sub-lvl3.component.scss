@@ -217,15 +217,15 @@
                 }
             }
             .title-header {
-                background-color: white;
+                background-color: $light-grey2;
                 .title {
                     color: $light-grey3;
                     font-weight: bold;
                 }
             }
             .lvl3-row {
-                background-color: $light-grey2;
-                border-bottom: 2px solid white;
+                background-color: white;
+                border-bottom: 1px solid $light-grey2;
                 .title {
                     color: $light-grey4 !important;
                     font-weight: bold;

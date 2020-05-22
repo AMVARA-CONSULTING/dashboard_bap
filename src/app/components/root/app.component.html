@@ -1,6 +1,6 @@
 <header *ngIf="data.accessGranted"></header>
 <mat-sidenav-container>
-    <mat-sidenav mode="push" position="end" [(opened)]="data.sidenavOpened">
+    <mat-sidenav mode="push" position="end" [opened]="data.sidenavOpened | async">
         <ul class="links">
             <li *ngFor="let link of reports | async" [routerLink]="link.link" (click)="close()" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
             <li (click)="close()" routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
@@ -12,6 +12,6 @@
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<div (swipeleft)="data.sidenavOpened = true" class="menu-swipper"></div>
+<div (swipeleft)="data.sidenavOpened.next(true)" class="menu-swipper"></div>
 <footer></footer>
 <loader></loader>

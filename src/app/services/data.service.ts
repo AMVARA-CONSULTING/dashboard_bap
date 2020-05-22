@@ -4,9 +4,13 @@ import { SelectYearComponent } from '../dialogs/select-year/select-year.componen
 import { ConnectionService } from 'ng-connection-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable()
 export class DataService {
+
+  // Determines if the sidenav is opened
+  sidenavOpened = new BehaviorSubject<boolean>(false);
 
   lightTheme = new FormControl(false);
 
@@ -37,9 +41,6 @@ export class DataService {
   currentLevel: number = 0
 
   backButton: boolean = false
-
-  // Determines if the sidenav is opened
-  sidenavOpened: boolean = false
 
   // Order Intake - All rows without filters
   orderIntakeData: any[][] = []

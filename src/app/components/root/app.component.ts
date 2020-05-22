@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.data.lightTheme.valueChanges.pipe(
+      tap(value => this.data.sidenavOpened.next(false)),
       tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
     ).subscribe(light => {
       if (light) {
@@ -92,7 +93,7 @@ export class AppComponent implements OnInit {
   }
 
   close() {
-    this.data.sidenavOpened = !this.data.sidenavOpened;
+    this.data.sidenavOpened.next(!this.data.sidenavOpened.getValue());
   }
 
 }

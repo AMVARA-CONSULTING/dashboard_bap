@@ -13,9 +13,8 @@
         </mat-form-field>
     </p>
     <button (click)="reloadLang()" class="reload-translations" mat-raised-button>Reload language files</button>
-    <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
+    <br>
     <app-theme-switcher></app-theme-switcher>
-    <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -64,6 +63,8 @@
     </mat-expansion-panel-header>
     Service Worker Status: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
     <report-info *ngFor="let report of reportInfos | async" [title]="report.title" [type]="report.type"></report-info>
+    <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
+    <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

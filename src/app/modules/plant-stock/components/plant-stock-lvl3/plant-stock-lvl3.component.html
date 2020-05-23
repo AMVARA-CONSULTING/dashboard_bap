@@ -14,7 +14,7 @@
     </div>
     <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
       <div class="werk">{{
-        werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.language]] }}</div>
+        werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.corpintra ? config.config.language : 'en']] }}</div>
       <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) |
         toNumber }}</div>
       <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
@@ -67,7 +67,7 @@
   <div class="group-header">REGIONS</div>
   <div class="row" *ngFor="let region of regions | keyvalue">
     <div class="werk">{{
-      region.value[0][config.config.reports.trucks.columns.plantStock.regionName[config.config.language]] }}</div>
+      region.value[0][config.config.reports.trucks.columns.plantStock.regionName[config.config.corpintra ? config.config.language : 'en']] }}</div>
     <div class="actual">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plantStock.actual) |
       toNumber }}</div>
     <div class="previous">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plantStock.previous) |
@@ -78,7 +78,7 @@
   <div class="group-header">PRODUCTS</div>
   <div class="row" *ngFor="let product of products | keyvalue">
     <div class="werk">{{
-      product.value[0][config.config.reports.trucks.columns.plantStock.productName[config.config.language]] }}</div>
+      product.value[0][config.config.reports.trucks.columns.plantStock.productName[config.config.corpintra ? config.config.language : 'en']] }}</div>
     <div class="actual">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plantStock.actual) |
       toNumber }}</div>
     <div class="previous">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.plantStock.previous) |

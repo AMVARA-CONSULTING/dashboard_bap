@@ -8,6 +8,7 @@ export interface Config {
     contacts: any[],
     copyright: string,
     license: string,
+    corpintra: boolean;
     translations: 'en' | 'de' | any,
     changelog: any,
     appTitle: string,

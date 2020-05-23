@@ -83,24 +83,24 @@ export class PlantStockLvl2Component implements OnInit {
     //
     this.plants = this.data.plantStockData.reduce((r, a) => {
       r[a[plantKey]] = r[a[plantKey]] || ''
-      r[a[plantKey]] = a[plantName[this.config.config.language]]
+      r[a[plantKey]] = a[plantName[this.config.config.corpintra ? this.config.config.language : 'en']]
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.language]])))
+    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.corpintra ? this.config.config.language : 'en']])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
     this.totalDelta = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.delta)
-    this.werkbestands = { ...this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.language]) }
-    const filteredRowsByWerk = filteredRowsByPlant.filter(item => item[werkbestandName[this.config.config.language]] == this.werk)
+    this.werkbestands = { ...this.data.classifyByIndex(filteredRowsByPlant, werkbestandName[this.config.config.corpintra ? this.config.config.language : 'en']) }
+    const filteredRowsByWerk = filteredRowsByPlant.filter(item => item[werkbestandName[this.config.config.corpintra ? this.config.config.language : 'en']] == this.werk)
     this.werkActual = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.actual)
     this.werkPrevious = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.previous)
     this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.delta)
-    this.hofbestands = { ...this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.language]) }
+    this.hofbestands = { ...this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.corpintra ? this.config.config.language : 'en']) }
     if (this.hofbestands.hasOwnProperty("not defined")) {
       this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'not defined'], { replaceUrl: true })
       return

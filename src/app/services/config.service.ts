@@ -22,15 +22,16 @@ export class ConfigService {
       const corpintra = location.hostname.indexOf('corpintra.net') > -1
       const configFile = corpintra ? 'cognos.json' : 'config.json'
       this.http.get('assets/' + configFile).subscribe(config => {
-        this.config = config as Config
-        (window as any).config = config
-        if (this.config.debug) console.log(config)
+        this.config = config as Config;
+        (window as any).config = config;
         const search: any = this.tools.getJsonFromUrl();
         this.config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0
         this.config.target = search.target ? search.target : this.config.target
         this.config.debug = search.debug ? search.debug == "true" : this.config.debug
         search.delay = search.delay ? search.delay * 1000 : null
         this.config.language = localStorage.getItem('lang') || this.config.language
+        this.config.corpintra = corpintra;
+        if (this.config.debug) console.log(config)
         if (corpintra) {
           this.cognos.load(this.config.capabilities[this.config.scenario], { ...this.config }).then(_ => {
             setTimeout(() => resolve(), search.delay || this.config.delay)

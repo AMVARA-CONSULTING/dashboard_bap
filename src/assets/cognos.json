@@ -1,5 +1,5 @@
 {
-	"version": "2.40.0",
+	"version": "2.41.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -15,6 +15,7 @@
 		"en": "English",
 		"de": "Deutsch"
 	},
+	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
@@ -193,6 +194,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.41.0",
+			"text": [
+				"#2339 - Fix scramble of data and move actual config button"
+			]
+		},
 		{
 			"version": "2.40.0",
 			"text": [

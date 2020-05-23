@@ -121,7 +121,6 @@ html {
 @include lightTheme {
     .data-header,
     .plandate {
-        margin-top: 10px;
         color: $light-grey4;
         font-weight: bold;
     }
@@ -422,4 +421,8 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     max-width: initial !important;
     width: initial !important;
     padding-right: 10px;
+}
+
+.mat-sidenav-container {
+    transition: .15s -webkit-filter ease-in-out;
 }

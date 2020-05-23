@@ -1,5 +1,5 @@
 {
-	"version": "2.41.0",
+	"version": "2.42.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -194,6 +194,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.42.0",
+			"text": [
+				"#2339 - Fix margin top on Desktop and fix translation"
+			]
+		},
 		{
 			"version": "2.41.0",
 			"text": [

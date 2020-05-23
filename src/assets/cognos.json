@@ -1,5 +1,5 @@
 {
-	"version": "2.42.0",
+	"version": "2.43.0",
 	"debug": true,
 	"language": "en",
 	"appTitle": "DIP",
@@ -194,6 +194,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.43.0",
+			"text": [
+				"#2339 - Blur on theme switch"
+			]
+		},
 		{
 			"version": "2.42.0",
 			"text": [

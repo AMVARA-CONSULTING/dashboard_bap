@@ -1,5 +1,5 @@
 {
-	"version": "2.43.0",
+	"version": "2.44.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -166,6 +166,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.44.0",
+			"text": [
+				"#2339 - Confidential red"
+			]
+		},
 		{
 			"version": "2.43.0",
 			"text": [

@@ -33,5 +33,8 @@
         "licenses": "Lizenzhinweise",
         "technical_information": "Technische Informationen",
         "changelog": "Changelog"
+    },
+    "help": {
+        "lightTheme": "Diese Applikation bietet ein dunkles und ein helles Layout - auswählbar hiernach. Die Einstellung wird je Gerät gespeichert. Für die mobile Nutzung wird das dunkle Layout empfohlen, da dieses mehr Kontrast bietet."
     }
 }

@@ -16,7 +16,7 @@ export class ThemeSwitcherComponent {
   @HostListener('click', ['$event'])
   onClick(e) {
     this._data.sidenavOpened.next(false);
-    (document.querySelector('.mat-sidenav-container') as HTMLElement).style.filter = 'blur(10px)';
+    (document.querySelector('.mat-sidenav-container') as HTMLElement).style.filter = 'blur(5px)';
     setTimeout(() => {
       this._data.lightTheme.setValue(!this._data.lightTheme.value);
       setTimeout(() => {

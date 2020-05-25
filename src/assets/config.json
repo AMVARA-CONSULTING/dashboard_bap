@@ -1,5 +1,5 @@
 {
-	"version": "2.44.0",
+	"version": "2.45.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -166,6 +166,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.45.0",
+			"text": [
+				"#2339 - Change blur to 5px and letter spacing of title"
+			]
+		},
 		{
 			"version": "2.44.0",
 			"text": [

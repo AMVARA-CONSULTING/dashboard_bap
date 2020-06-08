@@ -121,7 +121,7 @@ html {
 @include lightTheme {
     .data-header,
     .plandate {
-        color: $light-grey4;
+        color: $text-color;
         font-weight: bold;
     }
     .mat-slide-toggle-content {

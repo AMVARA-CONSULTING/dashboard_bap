@@ -1,5 +1,5 @@
 {
-	"version": "2.46.0",
+	"version": "2.46.1",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -166,6 +166,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.46.1",
+		  "text": [
+			"Remove logs and improve deploy script for debug option"
+		  ]
+		},
 		{
 			"version": "2.46.0",
 			"text": [

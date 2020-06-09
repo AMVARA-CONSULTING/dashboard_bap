@@ -144,9 +144,7 @@ export class AllocationLvl2Component implements OnInit {
       })
     })
     const maxProgram = Math.max(...info.map(mon => mon.program))
-    const filteredRowsByPlant_copy = filteredRowsByPlant.concat()
     filteredRowsByPlant = filteredRowsByPlant.filter(item => {
-      console.log(this.date)
       return item[this.config.config.reports.trucks.columns.allocation.yearMonth].replace(/\-/, '') == this.date
     })
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)

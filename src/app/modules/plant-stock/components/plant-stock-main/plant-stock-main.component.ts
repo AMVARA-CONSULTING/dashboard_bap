@@ -90,7 +90,6 @@ export class PlantStockMainComponent implements OnInit {
       r[a[plantKey]] = a[plantName[this.config.config.corpintra ? this.config.config.language : 'en']]
       return r
     }, {})
-    console.log(this.config)
     if (this.plant == null || !this.plants[this.plant]) {
       this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return

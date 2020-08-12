@@ -95,19 +95,19 @@ export class CognosService {
         }, [])
         if (config.debug) console.log(rows)
         this.userCapabilities = {
-          admin: rows.toLowerCase().indexOf('Global_Function_Groups‬:DIPRE_Admins'.toLowerCase()) > -1,
-          mobile: rows.toLowerCase().indexOf('Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()) > -1,
+          admin: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Admins'.toLowerCase()),
+          mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
           trucks: {
-            order_intake: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()) > -1,
-            production_program: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()) > -1,
-            allocation: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()) > -1,
-            plant_stock: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase()) > -1
+            order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()),
+            production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()),
+            allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()),
+            plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase())
           },
           vans: {
-            order_intake: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()) > -1,
-            production_program: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()) > -1,
-            allocation: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()) > -1,
-            plant_stock: rows.toLowerCase().indexOf('Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase()) > -1
+            order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()),
+            production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()),
+            allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
+            plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())
           }
         }
         if (config.debug) console.log(this.userCapabilities)

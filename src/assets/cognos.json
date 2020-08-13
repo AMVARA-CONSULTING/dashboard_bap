@@ -18,7 +18,7 @@
   "corpintra": false,
   "heartbeat": 300000,
   "simulateUnauthorized": true,
-  "cognosDomain": "https://ibiss-analytics-int.es.corpintra.net",
+  "cognosDomain": "https://ibiss-analytics.es.corpintra.net",
   "cognosRepository": "/internal/bi/v1/disp/repository/sid/cm/rid/",
   "capabilities": {
     "dev": "i606D0768D6AC4241AADD880B4B72EC06",

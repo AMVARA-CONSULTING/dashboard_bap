@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import memo from 'memo-decorator'
+import memo from 'memo-decorator';
 
 @Pipe({
   name: 'plantStockSorting'
 })
 export class PlantStockSortingPipe implements PipeTransform {
 
-  @memo((...args: any[]): string => JSON.stringify(args)) // Pipe cache
+  @memo({ resolver: (...args: any[]): string => JSON.stringify(args) })
   transform(values: any[]): any[] {
     if (!values) return []
     if (values.length < 3) return values

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ConfigService } from '@services/config.service';
-import memo from 'memo-decorator'
+import memo from 'memo-decorator';
 
 @Pipe({
   name: 'toNumber'
@@ -9,7 +9,7 @@ export class NumberPipe implements PipeTransform {
 
   constructor(private config: ConfigService) { }
 
-  @memo((...args: any[]): string => JSON.stringify(args)) // Pipe cache
+  @memo({ resolver: (...args: any[]): string => JSON.stringify(args) })
   transform(value: number, sign?: boolean, comma: boolean = true): string {
     value = Math.round(value)
     sign = sign || false

@@ -1,7 +1,7 @@
 import { Component, OnInit, VERSION, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '@services/data.service';
 import { dependencies } from '../../../../../../package.json';
 import { ToolsService } from '@services/tools.service.js';

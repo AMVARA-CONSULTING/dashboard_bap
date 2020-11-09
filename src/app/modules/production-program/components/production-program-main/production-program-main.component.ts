@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@services/config.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { Title } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
-import * as moment from 'moment'
+import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { ToolsService } from '@services/tools.service';
 
 @Component({

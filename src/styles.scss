@@ -151,6 +151,7 @@ html, body {
     background-attachment: fixed;
     font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
     font-size: 13.333px;
+    overflow-x: hidden;
     @include desktop {
         font-size: 15px;
     }

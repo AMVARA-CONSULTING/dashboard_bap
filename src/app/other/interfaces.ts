@@ -27,17 +27,18 @@ export interface HeaderLink {
 }
 
 export interface UserCapabilities {
-    admin: boolean
-    mobile: boolean
-    trucks: SectionCapability
-    vans: SectionCapability
+    admin: boolean;
+    mobile: boolean;
+    trucks: SectionCapability;
+    vans: SectionCapability;
 }
 
 export interface SectionCapability {
-    order_intake: boolean
-    production_program: boolean
-    allocation: boolean
-    plant_stock: boolean
+    order_intake: boolean;
+    order_backlog: boolean;
+    production_program: boolean;
+    allocation: boolean;
+    plant_stock: boolean;
 }
 
 export interface UserPreferences {
@@ -70,4 +71,28 @@ export interface ContactInfo {
 export interface SelectYearData {
     years: string[],
     year: string
+}
+
+export enum BacklogColumns {
+    Date = 'Datum Tagesstand (konv.)',
+    Datatype = 'Datatype',
+    PlantEnglish = 'Plant (english)',
+    PlantDeutsch = 'Werk (deutsch)',
+    PlantGroupEnglish = 'Werksgruppierung (deutsch)',
+    ProductEnglish = 'Product (englisch)',
+    ProductDeutsch = 'Produkt (deutsch)',
+    RegionEnglish = 'Region (english)',
+    RegionDeutsch = 'Region (deutsch)',
+    SortKey_Plant = 'SortKey_Werk',
+    SortKey_PlantGroup = 'SortKey_Werksgruppe',
+    Quantity = 'Stückzahl'
+}
+
+export interface Zones {
+    [zone: string]: any[];
+}
+
+export interface ReportState {
+    rows: any[];
+    plandate: string;
 }

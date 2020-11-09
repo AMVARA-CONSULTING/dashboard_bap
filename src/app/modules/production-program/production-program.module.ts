@@ -4,7 +4,6 @@ import { Routes, RouterModule} from '@angular/router';
 import { ProductionProgramMainComponent } from './components/production-program-main/production-program-main.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
-import { NumberPipe } from '@pipes/number.pipe';
 import { SharedModule } from '@modules/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductionProgramLvl2Component } from './components/production-program-lvl2/production-program-lvl2.component';

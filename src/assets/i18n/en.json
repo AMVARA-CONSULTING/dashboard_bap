@@ -1,6 +1,7 @@
 {
     "menu": {
         "order_intake": "Order Intake",
+        "order_backlog": "Order Backlog",
         "production_program": "Production Program",
         "allocation": "Allocation",
         "plant_stock": "Plant Stock",

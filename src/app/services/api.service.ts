@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
@@ -7,11 +7,12 @@ import * as moment from 'moment';
 import { ToolsService } from './tools.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable } from 'rxjs/internal/Observable';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {
 
-  corpintra: boolean = false
+  corpintra = false;
 
   constructor(
     private http: HttpClient,
@@ -20,9 +21,9 @@ export class ApiService {
     private tools: ToolsService
   ) {
     (window as any).api = this;
-    this.corpintra = location.hostname.indexOf('corpintra.net') > -1
+    this.corpintra = location.hostname.indexOf('corpintra.net') > -1;
     if (!this.corpintra) {
-      const datum = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')
+      const datum = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
       for (let prop in this.reportDates) {
         this.reportDates[prop] = datum
       }
@@ -31,10 +32,11 @@ export class ApiService {
 
   reportDates = {
     orderIntake: '',
+    orderBacklog: '',
     productionProgram: '',
     allocation: '',
     plantStock: ''
-  }
+  };
 
   reloadDialog: MatDialogRef<CookiesExpiredComponent>
 
@@ -46,12 +48,12 @@ export class ApiService {
     })
   }
 
-  authorized: boolean = true
+  authorized = true;
 
-  heartbeat: Subscription
+  heartbeat: Subscription;
 
   cognosLink(url): string {
-    return url.replace('80', '443').replace('http:', 'https:')
+    return url.replace('80', '443').replace('http:', 'https:');
   }
 
   /**
@@ -111,7 +113,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/order_intake.json').pipe(
+        this.http.get('assets/reports/Order_Intake.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber))
         ).subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
@@ -197,7 +199,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/allocation.json').pipe(
+        this.http.get('assets/reports/Allocation.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.allocation.shouldBeNumber))
         ).subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
@@ -240,7 +242,7 @@ export class ApiService {
       })
     } else {
       return new Observable(observer => {
-        this.http.get('assets/reports/plant_stock.json').pipe(
+        this.http.get('assets/reports/Plant_Stock.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.plantStock.shouldBeNumber))
         ).subscribe((res: any[]) => {
           observer.next({ success: true, data: res })
@@ -248,5 +250,71 @@ export class ApiService {
         })
       })
     }
+  }
+
+  // Get Order Backlog Data from Report (tmp CSV file)
+  getOrderBacklogData(ReportID: string) {
+    let plandate = '';
+    if (this.corpintra) {
+      // Get report from Live Server
+      return this.http.get<any>(`/internal/bi/v1/objects/${ReportID}/versions`, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).pipe(
+        catchError(err => {
+          // Catch error on getting info from Report ID
+          console.log('Order Backlog - Fail at getting report info.');
+          return err;
+        }),
+        switchMap(json => {
+          // Get report versions
+          const nextLink = json.data[0]._meta.links.outputs.url;
+          return this.http.get<any>(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } })
+        }),
+        catchError(err => {
+          // Catch error on getting report versions
+          console.log('Order Backlog - Fail at getting last report versions.');
+          return err;
+        }),
+        switchMap(json => {
+          // Get last saved report content
+          const nextLink = json.data[0]._meta.links.content.url;
+          plandate = json.data[0].modificationTime;
+          return this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } });
+        }),
+        catchError(err => {
+          // Catch error on getting HTML content
+          console.log('Order Backlog - Fail at getting report table data');
+          return err;
+        }),
+        map(html => {
+          // Convert HTML to JSON and formatting
+          return {
+            plandate: plandate,
+            rows: this.tools.htmlToJson(html, '[lid=AMVARA_DATA_OB] tr')
+          };
+        })
+      );
+    } else {
+      // Get report from local
+      return this.http.get('assets/reports/Order_Backlog.csv', { responseType: 'text' }).pipe(
+        map(data => this.newCsvToJson(data)),
+        map(rows => ({ plandate: moment().format('DD/MM/YYYY'), rows: rows }))
+      );
+    }
+  }
+
+  // New csvToJson from MIF code
+  newCsvToJson(data): any {
+    const rows = [];
+    const lines: any[] = data.split('\n');
+    const headers = lines.shift().split(';').map(el => el.trim());
+    lines.forEach(line => {
+      if (line.length > 0) {
+        const newRow = {};
+        line.split(';').forEach((element, index) => {
+          newRow[headers[index]] = element.trim();
+        });
+        rows.push(newRow);
+      }
+    });
+    return rows;
   }
 }

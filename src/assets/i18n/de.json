@@ -1,6 +1,7 @@
 {
     "menu": {
         "order_intake": "Auftragseingang",
+        "order_backlog": "Order Backlog (TBD)",
         "production_program": "Produktionprogramm",
         "allocation": "Belegung",
         "plant_stock": "Bestand",

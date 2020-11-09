@@ -1,25 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser'
-import { NgModule, APP_INITIALIZER, Injectable } from '@angular/core'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, APP_INITIALIZER, Injectable } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Global Components
 
-import { AppComponent } from '@components/root/app.component'
-import { HeaderComponent } from '@components/header/header.component'
-import { LoaderComponent } from '@components/loader/loader.component'
-import { FooterComponent } from '@components/footer/footer.component'
+import { AppComponent } from '@components/root/app.component';
+import { HeaderComponent } from '@components/header/header.component';
+import { LoaderComponent } from '@components/loader/loader.component';
+import { FooterComponent } from '@components/footer/footer.component';
 
 // Routing Module
 // We have to import a Custom Routing Module from another module designed for that.
 
-import { RoutingModule } from './routing.module'
+import { RoutingModule } from './routing.module';
 
 // Services - aka providers
 // Used to communicate components
 
-import { LoadingService } from '@services/loading.service'
-import { DataService } from '@services/data.service'
-import { ApiService } from '@services/api.service'
+import { LoadingService } from '@services/loading.service';
+import { DataService } from '@services/data.service';
+import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { ConnectionService } from 'ng-connection-service';
 
@@ -28,6 +28,9 @@ import { ConnectionService } from 'ng-connection-service';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
 
 // Angular Material
 
@@ -58,6 +61,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { OnlyNumbers } from './directives/only-numbers.directive';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SharedModule } from '@modules/shared/shared.module';
+import { environment } from 'environments/environment';
+
+/** Store States */
+import { OrderBacklogState } from './store/order-backlog.state';
 
 declare var Hammer: any;
 
@@ -65,12 +72,11 @@ declare var Hammer: any;
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any> {
     'swipe': { direction: Hammer.DIRECTION_HORIZONTAL }
-  }
+  };
   buildHammer(element: HTMLElement) {
-    let mc = new Hammer(element, {
-      touchAction: "pan-y",
-    })
-    return mc
+    return new Hammer(element, {
+      touchAction: 'pan-y',
+    });
   }
 }
 
@@ -97,6 +103,11 @@ export class MyHammerConfig extends HammerGestureConfig {
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
+    NgxsModule.forRoot([OrderBacklogState], {
+      developmentMode: !environment.production
+    }),
+    NgxsSelectSnapshotModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
     // Angular Material Modules
     MatTooltipModule,
     MatSidenavModule,
@@ -110,7 +121,7 @@ export class MyHammerConfig extends HammerGestureConfig {
           deps: [HttpClient],
       }
     }),
-    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
+    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],
   entryComponents: [
     SelectYearComponent,

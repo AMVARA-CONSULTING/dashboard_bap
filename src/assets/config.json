@@ -1,5 +1,5 @@
 {
-	"version": "2.47.0",
+	"version": "2.48.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -52,13 +52,15 @@
 				"orderIntake": "i163A764B930D4E748310CF5053D29578",
 				"allocation": "i464B15BB96434390A9D6C35C67886434",
 				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136"
+				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136",
+				"orderBacklog": "iA01394B355674C3880C15541A6D68B3E"
 			},
 			"prod": {
 				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
 				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
 				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
-				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787"
+				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787",
+				"orderBacklog": "TBD"
 			},
 			"columns": {
 				"orderIntake": {
@@ -166,6 +168,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.48.0",
+		  "text": [
+			"#2686 - Scramble Order Backlog data",
+			"#2686 - Prepare NGXS State for Order Backlog",
+			"#2686 - Done draft view of Order Backlog"
+		  ]
+		},
 		{
 		  "version": "2.47.0",
 		  "text": [

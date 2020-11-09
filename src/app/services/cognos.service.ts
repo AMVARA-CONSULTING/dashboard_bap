@@ -22,16 +22,17 @@ export class CognosService {
     if (parts.length == 2) return parts.pop().split(";").shift()
   }
 
-  userCapabilities: UserCapabilities
+  userCapabilities: UserCapabilities;
 
   // Gets the available reports based on the user capabilities object
   getLinksWithAccess(config: Config) {
-    let links: HeaderLink[] = [
+    const links: HeaderLink[] = [
       { link: '/order-intake', text: 'order_intake' },
+      { link: '/order-backlog', text: 'order_backlog'},
       { link: '/production-program', text: 'production_program' },
       { link: '/allocation', text: 'allocation' },
       { link: '/plant-stock', text: 'plant_stock' }
-    ]
+    ];
     if (location.hostname.indexOf('corpintra.net') > -1) {
       const scenarioProperties = { ...this.userCapabilities[config.target] }
       for (let prop in scenarioProperties) {
@@ -99,12 +100,14 @@ export class CognosService {
           mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
           trucks: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()),
+            order_backlog: false,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase())
           },
           vans: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()),
+            order_backlog: false,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())
@@ -119,7 +122,6 @@ export class CognosService {
       }
     })
   }
-  
 
   // Get user capabilites retrieving them from Security_Report
   getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {

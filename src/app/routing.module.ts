@@ -5,17 +5,16 @@ import { AccessCodeComponent } from '@components/access-code/access-code.compone
 import { CapabilityAccess } from './guards/capability-access.guard';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    pathMatch: 'full', 
+  {
+    path: '',
+    pathMatch: 'full',
     redirectTo: 'order-intake',
-    
   },
   {
     path: 'miami-access',
     component: AccessCodeComponent
   },
-  { 
+  {
     path: 'order-intake',
     loadChildren: () => import('./modules/order-intake/order-intake.module').then(m => m.OrderIntakeModule),
     data: { title: 'order_intake' },
@@ -23,7 +22,14 @@ const routes: Routes = [
     canLoad: [CapabilityAccess]
   },
   {
-    path: 'production-program', 
+    path: 'order-backlog',
+    loadChildren: () => import('./modules/order-backlog/order-backlog.module').then(m => m.OrderBacklogModule),
+    data: { title: 'order_backlog' },
+    canActivate: [AccessGranted],
+    canLoad: [CapabilityAccess]
+  },
+  {
+    path: 'production-program',
     loadChildren: () => import('./modules/production-program/production-program.module').then(m => m.ProductionProgramModule),
     data: { title: 'production_program' },
     canActivate: [AccessGranted],
@@ -43,19 +49,19 @@ const routes: Routes = [
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
-  { 
+  {
     path: 'about',
     loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule),
     data: { title: 'about' },
     canActivate: [AccessGranted]
   },
-  { 
-    path: 'help', 
+  {
+    path: 'help',
     loadChildren: () => import('./modules/help/help.module').then(m => m.HelpModule),
     data: { title: 'help' },
     canActivate: [AccessGranted]
   }
-]
+];
 
 
 // Enable route parameters inheritance
@@ -63,7 +69,7 @@ export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always',
   preloadingStrategy: PreloadAllModules,
   useHash: true
-}
+};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, routingConfiguration)],

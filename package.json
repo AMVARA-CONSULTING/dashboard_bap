@@ -23,6 +23,8 @@
     "@angular/service-worker": "^10.2.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@ngxs-labs/select-snapshot": "^2.0.1",
+    "@ngxs/logger-plugin": "^3.7.0",
     "@ngxs/store": "^3.7.0",
     "@types/moment": "^2.13.0",
     "angular-svg-round-progressbar": "^5.0.2",

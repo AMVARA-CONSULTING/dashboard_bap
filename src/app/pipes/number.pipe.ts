@@ -1,49 +1,48 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ConfigService } from '@services/config.service';
-import memo from 'memo-decorator';
 
 @Pipe({
   name: 'toNumber'
 })
 export class NumberPipe implements PipeTransform {
 
-  constructor(private config: ConfigService) { }
+  constructor(
+    private config: ConfigService
+  ) { }
 
-  @memo({ resolver: (...args: any[]): string => JSON.stringify(args) })
-  transform(value: number, sign?: boolean, comma: boolean = true): string {
-    value = Math.round(value)
-    sign = sign || false
-    comma = comma || true
-    let ultimate: string
-    if (isNaN(value)) return '-'
-    if (value == 0) return '0'
-    if (value > 0) {
-      if (sign) {
-        ultimate = '+ ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
-      } else {
-        if (value < 0) {
-          ultimate = '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
-        } else {
-          ultimate = parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
-        }
-      }
+  transform = (value: number, sign: boolean = false, comma: boolean = true) => ToNumberFn(value, sign, comma, this.config.config.language);
+
+}
+
+export function ToNumberFn(value: number, sign: boolean = false, comma: boolean = true, language: string = 'en') {
+  value = Math.round(value);
+  let ultimate: string
+  if (isNaN(value)) return '-'
+  if (value == 0) return '0'
+  if (value > 0) {
+    if (sign) {
+      ultimate = '+ ' + parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
     } else {
-      if (sign) {
-        ultimate = '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
+      if (value < 0) {
+        ultimate = '- ' + parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
       } else {
-        if (value < 0) {
-          ultimate = '- ' + parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
-        } else {
-          ultimate = parseInt(Math.abs(value).toFixed(0)).toLocaleString(this.config.config.language)
-        }
+        ultimate = parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
       }
     }
-    if (comma) {
-      return ultimate
+  } else {
+    if (sign) {
+      ultimate = '- ' + parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
     } else {
-      return ultimate.replace(/[,.]/g, '')
+      if (value < 0) {
+        ultimate = '- ' + parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
+      } else {
+        ultimate = parseInt(Math.abs(value).toFixed(0), 10).toLocaleString(language);
+      }
     }
-
   }
-
+  if (comma) {
+    return ultimate;
+  } else {
+    return ultimate.replace(/[,.]/g, '');
+  }
 }

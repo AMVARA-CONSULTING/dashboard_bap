@@ -26,6 +26,7 @@
       "@services/*": ["app/services/*"],
       "@modules/*": ["app/modules/*"],
       "@pipes/*": ["app/pipes/*"],
+      "@store/*": ["app/store/*"],
       "@other/*": ["app/other/*"]
     }
   }

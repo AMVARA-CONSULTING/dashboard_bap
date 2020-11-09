@@ -19,7 +19,6 @@ export class ToolsService {
     });
     return result
   }
-  
 
   htmlToJson(data, element): any[] {
     const htmlDoc = new DOMParser().parseFromString(data, "text/html")

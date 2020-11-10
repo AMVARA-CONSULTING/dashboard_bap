@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
-import { OrderBacklogState } from '@store/order-backlog.state';
-import { Zones } from '@other/interfaces';
-import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'order-backlog-graphic',
@@ -20,13 +18,12 @@ import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 })
 export class OrderBacklogGraphicComponent {
 
-  // Retrieve unique zones from Order Backlog State
-  @ViewSelectSnapshot(OrderBacklogState.GetUniqueZones) zones$ !: Zones;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
+  @Input() zones: KeyValue<string, any[]>[];
 
   // CLick handler for going to clicked zone
   goZone(ZoneID): void {

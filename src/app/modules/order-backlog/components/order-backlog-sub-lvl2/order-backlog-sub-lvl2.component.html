@@ -1,0 +1,53 @@
+<!-- Overview -->
+<div class="overview" *ngIf="rows$ | async as rows">
+  <!-- Headers -->
+  <div class="data-header">
+    <div class="empty"></div>
+    <ng-container *ngIf="mobile$ | async; else desktopHeaders">
+      <div class="report-date">Last 12 Mo.</div>
+      <div class="glyph">Prev. 12 Mo.</div>
+    </ng-container>
+    <ng-template #desktopHeaders>
+      <div class="report-date">Last 12 Month</div>
+      <div class="glyph">Prev. 12 Month</div>
+    </ng-template>
+    <div class="glyph">&Delta;</div>
+  </div>
+  <!-- Header Row of current select plant / zone -->
+  <div class="header-row arrow zone" (click)="return()">
+    <div class="title">
+      <span *ngLet="type$ | async as type" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
+        {{ rows | groupOrPlantName:type }}
+      </span>
+    </div>
+    <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
+      <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
+        <div class="actual">{{ currentValue | toNumber }}</div>
+        <div class="previous">{{ previousValue | toNumber }}</div>
+        <div class="delta">{{ previousValue | difference:currentValue }}</div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <!-- Content Rows -->
+  <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">
+    <ng-container *ngLet="rows | filterYear:'previous' | distinctMonths as previousYearMonths">
+      <ng-container *ngFor="let year of currentYearRows | distinctYears">
+        <!-- Year Row -->
+        <div class="title-header">
+          <div class="title">{{ year.key }}</div>
+        </div>
+        <!-- Month Rows -->
+        <div class="lvl2-row" (click)="goMonth(month.key)" *ngFor="let month of year.value | distinctMonths">
+          <div class="title">{{ month.key | monthFormat }}</div>
+          <ng-container *ngLet="month.value | sumQuantity as currentValue">
+            <ng-container *ngLet="month.key | previousMonth:previousYearMonths | sumQuantity as previousValue">
+              <div class="actual cyan">{{ currentValue | toNumber }}</div>
+              <div class="previous orange">{{ previousValue | toNumber }}</div>
+              <div class="delta">{{ previousValue | difference:currentValue }}</div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

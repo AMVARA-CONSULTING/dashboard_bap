@@ -3,7 +3,7 @@ import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { LoadingService } from '@services/loading.service';
 import { ConfigService } from '@services/config.service';
-import { trigger, transition, style, animate, query, stagger, state } from '@angular/animations';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -14,15 +14,6 @@ import { ToolsService } from '@services/tools.service';
   templateUrl: './order-intake-main.component.html',
   styleUrls: ['./order-intake-main.component.scss'],
   animations: [
-    trigger('overview', [
-      state('false', style({
-        opacity: 0
-      })),
-      state('true', style({
-        opacity: 1
-      })),
-      transition('* <=> *', animate('1000ms ease-in-out', style({ opacity: 1 })))
-    ]),
     trigger('list', [
       transition('* => *', [
         query('.zone:enter', style({ opacity: 0 }), { optional: true }),

@@ -5,7 +5,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '@modules/shared/shared.module';
 import { OrderBacklogWrapperComponent } from './components/wrapper/wrapper.component';
 import { OrderBacklogMainComponent } from './components/order-backlog-main/order-backlog-main.component';
-import { GroupNamePipe } from './pipes/group-name.pipe';
+import { GroupOrPlantNamePipe } from './pipes/group-or-plant-name.pipe';
 import { FilterYearPipe } from './pipes/filter-year.pipe';
 import { SumQuantityPipe } from './pipes/sum-quantity.pipe';
 import { PlantsByZonePipe } from './pipes/plants-by-zone.pipe';
@@ -14,6 +14,15 @@ import { OrderBacklogGraphicComponent } from './components/graphic/graphic.compo
 import { PercentPipe } from './pipes/percent.pipe';
 import { HighestZoneTotalPipe } from './pipes/highest-zone-total.pipe';
 import { DifferencePipe } from './pipes/difference.pipe';
+import { StartWithPipe } from './pipes/start-with.pipe';
+import { Store } from '@ngxs/store';
+import { OrderBacklog } from '@store/order-backlog.state';
+import { LayoutModule } from '@angular/cdk/layout';
+import { OrderBacklogSubLvl2Component } from './components/order-backlog-sub-lvl2/order-backlog-sub-lvl2.component';
+import { DistinctMonthsPipe } from './pipes/distinct-months.pipe';
+import { MonthFormatPipe } from './pipes/month-format.pipe';
+import { DistinctYearsPipe } from './pipes/distinct-years.pipe';
+import { PreviousMonthPipe } from './pipes/previous-month.pipe';
 
 const routes: Routes = [
   {
@@ -25,12 +34,12 @@ const routes: Routes = [
         component: OrderBacklogMainComponent,
         data: { level: 1 }
       },
-      /*{
+      {
         path: ':type/:id',
-        component: OrderIntakeSubLvl2Component,
+        component: OrderBacklogSubLvl2Component,
         data: { level: 2 }
       },
-      {
+      /*{
         path: ':type/:id/:type2/:region_id',
         component: OrderIntakeSubLvl3Component,
         data: { level: 3 }
@@ -44,20 +53,35 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatTooltipModule,
+    LayoutModule,
     SharedModule
   ],
   declarations: [
     OrderBacklogWrapperComponent,
     OrderBacklogMainComponent,
     OrderBacklogGraphicComponent,
-    GroupNamePipe,
+    OrderBacklogSubLvl2Component,
+    GroupOrPlantNamePipe,
     FilterYearPipe,
     SumQuantityPipe,
     PlantsByZonePipe,
     LetDirective,
     PercentPipe,
     HighestZoneTotalPipe,
-    DifferencePipe
+    DifferencePipe,
+    StartWithPipe,
+    DistinctMonthsPipe,
+    MonthFormatPipe,
+    DistinctYearsPipe,
+    PreviousMonthPipe
   ]
 })
-export class OrderBacklogModule { }
+export class OrderBacklogModule {
+
+  constructor(
+    private _store: Store
+  ) {
+    // Get Order Backlog Data
+    this._store.dispatch( new OrderBacklog.Get() );
+  }
+}

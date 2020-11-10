@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { ConfigService } from '@services/config.service';
-import { trigger, transition, style, animate, query, stagger, state } from '@angular/animations';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { OrderBacklogState } from 'app/store/order-backlog.state';
 import { Zones } from '@other/interfaces';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { DataService } from '@services/data.service';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'order-backlog-main',
   templateUrl: './order-backlog-main.component.html',
   styleUrls: ['./order-backlog-main.component.scss'],
   animations: [
-    trigger('overview', [
-      transition('* <=> *', animate('1000ms ease-in-out', style({ opacity: 1 })))
-    ]),
     trigger('list', [
       transition('0 => *', [
         query('.zone:enter', style({ opacity: 0 }), { optional: true }),
@@ -35,16 +35,18 @@ export class OrderBacklogMainComponent {
   // Retrieve plan date
   @ViewSelectSnapshot(OrderBacklogState.GetPlanDate) plandate$ !: string;
 
+  mobile$: Observable<boolean>;
+
   constructor(
     private _data: DataService,
     private config: ConfigService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private _breakpoints: BreakpointObserver
   ) {
+    this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
     this.title.setTitle(this.config.config.appTitle + ' - Order Backlog');
   }
-
-  ready; // FIXME: Animation
 
   /** Go to /order-backlog/zone/:id
    * @param ZoneID id of the selected zone

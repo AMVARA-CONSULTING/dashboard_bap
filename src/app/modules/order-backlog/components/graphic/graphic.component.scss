@@ -45,8 +45,6 @@
             left: 0;
             border-radius: 3px;
             width: calc(50% - 2px);
-            -webkit-transition: height .7s ease-in-out;
-            -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: $cyan-text;
             &.zero {
@@ -59,8 +57,6 @@
             right: 0;
             border-radius: 3px;
             width: calc(50% - 2px);
-            -webkit-transition: height .7s ease-in-out;
-            -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: $yellow-text;
             &.zero {

@@ -1,5 +1,5 @@
 {
-	"version": "2.48.0",
+	"version": "2.49.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -168,6 +168,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.49.0",
+		  "text": [
+			"#2686 - Fix Order Backlog actual and previous date ranges",
+			"#2686 - Prepare Order Backlog State for Level 2",
+			"#2686 - Done draft view of Order Backlog Level 2"
+		  ]
+		},
 		{
 		  "version": "2.48.0",
 		  "text": [

@@ -95,4 +95,11 @@ export interface Zones {
 export interface ReportState {
     rows: any[];
     plandate: string;
+    actualDateRange: string[];
+    previousDateRange: string[];
+}
+
+export interface DateRanges {
+    actual: ReportState['actualDateRange'];
+    previous: ReportState['previousDateRange'];
 }

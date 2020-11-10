@@ -1,4 +1,4 @@
-<div class="wrapper" *ngLet="zones$ | keyvalue as zones" [@list]="zones.length">
+<div class="wrapper" [@list]="zones.length">
   <!-- Iterate over each zone -->
   <ng-container *ngLet="zones | highestZoneTotal as highestZone">
     <div class="zone" (click)="goZone(zone.key)" *ngFor="let zone of zones" [style.width.%]="100 / zones.length">
@@ -6,14 +6,14 @@
         <div style="position: relative; height: 100%;">
           <ng-container *ngLet="zone.value | sumQuantity as zoneTotal">
             <!-- Current year bar -->
-            <div *ngLet="zone.value | filterYear:'current' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="actual" class="actual" [style.height.%]="quantity | percent:highestZone"></div>
+            <div *ngLet="zone.value | filterYear:'current' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="actual" class="actual" [style.height.%]="quantity | percent:highestZone | startWith:0 | async"></div>
             <!-- Previous year bar -->
-            <div *ngLet="zone.value | filterYear:'previous' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="previous"  class="previous" [style.height.%]="quantity | percent:highestZone"></div>
+            <div *ngLet="zone.value | filterYear:'previous' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="previous" class="previous" [style.height.%]="quantity | percent:highestZone | startWith:0 | async"></div>
           </ng-container>
         </div>
       </div>
       <!-- Zone name -->
-      <div class="title">{{ zone.value | groupName }}</div>
+      <div class="title">{{ zone.value | groupOrPlantName:'group' }}</div>
     </div>
   </ng-container>
 </div>

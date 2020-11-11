@@ -11,6 +11,6 @@ export class SumQuantityPipe implements PipeTransform {
 
 }
 
-export function SumQuantityFn(values) {
+export function SumQuantityFn(values: any[]) {
   return sumByProperty(values, BacklogColumns.Quantity);
 }

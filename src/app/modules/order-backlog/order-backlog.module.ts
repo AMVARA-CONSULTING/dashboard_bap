@@ -23,6 +23,8 @@ import { DistinctMonthsPipe } from './pipes/distinct-months.pipe';
 import { MonthFormatPipe } from './pipes/month-format.pipe';
 import { DistinctYearsPipe } from './pipes/distinct-years.pipe';
 import { PreviousMonthPipe } from './pipes/previous-month.pipe';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { OrderBacklogGraphicComparisonComponent } from './components/graphic-comparison/graphic-comparison.component';
 
 const routes: Routes = [
   {
@@ -54,6 +56,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MatTooltipModule,
     LayoutModule,
+    NgxChartsModule,
     SharedModule
   ],
   declarations: [
@@ -61,6 +64,7 @@ const routes: Routes = [
     OrderBacklogMainComponent,
     OrderBacklogGraphicComponent,
     OrderBacklogSubLvl2Component,
+    OrderBacklogGraphicComparisonComponent,
     GroupOrPlantNamePipe,
     FilterYearPipe,
     SumQuantityPipe,

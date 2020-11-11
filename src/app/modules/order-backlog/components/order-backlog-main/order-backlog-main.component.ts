@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { map } from 'rxjs/operators';
   selector: 'order-backlog-main',
   templateUrl: './order-backlog-main.component.html',
   styleUrls: ['./order-backlog-main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('list', [
       transition('0 => *', [

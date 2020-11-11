@@ -1,0 +1,147 @@
+@import '../../../../other/colors';
+
+:host {
+    display: block;
+    width: calc(100% - 50px);
+    margin: 30px auto 40px;
+    height: 250px;
+    box-sizing: border-box;
+}
+
+:host::ng-deep .ngx-charts .line-highlight {
+    display: block;
+}
+
+:host::ng-deep ngx-charts-legend-entry > span {
+    outline: 0;
+}
+
+:host::ng-deep .ngx-charts .gridline-path {
+    stroke: rgba(white, .2);
+}
+
+:host::ng-deep .ngx-charts .tick text {
+    fill: rgba(white, .7);
+}
+
+:host::ng-deep .chart-legend .legend-labels {
+    background: transparent;
+    text-align: center;
+    margin-top: 15px;
+    .legend-label-text {
+        font-size: 15px;
+    }
+}
+
+@include lightTheme {
+    :host::ng-deep .ngx-charts .gridline-path {
+        stroke: rgba(black, .2);
+    }
+    :host::ng-deep .ngx-charts .tick text {
+        fill: rgba(black, .7);
+    }
+    :host::ng-deep .chart-legend .legend-label-text {
+        color: rgba(black, .7) !important;
+    }
+}
+
+:host::ng-deep .chart-legend .legend-label-text {
+    margin-left: 5px;
+    color: #afb7c8 !important;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.zone {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: top .15s ease-in-out;
+    -o-transition: top .15s ease-in-out;
+    transition: top .15s ease-in-out;
+    top: 0;
+    &:hover {
+        top: -10px;
+    }
+    .title {
+        position: absolute;
+        height: 30px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 30px;
+        text-align: center;
+    }
+    .bars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: calc(100% - 40px);
+        width: calc(100% - 20px);
+        .actual {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+            width: calc(50% - 2px);
+            transition: height .7s ease-in-out;
+            background-color: $cyan-text;
+            &.zero {
+                height: 0% !important;
+            }
+        }
+        .previous {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+            width: calc(50% - 2px);
+            transition: height .7s ease-in-out;
+            background-color: $yellow-text;
+            &.zero {
+                height: 0% !important;
+            }
+        }
+    }
+}
+
+:host::ng-deep .actual {
+    border-color: $cyan-text;
+    position: relative;
+}
+
+
+@include lightTheme {
+    :host::ng-deep {
+        .actual {
+            border-color: $petrol;
+        }
+        .previous {
+            border-color: $orange;
+        }
+        .zone {
+            .bars {
+                .actual {
+                    background-color: $petrol !important;
+                }
+                .previous {
+                    background-color: $orange !important;
+                }
+            }
+            .title {
+                color: $light-grey4;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+:host::ng-deep .previous {
+    border-color: $yellow-text;
+    position: relative;
+}

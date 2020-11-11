@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { KeyValue } from '@angular/common';
@@ -7,6 +7,7 @@ import { KeyValue } from '@angular/common';
   selector: 'order-backlog-graphic',
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('list', [
       transition('* => *', [

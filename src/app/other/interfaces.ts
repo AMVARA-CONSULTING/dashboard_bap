@@ -103,3 +103,16 @@ export interface DateRanges {
     actual: ReportState['actualDateRange'];
     previous: ReportState['previousDateRange'];
 }
+
+export type NgxLineChart = NgxLine[];
+
+export interface NgxLine {
+    name: string;
+    series: NgxLineSerie[];
+}
+
+export interface NgxLineSerie {
+    name: number | string | Date;
+    value: number;
+    extra?: any;
+}

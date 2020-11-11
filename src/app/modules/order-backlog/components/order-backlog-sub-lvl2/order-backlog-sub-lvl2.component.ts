@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '@services/data.service';
 import { ConfigService } from '@services/config.service';
@@ -14,6 +14,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   selector: 'order-backlog-sub-lvl2',
   templateUrl: './order-backlog-sub-lvl2.component.html',
   styleUrls: ['./order-backlog-sub-lvl2.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(swiperight)': 'data.go("plant-stock")',
     '(swipeleft)': 'data.go("production-program")'

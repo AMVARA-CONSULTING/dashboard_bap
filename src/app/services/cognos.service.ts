@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToolsService } from './tools.service';
 import { UserCapabilities, HeaderLink, Config } from '@other/interfaces';
-import { Observable } from 'rxjs/internal/Observable';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { of } from 'rxjs/internal/observable/of';
+import { catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class CognosService {

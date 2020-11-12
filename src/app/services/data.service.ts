@@ -4,7 +4,7 @@ import { SelectYearComponent } from '../dialogs/select-year/select-year.componen
 import { ConnectionService } from 'ng-connection-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataService {

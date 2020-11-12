@@ -25,6 +25,9 @@ import { DistinctYearsPipe } from './pipes/distinct-years.pipe';
 import { PreviousMonthPipe } from './pipes/previous-month.pipe';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { OrderBacklogGraphicComparisonComponent } from './components/graphic-comparison/graphic-comparison.component';
+import { OrderBacklogSubLvl3Component } from './components/order-backlog-sub-lvl3/order-backlog-sub-lvl3.component';
+import { DistinctRegionsPipe } from './pipes/distinct-regions.pipe';
+import { DistinctProductsPipe } from './pipes/distinct-products.pipe';
 
 const routes: Routes = [
   {
@@ -40,6 +43,11 @@ const routes: Routes = [
         path: ':type/:id',
         component: OrderBacklogSubLvl2Component,
         data: { level: 2 }
+      },
+      {
+        path: ':type/:id/month/:month',
+        component: OrderBacklogSubLvl3Component,
+        data: { level: 3 }
       },
       /*{
         path: ':type/:id/:type2/:region_id',
@@ -64,6 +72,7 @@ const routes: Routes = [
     OrderBacklogMainComponent,
     OrderBacklogGraphicComponent,
     OrderBacklogSubLvl2Component,
+    OrderBacklogSubLvl3Component,
     OrderBacklogGraphicComparisonComponent,
     GroupOrPlantNamePipe,
     FilterYearPipe,
@@ -77,7 +86,9 @@ const routes: Routes = [
     DistinctMonthsPipe,
     MonthFormatPipe,
     DistinctYearsPipe,
-    PreviousMonthPipe
+    PreviousMonthPipe,
+    DistinctRegionsPipe,
+    DistinctProductsPipe
   ]
 })
 export class OrderBacklogModule {

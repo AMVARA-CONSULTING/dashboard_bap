@@ -5,9 +5,8 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
 import { ToolsService } from './tools.service';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 @Injectable()
 export class ApiService {

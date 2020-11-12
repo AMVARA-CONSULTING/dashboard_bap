@@ -15,9 +15,11 @@ export class NumberPipe implements PipeTransform {
 }
 
 export function ToNumberFn(value: number, sign: boolean = false, comma: boolean = true, language: string = 'en') {
+  if (isNaN(value)) {
+    return '-';
+  }
   value = Math.round(value);
   let ultimate: string
-  if (isNaN(value)) return '-'
   if (value == 0) return '0'
   if (value > 0) {
     if (sign) {

@@ -2,7 +2,7 @@ import { Component, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges } f
 import { ConfigService } from '@services/config.service';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'report-info',

@@ -12,5 +12,8 @@ export class SumQuantityPipe implements PipeTransform {
 }
 
 export function SumQuantityFn(values: any[]) {
+  if (!values || values.length === 0) {
+    return NaN;
+  }
   return sumByProperty(values, BacklogColumns.Quantity);
 }

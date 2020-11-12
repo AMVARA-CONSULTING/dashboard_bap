@@ -2,10 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
 import { ApiService } from "./api.service";
-import { throwError } from "rxjs/internal/observable/throwError";
-import { Observable } from "rxjs/internal/Observable";
-import { tap } from "rxjs/internal/operators/tap";
-import { catchError } from "rxjs/internal/operators/catchError";
+import { Observable, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

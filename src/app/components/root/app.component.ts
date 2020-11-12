@@ -8,11 +8,8 @@ import { ApiService } from '@services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
-import { timer } from 'rxjs/internal/observable/timer';
-import { interval } from 'rxjs/internal/observable/interval';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { retry } from 'rxjs/internal/operators/retry';
-import { tap } from 'rxjs/internal/operators/tap';
+import { BehaviorSubject, interval, timer } from 'rxjs';
+import { retry, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dip-root',

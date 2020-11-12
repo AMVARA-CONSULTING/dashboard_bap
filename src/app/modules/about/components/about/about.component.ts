@@ -6,7 +6,7 @@ import { DataService } from '@services/data.service';
 import { dependencies } from '../../../../../../package.json';
 import { ToolsService } from '@services/tools.service.js';
 import { CognosService } from '@services/cognos.service.js';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'about',

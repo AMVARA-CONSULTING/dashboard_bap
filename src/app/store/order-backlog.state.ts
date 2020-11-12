@@ -5,7 +5,7 @@ import { BacklogColumns, ReportState, Zones } from '@other/interfaces';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import * as moment from 'moment';
-import { tap } from 'rxjs/internal/operators/tap';
+import { tap } from 'rxjs/operators';
 
 export namespace OrderBacklog {
 
@@ -81,14 +81,39 @@ export class OrderBacklogState {
   @Selector()
   static GetZoneOrPlantRows(ctx: ReportState) {
     return (type: 'plant' | 'zone' | string, value: string) => {
-      let rows = [];
-      if (type === 'zone') {
-        rows = classifyByProperty(ctx.rows, BacklogColumns.SortKey_PlantGroup)[value];
-      } else {
-        rows = classifyByProperty(ctx.rows, BacklogColumns.SortKey_Plant)[value];
-      }
-      return rows;
+      return this.ClassifyByZoneOrPlantFn(ctx.rows, type, value);
     };
+  }
+
+  // Get all products and regions for a selected zone or plant and month
+  @Selector()
+  static GetMonthRows(ctx: ReportState) {
+    return (type: 'plant' | 'zone' | string, value: string, month: string) => {
+      // First get rows from previous level (plant / zone)
+      const plantRows = this.ClassifyByZoneOrPlantFn(ctx.rows, type, value);
+      // Then filter by the selected month
+      console.log(month)
+      return this.FilterByMonthFn(plantRows, month);
+    };
+  }
+
+  // Reusable function to classify rows on Plant or Zone
+  static ClassifyByZoneOrPlantFn(rows: any[], type: 'plant' | 'zone' | string, value: string) {
+    if (type === 'zone') {
+      return classifyByProperty(rows, BacklogColumns.SortKey_PlantGroup)[value];
+    } else {
+      return classifyByProperty(rows, BacklogColumns.SortKey_Plant)[value];
+    }
+  }
+
+  // Reusable function classify rows on Month
+  static FilterByMonthFn(rows: any[], month: string) {
+    return rows.reduce((r, a) => {
+      const monthLabel = moment(a[BacklogColumns.Date], 'YYYY-MM-DD').format('YYYY-MM');
+      r[monthLabel] = r[monthLabel] || [];
+      r[monthLabel].push(a);
+      return r;
+    }, {})[month];
   }
 
   // Get rows classified by Datum

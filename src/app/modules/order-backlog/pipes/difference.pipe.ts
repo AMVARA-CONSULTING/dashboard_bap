@@ -8,6 +8,9 @@ export class DifferencePipe implements PipeTransform {
 
   // Get difference with symbol
   transform(before: number, after: number): string {
+    if (isNaN(before) || isNaN(after)) {
+      return '-';
+    }
     const value = after - before;
     if (value === 0) {
       return '-';

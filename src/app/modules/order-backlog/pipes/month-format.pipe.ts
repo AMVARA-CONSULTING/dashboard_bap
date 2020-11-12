@@ -12,7 +12,7 @@ export class MonthFormatPipe implements PipeTransform {
   ) { }
 
   transform(date: string): string {
-    return moment(date, 'YYYY-MM-DD').locale(this._config.config.language).format('MMMM YYYY');
+    return moment(date, ['YYYY-MM-DD', 'YYYY-MM']).locale(this._config.config.language).format('MMMM YYYY');
   }
 
 }

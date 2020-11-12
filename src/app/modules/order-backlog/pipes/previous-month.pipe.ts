@@ -12,7 +12,11 @@ export class PreviousMonthPipe implements PipeTransform {
     const month = moment(date, 'YYYY-MM-DD').subtract(1, 'years').format('YYYY-MM');
     // Find matching month of previous date range and get corresponding values
     try {
-      return previousYearMonths.find(mo => mo.key.substring(0, 7) === month).value;
+      if (previousYearMonths[0].hasOwnProperty('key')) {
+        return previousYearMonths.find(mo => mo.key.substring(0, 7) === month).value;
+      } else {
+        return previousYearMonths.find(mo => mo.key.substring(0, 7) === month).value;
+      }
     } catch (err) {
       console.log('Previous month not found for date ' + date);
       return [];

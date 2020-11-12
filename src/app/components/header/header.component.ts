@@ -4,7 +4,7 @@ import { DataService } from '@services/data.service';
 import { ConfigService } from '@services/config.service';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'header',

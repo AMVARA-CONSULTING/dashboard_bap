@@ -145,7 +145,7 @@ html, body {
     @include lightTheme {
         background-color: $main-bg-body-color-light;
     }
-    background-image: url(^assets/neurons.jpg);
+    background-image: url(^assets/neurons_grey.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

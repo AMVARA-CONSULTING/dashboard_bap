@@ -1,3 +1,4 @@
+
 export interface Config {
     version: string,
     debug: boolean
@@ -116,3 +117,6 @@ export interface NgxLineSerie {
     value: number;
     extra?: any;
 }
+
+export type RegionOrProduct = 'region' | 'product';
+export type PlantOrZone = 'plant' | 'zone';

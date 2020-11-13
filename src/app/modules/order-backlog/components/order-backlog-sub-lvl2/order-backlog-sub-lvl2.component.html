@@ -1,5 +1,5 @@
 <!-- Binding for rows -->
-<ng-container *ngIf="rows$ | async as rows">
+<ng-container *ngLet="rows$ | async as rows">
   <!-- Bindings for actual and previous date ranges -->
   <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">
     <ng-container *ngLet="rows | filterYear:'previous' as previousYearRows">
@@ -23,8 +23,8 @@
         <!-- Header Row of current select plant / zone -->
         <div class="header-row arrow zone" (click)="return()">
           <div class="title">
-            <span *ngLet="type$ | async as type" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
-              {{ rows | groupOrPlantName:type }}
+            <span *ngLet="plant$ | async as plant" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
+              {{ rows | groupOrPlantName:plant }}
             </span>
           </div>
           <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
@@ -37,14 +37,14 @@
         </div>
         <!-- Content Rows -->
         <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">
-          <ng-container *ngLet="rows | filterYear:'previous' | distinctMonths as previousYearMonths">
+          <ng-container *ngLet="rows | filterYear:'previous' | distinctMonths | keyvalue as previousYearMonths">
             <ng-container *ngFor="let year of currentYearRows | distinctYears">
               <!-- Year Row -->
               <div class="title-header">
                 <div class="title">{{ year.key }}</div>
               </div>
               <!-- Month Rows -->
-              <div class="lvl2-row" (click)="goMonth(month.key)" *ngFor="let month of year.value | distinctMonths">
+              <div class="lvl2-row" (click)="goMonth(month.key)" *ngFor="let month of year.value | distinctMonths | keyvalue | reverse">
                 <div class="title">{{ month.key | monthFormat }}</div>
                 <ng-container *ngLet="month.value | sumQuantity as currentValue">
                   <ng-container *ngLet="month.key | previousMonth:previousYearMonths | sumQuantity as previousValue">

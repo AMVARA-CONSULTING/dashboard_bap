@@ -1,7 +1,7 @@
 import { trigger, transition, query, style, group, animate } from "@angular/animations";
 
 export const swipeAnimation =  trigger('routerTransition', [
-    transition('1 => 2, 2 => 3, 1 => 3', [
+    transition(':increment', [
       query(':enter, :leave', style({ overflow: 'hidden' })
         , { optional: true }),
       group([
@@ -15,7 +15,7 @@ export const swipeAnimation =  trigger('routerTransition', [
         ], { optional: true }),
       ])
     ]),
-    transition('2 => 1, 3 => 2, 3 => 1', [
+    transition(':decrement', [
       query(':enter, :leave', style({ overflow: 'hidden' })
         , { optional: true }),
       group([

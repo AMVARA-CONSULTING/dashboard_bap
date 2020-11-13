@@ -57,12 +57,12 @@ export class AccessCodeComponent implements OnInit {
   }
 
   codeChange(code): void {
-    if (code == 'TheSexiestReport') {
+    if (code === 'TheSexiestReport') {
       setTimeout(() => {
-        this.data.accessGranted = true
-        localStorage.setItem('accessGranted', 'yes')
-        this.router.navigate(['/'], { queryParamsHandling: 'merge' })
-      }, 500)
+        this.data.accessGranted = true;
+        localStorage.setItem('accessGranted', 'yes');
+        this.router.navigate(['/'], { queryParamsHandling: 'merge' });
+      }, 500);
     }
   }
 
@@ -74,19 +74,19 @@ export class AccessCodeComponent implements OnInit {
       origin: this.origin || 'undefined',
       lang: this.lang || 'undefined'
     }).subscribe((res: any) => {
-      this.granted.next(res.success)
+      this.granted.next(res.success);
       if (res.success) {
-        localStorage.setItem('accessGranted', 'yes')
+        localStorage.setItem('accessGranted', 'yes');
       } else {
-        alert('An error ocurred.')
+        alert('An error ocurred.');
       }
-    })
+    });
   }
 
-  code: string = ''
+  code = '';
 
-  granted = new BehaviorSubject<boolean>(false)
+  granted = new BehaviorSubject<boolean>(false);
 
-  stateRegister: boolean = false
+  stateRegister = false;
 
 }

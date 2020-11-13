@@ -52,6 +52,55 @@ export class OrderBacklogState {
         const actualDates = monthsAvailable.slice(0, 12);
         // Get months of previous date range
         const previousDates = monthsAvailable.slice(12, 24);
+        // Scramble data
+        /* const scramblers = [
+          {
+            column: BacklogColumns.ProductEnglish,
+            language: 'en',
+            value: 'commerce.productName()'
+          },
+          {
+            column: BacklogColumns.ProductDeutsch,
+            language: 'de',
+            value: 'commerce.productName()'
+          },
+          {
+            column: BacklogColumns.RegionEnglish,
+            language: 'en',
+            value: 'address.city()'
+          },
+          {
+            column: BacklogColumns.RegionDeutsch,
+            language: 'de',
+            value: 'address.city()'
+          }
+        ];
+        const fakerCopy = faker;
+        scramblers.forEach(scrambler => {
+          const column = scrambler.column;
+          faker.locale = scrambler.language;
+          Object.keys(data.rows.reduce((r, a) => {
+            r[a[column]] = r[a[column]] || [];
+            r[a[column]].push(a);
+            return r;
+          }, {}))
+          .map(product => ({ orig: product, scrambled: eval(`fakerCopy.${scrambler.value}`) }))
+          .forEach(t => {
+            data.rows = data.rows.map(row => {
+              if (row[column] === t.orig) {
+                row[column] = t.scrambled;
+              }
+              return row;
+            });
+          });
+        });
+        let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(JSON.stringify(data.rows));
+        let exportFileDefaultName = 'Backlog.json';
+        let linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+        console.log(data.rows); */
         setState({
           rows: data.rows,
           plandate: data.plandate,
@@ -92,8 +141,20 @@ export class OrderBacklogState {
       // First get rows from previous level (plant / zone)
       const plantRows = this.ClassifyByZoneOrPlantFn(ctx.rows, type, value);
       // Then filter by the selected month
-      console.log(month)
       return this.FilterByMonthFn(plantRows, month);
+    };
+  }
+
+  // Get all products / regions for a selected zone or plant, month and region or product
+  @Selector()
+  static GetRegionOrProductRows(ctx: ReportState) {
+    return (type: 'plant' | 'zone' | string, value: string, month: string, lvl4type: 'product' | 'region', lvl4value: string) => {
+      // First get rows from previous level (plant / zone)
+      const plantRows = this.ClassifyByZoneOrPlantFn(ctx.rows, type, value);
+      // Then filter by the selected month
+      const monthRows = this.FilterByMonthFn(plantRows, month);
+      // Then filter by the selected region or product
+      return this.FilterByRegionOrProductFn(monthRows, lvl4type, lvl4value);
     };
   }
 
@@ -106,7 +167,7 @@ export class OrderBacklogState {
     }
   }
 
-  // Reusable function classify rows on Month
+  // Reusable function to filter rows by Month
   static FilterByMonthFn(rows: any[], month: string) {
     return rows.reduce((r, a) => {
       const monthLabel = moment(a[BacklogColumns.Date], 'YYYY-MM-DD').format('YYYY-MM');
@@ -114,6 +175,17 @@ export class OrderBacklogState {
       r[monthLabel].push(a);
       return r;
     }, {})[month];
+  }
+
+  // Reusable function to filter rows by product or region
+  static FilterByRegionOrProductFn(rows: any[], type: 'product' | 'region', value: string) {
+    // We filter by the opposite selected type, because if we click on a region we want the products and viceversa
+    const column = type === 'product' ? BacklogColumns.ProductEnglish : BacklogColumns.RegionEnglish;
+    return rows.reduce((r, a) => {
+      r[a[column]] = r[a[column]] || [];
+      r[a[column]].push(a);
+      return r;
+    }, {})[value];
   }
 
   // Get rows classified by Datum

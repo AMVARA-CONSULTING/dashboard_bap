@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
+import { BacklogColumns } from '@other/interfaces';
 import * as moment from 'moment';
 
 @Pipe({
@@ -15,7 +16,7 @@ export class PreviousMonthPipe implements PipeTransform {
       if (previousYearMonths[0].hasOwnProperty('key')) {
         return previousYearMonths.find(mo => mo.key.substring(0, 7) === month).value;
       } else {
-        return previousYearMonths.find(mo => mo.key.substring(0, 7) === month).value;
+        return previousYearMonths.find(mo => mo[BacklogColumns.Date].substring(0, 7) === month).value;
       }
     } catch (err) {
       console.log('Previous month not found for date ' + date);

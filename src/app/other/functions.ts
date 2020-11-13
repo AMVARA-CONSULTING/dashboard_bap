@@ -1,3 +1,4 @@
+import * as moment from "moment";
 
 /**
  * Classifies an array collection based on a property name
@@ -10,6 +11,14 @@ export function classifyByProperty(array: any[], prop: string) {
         r[a[prop]].push(a);
         return r;
     }, {});
+}
+
+/**
+ * Retrieves the previous month
+ * @param date moment.Moment
+ */
+export function GetPreviousMonth(date: string) {
+  return moment(date, ['YYYY-MM-DD', 'YYYY-MM']).subtract(1, 'years').format('YYYY-MM');
 }
 
 /**

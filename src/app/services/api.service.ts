@@ -293,9 +293,8 @@ export class ApiService {
       );
     } else {
       // Get report from local
-      return this.http.get('assets/reports/Order_Backlog.csv', { responseType: 'text' }).pipe(
-        map(data => this.newCsvToJson(data)),
-        map(rows => ({ plandate: moment().format('DD/MM/YYYY'), rows: rows }))
+      return this.http.get('assets/reports/Order_Backlog.json').pipe(
+        map((rows: any[]) => ({ plandate: moment().format('DD/MM/YYYY'), rows: rows }))
       );
     }
   }

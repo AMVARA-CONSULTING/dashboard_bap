@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { RouterOutlet } from '@angular/router';
-import { trigger, transition, query, style, group, animate } from '@angular/animations';
 import { swipeAnimation } from 'app/app.transitions';
 
 @Component({
@@ -13,20 +12,17 @@ import { swipeAnimation } from 'app/app.transitions';
     '[@routerTransition]': 'getLevel()'
   }
 })
-export class WrapperComponent implements OnInit {
+export class WrapperComponent {
 
   constructor(private data: DataService) {
-    data.lastTap, data.lastTap2 = null
+    data.lastTap, data.lastTap2 = null;
   }
 
-  ngOnInit() {
-  }
-
-  @ViewChild('o', { static: true }) outlet: RouterOutlet
+  @ViewChild('o', { static: true }) outlet: RouterOutlet;
 
   getLevel() {
-    this.data.currentLevel = +this.outlet.activatedRouteData['level']
-    return this.outlet.activatedRouteData['level']
+    this.data.currentLevel = +this.outlet.activatedRouteData['level'];
+    return this.outlet.activatedRouteData['level'];
   }
 
 }

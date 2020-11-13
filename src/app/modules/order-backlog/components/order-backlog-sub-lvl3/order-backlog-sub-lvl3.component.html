@@ -1,5 +1,5 @@
 <!-- Binding for rows -->
-<ng-container *ngIf="rows$ | async as rows">
+<ng-container *ngLet="rows$ | async as rows">
   <!-- Overview -->
   <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
     <!-- Headers -->
@@ -18,8 +18,8 @@
     <!-- Header Row of currented select plant / zone -->
     <div class="header-row arrow zone" (click)="return()">
       <div class="title">
-        <span *ngLet="type$ | async as type" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
-          {{ plantOrZoneRows | groupOrPlantName:type }}
+        <span *ngLet="plant$ | async as plant" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
+          {{ plantOrZoneRows | groupOrPlantName:plant }}
         </span>
       </div>
       <ng-container *ngLet="plantOrZoneRows | filterYear:'current' | sumQuantity as currentValue">
@@ -30,7 +30,7 @@
         </ng-container>
       </ng-container>
     </div>
-    <ng-container *ngLet="month$ | async | previousMonth:(plantOrZoneRows | distinctMonths) as previousMonthRows">
+    <ng-container *ngLet="month$ | async | previousMonth:(plantOrZoneRows | distinctMonths | keyvalue) as previousMonthRows">
       <!-- Header Row of current selected month -->
       <div class="header-row arrow zone" (click)="return()">
         <div class="title">
@@ -51,9 +51,9 @@
         <div class="title">REGIONS</div>
       </div>
       <!-- Region rows -->
-      <ng-container *ngLet="previousMonthRows | distinctRegions as previousRegions">
+      <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
         <!-- Iterate over each region -->
-        <div class="lvl2-row" (click)="goRegion(region.key)" *ngFor="let region of rows | distinctRegions | keyvalue">
+        <div class="lvl2-row" (click)="goRegion(region.key)" *ngFor="let region of rows | distinctItems:'region' | keyvalue">
           <div class="title">{{ region.key }}</div>
           <!-- Bind current value -->
           <ng-container *ngLet="region.value | sumQuantity as currentValue">
@@ -77,9 +77,9 @@
         <div class="title">PRODUCTS</div>
       </div>
       <!-- Product rows -->
-      <ng-container *ngLet="previousMonthRows | distinctProducts as previousProducts">
+      <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">
         <!-- Iterate over each product -->
-        <div class="lvl2-row" (click)="goProduct(product.key)" *ngFor="let product of rows | distinctProducts | keyvalue">
+        <div class="lvl2-row" (click)="goProduct(product.key)" *ngFor="let product of rows | distinctItems:'product' | keyvalue">
           <div class="title">{{ product.key }}</div>
           <!-- Bind current value -->
           <ng-container *ngLet="product.value | sumQuantity as currentValue">

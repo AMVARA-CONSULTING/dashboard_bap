@@ -1,5 +1,5 @@
 {
-	"version": "2.50.0",
+	"version": "2.51.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -168,6 +168,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.51.0",
+		  "text": [
+			"#2687 - Implemented Level 4 for Order Backlog"
+		  ]
+		},
 		{
 		  "version": "2.50.0",
 		  "text": [

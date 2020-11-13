@@ -29,9 +29,9 @@ export class OrderBacklogSubLvl3Component {
   mobile$: Observable<boolean>;
   // Rows used for higher totals
   plantOrZoneRows$: Observable<any[]>;
-  // The type param comming from URL
-  type$: Observable<string>;
-  // The type param comming from URL
+  // The plant param comming from URL
+  plant$: Observable<string>;
+  // The month param comming from URL
   month$: Observable<string>;
   // All rows for the selected plant / zone and month
   rows$: Observable<any[]>;
@@ -51,20 +51,20 @@ export class OrderBacklogSubLvl3Component {
     this.month$ = this._ac.paramMap.pipe(
       map(params => params.get('month'))
     );
-    // Grab type parameter from URL
-    this.type$ = this._ac.paramMap.pipe(
-      map(params => params.get('type'))
+    // Grab plant parameter from URL
+    this.plant$ = this._ac.paramMap.pipe(
+      map(params => params.get('plant'))
     );
-    // Grab type and id parameter and use it to get the total rows
+    // Grab plant and id parameter and use it to get the total rows
     this.plantOrZoneRows$ = this._ac.paramMap.pipe(
       switchMap(params => this._store.select(OrderBacklogState.GetZoneOrPlantRows).pipe(
-        map(fn => fn(params.get('type'), params.get('id')))
+        map(fn => fn(params.get('plant'), params.get('id')))
       ))
     );
-    // Grab type, id and month parameter and use it to get the current month data
+    // Grab plant, id and month parameter and use it to get the current month data
     this.rows$ = this._ac.paramMap.pipe(
       switchMap(params => this._store.select(OrderBacklogState.GetMonthRows).pipe(
-        map(fn => fn(params.get('type'), params.get('id'), params.get('month')))
+        map(fn => fn(params.get('plant'), params.get('id'), params.get('month')))
       ))
     );
   }
@@ -84,21 +84,19 @@ export class OrderBacklogSubLvl3Component {
   }
 
   goRegion(region: string): void {
-    const encoded = encodeURI(region);
     this.data.lastTap = {
       type: 'region',
-      key: encoded
+      key: region
     };
-    this.router.navigate(['region', encoded], { relativeTo: this._ac });
+    this.router.navigate(['region', region], { relativeTo: this._ac });
   }
 
   goProduct(product: string): void {
-    const encoded = encodeURI(product);
     this.data.lastTap = {
       type: 'product',
-      key: encoded
+      key: product
     };
-    this.router.navigate(['product', encoded], { relativeTo: this._ac });
+    this.router.navigate(['product', product], { relativeTo: this._ac });
   }
 
 

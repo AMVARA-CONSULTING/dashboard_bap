@@ -27,8 +27,8 @@ export class OrderBacklogSubLvl2Component {
 
   // Wether or not we are on mobile view
   mobile$: Observable<boolean>;
-  // The type param comming from URL
-  type$: Observable<string>;
+  // The plant param comming from URL
+  plant$: Observable<string>;
   // All rows for the selected plant / zone
   rows$: Observable<any[]>;
 
@@ -43,14 +43,14 @@ export class OrderBacklogSubLvl2Component {
   ) {
     this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
     this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
-    // Grab type parameter from URL
-    this.type$ = this._ac.paramMap.pipe(
-      map(params => params.get('type'))
+    // Grab plant parameter from URL
+    this.plant$ = this._ac.paramMap.pipe(
+      map(params => params.get('plant'))
     );
-    // Grab type and id parameter and use it to get the data
+    // Grab plant and id parameter and use it to get the data
     this.rows$ = this._ac.paramMap.pipe(
       switchMap(params => this._store.select(OrderBacklogState.GetZoneOrPlantRows).pipe(
-        map(fn => fn(params.get('type'), params.get('id')))
+        map(fn => fn(params.get('plant'), params.get('id')))
       ))
     );
   }

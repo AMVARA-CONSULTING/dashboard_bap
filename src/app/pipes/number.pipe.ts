@@ -1,16 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { ILanguage } from '@other/interfaces';
 import { ConfigService } from '@services/config.service';
+import { ConfigState } from '@store/config.state';
 
 @Pipe({
   name: 'toNumber'
 })
 export class NumberPipe implements PipeTransform {
 
+  @SelectSnapshot(ConfigState.GetLanguageHuman) language: ILanguage;
+
   constructor(
     private config: ConfigService
   ) { }
 
-  transform = (value: number, sign: boolean = false, comma: boolean = true) => ToNumberFn(value, sign, comma, this.config.config.language);
+  transform = (value: number, sign: boolean = false, comma: boolean = true) => ToNumberFn(value, sign, comma, this.language);
 
 }
 

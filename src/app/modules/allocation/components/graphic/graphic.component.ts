@@ -19,28 +19,25 @@ import * as moment from 'moment';
     '[@list]': 'months.length'
   }
 })
-export class GraphicComponent{
+export class GraphicComponent {
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.activatedRoute.paramMap.subscribe(params => this.plantID = params.get('plant'))
+    this.activatedRoute.paramMap.subscribe(params => this.plantID = params.get('plant'));
   }
 
-  plantID: string
-
-  ngOnInit() {
-  }
+  plantID: string;
 
   getIndex(index) {
     return index
   }
 
   goMonth(date): void {
-    const momentum = moment(date, 'MM / YYYY')
-    const year = momentum.format('YYYYMM')
-    this.router.navigate(['allocation', this.plantID, 'date', year])
+    const momentum = moment(date, 'MM / YYYY');
+    const year = momentum.format('YYYYMM');
+    this.router.navigate(['allocation', this.plantID, 'date', year]);
   }
 
   width: number = 0

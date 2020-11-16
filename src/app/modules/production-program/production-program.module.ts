@@ -10,8 +10,8 @@ import { ProductionProgramLvl2Component } from './components/production-program-
 import { ProductionProgramLvl3Component } from './components/production-program-lvl3/production-program-lvl3.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: WrapperComponent,
     children: [
       {
@@ -36,7 +36,7 @@ const routes: Routes = [
       }
     ]
    }
-]
+];
 
 @NgModule({
   imports: [
@@ -46,10 +46,10 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    ProductionProgramMainComponent, 
-    WrapperComponent, 
-    GraphicComponent, 
-    ProductionProgramLvl2Component, 
+    ProductionProgramMainComponent,
+    WrapperComponent,
+    GraphicComponent,
+    ProductionProgramLvl2Component,
     ProductionProgramLvl3Component
   ]
 })

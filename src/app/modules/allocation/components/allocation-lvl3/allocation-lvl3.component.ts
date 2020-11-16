@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { LoadingService } from '@services/loading.service';
 import { Title } from '@angular/platform-browser';
@@ -31,7 +31,7 @@ import { trigger, transition, query, style, stagger, animate, state } from '@ang
     '(swipeleft)': 'data.go("plant-stock")'
   }
 })
-export class AllocationLvl3Component implements OnInit {
+export class AllocationLvl3Component {
 
   ready: boolean = false
 
@@ -87,9 +87,6 @@ export class AllocationLvl3Component implements OnInit {
 
   changePlant(plant: string): void {
     this.router.navigate(['allocation', plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
-  }
-
-  ngOnInit() {
   }
 
   getDate(month): string {

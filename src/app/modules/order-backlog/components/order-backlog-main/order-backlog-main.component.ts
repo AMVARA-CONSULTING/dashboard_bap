@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { OrderBacklogState } from 'app/store/order-backlog.state';
 import { Zones } from '@other/interfaces';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
-import { DataService } from '@services/data.service';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'order-backlog-main',
@@ -39,46 +39,14 @@ export class OrderBacklogMainComponent {
   mobile$: Observable<boolean>;
 
   constructor(
-    private _data: DataService,
+    public _ac: ActivatedRoute,
     private config: ConfigService,
-    private router: Router,
     private title: Title,
-    private _breakpoints: BreakpointObserver
+    private _breakpoints: BreakpointObserver,
+    public _obRouter: OrderBacklogRouter
   ) {
-    this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
+    this.mobile$ = this._breakpoints.observe(Breakpoints.Handset).pipe( map(result => result.matches) );
     this.title.setTitle(this.config.config.appTitle + ' - Order Backlog');
-  }
-
-  /** Go to /order-backlog/zone/:id
-   * @param ZoneID id of the selected zone
-   */
-  goZone(ZoneID): void {
-    this._data.lastTap = {
-      type: 'zone',
-      key: ZoneID
-    };
-    this.router.navigate(['order-backlog', 'zone', ZoneID], { replaceUrl: true, queryParamsHandling: 'merge' });
-  }
-
-  /** Go to /order-backlog/plant/:id
-   * @param PlantID id of the selected plant
-   */
-  goPlant(PlantID): void {
-    this._data.lastTap = {
-      type: 'plant',
-      key: PlantID
-    };
-    this.router.navigate(['order-backlog', 'plant', PlantID], { replaceUrl: true, queryParamsHandling: 'merge' });
-  }
-
-  recoverLvl2(): void {
-    if (this._data.lastTap != null) {
-      if (this._data.lastTap.type === 'plant') {
-        this.router.navigate(['order-backlog', 'plant', this._data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' });
-      } else {
-        this.router.navigate(['order-backlog', 'zone', this._data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' });
-      }
-    }
   }
 
 }

@@ -17,22 +17,22 @@ export class DipCircularMetersComponent {
   @Input() previousValue: number;
 
   @Input('actual') set setActual(value: number) {
-    this.actual = isNaN(value) ? 0 : Math.abs(value)
-    this.clockwise_actual = value >= 0
+    this.actual = isNaN(value) ? 0 : Math.abs(value);
+    this.clockwise_actual = value >= 0;
   }
 
   @Input('previous') set setPrevious(value: number) {
-    this.previous = isNaN(value) ? 0 : Math.abs(value)
-    this.clockwise_previous = value >= 0
+    this.previous = isNaN(value) ? 0 : Math.abs(value);
+    this.clockwise_previous = value >= 0;
   }
 
-  clockwise_actual: boolean = false
-  clockwise_previous: boolean = false
+  clockwise_actual = false;
+  clockwise_previous = false;
 
-  actualNegative: boolean = false
-  previousNegative: boolean = false
+  actualNegative = false;
+  previousNegative = false;
 
-  actual: number = 0
-  previous: number = 0
+  actual = 0;
+  previous = 0;
 
 }

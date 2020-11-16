@@ -23,8 +23,10 @@ export class ApiService {
     this.corpintra = location.hostname.indexOf('corpintra.net') > -1;
     if (!this.corpintra) {
       const datum = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
-      for (let prop in this.reportDates) {
-        this.reportDates[prop] = datum
+      for (const prop in this.reportDates) {
+        if (this.reportDates[prop]) {
+          this.reportDates[prop] = datum;
+        }
       }
     }
   }
@@ -37,14 +39,16 @@ export class ApiService {
     plantStock: ''
   };
 
-  reloadDialog: MatDialogRef<CookiesExpiredComponent>
+  reloadDialog: MatDialogRef<CookiesExpiredComponent>;
 
-  openCookiesPopup(): void {
-    if (!this.reloadDialog) this.reloadDialog = this.dialog.open(CookiesExpiredComponent, {
-      panelClass: 'newUpdate',
-      disableClose: true,
-      closeOnNavigation: false
-    })
+  openCookiesPopup() {
+    if (!this.reloadDialog) {
+      this.reloadDialog = this.dialog.open(CookiesExpiredComponent, {
+        panelClass: 'newUpdate',
+        disableClose: true,
+        closeOnNavigation: false
+      });
+    }
   }
 
   authorized = true;
@@ -62,21 +66,25 @@ export class ApiService {
    * @param removeHeaders provide true to remove first line of headers
    */
   csvToJson(csv: any, numeralFields: number[], removeHeaders: boolean = true) {
-    const lines: any[] = csv.split("\n")
-    const data = []
-    if (removeHeaders) lines.splice(0, 1)
-    const length = lines.length
+    const lines: any[] = csv.split('\n');
+    const data = [];
+    if (removeHeaders) {
+      lines.splice(0, 1);
+    }
+    const length = lines.length;
     let i = 1
     for ( ; i < length; i++ ) {
       // Remove empty lines
-      if (lines[i].trim().length == 0) continue
-      const values = lines[i].split("\t")
+      if (lines[i].trim().length === 0) {
+        continue;
+      }
+      const values = lines[i].split('\t');
       numeralFields.forEach(num => {
-        values[num] = isNaN(values[num]) ? 0 : parseFloat(values[num])
-      })
-      data.push(values)
+        values[num] = isNaN(values[num]) ? 0 : parseFloat(values[num]);
+      });
+      data.push(values);
     }
-    return data
+    return data;
   }
 
   // Get Order Intake Data from Report (temporarily from JSON File)
@@ -84,41 +92,41 @@ export class ApiService {
     if (this.corpintra) {
       return new Observable(observer => {
         this.http.get('/internal/bi/v1/objects/' + ReportID + '/versions', { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
-          const nextLink = json.data[0]._meta.links.outputs.url
+          const nextLink = json.data[0]._meta.links.outputs.url;
           this.http.get(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe((json: any) => {
-            const nextLink = json.data[0]._meta.links.content.url
-            this.reportDates.orderIntake = json.data[0].modificationTime
+            const nextLink = json.data[0]._meta.links.content.url;
+            this.reportDates.orderIntake = json.data[0].modificationTime;
             this.http.get(nextLink, { responseType: 'text', headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } }).subscribe(data => {
               const rows = this.tools.htmlToJson(data, '[lid=AMVARA_DATA_OI] tr')
               rows.forEach((row, index, rows) => {
                 this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber.forEach(num => {
-                  rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num])
-                })
-              })
-              observer.next({ success: true, data: rows })
-              observer.complete()
+                  rows[index][num] = isNaN(rows[index][num]) ? 0 : parseFloat(rows[index][num]);
+                });
+              });
+              observer.next({ success: true, data: rows });
+              observer.complete();
             }, err => {
-              observer.next({ success: false, data: [], error: 'OI - Fail at getting report table data.', more: err })
-              observer.complete()
+              observer.next({ success: false, data: [], error: 'OI - Fail at getting report table data.', more: err });
+              observer.complete();
             })
           }, err => {
-            observer.next({ success: false, data: [], error: 'OI - Fail at getting last report versions.', more: err })
-            observer.complete()
-          })
+            observer.next({ success: false, data: [], error: 'OI - Fail at getting last report versions.', more: err });
+            observer.complete();
+          });
         }, err => {
-          observer.next({ success: false, data: [], error: 'OI - Fail at retrieving report info.', more: err })
-          observer.complete()
-        })
-      })
+          observer.next({ success: false, data: [], error: 'OI - Fail at retrieving report info.', more: err });
+          observer.complete();
+        });
+      });
     } else {
       return new Observable(observer => {
         this.http.get('assets/reports/Order_Intake.json').pipe(
           // map(data => this.csvToJson(data, this.config.config.reports.trucks.columns.orderIntake.shouldBeNumber))
         ).subscribe((res: any[]) => {
-          observer.next({ success: true, data: res })
-          observer.complete()
-        })
-      })
+          observer.next({ success: true, data: res });
+          observer.complete();
+        });
+      });
     }
   }
   // Get Production Program Data from Report (tmp JSON file)
@@ -265,7 +273,7 @@ export class ApiService {
         switchMap(json => {
           // Get report versions
           const nextLink = json.data[0]._meta.links.outputs.url;
-          return this.http.get<any>(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } })
+          return this.http.get<any>(nextLink, { headers: { 'X-XSRF-TOKEN': this.tools.xsrf_token } });
         }),
         catchError(err => {
           // Catch error on getting report versions

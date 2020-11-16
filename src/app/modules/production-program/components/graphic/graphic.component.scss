@@ -15,8 +15,6 @@
     height: 100%;
     position: relative;
     cursor: pointer;
-    -webkit-transition: top .15s ease-in-out;
-    -o-transition: top .15s ease-in-out;
     transition: top .15s ease-in-out;
     top: 0;
     &:hover {
@@ -45,8 +43,6 @@
             left: 0;
             border-radius: 3px;
             width: calc(50% - 2px);
-            -webkit-transition: height .7s ease-in-out;
-            -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: $cyan-text-material;
             &.zero {
@@ -59,8 +55,6 @@
             left: 0;
             border-radius: 3px;
             width: calc(50% - 2px);
-            -webkit-transition: height .7s ease-in-out;
-            -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: $yellow-text-material;
             &.zero {
@@ -73,8 +67,6 @@
             right: 0;
             border-radius: 3px;
             width: calc(50% - 5px);
-            -webkit-transition: height .7s ease-in-out;
-            -o-transition: height .7s ease-in-out;
             transition: height .7s ease-in-out;
             background-color: rgba($semi-white, .5);
             &.zero {

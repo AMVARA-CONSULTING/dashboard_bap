@@ -29,6 +29,7 @@ import { OrderBacklogSubLvl3Component } from './components/order-backlog-sub-lvl
 import { OrderBacklogSubLvl4Component } from './components/order-backlog-sub-lvl4/order-backlog-sub-lvl4.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { DistinctItemsPipe } from './pipes/distinct-items.pipe';
+import { OrderBacklogRouter } from './services/order-backlog-router.service';
 
 const routes: Routes = [
   {
@@ -91,6 +92,9 @@ const routes: Routes = [
     PreviousMonthPipe,
     DistinctItemsPipe,
     ReversePipe
+  ],
+  providers: [
+    OrderBacklogRouter
   ]
 })
 export class OrderBacklogModule {

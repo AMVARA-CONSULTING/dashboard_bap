@@ -20,24 +20,16 @@
     line-height: 30px;
     width: 100%;
     text-align: right;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .overview {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     max-height: 0;
     overflow: hidden;
-    -webkit-transition: all .6s ease-in-out;
-    -o-transition: all .6s ease-in-out;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
-    background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
-    background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
@@ -45,49 +37,38 @@
         overflow: auto;
         border-bottom: 3px solid rgba($color: #000, $alpha: .4);
     }
-    @media screen and (min-width: 800px) {
+    @include desktop {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
         border-bottom: 3px solid rgba($color: #000, $alpha: .4);
     }
     .graphic {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 60%;
-                flex: 1 60%;
+        flex: 1 60%;
         padding: 30px;
         max-width: 60%;
         padding-bottom: 15px;
     }
     .simple {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 40%;
-                flex: 1 40%;
+        flex: 1 40%;
         max-width: 40%;
         border-left: 3px solid rgba($color: #000, $alpha: .2);
         padding: 30px;
         padding-right: 20px;
         .headers, .overview-group {
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
             width: 100%;
             line-height: 40px;
             padding: 0 15px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
             .empty, .werk, .actuak, .previous, .delta {
-                -webkit-box-flex: 1;
-                    -ms-flex: 1;
-                        flex: 1;
+                flex: 1;
             }
             .actuak, .previous, .delta {
                 text-align: right;
             }
         }
         .overview-group {
-            -webkit-transition: background .1s ease-in-out;
-            -o-transition: background .1s ease-in-out;
             transition: background .1s ease-in-out;
             border-radius: 5px;
             cursor: pointer;
@@ -99,16 +80,16 @@
             }
             .actual {
                 color: $lighten-cyan-text;
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
             .previous {
                 color: $yellow-text;
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
             .delta {
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
         }
@@ -116,29 +97,21 @@
 }
 
 header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     background-color: $bg-white-lvl3;
     padding: 0 15px;
     @include desktop {
         padding: 0 40px;
     }
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     height: 40px;
     .werk {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 40%;
-                flex: 1 40%;
+        flex: 1 40%;
     }
     .actual, .previous, .delta {
         padding: 12px 10px 12px 0;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        -webkit-box-flex: 1;
-            -ms-flex: 1 25%;
-                flex: 1 25%;
+        box-sizing: border-box;
+        flex: 1 25%;
         @include desktop {
             flex: 0 0 150px;
         }
@@ -147,23 +120,19 @@ header {
     .previous {
         overflow: hidden;
         white-space: nowrap;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis;
+        text-overflow: ellipsis;
     }
 }
 
 .content-wrapper {
     .group-header {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 15px;
         @include desktop {
             padding: 12px 40px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         background-color: $bg-white-lvl1;
         &.return {
             .werk {
@@ -174,8 +143,6 @@ header {
                         left: 3px;
                     }
                 }
-                -webkit-transition: padding-left .15s ease-in-out;
-                -o-transition: padding-left .15s ease-in-out;
                 transition: padding-left .15s ease-in-out;
                 padding-left: 20px;
                 position: relative;
@@ -189,8 +156,6 @@ header {
                     left: -7px;
                     height: 13px;
                     width: 13px;
-                    -webkit-transition: left .15s ease-in-out;
-                    -o-transition: left .15s ease-in-out;
                     transition: left .15s ease-in-out;
                     background-image: url(^assets/arrow.svg);
                     background-size: contain;
@@ -219,10 +184,7 @@ header {
         }
     }
     .row {
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
+        user-select: none;
         cursor: pointer;
         &:nth-child(odd) {
             background-color: $bg-white-lvl4;
@@ -234,36 +196,26 @@ header {
         &:hover {
             border-bottom-color: $yellow-text !important;
         }
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 15px;
         @include desktop {
             padding: 12px 40px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         &:hover .werk {
             &:after {
                 left: 10px;
             }
             padding-left: 30px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .werk {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 40%;
-                    flex: 1 40%;
+            flex: 1 40%;
             padding-left: 20px;
             position: relative;
-            -webkit-transition: padding-left .15s ease-in-out;
-            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
             &:after {
-                -webkit-transition: left .15s ease-in-out;
-                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -279,16 +231,13 @@ header {
             }
         }
         .actual, .previous, .delta {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 25%;
-                    flex: 1 25%;
+            flex: 1 25%;
             text-align: right;
             padding-right: 10px;
             @include desktop {
                 flex: 0 0 150px;
             }
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .previous {
             color: $yellow-text;
@@ -347,8 +296,6 @@ header {
     :host::ng-deep {
         background-color: white;
         .overview {
-            background: -webkit-linear-gradient(top, white, $light-grey2);
-            background: -o-linear-gradient(top, white, $light-grey2);
             background: linear-gradient(to bottom, white, $light-grey2);
             .simple {
                 border-left-color: transparent;

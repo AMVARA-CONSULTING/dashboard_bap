@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     '(swipeleft)': 'data.go("order-intake")'
   }
 })
-export class PlantStockLvl2Component implements OnInit {
+export class PlantStockLvl2Component {
 
   ready: boolean = false
 
@@ -57,9 +57,6 @@ export class PlantStockLvl2Component implements OnInit {
         this.loader.loading$.next(false)
       }
     })
-  }
-
-  ngOnInit() {
   }
 
   goWerk(werk): void {

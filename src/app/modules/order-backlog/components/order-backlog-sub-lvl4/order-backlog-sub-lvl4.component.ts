@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '@services/data.service';
+import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngxs/store';
@@ -9,9 +8,10 @@ import { map, switchMap } from 'rxjs/operators';
 import { OrderBacklogState } from '@store/order-backlog.state';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import * as moment from 'moment';
 import { GetPreviousMonth } from '@other/functions';
 import { RegionOrProduct } from '@other/interfaces';
+import { CustomSelectors } from '@other/custom-selectors';
+import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 
 @Component({
   selector: 'order-backlog-sub-lvl4',
@@ -44,13 +44,12 @@ export class OrderBacklogSubLvl4Component {
   previousRows$: Observable<any[]>;
 
   constructor(
-    private _ac: ActivatedRoute,
-    private data: DataService,
+    public _ac: ActivatedRoute,
     private config: ConfigService,
-    private router: Router,
     private _title: Title,
     private _store: Store,
-    private _breakpoints: BreakpointObserver
+    private _breakpoints: BreakpointObserver,
+    public _obRouter: OrderBacklogRouter
   ) {
     this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
     this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
@@ -60,56 +59,30 @@ export class OrderBacklogSubLvl4Component {
     );
     // Get the total plant rows
     this.plantOrZoneRows$ = this.params$.pipe(
-      switchMap(params => this._store.select(OrderBacklogState.GetZoneOrPlantRows).pipe(
-        map(fn => fn(params.plant, params.id))
-      ))
+      switchMap(params => this._store.select(CustomSelectors.GetZoneOrPlantRows(params.plant, params.id)))
     );
     // Get the total month rows
     this.monthRows$ = this.params$.pipe(
-      switchMap(params => this._store.select(OrderBacklogState.GetMonthRows).pipe(
-        map(fn => fn(params.plant, params.id, params.month))
-      ))
+      switchMap(params => this._store.select(CustomSelectors.GetMonthRows(params.plant, params.id, params.month)))
     );
     // Get the total previous month rows
     this.previousMonthRows$ = this.params$.pipe(
-      switchMap(params => this._store.select(OrderBacklogState.GetMonthRows).pipe(
-        map(fn => fn(params.plant, params.id, GetPreviousMonth(params.month)))
-      ))
+      switchMap(params => this._store.select(CustomSelectors.GetMonthRows(params.plant, params.id, GetPreviousMonth(params.month))))
     );
     // Get the the rows for the current selected region or product
     this.rows$ = this.params$.pipe(
-      switchMap(params => this._store.select(OrderBacklogState.GetRegionOrProductRows).pipe(
-        map(fn => fn(params.plant, params.id, params.month, params.type, params.value))
-      ))
+      // tslint:disable-next-line: max-line-length
+      switchMap(params => this._store.select(CustomSelectors.GetRegionOrProductRows(params.plant, params.id, params.month, params.type, params.value)))
     );
     // Get the the rows for the previous selected region or product
     this.previousRows$ = this.params$.pipe(
-      switchMap(params => this._store.select(OrderBacklogState.GetRegionOrProductRows).pipe(
-        map(fn => fn(params.plant, params.id, GetPreviousMonth(params.month), params.type, params.value))
-      ))
+      // tslint:disable-next-line: max-line-length
+      switchMap(params => this._store.select(CustomSelectors.GetRegionOrProductRows(params.plant, params.id, GetPreviousMonth(params.month), params.type, params.value)))
     );
   }
 
-  return(): void {
-    this.router.navigate(['../../'], { relativeTo: this._ac });
-  }
-
-  forward(): void {
-    if (this.data.lastTap2) {
-      if (this.data.lastTap2.type === 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this._ac, replaceUrl: true });
-      } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this._ac, replaceUrl: true });
-      }
-    }
-  }
-
   goItem(type: RegionOrProduct, item: string): void {
-    this.data.lastTap = {
-      type: type,
-      key: item
-    };
-    this.router.navigate(['../../', type, item], { relativeTo: this._ac });
+    this._obRouter.goToProductRegionView(this._ac, null, null, null, type, item);
   }
 
 }

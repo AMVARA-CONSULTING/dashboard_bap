@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import * as moment from 'moment';
     '(swipeleft)': 'data.go("order-intake")'
   }
 })
-export class PlantStockLvl3Component implements OnInit {
+export class PlantStockLvl3Component {
 
   ready: boolean = false
 
@@ -66,9 +66,6 @@ export class PlantStockLvl3Component implements OnInit {
         this.loader.loading$.next(false)
       }
     })
-  }
-
-  ngOnInit() {
   }
 
   changePlant(plant) {

@@ -6,9 +6,13 @@
         <div style="position: relative; height: 100%;">
           <ng-container *ngLet="zone.value | sumQuantity as zoneTotal">
             <!-- Current year bar -->
-            <div *ngLet="zone.value | filterYear:'current' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="actual" class="actual" [style.height.%]="quantity | percent:highestZone | startWith:0 | async"></div>
+            <div *ngLet="zone.value | filterYear:'current' | sumQuantity as quantity" class="actual" [style.height.%]="quantity | percent:highestZone | startWith:0 | async">
+              <div class="value">{{ quantity | toNumber }}</div>
+            </div>
             <!-- Previous year bar -->
-            <div *ngLet="zone.value | filterYear:'previous' | sumQuantity as quantity" [matTooltip]="quantity | toNumber" matTooltipPosition="above" matTooltipClass="previous" class="previous" [style.height.%]="quantity | percent:highestZone | startWith:0 | async"></div>
+            <div *ngLet="zone.value | filterYear:'previous' | sumQuantity as quantity" class="previous" [style.height.%]="quantity | percent:highestZone | startWith:0 | async">
+              <div class="value">{{ quantity | toNumber }}</div>
+            </div>
           </ng-container>
         </div>
       </div>

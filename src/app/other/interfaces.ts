@@ -1,30 +1,32 @@
 
 export interface Config {
-    version: string,
-    debug: boolean
-    language: string,
-    reports: any,
-    delay: number,
-    scenario: string,
-    contacts: any[],
-    copyright: string,
-    license: string,
+    version: string;
+    debug: boolean;
+    language: ILanguage;
+    reports: any;
+    delay: number;
+    scenario: string;
+    contacts: any[];
+    copyright: string;
+    license: string;
     corpintra: boolean;
-    translations: 'en' | 'de' | any,
-    changelog: any,
-    appTitle: string,
-    languageCodes: any,
-    cognosRepository: string,
-    cognosDomain: string,
-    target: string,
-    simulateUnauthorized: number,
-    heartbeat: number
-    capabilities: any
+    translations: 'en' | 'de' | any;
+    changelog: any;
+    appTitle: string;
+    languageCodes: any;
+    cognosRepository: string;
+    cognosDomain: string;
+    target: string;
+    simulateUnauthorized: number;
+    heartbeat: number;
+    capabilities: any;
 }
 
+export type ILanguage = 'en' | 'de';
+
 export interface HeaderLink {
-    link: string
-    text: string
+    link: string;
+    text: string;
 }
 
 export interface UserCapabilities {
@@ -79,7 +81,8 @@ export enum BacklogColumns {
     Datatype = 'Datatype',
     PlantEnglish = 'Plant (english)',
     PlantDeutsch = 'Werk (deutsch)',
-    PlantGroupEnglish = 'Werksgruppierung (deutsch)',
+    PlantGroupEnglish = 'Plant Group (english)',
+    PlantGroupDeutsch = 'Werksgruppierung (deutsch)',
     ProductEnglish = 'Product (englisch)',
     ProductDeutsch = 'Produkt (deutsch)',
     RegionEnglish = 'Region (english)',

@@ -1,104 +1,107 @@
-<!-- Binding for rows -->
-<ng-container *ngLet="rows$ | async as rows">
-  <!-- Overview -->
-  <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
-    <!-- Headers -->
-    <div class="data-header">
-      <div class="empty"></div>
-      <ng-container *ngIf="mobile$ | async; else desktopHeaders">
-        <div class="report-date">Last 12 Mo.</div>
-        <div class="glyph">Prev. 12 Mo.</div>
-      </ng-container>
-      <ng-template #desktopHeaders>
-        <div class="report-date">Last 12 Month</div>
-        <div class="glyph">Prev. 12 Month</div>
-      </ng-template>
-      <div class="glyph">&Delta;</div>
-    </div>
-    <!-- Header Row of currented select plant / zone -->
-    <div class="header-row arrow zone" (click)="return()">
-      <div class="title">
-        <span *ngLet="plant$ | async as plant" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
-          {{ plantOrZoneRows | groupOrPlantName:plant }}
-        </span>
-      </div>
-      <ng-container *ngLet="plantOrZoneRows | filterYear:'current' | sumQuantity as currentValue">
-        <ng-container *ngLet="plantOrZoneRows | filterYear:'previous' | sumQuantity as previousValue">
-          <div class="actual">{{ currentValue | toNumber }}</div>
-          <div class="previous">{{ previousValue | toNumber }}</div>
-          <div class="delta">{{ previousValue | difference:currentValue }}</div>
+<!-- Binding for params -->
+<ng-container *ngLet="params$ | async as params">
+  <!-- Binding for rows -->
+  <ng-container *ngLet="rows$ | async as rows">
+    <!-- Overview -->
+    <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
+      <!-- Headers -->
+      <div class="data-header">
+        <div class="empty"></div>
+        <ng-container *ngIf="mobile$ | async; else desktopHeaders">
+          <div class="report-date">Last 12 Mo.</div>
+          <div class="glyph">Prev. 12 Mo.</div>
         </ng-container>
-      </ng-container>
-    </div>
-    <ng-container *ngLet="month$ | async | previousMonth:(plantOrZoneRows | distinctMonths | keyvalue) as previousMonthRows">
-      <!-- Header Row of current selected month -->
-      <div class="header-row arrow zone" (click)="return()">
+        <ng-template #desktopHeaders>
+          <div class="report-date">Last 12 Month</div>
+          <div class="glyph">Prev. 12 Month</div>
+        </ng-template>
+        <div class="glyph">&Delta;</div>
+      </div>
+      <!-- Header Row of currented select plant / zone -->
+      <div class="header-row arrow zone" (click)="_obRouter.goToMainView()">
         <div class="title">
-          <span matTooltipClass="after" matTooltipPosition="after" matTooltip="Go back">
-            {{ rows[0]['Datum Tagesstand (konv.)'] | monthFormat }}
+          <span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
+            {{ plantOrZoneRows | groupOrPlantName:params.plant }}
           </span>
         </div>
-        <ng-container *ngLet="rows | sumQuantity as currentValue">
-          <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
+        <ng-container *ngLet="plantOrZoneRows | filterYear:'current' | sumQuantity as currentValue">
+          <ng-container *ngLet="plantOrZoneRows | filterYear:'previous' | sumQuantity as previousValue">
             <div class="actual">{{ currentValue | toNumber }}</div>
             <div class="previous">{{ previousValue | toNumber }}</div>
-            <div class="delta">{{ previousValue | difference:currentValue }}</div>
+            <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
           </ng-container>
         </ng-container>
       </div>
-      <!-- Content Rows -->
-      <div class="title-header">
-        <div class="title">REGIONS</div>
-      </div>
-      <!-- Region rows -->
-      <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
-        <!-- Iterate over each region -->
-        <div class="lvl2-row" (click)="goRegion(region.key)" *ngFor="let region of rows | distinctItems:'region' | keyvalue">
-          <div class="title">{{ region.key }}</div>
-          <!-- Bind current value -->
-          <ng-container *ngLet="region.value | sumQuantity as currentValue">
-            <div class="actual cyan">{{ currentValue | toNumber }}</div>
-            <!-- Bind and check previous value, it can be not found in some cases! -->
-            <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
-              <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
-                <div class="previous orange">{{ previousValue | toNumber }}</div>
-                <div class="delta">{{ previousValue | difference:currentValue }}</div>
-              </ng-container>
+      <ng-container *ngLet="params.month | previousMonth:(plantOrZoneRows | distinctMonths | keyvalue) as previousMonthRows">
+        <!-- Header Row of current selected month -->
+        <div class="header-row arrow zone" (click)="_obRouter.goToPlantZoneView(_ac)">
+          <div class="title">
+            <span matTooltipClass="after" matTooltipPosition="after" matTooltip="Go back">
+              {{ rows[0]['Datum Tagesstand (konv.)'] | monthFormat }}
+            </span>
+          </div>
+          <ng-container *ngLet="rows | sumQuantity as currentValue">
+            <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
+              <div class="actual">{{ currentValue | toNumber }}</div>
+              <div class="previous">{{ previousValue | toNumber }}</div>
+              <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
             </ng-container>
           </ng-container>
-          <!-- Template for when a region title is not found in a previous month -->
-          <ng-template #dummyPrevious>
-            <div class="previous orange">-</div>
-            <div class="delta">-</div>
-          </ng-template>
         </div>
-      </ng-container>
-      <div class="title-header">
-        <div class="title">PRODUCTS</div>
-      </div>
-      <!-- Product rows -->
-      <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">
-        <!-- Iterate over each product -->
-        <div class="lvl2-row" (click)="goProduct(product.key)" *ngFor="let product of rows | distinctItems:'product' | keyvalue">
-          <div class="title">{{ product.key }}</div>
-          <!-- Bind current value -->
-          <ng-container *ngLet="product.value | sumQuantity as currentValue">
-            <div class="actual cyan">{{ currentValue | toNumber }}</div>
-            <!-- Bind and check previous value, it can be not found in some cases! -->
-            <ng-container *ngIf="previousProducts[product.key] as previousProduct; else dummyPrevious">
-              <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
-                <div class="previous orange">{{ previousValue | toNumber }}</div>
-                <div class="delta">{{ previousValue | difference:currentValue }}</div>
+        <!-- Content Rows -->
+        <div class="title-header">
+          <div class="title">REGIONS</div>
+        </div>
+        <!-- Region rows -->
+        <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
+          <!-- Iterate over each region -->
+          <div class="lvl2-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'region', region.key)" *ngFor="let region of rows | distinctItems:'region' | keyvalue">
+            <div class="title">{{ region.key }}</div>
+            <!-- Bind current value -->
+            <ng-container *ngLet="region.value | sumQuantity as currentValue">
+              <div class="actual cyan">{{ currentValue | toNumber }}</div>
+              <!-- Bind and check previous value, it can be not found in some cases! -->
+              <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
+                <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
+                  <div class="previous orange">{{ previousValue | toNumber }}</div>
+                  <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+                </ng-container>
               </ng-container>
             </ng-container>
-            <!-- Template for when a product title is not found in a previous month -->
+            <!-- Template for when a region title is not found in a previous month -->
             <ng-template #dummyPrevious>
               <div class="previous orange">-</div>
-              <div class="delta">-</div>
+              <div class="delta grey">-</div>
             </ng-template>
-          </ng-container>
+          </div>
+        </ng-container>
+        <div class="title-header">
+          <div class="title">PRODUCTS</div>
         </div>
+        <!-- Product rows -->
+        <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">
+          <!-- Iterate over each product -->
+          <div class="lvl2-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'product', product.key)" *ngFor="let product of rows | distinctItems:'product' | keyvalue">
+            <div class="title">{{ product.key }}</div>
+            <!-- Bind current value -->
+            <ng-container *ngLet="product.value | sumQuantity as currentValue">
+              <div class="actual cyan">{{ currentValue | toNumber }}</div>
+              <!-- Bind and check previous value, it can be not found in some cases! -->
+              <ng-container *ngIf="previousProducts[product.key] as previousProduct; else dummyPrevious">
+                <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
+                  <div class="previous orange">{{ previousValue | toNumber }}</div>
+                  <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+                </ng-container>
+              </ng-container>
+              <!-- Template for when a product title is not found in a previous month -->
+              <ng-template #dummyPrevious>
+                <div class="previous orange">-</div>
+                <div class="delta grey">-</div>
+              </ng-template>
+            </ng-container>
+          </div>
+        </ng-container>
       </ng-container>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </ng-container>

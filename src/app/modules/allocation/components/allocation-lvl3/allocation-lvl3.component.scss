@@ -47,13 +47,10 @@
     line-height: 30px;
     width: 100%;
     text-align: right;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .select-plant {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     height: 35px;
     width: 100%;
@@ -61,26 +58,19 @@
     line-height: 35px;
     padding: 0 15px;
     .selector {
-        -webkit-box-flex: 40%;
-            -ms-flex: 40%;
-                flex: 40%;
+        flex: 40%;
     }
     .program_allocation {
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
+        flex: 1;
         text-align: right;
     }
     .program, .allocation, .percent {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 20%;
-                flex: 1 20%;
+        flex: 1 20%;
         padding-right: 10px;
         @include desktop {
             flex: 0 0 150px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         text-align: right;
     }
     .percent {
@@ -102,16 +92,13 @@
 }
 
 header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     background-color: $bg-white-lvl4;
     padding: 0 40px;
     @include mobile {
         padding: 0 15px;
     }
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     height: 40px;
     &.return {
         background-color: $bg-white-lvl1;
@@ -120,18 +107,13 @@ header {
         background-color: $bg-white-lvl3;
     }
     .month {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 40%;
-                flex: 1 40%;
+        flex: 1 40%;
         cursor: pointer;
         div {
             padding: 12px 20px;
             position: relative;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;    
+            box-sizing: border-box;    
             &:after {
-                -webkit-transition: left .15s ease-in-out;
-                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -142,24 +124,19 @@ header {
                 left: -6px;
                 margin: auto;
                 display: block;
-                -webkit-transform: rotate(180deg);
-                    -ms-transform: rotate(180deg);
-                        transform: rotate(180deg);
+                transform: rotate(180deg);
                 background-image: url(^assets/arrow.svg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }
         }
     }
-    .program, .allocation {
+    .program, .allocation, .percent {
         padding: 12px 10px 12px 0;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
     }
     .program, .allocation, .percent {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 20%;
-                flex: 1 20%;
+        flex: 1 20%;
         text-align: right;
         @include desktop {
             flex: 0 0 150px;
@@ -169,23 +146,17 @@ header {
 
 .content-wrapper {
     .group-header {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 40px;
         @include mobile {
             padding: 12px 15px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         background-color: $bg-white-lvl1;
     }
     .row {
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
+        user-select: none;
         cursor: pointer;
         &:nth-child(odd) {
             background-color: $bg-white-lvl4;
@@ -197,42 +168,31 @@ header {
         &:hover {
             border-bottom-color: $yellow-text !important;
         }
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         width: 100%;
         padding: 12px 40px;
         @include mobile {
             padding: 12px 15px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         &:hover .month {
             padding-left: 10px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .month {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 40%;
-                    flex: 1 40%;
+            flex: 1 40%;
             padding-left: 0;
             position: relative;
-            -webkit-transition: padding-left .15s ease-in-out;
-            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
         }
         .program, .allocation {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             text-align: right;
             @include desktop {
                 flex: 0 0 150px;
             }
             padding-right: 10px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .program {
             color: $yellow-text;
@@ -241,9 +201,7 @@ header {
             color: $lighten-cyan-text;
         }
         .percent {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             text-align: right;
             @include desktop {
                 flex: 0 0 150px;
@@ -300,8 +258,6 @@ header {
     :host::ng-deep {
         background-color: white;
         .overview {
-            background: -webkit-linear-gradient(top, white, $light-grey2);
-            background: -o-linear-gradient(top, white, $light-grey2);
             background: linear-gradient(to bottom, white, $light-grey2);
             .simple {
                 border-left-color: transparent;

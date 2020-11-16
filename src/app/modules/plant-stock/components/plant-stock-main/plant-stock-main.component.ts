@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { DataService } from '@services/data.service';
@@ -26,7 +26,7 @@ import * as moment from 'moment';
     '(swipeleft)': 'data.go("order-intake")'
   }
 })
-export class PlantStockMainComponent implements OnInit {
+export class PlantStockMainComponent {
 
   ready: boolean = false
 
@@ -65,9 +65,6 @@ export class PlantStockMainComponent implements OnInit {
         this.loader.loading$.next(false)
       }
     })
-  }
-
-  ngOnInit() {
   }
 
   goWerk(werk) : void {

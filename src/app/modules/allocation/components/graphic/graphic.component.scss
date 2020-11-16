@@ -4,19 +4,13 @@
 :host {
     display: block;
     height: 0;
-    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
-    background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
-    background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     padding: 0;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     overflow: hidden;
-    -webkit-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
     @media (min-width: 800px), (min-width: 400px) and (orientation: landscape) {
-        height: 240px;
+        height: 220px;
         border-width: 3px;
         padding: 30px;
         padding-bottom: 50px;
@@ -29,13 +23,10 @@
     float: left;
     height: 100%;
     padding: 0 10px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     position: relative;
     cursor: pointer;
     top: 0;
-    -webkit-transition: top .15s ease-in-out;
-    -o-transition: top .15s ease-in-out;
     transition: top .15s ease-in-out;
     &:hover {
         top: -10px;
@@ -51,15 +42,11 @@
         text-align: center;
         &.rotate {
             @media (max-width: 900px) and (min-width: 400px) and (orientation: landscape) {
-                -webkit-transform: rotate(-40deg);
-                    -ms-transform: rotate(-40deg);
-                        transform: rotate(-40deg);
+                transform: rotate(-40deg);
             }
         }
-        @media (min-width: 800px) {
-            -webkit-transform: rotate(0deg);
-                -ms-transform: rotate(0deg);
-                    transform: rotate(0deg);
+        @include desktop {
+            transform: rotate(0deg);
             font-size: 12px;
             bottom: -25px;
         }
@@ -71,8 +58,6 @@
         }
         max-height: 100%;
         border-radius: 3px;
-        -webkit-transition: all .3s ease-in-out;
-        -o-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
         width: 100%;
         background-color: lighten($cyan-text-material, 10);
@@ -88,8 +73,6 @@
             height: 0% !important;
         }
         border-radius: 3px;
-        -webkit-transition: all .3s ease-in-out;
-        -o-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
         width: calc(100% - 20px);
         background-color: $yellow-text-material;

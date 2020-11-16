@@ -46,9 +46,7 @@
     font-family: "CorpoS", sans-serif;
     margin: 0;
     padding: 0;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -155,8 +153,7 @@ html, body {
     @include desktop {
         font-size: 15px;
     }
-    -webkit-transform: translate3d(0,0,0,0);
-            transform: translate3d(0,0,0,0);
+    transform: translate3d(0,0,0,0);
 }
 
 button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-expansion-panel-content {
@@ -366,6 +363,10 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     color: $yellow-text;
 }
 
+.grey {
+    color: rgba(white, .85);
+}
+
 .mat-sidenav-container {
     min-height: 100vh !important;
 }
@@ -408,7 +409,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     background-color: $main-bg-body-color !important;
 }
 
-@media (min-width: 800px) {
+@include desktop {
     .data-header .empty, .plandate .empty {
         opacity: 0;
     }

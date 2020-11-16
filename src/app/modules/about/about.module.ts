@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './components/about/about.component';
+import { AboutComponent } from './about/about.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
@@ -14,8 +14,9 @@ import { SharedModule } from '@modules/shared/shared.module';
 
 const routes: Routes = [
   {
-    path: '', component: AboutComponent,
-    data: { level: 1 },
+    path: '',
+    component: AboutComponent,
+    data: { level: 1 }
   }
 ];
 

@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { LoadingService } from '@services/loading.service';
-import { DataService } from '@services/data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,24 +12,20 @@ import { Router } from '@angular/router';
     '[class.lighter]': 'loading'
   }
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
   constructor(
     public config: ConfigService,
     public loader: LoadingService,
-    public data: DataService,
     private router: Router
   ) {
-    this.loader.loading$.subscribe(bol => this.loading = bol)
+    this.loader.loading$.subscribe(bol => this.loading = bol);
   }
 
-  loading: boolean = false
-
-  ngOnInit() {
-  }
+  loading = false;
 
   goHelp() {
-    this.router.navigate(['help'], { queryParamsHandling: 'merge' })
+    this.router.navigate(['help'], { queryParamsHandling: 'merge' });
   }
 
 }

@@ -36,8 +36,9 @@ export class AppComponent implements OnInit {
     }
     if (this.api.corpintra || location.hostname === 'localhost') {
       // Heartbeat
+      const pathname = location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/';
       this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ =>
-        this.http.get(location.pathname + 'assets/keep.alive.txt', { observe: 'response', responseType: 'text' }).pipe(retry(3))
+        this.http.get(pathname + 'assets/keep.alive.txt', { observe: 'response', responseType: 'text' }).pipe(retry(3))
           .subscribe()
       );
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
@@ -17,7 +17,7 @@ import { ToolsService } from '@services/tools.service';
     '(swipeleft)': 'data.go("production-program")'
   }
 })
-export class OrderIntakeSubLvl2Component implements OnInit {
+export class OrderIntakeSubLvl2Component {
 
   ZoneID: any = null
   PlantID: any = null
@@ -128,9 +128,6 @@ export class OrderIntakeSubLvl2Component implements OnInit {
 
   percent(part: number, total: number): number {
     return parseInt(((part * 100) / total).toFixed(0))
-  }
-
-  ngOnInit() {
   }
 
   return(): void {

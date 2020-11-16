@@ -72,3 +72,9 @@ $light-grey4: #333333;
         @content;
     }
 }
+
+@mixin mobileLandscape {
+    @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
+        @content;
+    }
+}

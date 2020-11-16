@@ -10,21 +10,12 @@
 }
 
 .overview {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
+    flex-flow: row wrap;
     width: 100%;
     .data-header {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
         height: 30px;
         line-height: 30px;
         position: relative;
@@ -33,46 +24,33 @@
             padding-right: 40px;
             margin-top: 20px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
         .empty {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 70%;
-                    flex: 1 70%;
+            flex: 1 70%;
             padding-left: 5px;
             position: relative;
         }
         .report-date {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 100%;
-                    flex: 1 100%;
+            flex: 1 100%;
             text-align: right;
             letter-spacing: 1px;
         }
     }
     .header-row {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
         padding: 12px 40px;
         @include mobile {
             padding: 12px 15px 12px 20px;
         }
         .title {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 35%;
-                    flex: 1 35%;
+            flex: 1 35%;
             position: relative;
         }
         &.total {
             background-color: $bg-white-lvl1;
         }
         &.arrow .title:after {
-            -webkit-transition: left .2s ease-in-out;
-            -o-transition: left .2s ease-in-out;
             transition: left .2s ease-in-out;
             content: "";
             position: absolute;
@@ -80,9 +58,7 @@
             width: 12px;
             top: 2px;
             left: -2px;
-            -webkit-transform: rotate(180deg);
-                -ms-transform: rotate(180deg);
-                    transform: rotate(180deg);
+            transform: rotate(180deg);
             margin: auto;
             display: block;
             background-image: url(^assets/arrow.svg);
@@ -100,9 +76,7 @@
             }
         }
         .customer, .plan, .total {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -115,9 +89,7 @@
             opacity: .8;
         }
         .reserve {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 10%;
-                    flex: 1 10%;
+            flex: 1 10%;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -132,23 +104,14 @@
         }
     }
     .meters {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
         height: 160px;
         position: relative;
-        background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#303030));
-        background: -webkit-linear-gradient(top, #000, #303030);
-        background: -o-linear-gradient(top, #000, #303030);
         background: linear-gradient(to bottom, #000, #303030);
         border-bottom: 3px solid black;
         .meter {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 50%;
-                    flex: 1 50%;
+            flex: 1 50%;
             height: 100%;
             &:nth-child(2) {
                 border-left: 3px solid black;
@@ -172,36 +135,26 @@
         }
     }
     .title-header {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
         padding: 12px 40px;
         @include mobile {
             padding: 12px 15px 12px 15px;
         }
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         text-transform: uppercase;
         background-color: $bg-white-lvl1;
         letter-spacing: 1px;
         .title {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 100%;
-                    flex: 1 100%;
+            flex: 1 100%;
         }
     }
     .lvl2-row {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
         padding: 12px 40px;
         @include mobile {
             padding: 12px 15px 12px 15px;
         }
         height: 65px;
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         cursor: pointer;
         border-bottom: 1px solid transparent;
@@ -221,17 +174,11 @@
             }
         }
         .title {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 35%;
-                    flex: 1 35%;
+            flex: 1 35%;
             padding-left: 20px;
             position: relative;
-            -webkit-transition: padding-left .15s ease-in-out;
-            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
             &:after {
-                -webkit-transition: left .15s ease-in-out;
-                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -247,9 +194,7 @@
             }
         }
         .customer, .plan, .total {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -261,9 +206,7 @@
             opacity: .8;
         }
         .reserve {
-            -webkit-box-flex: 10%;
-                -ms-flex: 10%;
-                    flex: 10%;
+            flex: 10%;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -273,8 +216,6 @@
 }
 
 .overview header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 35px;
@@ -284,9 +225,7 @@
     }
     line-height: 35px;
     .title {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 35%;
-                flex: 1 35%;
+        flex: 1 35%;
         position: relative;
         ::ng-deep .mat-icon {
             margin-right: 10px;
@@ -294,9 +233,7 @@
         }
     }
     .reserve {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 10%;
-                flex: 1 10%;
+        flex: 1 10%;
         @include desktop {
             flex: 0 0 150px;
         }
@@ -306,19 +243,15 @@
         text-transform: uppercase;
         overflow: hidden;
         white-space: nowrap;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis;
+        text-overflow: ellipsis;
     }
     .customer, .plan, .total {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 20%;
-                flex: 1 20%;
+        flex: 1 20%;
         padding-right: 10px;
         @include desktop {
             flex: 0 0 150px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
     }
 }
 

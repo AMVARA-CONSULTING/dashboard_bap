@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
-import { MatDialog } from "@angular/material/dialog";
-import { ApiService } from "./api.service";
-import { Observable, throwError } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from './api.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,11 +13,11 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     private handleAuthError(err: HttpErrorResponse) {
-        if ((err.status === 401 || err.status === 403 || err.status == 404) && err.url.indexOf('DIPLogV_Color_DarkBack') == -1) {
-            this.api.openCookiesPopup()
-            return throwError(err)
+        if ((err.status === 401 || err.status === 403 || err.status === 404) && err.url.indexOf('DIPLogV_Color_DarkBack') === -1) {
+            this.api.openCookiesPopup();
+            return throwError(err);
         }
-        return throwError(err)
+        return throwError(err);
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,12 +28,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 }
             }),
             catchError((err: HttpErrorResponse) => {
-                return this.handleAuthError(err)
+                return this.handleAuthError(err);
             })
         )
-    }
-
-    handleError() {
-
     }
 }

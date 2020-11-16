@@ -1,5 +1,5 @@
 {
-	"version": "2.51.0",
+	"version": "2.52.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -168,6 +168,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.52.0",
+		  "text": [
+			"#2687 - Review old code",
+			"#2687 - Adapt Order Backlog for all devices",
+			"#2687 - Implement new router adapter for Order Backlog"
+		  ]
+		},
 		{
 		  "version": "2.51.0",
 		  "text": [

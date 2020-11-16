@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ContactInfo } from '@other/interfaces';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'help',
@@ -14,19 +13,16 @@ import { Router } from '@angular/router';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HelpComponent implements OnInit {
+export class HelpComponent {
 
   constructor(
     public config: ConfigService,
     public data: DataService
   ) {
-    data.currentLevel = 1
-    this.contacts = config.config.contacts[this.config.config.target]
+    data.currentLevel = 1;
+    this.contacts = config.config.contacts[this.config.config.target];
   }
 
-  ngOnInit() {
-  }
-
-  contacts: ContactInfo[] = []
+  contacts: ContactInfo[] = [];
 
 }

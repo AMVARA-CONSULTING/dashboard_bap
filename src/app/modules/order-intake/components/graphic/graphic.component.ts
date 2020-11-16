@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     ])
   ]
 })
-export class GraphicComponent implements OnInit, OnChanges {
+export class GraphicComponent implements OnChanges {
 
   constructor(
     public _data: DataService,
@@ -29,9 +29,6 @@ export class GraphicComponent implements OnInit, OnChanges {
   }
 
   ready: boolean = false
-
-  ngOnInit() {
-  }
 
   @Input() data: any[][]
 

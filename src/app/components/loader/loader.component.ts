@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoadingService } from '@services/loading.service';
 
 @Component({
@@ -7,15 +7,12 @@ import { LoadingService } from '@services/loading.service';
   styleUrls: ['./loader.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent {
 
   constructor(public loader: LoadingService) {
-    this.loader.loading$.subscribe(bol => this.loading = bol)
+    this.loader.loading$.subscribe(bol => this.loading = bol);
   }
 
-  loading: boolean = false
-
-  ngOnInit() {
-  }
+  loading = false;
 
 }

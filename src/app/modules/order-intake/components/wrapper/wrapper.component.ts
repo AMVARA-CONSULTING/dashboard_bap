@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { trigger, transition, query, style, group, animate } from '@angular/animations';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from '@services/data.service';
 import { swipeAnimation } from 'app/app.transitions';
@@ -13,13 +12,10 @@ import { swipeAnimation } from 'app/app.transitions';
     '[@routerTransition]': 'getLevel()'
   }
 })
-export class OrderIntakeWrapperComponent implements OnInit {
+export class OrderIntakeWrapperComponent {
 
   constructor(private data: DataService) {
     data.lastTap, data.lastTap2 = null
-  }
-
-  ngOnInit() {
   }
 
   @ViewChild('o', { static: true }) outlet: RouterOutlet

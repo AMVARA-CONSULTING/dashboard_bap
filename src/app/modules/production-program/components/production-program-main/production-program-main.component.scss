@@ -6,8 +6,6 @@
 }
 
 .data-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 30px;
@@ -19,56 +17,42 @@
         margin-top: 20px;
         margin-bottom: -20px;
     }
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     .empty {
         padding-left: 5px;
-        -webkit-box-flex: 1;
-            -ms-flex: 1 100%;
-                flex: 1 100%;
+        flex: 1 100%;
     }
     .report-date {
-        -webkit-box-flex: 100%;
-            -ms-flex: 100%;
-                flex: 100%;
+        flex: 100%;
         text-align: right;
         letter-spacing: 1px;
     }
 }
 
 .overview {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     max-height: 0;
     overflow: hidden;
-    -webkit-transition: all .6s ease-in-out;
-    -o-transition: all .6s ease-in-out;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to($bg-white-lvl1));
-    background: -webkit-linear-gradient(top, transparent, $bg-white-lvl1);
-    background: -o-linear-gradient(top, transparent, $bg-white-lvl1);
     background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
     }
-    @media screen and (min-width: 800px) {
+    @include desktop {
         max-height: 1000px;
         min-height: 240px;
         overflow: auto;
     }
     .graphic {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 60%;
-                flex: 1 60%;
+        flex: 1 60%;
         padding: 30px;
         max-width: 60%;
         padding-bottom: 15px;
-        @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
+        @include mobileLandscape {
             -ms-flex: 1 45%;
                 flex: 1 45%;
             max-width: 45%;
@@ -76,45 +60,33 @@
         }
     }
     .simple {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 40%;
-                flex: 1 40%;
-        border-left: 3px solid rgba($color: #000, $alpha: .2);
+        flex: 1 40%;
+        border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
         max-width: 40%;
         padding-right: 20px;
-        @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
-            -ms-flex: 1 55%;
-                flex: 1 55%;
+        @include mobileLandscape {
+            flex: 1 55%;
             max-width: 55%;
             border-left: 0;
         }
         .headers, .overview-group {
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
             width: 100%;
             line-height: 40px;
             padding: 0 15px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
             .empty, .customer, .plan, .reserve {
-                -webkit-box-flex: 1;
-                    -ms-flex: 1;
-                        flex: 1;
+                flex: 1;
             }
             .empty {
-                -webkit-box-flex: 1 10%;
-                    -ms-flex: 1 10%;
-                        flex: 1 10%;
+                flex: 1 10%;
             }
             .customer, .plan, .reserve {
                 text-align: right;
             }
         }
         .overview-group {
-            -webkit-transition: background .1s ease-in-out;
-            -o-transition: background .1s ease-in-out;
             transition: background .1s ease-in-out;
             border-radius: 5px;
             cursor: pointer;
@@ -126,15 +98,15 @@
             }
             .customer {
                 color: $lighten-cyan-text;
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
             .plan {
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
             .reserve {
-                font-size: 1.1em;
+                font-size: 21px;
                 font-weight: bold;
             }
         }
@@ -145,8 +117,6 @@
     display: block;
     position: relative;
     .zone-header {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         height: 65px;
         padding: 12px 40px;
@@ -162,20 +132,15 @@
         cursor: pointer;
         .title {
             text-transform: uppercase;
-            -webkit-box-flex: 1;
-                -ms-flex: 1 35%;
-                    flex: 1 35%;
+            flex: 1 35%;
             letter-spacing: 1px;
         }
         .customer, .plan, .total {
             padding-right: 10px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .customer, .plan, .total {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             text-align: right;
             font-size: 15px;
             @include desktop {
@@ -187,9 +152,7 @@
             }
         }
         .reserve {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 10%;
-                    flex: 1 10%;
+            flex: 1 10%;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -206,8 +169,6 @@
         }
     }
     .plant {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         height: 65px;
         padding: 12px 40px;
@@ -231,21 +192,14 @@
                 left: 10px;
             }
             padding-left: 30px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .title {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 35%;
-                    flex: 1 35%;
+            flex: 1 35%;
             padding-left: 20px;
             position: relative;
-            -webkit-transition: padding-left .15s ease-in-out;
-            -o-transition: padding-left .15s ease-in-out;
             transition: padding-left .15s ease-in-out;
             &:after {
-                -webkit-transition: left .15s ease-in-out;
-                -o-transition: left .15s ease-in-out;
                 transition: left .15s ease-in-out;
                 content: "";
                 position: absolute;
@@ -262,13 +216,10 @@
         }
         .customer, .plan, .total {
             padding-right: 10px;
-            -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
+            box-sizing: border-box;
         }
         .customer, .plan, .total {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 20%;
-                    flex: 1 20%;
+            flex: 1 20%;
             text-align: right;
             @include desktop {
                 flex: 0 0 150px;
@@ -279,9 +230,7 @@
             }
         }
         .reserve {
-            -webkit-box-flex: 1;
-                -ms-flex: 1 10%;
-                    flex: 1 10%;
+            flex: 1 10%;
             text-align: right;
             @include desktop {
                 flex: 0 0 150px;
@@ -300,21 +249,17 @@
 }
 
 .wrapper header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
-    height: 35px;
+    height: 40px;
     background-color: $bg-white-lvl3;
     padding: 0 20px 0 15px;
     @include desktop {
         padding: 0 40px;
     }
-    line-height: 35px;
+    line-height: 41px;
     .title {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 35%;
-                flex: 1 35%;
+        flex: 1 35%;
         position: relative;
         ::ng-deep .mat-icon {
             margin-right: 10px;
@@ -322,9 +267,7 @@
         }
     }
     .reserve {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 10%;
-                flex: 1 10%;
+        flex: 1 10%;
         @include desktop {
             flex: 0 0 150px;
         }
@@ -334,19 +277,15 @@
         text-transform: uppercase;
         overflow: hidden;
         white-space: nowrap;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis;
+        text-overflow: ellipsis;
     }
     .customer, .plan, .total {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 20%;
-                flex: 1 20%;
+        flex: 1 20%;
         padding-right: 10px;
         @include desktop {
             flex: 0 0 150px;
         }
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
     }
 }
 
@@ -423,8 +362,6 @@
     :host::ng-deep {
         background-color: white;
         .overview {
-            background: -webkit-linear-gradient(top, white, $light-grey2);
-            background: -o-linear-gradient(top, white, $light-grey2);
             background: linear-gradient(to bottom, white, $light-grey2);
             .simple {
                 border-left-color: transparent;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ import { trigger, transition, query, style, stagger, animate } from '@angular/an
     ])
   ]
 })
-export class GraphicComponent implements OnInit, OnChanges {
+export class GraphicComponent implements OnChanges {
 
   constructor(
     public config: ConfigService,
@@ -37,12 +37,9 @@ export class GraphicComponent implements OnInit, OnChanges {
 
   plant: string
 
-  ngOnInit() {
-  }
-
   @Input() werks: any[] = []
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.werks.length > 0) {
       this.barsWidth = 100 / this.werks.length
       let total = 0

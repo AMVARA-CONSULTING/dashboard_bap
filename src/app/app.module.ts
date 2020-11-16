@@ -64,7 +64,8 @@ import { SharedModule } from '@modules/shared/shared.module';
 import { environment } from 'environments/environment';
 
 /** Store States */
-import { OrderBacklogState } from './store/order-backlog.state';
+import { OrderBacklogState } from '@store/order-backlog.state';
+import { ConfigState } from '@store/config.state';
 
 declare var Hammer: any;
 
@@ -103,7 +104,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-    NgxsModule.forRoot([OrderBacklogState], {
+    NgxsModule.forRoot([
+      OrderBacklogState,
+      ConfigState
+    ], {
       developmentMode: !environment.production
     }),
     NgxsSelectSnapshotModule.forRoot(),

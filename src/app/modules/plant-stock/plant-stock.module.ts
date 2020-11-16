@@ -43,6 +43,12 @@ const routes: Routes = [
     SharedModule,
     CommonModule
   ],
-  declarations: [WrapperComponent, PlantStockMainComponent, GraphicComponent, PlantStockLvl2Component, PlantStockLvl3Component]
+  declarations: [
+    WrapperComponent,
+    PlantStockMainComponent,
+    GraphicComponent,
+    PlantStockLvl2Component,
+    PlantStockLvl3Component
+  ]
 })
 export class PlantStockModule { }

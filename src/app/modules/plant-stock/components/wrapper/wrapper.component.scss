@@ -16,15 +16,10 @@
     bottom: 0;
     height: calc(100% - 32px);
     padding-top: 70px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
     left: 0;
     overflow-y: auto;
-    /*@supports (-webkit-overflow-scrolling: touch) {
-       position: initial;
-       padding-top: 0;
-    }*/
     touch-action: pan-y !important;
 }
 

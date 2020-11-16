@@ -106,6 +106,9 @@
         .previous {
             color: $yellow-text;
         }
+        .delta {
+            color: rgba(white, .85);
+        }
     }
     .meters {
         display: flex;

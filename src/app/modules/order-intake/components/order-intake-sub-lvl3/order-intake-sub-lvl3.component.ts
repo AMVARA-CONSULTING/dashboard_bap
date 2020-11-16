@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '@services/loading.service';
 import { ApiService } from '@services/api.service';
@@ -17,7 +17,7 @@ import { ToolsService } from '@services/tools.service';
     '(swipeleft)': 'data.go("production-program")'
   }
 })
-export class OrderIntakeSubLvl3Component implements OnInit {
+export class OrderIntakeSubLvl3Component {
 
   ZoneID: any = null
   PlantID: any = null
@@ -74,26 +74,26 @@ export class OrderIntakeSubLvl3Component implements OnInit {
           this.loader.loading$.next(false)
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true)
+        this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true);
         try {
-          this.rollupData()
+          this.rollupData();
         } catch (err) {
-          this.router.navigate(['order-intake'], { replaceUrl: true })
+          this.router.navigate(['order-intake'], { replaceUrl: true });
         }
-        this.loader.loading$.next(false)
+        this.loader.loading$.next(false);
       }
-    })
+    });
   }
 
   goAnother(key): void {
     if (this.RegionID != null) {
-      this.router.navigate(['../../', 'product', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true })
+      this.router.navigate(['../../', 'product', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
     } else {
-      this.router.navigate(['../../', 'region', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true })
+      this.router.navigate(['../../', 'region', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
     }
   }
 
-  groupInfo: any
+  groupInfo: any;
 
   rollupData(): void {
     let rows
@@ -143,29 +143,26 @@ export class OrderIntakeSubLvl3Component implements OnInit {
     this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.actual))
     this.groupInfo['progress2'] = this.percent(this.groupInfo.thisPrevious, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.previous))
     this.groupInfo['sub3rows'] = this.data.classifyByIndex(this.subRows, this.RegionID != null ? this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language] : this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language])
-    this.groupKeys = Object.keys(this.groupInfo.sub3rows)
-    this.groupInfo = { ...this.groupInfo }
+    this.groupKeys = Object.keys(this.groupInfo.sub3rows);
+    this.groupInfo = { ...this.groupInfo };
     // Tell the DOM it's ready to rock ’n’ roll !
-    setTimeout(() => this.ready = true)
+    setTimeout(() => this.ready = true);
   }
 
-  groupKeys = []
+  groupKeys = [];
 
-  subRows
+  subRows;
 
   percent(part: number, total: number): number {
-    return parseInt(((part * 100) / total).toFixed(0))
-  }
-
-  ngOnInit() {
+    return parseInt(((part * 100) / total).toFixed(0), 10);
   }
 
   returnToMain(): void {
-    this.router.navigate(['/'], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['/'], { relativeTo: this.activatedRoute, replaceUrl: true });
   }
 
   return(): void {
-    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true });
   }
 
 }

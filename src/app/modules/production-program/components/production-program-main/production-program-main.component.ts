@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@services/config.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { Title } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { ToolsService } from '@services/tools.service';
 
@@ -46,10 +45,9 @@ export class ProductionProgramMainComponent implements OnInit {
     private config: ConfigService,
     private router: Router,
     private title: Title,
-    private dialog: MatDialog,
     private tools: ToolsService
   ) {
-    title.setTitle(this.config.config.appTitle + ' - Production Program')
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
 
   year: string = ''

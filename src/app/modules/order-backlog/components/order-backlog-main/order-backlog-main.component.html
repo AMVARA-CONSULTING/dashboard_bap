@@ -45,8 +45,8 @@
         <ng-container *ngLet="zone.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
           <ng-container *ngLet="zone.value | filterYear:'previous' | sumQuantity as previousValue">
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber:true" class="actual">{{ currentValue | toNumber }}</div>
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber:true" class="previous">{{ previousValue | toNumber }}</div>
+            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber" class="actual">{{ currentValue | toNumber }}</div>
+            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber" class="previous">{{ previousValue | toNumber }}</div>
             <div class="delta">{{ previousValue | difference:currentValue }}</div>
           </ng-container>
         </ng-container>
@@ -58,8 +58,8 @@
         <ng-container *ngLet="plant.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
           <ng-container *ngLet="plant.value | filterYear:'previous' | sumQuantity as previousValue">
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber:true" class="actual">{{ currentValue | toNumber }}</div>
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber:true" class="previous">{{ previousValue | toNumber }}</div>
+            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber" class="actual">{{ currentValue | toNumber }}</div>
+            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber" class="previous">{{ previousValue | toNumber }}</div>
             <div class="delta">{{ previousValue | difference:currentValue }}</div>
           </ng-container>
         </ng-container>

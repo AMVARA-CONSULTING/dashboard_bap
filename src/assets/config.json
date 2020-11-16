@@ -1,5 +1,5 @@
 {
-	"version": "2.52.0",
+	"version": "2.53.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -168,6 +168,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.53.0",
+		  "text": [
+			"#2687 - Fix number localization"
+		  ]
+		},
 		{
 		  "version": "2.52.0",
 		  "text": [

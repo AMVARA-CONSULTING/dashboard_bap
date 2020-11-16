@@ -46,4 +46,9 @@ export class ConfigState {
     return ctx.language === 'en' ? 'English' : 'Deutsch';
   }
 
+  @Selector()
+  static GetLanguage(ctx: Partial<Config>) {
+    return ctx.language;
+  }
+
 }

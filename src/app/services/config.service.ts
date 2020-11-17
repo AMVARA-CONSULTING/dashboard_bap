@@ -41,6 +41,10 @@ export class ConfigService {
             setTimeout(() => resolve(), search.delay || config.delay);
           });
         } else {
+          const xsrf_token_local = localStorage.getItem('xsrf');
+          if (xsrf_token_local) {
+            this.tools.xsrf_token = xsrf_token_local;
+          }
           setTimeout(() => resolve(), search.delay || config.delay);
         }
         this.config = config as Config;

@@ -3,6 +3,7 @@ import { ConfigService } from '@services/config.service';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'report-info',
@@ -30,18 +31,18 @@ export class ReportInfoComponent implements OnChanges {
     this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type];
     if (this.api.reportDates[type].length === 0) {
       switch (type) {
-        case "orderIntake":
-          this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(_ => this.rollup(type))
+        case 'orderIntake':
+          this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(_ => this.rollup(type));
           break;
-        case "productionProgram":
-          this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(_ => this.rollup(type))
-          break
-        case "allocation":
-          this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation).subscribe(_ => this.rollup(type))
-          break
-        case "plantStock":
-          this.api.getPlantStockData(this.config.config.reports[this.config.config.target][this.config.config.scenario].plantStock).subscribe(_ => this.rollup(type))
-          break
+        case 'productionProgram':
+          this.api.getSavedReportData(ReportTypes.ProductionProgram).subscribe(_ => this.rollup(type));
+          break;
+        case 'allocation':
+          this.api.getSavedReportData(ReportTypes.Allocation).subscribe(_ => this.rollup(type));
+          break;
+        case 'plantStock':
+          this.api.getSavedReportData(ReportTypes.PlantStock).subscribe(_ => this.rollup(type));
+          break;
       }
     } else {
       this.rollup(type);

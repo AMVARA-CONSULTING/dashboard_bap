@@ -7,6 +7,7 @@ import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ToolsService } from '@services/tools.service';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'production-program-lvl2',
@@ -50,10 +51,10 @@ export class ProductionProgramLvl2Component {
       }
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
-        this.api.getProductionProgramData(this.config.config.reports[this.config.config.target][this.config.config.scenario].productionProgram).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res.data[0][14], moment, this.config)
-          this.data.productionProgramData = res.data
-          this.productionProgramData = res.data.filter(dat => dat[13] == this.year)
+        this.api.getSavedReportData(ReportTypes.ProductionProgram).subscribe(res => {
+          this.plandate = this.tools.getPlanDate(res[0][14], moment, this.config);
+          this.data.productionProgramData = res;
+          this.productionProgramData = res.filter(dat => dat[13] == this.year);
           if (this.ZoneID != null) {
             const tmp = this.data.productionProgramData.filter(item => item[0] == this.ZoneID)
             this.years = Object.keys(this.data.classifyByIndex(tmp, 13))

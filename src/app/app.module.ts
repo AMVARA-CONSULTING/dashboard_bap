@@ -156,7 +156,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      deps: [ConfigService, ApiService],
+      deps: [ConfigService, ApiService, ToolsService],
       multi: true
     },
     {

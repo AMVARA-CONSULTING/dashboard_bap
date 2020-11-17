@@ -1,5 +1,5 @@
 {
-	"version": "2.53.0",
+	"version": "2.54.0",
 	"debug": false,
 	"language": "en",
 	"appTitle": "BAP",
@@ -11,6 +11,15 @@
 	"languageCodes": {
 		"en": "English",
 		"de": "Deutsch"
+	},
+	"cognosApiWorkaround": true,
+	"apiLink": "/internal/bi/v1/",
+	"enableReports": {
+		"order_backlog": true,
+		"order_intake": true,
+		"production_program": true,
+		"allocation": true,
+		"plant_stock": true
 	},
 	"corpintra": false,
 	"heartbeat": 300000,
@@ -49,18 +58,58 @@
 		},
 		"trucks": {
 			"dev": {
-				"orderIntake": "i163A764B930D4E748310CF5053D29578",
-				"allocation": "i464B15BB96434390A9D6C35C67886434",
-				"plantStock": "i63BB42DBA849409A9E68354C67DF4AE7",
-				"productionProgram": "i1CB7F34FB34C457AA79DAC5EF88BB136",
-				"orderBacklog": "iA01394B355674C3880C15541A6D68B3E"
+				"orderIntake": {
+					"id": "i163A764B930D4E748310CF5053D29578",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "i464B15BB96434390A9D6C35C67886434",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "i63BB42DBA849409A9E68354C67DF4AE7",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "i1CB7F34FB34C457AA79DAC5EF88BB136",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "iA01394B355674C3880C15541A6D68B3E",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
 			},
 			"prod": {
-				"orderIntake": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
-				"allocation": "i7545BBC2620446CB8525ADC3F0CEC980",
-				"plantStock": "iDDEA70370FFF48208E4E541101AF961A",
-				"productionProgram": "iB6DC3F11EE314AB081930985C3C57787",
-				"orderBacklog": "TBD"
+				"orderIntake": {
+					"id": "iCC8FBA845B4F4DD29EA456169E5D7FAD",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "i7545BBC2620446CB8525ADC3F0CEC980",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "iDDEA70370FFF48208E4E541101AF961A",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "iB6DC3F11EE314AB081930985C3C57787",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "TDB",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
 			},
 			"columns": {
 				"orderIntake": {
@@ -168,6 +217,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.54.0",
+		  "text": [
+			"Wrapper for API"
+		  ]
+		},
 		{
 		  "version": "2.53.0",
 		  "text": [

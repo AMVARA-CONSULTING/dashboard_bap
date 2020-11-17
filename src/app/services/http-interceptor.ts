@@ -4,12 +4,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ToolsService } from './tools.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor(
         private dialog: MatDialog,
-        private api: ApiService
+        private api: ApiService,
+        private _tools: ToolsService
     ) { }
 
     private handleAuthError(err: HttpErrorResponse) {
@@ -21,10 +23,18 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(req).pipe(
+        let request = req;
+        if (this._tools.xsrf_token) {
+            request = req.clone({
+                setHeaders: {
+                    'X-XSRF-TOKEN': this._tools.xsrf_token
+                }
+            });
+        }
+        return next.handle(request).pipe(
             tap(_ => {
                 if (!this.api.authorized) {
-                    this.api.openCookiesPopup()
+                    this.api.openCookiesPopup();
                 }
             }),
             catchError((err: HttpErrorResponse) => {

@@ -7,6 +7,7 @@ import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ToolsService } from '@services/tools.service';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'order-intake-sub-lvl2',
@@ -46,10 +47,10 @@ export class OrderIntakeSubLvl2Component {
         this.PlantID = params.id
       }
       // If no Order Intake rows were found, get them
-      if (this.data.orderIntakeData.length == 0) {
-        this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res.data[0][11], moment, this.config, true)
-          this.data.orderIntakeData = res.data
+      if (this.data.orderIntakeData.length === 0) {
+        this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(res => {
+          this.plandate = this.tools.getPlanDate(res[0][11], moment, this.config, true);
+          this.data.orderIntakeData = res;
           try {
             this.rollupData()
           } catch (err) {

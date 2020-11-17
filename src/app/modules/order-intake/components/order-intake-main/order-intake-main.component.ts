@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ToolsService } from '@services/tools.service';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'order-intake-main',
@@ -48,11 +49,11 @@ export class OrderIntakeMainComponent implements OnInit {
   ngOnInit() {
     this.loader.loading$.next(true)
     // If no Order Intake rows were found, get them
-    if (this.data.orderIntakeData.length == 0) {
-      this.api.getOrderIntakeData(this.config.config.reports[this.config.config.target][this.config.config.scenario].orderIntake).subscribe(res => {
-        this.plandate = this.tools.getPlanDate(res.data[0][11], moment, this.config, true)
-        this.data.orderIntakeData = res.data;
-        (window as any).orderIntake = res.data
+    if (this.data.orderIntakeData.length === 0) {
+      this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(res => {
+        this.plandate = this.tools.getPlanDate(res[0][11], moment, this.config, true);
+        this.data.orderIntakeData = res;
+        (window as any).orderIntake = res;
         this.rollupData()
         this.loader.loading$.next(false)
       })

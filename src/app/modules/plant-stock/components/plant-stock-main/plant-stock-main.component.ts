@@ -8,6 +8,7 @@ import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'plant-stock-main',
@@ -53,9 +54,9 @@ export class PlantStockMainComponent {
       this.plant = params.get('plant')
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
-        this.api.getPlantStockData(this.config.config.reports[this.config.config.target][this.config.config.scenario].plantStock).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res.data[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
-          this.data.plantStockData = res.data
+        this.api.getSavedReportData(ReportTypes.PlantStock).subscribe(res => {
+          this.plandate = this.tools.getPlanDate(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
+          this.data.plantStockData = res
           this.rollupData()
           this.loader.loading$.next(false)
         })

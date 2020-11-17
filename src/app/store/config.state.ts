@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Config } from '@other/interfaces';
+import { report } from 'process';
 
 export namespace ConfigActions {
 
@@ -49,6 +50,13 @@ export class ConfigState {
   @Selector()
   static GetLanguage(ctx: Partial<Config>) {
     return ctx.language;
+  }
+
+  @Selector()
+  static GetReportInfo(ctx: Partial<Config>) {
+    return (reportKey: string) => {
+      return ctx.reports[ctx.target][ctx.scenario][reportKey];
+    };
   }
 
 }

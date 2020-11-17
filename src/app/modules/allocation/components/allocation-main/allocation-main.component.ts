@@ -8,6 +8,7 @@ import { ConfigService } from '@services/config.service';
 import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
+import { ReportTypes } from '@other/interfaces';
 
 @Component({
   selector: 'allocation-main',
@@ -62,9 +63,9 @@ export class AllocationMainComponent {
       this.plant = params.get('plant')
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
-        this.api.getAllocationData(this.config.config.reports[this.config.config.target][this.config.config.scenario].allocation).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res.data[0][18], moment, this.config)
-          this.data.allocationData = res.data
+        this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
+          this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
+          this.data.allocationData = res;
           this.rollupData()
           this.loader.loading$.next(false)
         })

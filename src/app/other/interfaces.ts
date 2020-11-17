@@ -3,10 +3,12 @@ export interface Config {
     version: string;
     debug: boolean;
     language: ILanguage;
-    reports: any;
+    reports: IConfigReports;
     delay: number;
     scenario: string;
     contacts: any[];
+    cognosApiWorkaround: boolean;
+    apiLink: string;
     copyright: string;
     license: string;
     corpintra: boolean;
@@ -20,6 +22,39 @@ export interface Config {
     simulateUnauthorized: number;
     heartbeat: number;
     capabilities: any;
+    enableReports: any;
+}
+
+export interface IConfigReports {
+    trucks: IConfigEnvironment;
+    vans: IConfigEnvironment;
+}
+
+export interface IConfigEnvironment {
+    dev: IReports<ReportInfo>;
+    prod: IReports<ReportInfo>;
+    columns: IReports<any>;
+}
+
+export interface IReports<T> {
+    orderIntake: T;
+    allocation: T;
+    plantStock: T;
+    productionProgram: T;
+    orderBacklog: T;
+}
+
+export enum ReportTypes {
+    OrderIntake = 'orderIntake',
+    ProductionProgram = 'productionProgram',
+    Allocation = 'allocation',
+    PlantStock = 'plantStock'
+}
+
+export interface ReportInfo {
+    id: string;
+    selector: string;
+    fallback: string;
 }
 
 export type ILanguage = 'en' | 'de';

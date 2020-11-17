@@ -64,6 +64,7 @@ export class AllocationMainComponent {
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
+          console.log(res);
           this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
           this.data.allocationData = res;
           this.rollupData()
@@ -112,9 +113,10 @@ export class AllocationMainComponent {
     const filteredRowsByPlant = this.data.allocationData.filter(aloc => aloc[0] == this.plant)
     this.years = Object.keys(filteredRowsByPlant.reduce((r, a) => {
       r[a[17].toString().substring(0, 4)] = r[a[17].toString().substring(0, 4)] || []
-      return r
-    }, {})
+        return r
+      }, {})
     )
+    console.log(this.years)
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
       if (alocDate.isBetween(dateNow, dateNextEightMonths, null, '[]')) {

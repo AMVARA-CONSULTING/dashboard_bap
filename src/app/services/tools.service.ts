@@ -27,7 +27,11 @@ export class ToolsService {
     for (let i = 0; i < table.length; i++) {
       const row = [];
       for (let t = 0; t < table[i].childNodes.length; t++) {
-        row.push(table[i].childNodes[t].innerText);
+        if (table[i].childNodes[t].childNodes.length === 1) {
+          row.push(table[i].childNodes[t].innerText);
+        } else {
+          row.push(table[i].childNodes[t].childNodes[table[i].childNodes[t].childNodes.length - 1].innerText);
+        }
       }
       rows.push(row);
     }

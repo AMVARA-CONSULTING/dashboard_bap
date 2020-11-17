@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { classifyByProperty } from '@other/functions';
-import { BacklogColumns, ReportState, Zones } from '@other/interfaces';
+import { BacklogColumns, ReportState, ReportTypes, Zones } from '@other/interfaces';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import * as moment from 'moment';
@@ -32,16 +32,15 @@ export namespace OrderBacklog {
 export class OrderBacklogState {
 
   constructor(
-    private _api: ApiService,
-    private _config: ConfigService
+    private _api: ApiService
   ) { }
 
   @Action(OrderBacklog.Get)
   get({ setState }: StateContext<ReportState>) {
-    return this._api.getOrderBacklogData(this._config.config.reports[this._config.config.target][this._config.config.scenario].orderBacklog).pipe(
-      tap(data => {
+    return this._api.getSavedReportData(ReportTypes.OrderBacklog).pipe(
+      tap(rows => {
         // Get months available
-        const monthsAvailable = Object.keys(data.rows.reduce((r, a) => {
+        const monthsAvailable = Object.keys(rows.reduce((r, a) => {
           const month = moment(a[BacklogColumns.Date], 'YYYY-MM-DD').format('YYYY-MM');
           r[month] = r[month] || '.';
           return r;
@@ -102,8 +101,8 @@ export class OrderBacklogState {
         linkElement.click();
         console.log(data.rows); */
         setState({
-          rows: data.rows,
-          plandate: data.plandate,
+          rows: rows,
+          plandate: '',
           actualDateRange: actualDates,
           previousDateRange: previousDates
         });

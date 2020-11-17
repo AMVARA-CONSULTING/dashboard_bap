@@ -1,0 +1,41 @@
+{
+    "menu": {
+        "order_intake": "Order Intake",
+        "order_backlog": "Order Backlog",
+        "production_program": "Production Program",
+        "allocation": "Allocation",
+        "plant_stock": "Plant Stock",
+        "about": "About",
+        "help": "Help"
+    },
+    "connected": "Connected",
+    "not_connected": "Not connected",
+    "plandate": "as at",
+    "region": "Region",
+    "product": "Product",
+    "regions": "Regions",
+    "products": "Products",
+    "production_program": {
+        "customer": "Customer",
+        "plan": "Plan",
+        "total": "Total",
+        "reserve": "Reserve"
+    },
+    "allocation": {
+        "program": "Program",
+        "allocation": "Allocation"
+    },
+    "about": {
+        "config": "Config",
+        "sponsor": "Sponsor",
+        "credits": "Credits",
+        "thanks": "Thank you",
+        "software": "Software",
+        "licenses": "Licenses",
+        "technical_information": "Technical Information",
+        "changelog": "Changelog"
+    },
+    "help": {
+        "lightTheme": "This application offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast."
+    }
+}

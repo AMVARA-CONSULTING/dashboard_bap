@@ -9,6 +9,7 @@ export interface Config {
     contacts: any[];
     cognosApiWorkaround: boolean;
     apiLink: string;
+    apiDomain: string;
     copyright: string;
     license: string;
     corpintra: boolean;
@@ -16,8 +17,6 @@ export interface Config {
     changelog: any;
     appTitle: string;
     languageCodes: any;
-    cognosRepository: string;
-    cognosDomain: string;
     target: string;
     simulateUnauthorized: number;
     heartbeat: number;
@@ -48,7 +47,8 @@ export enum ReportTypes {
     OrderIntake = 'orderIntake',
     ProductionProgram = 'productionProgram',
     Allocation = 'allocation',
-    PlantStock = 'plantStock'
+    PlantStock = 'plantStock',
+    OrderBacklog = 'orderBacklog'
 }
 
 export interface ReportInfo {

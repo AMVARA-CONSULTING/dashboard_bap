@@ -1,6 +1,6 @@
 {
   "version": "2.54.0",
-  "debug": true,
+  "debug": false,
   "language": "en",
   "appTitle": "DIP",
   "scenario": "dev",

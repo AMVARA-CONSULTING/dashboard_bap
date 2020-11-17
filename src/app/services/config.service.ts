@@ -32,7 +32,7 @@ export class ConfigService {
         config.debug = search.debug ? search.debug === 'true' : config.debug;
         search.delay = search.delay ? search.delay * 1000 : null;
         config.language = localStorage.getItem('lang') as ILanguage || config.language;
-        config.corpintra = corpintra;
+        // config.corpintra = corpintra;
         if (config.debug) {
           console.log(config);
         }

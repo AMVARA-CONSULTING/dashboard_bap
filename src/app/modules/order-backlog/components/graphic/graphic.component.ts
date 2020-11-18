@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { KeyValue } from '@angular/common';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'order-backlog-graphic',
@@ -21,7 +22,8 @@ export class OrderBacklogGraphicComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public _data: DataService
   ) { }
 
   @Input() zones: KeyValue<string, any[]>[];

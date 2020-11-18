@@ -5,11 +5,9 @@ import { Title } from '@angular/platform-browser';
 import { OrderBacklogState } from 'app/store/order-backlog.state';
 import { Zones } from '@other/interfaces';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
-import { Observable } from 'rxjs';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
 import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'order-backlog-main',
@@ -36,16 +34,13 @@ export class OrderBacklogMainComponent {
   // Retrieve plan date
   @ViewSelectSnapshot(OrderBacklogState.GetPlanDate) plandate$ !: string;
 
-  mobile$: Observable<boolean>;
-
   constructor(
     public _ac: ActivatedRoute,
+    public _data: DataService,
     private config: ConfigService,
     private title: Title,
-    private _breakpoints: BreakpointObserver,
     public _obRouter: OrderBacklogRouter
   ) {
-    this.mobile$ = this._breakpoints.observe(Breakpoints.Handset).pipe( map(result => result.matches) );
     this.title.setTitle(this.config.config.appTitle + ' - Order Backlog');
   }
 

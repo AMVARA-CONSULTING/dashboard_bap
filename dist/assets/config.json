@@ -1,0 +1,636 @@
+{
+	"version": "2.55.0",
+	"debug": false,
+	"loading": true,
+	"language": "en",
+	"appTitle": "BAP",
+	"scenario": "dev",
+	"target": "trucks",
+	"delay": 2000,
+	"copyright": "AMVARA",
+	"license": "SFASR",
+	"languageCodes": {
+		"en": "English",
+		"de": "Deutsch"
+	},
+	"apiLink": "/internal/bi/v1/",
+	"apiDomain": "",
+	"enableReports": {
+		"order_backlog": true,
+		"order_intake": true,
+		"production_program": true,
+		"allocation": true,
+		"plant_stock": true
+	},
+	"corpintra": false,
+	"heartbeat": 300000,
+	"simulateUnauthorized": true,
+	"contacts": {
+		"trucks": [
+			{
+				"name": "Ralf Roeber",
+				"description": "Coordinator",
+				"telephone": "+34 717 10 26 03"
+			},
+			{
+				"name": "Alex Barba",
+				"description": "Programmer",
+				"telephone": "+34 640 91 59 83"
+			},
+			{
+				"name": "Luís Torroja",
+				"description": "Designer",
+				"telephone": "+34 670 61 74 71"
+			}
+		]
+	},
+	"reports": {
+		"vans": {
+			"dev": {
+				"orderIntake": {
+					"id": "i69C423E3AC364872BE300BA0F509BA2B",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "i3735A9BA1184494984C8A1EAF6065A5F",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "i451877E0BD424B47931B6DBE97B24B20",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "i3D66E69BC5714D1989D7E9DF82A4E735",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "TBD",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
+			},
+			"prod": {
+				"orderIntake": {
+					"id": "i5F21FA7DBAF64A539EDBDEC44E297D23",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "i2EAF00D6E22B4519A494072EB13916BC",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "i5A7CE73C7BFC4115A641B5564E39DD66",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "TDB",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
+			}
+		},
+		"trucks": {
+			"dev": {
+				"orderIntake": {
+					"id": "i163A764B930D4E748310CF5053D29578",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "iF14FB9F097734195BD1C5E21964F46BF",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "i63BB42DBA849409A9E68354C67DF4AE7",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "i5565E38F8A3B4B41920FC7D33D54C333",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "iA01394B355674C3880C15541A6D68B3E",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
+			},
+			"prod": {
+				"orderIntake": {
+					"id": "i8FE1CDBDAB774436822C5C5B34F35B20",
+					"selector": "AMVARA_DATA_OI",
+					"fallback": "Order_Intake.json"
+				},
+				"allocation": {
+					"id": "iADCD47BE42994DF392219CDDBB86186D",
+					"selector": "Final",
+					"fallback": "Allocation.json"
+				},
+				"plantStock": {
+					"id": "iDDEA70370FFF48208E4E541101AF961A",
+					"selector": "AMVARA_DATA_PS",
+					"fallback": "Plant_Stock.json"
+				},
+				"productionProgram": {
+					"id": "iF5C9F3DECFFF4D22A80F0CCAC716AA0D",
+					"selector": "Liste1",
+					"fallback": "Planning.json"
+				},
+				"orderBacklog": {
+					"id": "TDB",
+					"selector": "AMVARA_DATA_OB",
+					"fallback": "Order_Backlog.json"
+				}
+			},
+			"columns": {
+				"orderIntake": {
+					"groupKey": 0,
+					"plantKey": 1,
+					"groupName": {
+						"de": 3,
+						"en": 2
+					},
+					"plantName": {
+						"de": 5,
+						"en": 4
+					},
+					"region": {
+						"de": 7,
+						"en": 6
+					},
+					"product": {
+						"de": 9,
+						"en": 8
+					},
+					"dateShort": 10,
+					"dateFull": 11,
+					"actual": 12,
+					"previous": 13,
+					"shouldBeNumber": [
+						12,
+						13
+					]
+				},
+				"productionProgram": {
+					"shouldBeNumber": [
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24
+					]
+				},
+				"allocation": {
+					"plantKey": 0,
+					"plantName": {
+						"en": 4,
+						"de": 3
+					},
+					"regionName": {
+						"en": 7,
+						"de": 6
+					},
+					"productName": {
+						"en": 9,
+						"de": 8
+					},
+					"dayOfWeek": 10,
+					"datum": 11,
+					"program": 14,
+					"allocation": 15,
+					"delta": 16,
+					"yearMonth": 17,
+					"runDate": 18,
+					"shouldBeNumber": [
+						14,
+						15
+					]
+				},
+				"plantStock": {
+					"plantKey": 0,
+					"plantName": {
+						"en": 2,
+						"de": 1
+					},
+					"werkbestandName": {
+						"en": 4,
+						"de": 3
+					},
+					"hofbestandName": {
+						"en": 6,
+						"de": 5
+					},
+					"regionName": {
+						"en": 8,
+						"de": 7
+					},
+					"productName": {
+						"en": 10,
+						"de": 9
+					},
+					"actual": 11,
+					"previous": 12,
+					"delta": 13,
+					"actualDate": 15,
+					"previousDate": 17,
+					"shouldBeNumber": [
+						11,
+						12,
+						13
+					]
+				}
+			}
+		}
+	},
+	"changelog": [
+		{
+		  "version": "2.55.0",
+		  "text": [
+			"Fix loading"
+		  ]
+		},
+		{
+		  "version": "2.54.0",
+		  "text": [
+			"Wrapper for API"
+		  ]
+		},
+		{
+		  "version": "2.53.0",
+		  "text": [
+			"#2687 - Fix number localization"
+		  ]
+		},
+		{
+		  "version": "2.52.0",
+		  "text": [
+			"#2687 - Review old code",
+			"#2687 - Adapt Order Backlog for all devices",
+			"#2687 - Implement new router adapter for Order Backlog"
+		  ]
+		},
+		{
+		  "version": "2.51.0",
+		  "text": [
+			"#2687 - Implemented Level 4 for Order Backlog"
+		  ]
+		},
+		{
+		  "version": "2.50.0",
+		  "text": [
+			"#2687 - Implemented visual chart for Level 2 of Order Backlog"
+		  ]
+		},
+		{
+		  "version": "2.49.0",
+		  "text": [
+			"#2686 - Fix Order Backlog actual and previous date ranges",
+			"#2686 - Prepare Order Backlog State for Level 2",
+			"#2686 - Done draft view of Order Backlog Level 2"
+		  ]
+		},
+		{
+		  "version": "2.48.0",
+		  "text": [
+			"#2686 - Scramble Order Backlog data",
+			"#2686 - Prepare NGXS State for Order Backlog",
+			"#2686 - Done draft view of Order Backlog"
+		  ]
+		},
+		{
+		  "version": "2.47.0",
+		  "text": [
+			"Get user capabilities using lowerCase"
+		  ]
+		},
+		{
+		  "version": "2.46.1",
+		  "text": [
+			"Remove logs and improve deploy script for debug option"
+		  ]
+		},
+		{
+			"version": "2.46.0",
+			"text": [
+				"#2339 - Fix black font colors"
+			]
+		},
+		{
+			"version": "2.45.0",
+			"text": [
+				"#2339 - Change blur to 5px and letter spacing of title"
+			]
+		},
+		{
+			"version": "2.44.0",
+			"text": [
+				"#2339 - Confidential red"
+			]
+		},
+		{
+			"version": "2.43.0",
+			"text": [
+				"#2339 - Blur on theme switch"
+			]
+		},
+		{
+			"version": "2.42.0",
+			"text": [
+				"#2339 - Fix margin top on Desktop and fix translation"
+			]
+		},
+		{
+			"version": "2.41.0",
+			"text": [
+				"#2339 - Fix scramble of data and move actual config button"
+			]
+		},
+		{
+			"version": "2.40.0",
+			"text": [
+				"#2339 - Hide sidenav on theme switch"
+			]
+		},
+		{
+			"version": "2.39.0",
+			"text": [
+				"#2339 - Skinning modifications and new theme switcher"
+			]
+		},
+		{
+			"version": "2.38.0",
+			"text": [
+				"#2295 - Implement report title for dynamic IDs"
+			]
+		},
+		{
+			"version": "2.37.0",
+			"text": [
+				"#2295 - Add skin for Light Theme"
+			]
+		},
+		{
+			"version": "2.35.0",
+			"text": [
+				"#2335 - Fix bad calculation on PP LVL 3"
+			]
+		},
+		{
+			"version": "2.32.0",
+			"text": [
+				"#2227 - Fix NullInjectorError and access form"
+			]
+		},
+		{
+			"version": "2.28.0",
+			"text": [
+				"Fixed percentage value showing 100% in LVL 3 when it should not"
+			]
+		},
+		{
+			"version": "2.27.0",
+			"text": [
+				"Fixed total numbers bug region owns multiple plants"
+			]
+		},
+		{
+			"version": "2.26.0",
+			"text": [
+				"Design Review 2019"
+			]
+		},
+		{
+			"version": "2.25.0",
+			"text": [
+				"Fix scrambling"
+			]
+		},
+		{
+			"version": "2.23.0",
+			"text": [
+				"Fix report names in production"
+			]
+		},
+		{
+			"version": "2.21.0",
+			"text": [
+				"Dynamic plandate detection"
+			]
+		},
+		{
+			"version": "2.20.0",
+			"text": [
+				"Fix footer links"
+			]
+		},
+		{
+			"version": "2.19.0",
+			"text": [
+				"Fix new REST API urls and other bugs due to last update"
+			]
+		},
+		{
+			"version": "2.18.0",
+			"text": [
+				"Minor visual fixes",
+				"Update ProductionProgram ReportID",
+				"Fix bug in Allocation report that treats number as decimals"
+			]
+		},
+		{
+			"version": "2.17.0",
+			"text": [
+				"Barchart percent without decorators",
+				"Allocation fix months range",
+				"Implemented Heartbeat & Reload to maintain cookies session",
+				"Correct arrow in PS",
+				""
+			]
+		},
+		{
+			"version": "2.16.0",
+			"text": [
+				"Graphical improvements",
+				"PS > Click on Barchart shows encoded string in Table",
+				"PP > L2 - progress circle \"customer\" blue is missing background color"
+			]
+		},
+		{
+			"version": "2.15.0",
+			"text": [
+				"Report title in header",
+				"AL > Arrow closer to text",
+				"PS > Barchart order is INSIDE, OUTIDE; BODYBUILDER ... as in table",
+				"PS+other > Barcharts always more grouped, text centered, font-size smaller ... see attached screenshot as example",
+				"OI > L1 table ... remove Actual Month + prev. Month",
+				"Swipe > always move between reports",
+				"IE-Desktop > Progress circle missing background under some cicumstance",
+				"IE: TriggerReport does not trigger. Seeing in console: ERROR TypeError: Das Objekt unterstützt die Eigenschaft oder Methode remove nicht",
+				"AL: 280/12=23,33=2333% ... remove thousand separator from percentage numbers + remove -number outside bar + size bar max(100)",
+				"AL: when seeing 0 in barchart on L2+L3 paint grey"
+			]
+		},
+		{
+			"version": "2.14.0",
+			"text": [
+				"Used -webkit-text-size-adjust: 100%; to prevent font size changing on portrait <-> landscape",
+				"Production Program - Show zones instead of plants in L1 table",
+				"Production Program - Correct height of reserve in L1",
+				"Production Program - Show SR"
+			]
+		},
+		{
+			"version": "2.13.0",
+			"text": [
+				"Plant Stock - Set custom sorting",
+				"Plant Stock - not defined goes directly to L3",
+				"Production Program - SR header on L2 & L3"
+			]
+		},
+		{
+			"version": "2.12.0",
+			"text": [
+				"Allocation - Barchart mouseover numbers",
+				"Allocation - Total numbers",
+				"Production Program - Year Filter on Graphics",
+				"Fixed contacts",
+				"Removed hover effect on graphics for mobile",
+				"Plant Stock - Barchart & Table clickable"
+			]
+		},
+		{
+			"version": "2.11.0",
+			"text": [
+				"Negative percents on circular progress bars",
+				"Order Intake - Make actual day 1 line",
+				"Production Program - Correct barchart as in V1",
+				"Production Program - Better barchart positioning in mobile devices",
+				"Production Program - Fixed 3rd percent in L3 (only regions)",
+				"Allocation - Switch Program / Allocation columns order",
+				"Allocation - Readjust selectors to the top in L2+L3",
+				"Allocation - L2+L3 Total numbers",
+				"Allocation - Allocation percent inside of bar (also, not exclusively)",
+				"Allocation - Make program bar ever 100% and allocation % of program",
+				"[Swipe] Only goes to other reports, event still present in About & Help for convenience"
+			]
+		},
+		{
+			"version": "2.10.0",
+			"text": [
+				"DIP is now fully compatible with iOS devices"
+			]
+		},
+		{
+			"version": "2.9.0",
+			"text": [
+				"Implement circular progress bars on Plant Stock",
+				"Fix mouseover on Plant Stock Level 3",
+				"Fix app titles"
+			]
+		},
+		{
+			"version": "2.8.0",
+			"text": [
+				"Adapted for Cognos Analytics"
+			]
+		},
+		{
+			"version": "2.7.0",
+			"text": [
+				"Added Swipe between pages and levels",
+				"Added return button on Plant Stock Levels",
+				"Minor bugfixes"
+			]
+		},
+		{
+			"version": "2.6.0",
+			"text": [
+				"Fixed footer background color"
+			]
+		},
+		{
+			"version": "2.5.0",
+			"text": [
+				"Plant Stock level 2 & 3 done"
+			]
+		},
+		{
+			"version": "2.3.0",
+			"text": [
+				"Now the SW tries to update files (if they are new) on page load",
+				"The App automatically checks for updates and prompts the user to reload",
+				"Changed page title to top left corner, only on mobile devices",
+				"Plant Stock Level 1 done",
+				"Improved performance on templates *ngFor's using container statements"
+			]
+		},
+		{
+			"version": "2.2.0",
+			"text": [
+				"Created module for Plant Stock",
+				"Plant Stock Level 1"
+			]
+		},
+		{
+			"version": "2.1.0",
+			"text": [
+				"Updated Manifest file",
+				"Updated styles",
+				"Updated npm packages",
+				"Updated @angular/cli",
+				"Added popup hints",
+				"Added language selector on About",
+				"Added reload language on About",
+				"Added Translation Service on all modules",
+				"Added translations for English & Deutsch for almost all visible strings",
+				"Added click on levels 3 so you can view the regions for a product and vice versa",
+				"Added little triangle on chartbar hints",
+				"Removed percentage of barchart values (temporarily)",
+				"Automatic rotate barchart descriptions depending on bars width",
+				"Introduced new theme palette (OK from Designer)",
+				"New background image",
+				"Added real-time connection status on footer",
+				"Now the page title can be viewed in the footer",
+				"Modified Service Worker for caching iBISS platform",
+				"No more need to reload with Shift + F5 to get the latest version, now just F5"
+			]
+		},
+		{
+			"version": "2.0.1",
+			"text": [
+				"Update colors to match logo",
+				"Allocation Lvl 2",
+				"Improve SASS structures",
+				"Added logo animation on loading data",
+				"Dynamic footer background color changes based on page content",
+				"Added info in About page",
+				"Changed contacts on Help page"
+			]
+		},
+		{
+			"version": "2.0.0",
+			"text": [
+				"Initial App"
+			]
+		}
+	]
+}

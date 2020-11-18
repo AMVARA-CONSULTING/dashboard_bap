@@ -1,0 +1,16 @@
+<div class="empty"></div>
+<ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+    <div class="report-date">
+        <div class="upper">Last</div>
+        <div class="lower">12 Month</div>
+    </div>
+    <div class="report-date">
+        <div class="upper">Previous</div>
+        <div class="lower">12 Month</div>
+    </div>
+</ng-container>
+<ng-template #desktopHeaders>
+    <div class="report-date">Last 12 Month</div>
+    <div class="report-date">Prev. 12 Month</div>
+</ng-template>
+<div class="glyph">&Delta;</div>

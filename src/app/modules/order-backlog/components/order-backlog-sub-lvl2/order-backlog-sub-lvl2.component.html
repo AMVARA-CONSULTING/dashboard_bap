@@ -10,18 +10,7 @@
         <!-- Overview -->
         <div class="overview">
           <!-- Headers -->
-          <div class="data-header">
-            <div class="empty"></div>
-            <ng-container *ngIf="mobile$ | async; else desktopHeaders">
-              <div class="report-date">Last 12 Mo.</div>
-              <div class="glyph">Prev. 12 Mo.</div>
-            </ng-container>
-            <ng-template #desktopHeaders>
-              <div class="report-date">Last 12 Month</div>
-              <div class="glyph">Prev. 12 Month</div>
-            </ng-template>
-            <div class="glyph">&Delta;</div>
-          </div>
+          <order-backlog-header></order-backlog-header>
           <!-- Header Row of current select plant / zone -->
           <div class="header-row arrow zone" (click)="_obRouter.goToMainView()">
             <div class="title">
@@ -31,9 +20,9 @@
             </div>
             <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
               <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
-                <div class="actual">{{ currentValue | toNumber }}</div>
-                <div class="previous">{{ previousValue | toNumber }}</div>
-                <div class="delta">{{ previousValue | difference:currentValue }}</div>
+                <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+                <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+                <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
               </ng-container>
             </ng-container>
           </div>
@@ -50,9 +39,9 @@
                   <div class="title">{{ month.key | monthFormat }}</div>
                   <ng-container *ngLet="month.value | sumQuantity as currentValue">
                     <ng-container *ngLet="month.key | previousMonth:previousYearMonths | sumQuantity as previousValue">
-                      <div class="actual cyan">{{ currentValue | toNumber }}</div>
-                      <div class="previous orange">{{ previousValue | toNumber }}</div>
-                      <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+                      <div class="actual cyan" [innerHTML]="currentValue | toNumber | async"></div>
+                      <div class="previous orange" [innerHTML]="previousValue | toNumber | async"></div>
+                      <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
                     </ng-container>
                   </ng-container>
                 </div>

@@ -112,12 +112,13 @@ html {
     }
 }
 
-.data-header {
+.data-header, order-backlog-header {
     z-index: 99;
 }
 
 @include lightTheme {
     .data-header,
+    order-backlog-header,
     .plandate {
         color: $text-color;
         font-weight: bold;
@@ -410,7 +411,9 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 }
 
 @include desktop {
-    .data-header .empty, .plandate .empty {
+    .data-header .empty,
+    order-backlog-header .empty,
+    .plandate .empty {
         opacity: 0;
     }
 }

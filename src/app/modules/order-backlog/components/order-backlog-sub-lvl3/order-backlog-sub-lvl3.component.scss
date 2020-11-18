@@ -1,5 +1,5 @@
 
-@import '../../../../other/colors';
+@import 'colors';
 
 :host {
     display: block;
@@ -13,42 +13,6 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    .data-header {
-        @include desktop {
-            margin-top: 20px;
-        }
-        display: flex;
-        flex: 1 100%;
-        height: 30px;
-        line-height: 30px;
-        position: relative;
-        padding: 0 20px 0 15px;
-        @include desktop {
-            padding-right: 40px;
-        }
-        box-sizing: border-box;
-        background-color: $bg-white-lvl3;
-        .empty {
-            flex: 1 30%;
-            padding-left: 5px;
-            position: relative;
-            @include desktop {
-                flex: 1 70%;
-            }
-        }
-        .report-date, .glyph {
-            flex: 1 15%;
-            text-align: right;
-            font-size: 12px;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            @include desktop {
-                font-size: 15px;
-            }
-        }
-    }
     .header-row {
         display: flex;
         flex: 1 100%;
@@ -215,9 +179,6 @@
     :host {
         background-color: white;
         .overview {
-            .data-header {
-                background-color: white;
-            }
             .header-row.total,
             .header-row.plant,
             .header-row.zone {

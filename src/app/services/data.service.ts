@@ -5,6 +5,8 @@ import { ConnectionService } from 'ng-connection-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class DataService {
@@ -18,7 +20,8 @@ export class DataService {
     private dialog: MatDialog,
     private connection: ConnectionService,
     private router: Router,
-    private ac: ActivatedRoute
+    private ac: ActivatedRoute,
+    private _breakpoints: BreakpointObserver
   ) {
     (window as any).data = this;
   }
@@ -35,6 +38,8 @@ export class DataService {
       if (event instanceof NavigationEnd) this.title = this.ac.root.firstChild.snapshot.data['title']
     });
   }
+
+  mobile$ = this._breakpoints.observe(Breakpoints.Handset).pipe( map(result => result.matches) );
 
   accessGranted: boolean = false
 

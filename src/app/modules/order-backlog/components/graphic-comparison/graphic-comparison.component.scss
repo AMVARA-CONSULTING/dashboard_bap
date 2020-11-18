@@ -1,4 +1,4 @@
-@import '../../../../other/colors';
+@import 'colors';
 
 :host {
     display: block;
@@ -6,6 +6,10 @@
     margin: 30px auto 40px;
     height: 250px;
     box-sizing: border-box;
+    margin-bottom: 60px;
+    @include desktop {
+        margin-bottom: 40px;
+    }
 }
 
 :host::ng-deep .ngx-charts .line-highlight {

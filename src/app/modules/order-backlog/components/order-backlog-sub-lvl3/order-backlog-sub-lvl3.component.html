@@ -5,18 +5,7 @@
     <!-- Overview -->
     <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
       <!-- Headers -->
-      <div class="data-header">
-        <div class="empty"></div>
-        <ng-container *ngIf="mobile$ | async; else desktopHeaders">
-          <div class="report-date">Last 12 Mo.</div>
-          <div class="glyph">Prev. 12 Mo.</div>
-        </ng-container>
-        <ng-template #desktopHeaders>
-          <div class="report-date">Last 12 Month</div>
-          <div class="glyph">Prev. 12 Month</div>
-        </ng-template>
-        <div class="glyph">&Delta;</div>
-      </div>
+      <order-backlog-header></order-backlog-header>
       <!-- Header Row of currented select plant / zone -->
       <div class="header-row arrow zone" (click)="_obRouter.goToMainView()">
         <div class="title">
@@ -26,9 +15,9 @@
         </div>
         <ng-container *ngLet="plantOrZoneRows | filterYear:'current' | sumQuantity as currentValue">
           <ng-container *ngLet="plantOrZoneRows | filterYear:'previous' | sumQuantity as previousValue">
-            <div class="actual">{{ currentValue | toNumber }}</div>
-            <div class="previous">{{ previousValue | toNumber }}</div>
-            <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+            <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+            <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -42,9 +31,9 @@
           </div>
           <ng-container *ngLet="rows | sumQuantity as currentValue">
             <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
-              <div class="actual">{{ currentValue | toNumber }}</div>
-              <div class="previous">{{ previousValue | toNumber }}</div>
-              <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+              <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+              <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
             </ng-container>
           </ng-container>
         </div>
@@ -59,12 +48,12 @@
             <div class="title">{{ region.key }}</div>
             <!-- Bind current value -->
             <ng-container *ngLet="region.value | sumQuantity as currentValue">
-              <div class="actual cyan">{{ currentValue | toNumber }}</div>
+              <div class="actual cyan" [innerHTML]="currentValue | toNumber | async"></div>
               <!-- Bind and check previous value, it can be not found in some cases! -->
               <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
                 <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
-                  <div class="previous orange">{{ previousValue | toNumber }}</div>
-                  <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+                  <div class="previous orange" [innerHTML]="previousValue | toNumber | async"></div>
+                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
                 </ng-container>
               </ng-container>
             </ng-container>
@@ -85,12 +74,12 @@
             <div class="title">{{ product.key }}</div>
             <!-- Bind current value -->
             <ng-container *ngLet="product.value | sumQuantity as currentValue">
-              <div class="actual cyan">{{ currentValue | toNumber }}</div>
+              <div class="actual cyan" [innerHTML]="currentValue | toNumber | async"></div>
               <!-- Bind and check previous value, it can be not found in some cases! -->
               <ng-container *ngIf="previousProducts[product.key] as previousProduct; else dummyPrevious">
                 <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
-                  <div class="previous orange">{{ previousValue | toNumber }}</div>
-                  <div class="delta grey">{{ previousValue | difference:currentValue }}</div>
+                  <div class="previous orange" [innerHTML]="previousValue | toNumber | async"></div>
+                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
                 </ng-container>
               </ng-container>
               <!-- Template for when a product title is not found in a previous month -->

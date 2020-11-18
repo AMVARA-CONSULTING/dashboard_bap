@@ -1,16 +1,5 @@
 <!-- Header Info -->
-<div class="data-header">
-  <div class="empty"></div>
-  <ng-container *ngIf="mobile$ | async; else desktopHeaders">
-    <div class="report-date">Last 12 Mo.</div>
-    <div class="glyph">Prev. 12 Mo.</div>
-  </ng-container>
-  <ng-template #desktopHeaders>
-    <div class="report-date">Last 12 Month</div>
-    <div class="glyph">Prev. 12 Month</div>
-  </ng-template>
-  <div class="glyph">&Delta;</div>
-</div>
+<order-backlog-header></order-backlog-header>
 <!-- Quick Overview -->
 <ng-container *ngLet="zones$ | keyvalue | startWith:[] | async as zones">
   <div class="overview">
@@ -26,9 +15,9 @@
         <ng-container *ngLet="zone.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
           <ng-container *ngLet="zone.value | filterYear:'previous' | sumQuantity as previousValue">
-            <div class="actual">{{ currentValue | toNumber }}</div>
-            <div class="previous">{{ previousValue | toNumber }}</div>
-            <div class="delta">{{ previousValue | difference:currentValue }}</div>
+            <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -45,9 +34,9 @@
         <ng-container *ngLet="zone.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
           <ng-container *ngLet="zone.value | filterYear:'previous' | sumQuantity as previousValue">
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber" class="actual">{{ currentValue | toNumber }}</div>
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber" class="previous">{{ previousValue | toNumber }}</div>
-            <div class="delta">{{ previousValue | difference:currentValue }}</div>
+            <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -58,9 +47,9 @@
         <ng-container *ngLet="plant.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
           <ng-container *ngLet="plant.value | filterYear:'previous' | sumQuantity as previousValue">
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="currentValue | toNumber" class="actual">{{ currentValue | toNumber }}</div>
-            <div matTooltipPosition="after" matTooltipClass="after" [matTooltip]="previousValue | toNumber" class="previous">{{ previousValue | toNumber }}</div>
-            <div class="delta">{{ previousValue | difference:currentValue }}</div>
+            <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
           </ng-container>
         </ng-container>
       </div>

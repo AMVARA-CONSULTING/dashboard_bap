@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { classifyByProperty } from '@other/functions';
 import { BacklogColumns, ReportState, ReportTypes, Zones } from '@other/interfaces';
 import { ApiService } from '@services/api.service';
-import { ConfigService } from '@services/config.service';
 import * as moment from 'moment';
 import { tap } from 'rxjs/operators';
 
@@ -102,7 +101,7 @@ export class OrderBacklogState {
         console.log(data.rows); */
         setState({
           rows: rows,
-          plandate: '',
+          plandate: this._api.reportDates.orderBacklog,
           actualDateRange: actualDates,
           previousDateRange: previousDates
         });

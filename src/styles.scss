@@ -143,17 +143,17 @@ html, body {
     @include lightTheme {
         background-color: $main-bg-body-color-light;
     }
-    background-image: url(^assets/neurons_grey.jpg);
+    /* background-image: url(^assets/neurons_grey.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
     font-size: 13.333px;
     overflow-x: hidden;
     @include desktop {
         font-size: 15px;
     }
-    transform: translate3d(0,0,0,0);
+    // transform: translate3d(0,0,0,0);
 }
 
 button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-expansion-panel-content {

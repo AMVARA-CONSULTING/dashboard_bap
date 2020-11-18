@@ -21,7 +21,7 @@
 		"allocation": true,
 		"plant_stock": true
 	},
-	"corpintra": true,
+	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"contacts": {

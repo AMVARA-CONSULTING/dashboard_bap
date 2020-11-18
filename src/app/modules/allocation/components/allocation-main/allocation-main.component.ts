@@ -64,7 +64,6 @@ export class AllocationMainComponent {
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
-          console.log(res);
           this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
           this.data.allocationData = res;
           this.rollupData()
@@ -116,7 +115,6 @@ export class AllocationMainComponent {
         return r
       }, {})
     )
-    console.log(this.years)
     filteredRowsByPlant.forEach(aloc => {
       const alocDate = moment(aloc[17], 'YYYYMM')
       if (alocDate.isBetween(dateNow, dateNextEightMonths, null, '[]')) {

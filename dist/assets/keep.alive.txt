@@ -1,1 +1,0 @@
-This a file to ensure the user cookies never expires.

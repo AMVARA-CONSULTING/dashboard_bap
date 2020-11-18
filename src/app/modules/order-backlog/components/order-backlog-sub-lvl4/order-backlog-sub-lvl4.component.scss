@@ -189,9 +189,15 @@
                 }
                 .actual {
                     color: $petrol;
+                    font-weight: bold;
                 }
                 .previous {
                     color: $orange;
+                    font-weight: bold;
+                }
+                .delta {
+                    color: rgba($text-color, .8);
+                    font-weight: bold;
                 }
                 border-bottom: 2px solid white;
             }
@@ -214,6 +220,10 @@
                     font-weight: bold;
                 }
                 .previous {
+                    color: $text-color !important;
+                    font-weight: bold;
+                }
+                .delta {
                     color: $text-color !important;
                     font-weight: bold;
                 }

@@ -139,6 +139,9 @@
                 .previous {
                     color: $orange !important;
                 }
+                .delta {
+                    color: rgba($text-color, .8) !important;
+                }
             }
             .plant {
                 background-color: white;
@@ -155,6 +158,10 @@
                     color: $text-color !important;
                     font-weight: bold;
                 }
+                .delta {
+                    color: $text-color !important;
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -168,6 +175,9 @@
             }
             .previous {
                 color: $orange !important;
+            }
+            .delta {
+                color: rgba($text-color, .8) !important;
             }
         }
     }

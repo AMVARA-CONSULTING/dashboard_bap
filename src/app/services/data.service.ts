@@ -39,7 +39,12 @@ export class DataService {
     });
   }
 
-  mobile$ = this._breakpoints.observe(Breakpoints.Handset).pipe( map(result => result.matches) );
+  mobile$ = this._breakpoints.observe([
+    Breakpoints.Handset,
+    Breakpoints.TabletPortrait
+  ]).pipe(
+    map(result => result.matches)
+  );
 
   accessGranted: boolean = false
 

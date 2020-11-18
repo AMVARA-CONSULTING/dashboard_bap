@@ -1,5 +1,5 @@
 {
-	"version": "2.56.0",
+	"version": "2.57.0",
 	"debug": false,
 	"loading": true,
 	"language": "en",
@@ -262,6 +262,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.57.0",
+		  "text": [
+			"Order Backlog final view touches"
+		  ]
+		},
 		{
 		  "version": "2.56.0",
 		  "text": [

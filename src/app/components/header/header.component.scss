@@ -183,6 +183,7 @@
         padding: 0 15px;
         cursor: pointer;
         position: relative;
+        white-space: nowrap;
         &:hover:after, &.active:after {
             height: 1px;
             width: 100%;

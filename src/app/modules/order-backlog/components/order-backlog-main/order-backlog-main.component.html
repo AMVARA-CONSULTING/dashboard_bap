@@ -29,7 +29,7 @@
     <div class="zone" *ngFor="let zone of zones">
       <div class="zone-header" (click)="_obRouter.goToPlantZoneView(_ac, 'zone', zone.key)">
         <!-- FIXME: Dynamic language fields -->
-        <div class="title">{{ zone.value[0]['Plant Group (english)'] }}</div>
+        <div class="title">{{ zone.value | groupOrPlantName:'group' }}</div>
         <!-- Map current value -->
         <ng-container *ngLet="zone.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->
@@ -42,7 +42,7 @@
       </div>
       <!-- Iterate over each plant inside zone -->
       <div class="plant" (click)="_obRouter.goToPlantZoneView(_ac, 'plant', plant.key)" *ngFor="let plant of zone.value | plantsByZone | keyvalue">
-        <div class="title">{{ plant.value[0]['Plant (english)'] }}</div>
+        <div class="title">{{ plant.value | groupOrPlantName:'plant' }}</div>
         <!-- Map current value -->
         <ng-container *ngLet="plant.value | filterYear:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->

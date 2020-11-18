@@ -97,12 +97,14 @@
                     color: rgba(black, .6) !important;
                     text-shadow: 0 0 3px white !important;
                     font-weight: bold;
+                    border-top-color: $petrol !important;
                 }
                 .previous {
                     background: linear-gradient(to top, rgba(0,0,0,0), rgba($orange, .6)) !important;
                     color: rgba(black, .6) !important;
                     text-shadow: 0 0 3px white !important;
                     font-weight: bold;
+                    border-top-color: $orange !important;
                 }
             }
             .title {

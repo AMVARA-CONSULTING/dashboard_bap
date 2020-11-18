@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { DataService } from '@services/data.service';
-import { LoadingService } from '@services/loading.service';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
@@ -9,6 +8,7 @@ import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
+import { ConfigActions } from '@store/config.state';
 
 @Component({
   selector: 'allocation-lvl3',
@@ -53,7 +53,6 @@ export class AllocationLvl3Component {
 
   constructor(
     public data: DataService,
-    private loader: LoadingService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
@@ -64,7 +63,6 @@ export class AllocationLvl3Component {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
     this.title.setTitle(this.config.config.appTitle + ' - Allocation')
-    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.date = params.get('date')
@@ -76,12 +74,10 @@ export class AllocationLvl3Component {
           this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
           this.data.allocationData = res
           this.rollupData()
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.allocationData[0][18], moment, this.config)
         this.rollupData()
-        this.loader.loading$.next(false)
       }
     })
   }

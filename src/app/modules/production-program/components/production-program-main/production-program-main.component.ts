@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,7 +38,6 @@ import { ReportTypes } from '@other/interfaces';
 export class ProductionProgramMainComponent implements OnInit {
 
   constructor(
-    private loader: LoadingService,
     public data: DataService,
     private api: ApiService,
     private route: ActivatedRoute,
@@ -56,7 +54,6 @@ export class ProductionProgramMainComponent implements OnInit {
   plandate: string = ''
 
   ngOnInit() {
-    this.loader.loading$.next(true)
     this.route.paramMap.subscribe(params => {
       this.year = params.get('year')
       // If no Production rows were found, get them
@@ -65,12 +62,10 @@ export class ProductionProgramMainComponent implements OnInit {
           this.plandate = this.tools.getPlanDate(res[0][14], moment, this.config);
           this.data.productionProgramData = res;
           this.rollupData()
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
         this.rollupData()
-        this.loader.loading$.next(false)
       }
     })
   }
@@ -86,7 +81,6 @@ export class ProductionProgramMainComponent implements OnInit {
 
   changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
-    this.loader.loading$.next(true)
     this.router.navigate(['production-program', year], { replaceUrl: true })
   }
 

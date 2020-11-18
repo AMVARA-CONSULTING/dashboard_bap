@@ -2,6 +2,7 @@
 export interface Config {
     version: string;
     debug: boolean;
+    loading: boolean;
     language: ILanguage;
     reports: IConfigReports;
     delay: number;

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoadingService } from '@services/loading.service';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
@@ -37,7 +36,6 @@ export class PlantStockMainComponent {
   plant: string
 
   constructor(
-    public loader: LoadingService,
     public data: DataService,
     private title: Title,
     private api: ApiService,
@@ -49,7 +47,6 @@ export class PlantStockMainComponent {
     (window as any).router = router;
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       // If no Plant Stock rows were found, get them
@@ -58,12 +55,10 @@ export class PlantStockMainComponent {
           this.plandate = this.tools.getPlanDate(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
           this.data.plantStockData = res
           this.rollupData()
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
         this.rollupData()
-        this.loader.loading$.next(false)
       }
     })
   }

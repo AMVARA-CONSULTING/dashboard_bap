@@ -1,4 +1,4 @@
-<div class="logo" [class.running]="loader" routerLink="/">
+<div class="logo" routerLink="/" [class.running]="loading$">
   <div class="inter"></div>
   <div class="middle"></div>
   <div class="outer"></div>
@@ -9,7 +9,7 @@
 </div>
 <div class="page-title">{{ 'menu.'+data.title | translate }}</div>
 <ul class="links">
-  <li *ngFor="let link of reports | async" [routerLink]="link.link" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
+  <li *ngFor="let link of reports" [routerLink]="link.link" routerLinkActive="active">{{ 'menu.'+link.text | translate }}</li>
   <li routerLink="/about" routerLinkActive="active">{{ 'menu.about' | translate }}</li>
   <li routerLink="/help" routerLinkActive="active">{{ 'menu.help' | translate }}</li>
   <app-theme-switcher></app-theme-switcher>

@@ -1,6 +1,7 @@
 {
-	"version": "2.54.0",
+	"version": "2.55.0",
 	"debug": false,
+	"loading": true,
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "dev",
@@ -261,6 +262,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.55.0",
+		  "text": [
+			"Fix loading"
+		  ]
+		},
 		{
 		  "version": "2.54.0",
 		  "text": [

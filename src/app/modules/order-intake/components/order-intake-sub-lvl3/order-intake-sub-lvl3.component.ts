@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingService } from '@services/loading.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
@@ -32,7 +31,6 @@ export class OrderIntakeSubLvl3Component {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private loader: LoadingService,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
@@ -42,7 +40,6 @@ export class OrderIntakeSubLvl3Component {
   ) {
     title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
-    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       if (params.get('type') == 'zone') {
         this.ZoneID = params.get('id')
@@ -72,7 +69,6 @@ export class OrderIntakeSubLvl3Component {
           } catch (err) {
             this.router.navigate(['order-intake'], { replaceUrl: true })
           }
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true);
@@ -81,7 +77,6 @@ export class OrderIntakeSubLvl3Component {
         } catch (err) {
           this.router.navigate(['order-intake'], { replaceUrl: true });
         }
-        this.loader.loading$.next(false);
       }
     });
   }

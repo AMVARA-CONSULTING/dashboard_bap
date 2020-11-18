@@ -37,7 +37,7 @@ export class ConfigState {
     setState(config);
   }
 
-  @Action(ConfigActions.Set)
+  @Action(ConfigActions.SetParameter)
   setParam({ patchState }: StateContext<Partial<Config>>, { prop, value }: ConfigActions.SetParameter) {
     patchState({ [prop]: value });
   }
@@ -57,6 +57,11 @@ export class ConfigState {
     return (reportKey: string) => {
       return ctx.reports[ctx.target][ctx.scenario][reportKey];
     };
+  }
+
+  @Selector()
+  static GetLoading(ctx: Partial<Config>) {
+    return ctx.loading;
   }
 
 }

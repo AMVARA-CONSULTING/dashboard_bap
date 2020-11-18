@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
@@ -32,7 +31,6 @@ export class ProductionProgramLvl3Component {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private loader: LoadingService,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
@@ -43,7 +41,6 @@ export class ProductionProgramLvl3Component {
     (window as any).pp3 = this;
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
-    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.year = params.get('year')
       this.type = params.get('type')
@@ -90,7 +87,6 @@ export class ProductionProgramLvl3Component {
           } catch (err) {
             this.router.navigate(['production-program'], { replaceUrl: true })
           }
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
@@ -124,7 +120,6 @@ export class ProductionProgramLvl3Component {
         } catch (err) {
           this.router.navigate(['production-program'], { replaceUrl: true })
         }
-        this.loader.loading$.next(false)
       }
     })
   }
@@ -150,7 +145,6 @@ export class ProductionProgramLvl3Component {
 
   changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
-    this.loader.loading$.next(true)
     this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
   }
 

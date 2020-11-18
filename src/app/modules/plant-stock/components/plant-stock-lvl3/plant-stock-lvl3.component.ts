@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
@@ -30,7 +29,6 @@ export class PlantStockLvl3Component {
   hofb: string
 
   constructor(
-    public loader: LoadingService,
     public data: DataService,
     private title: Title,
     private api: ApiService,
@@ -41,7 +39,6 @@ export class PlantStockLvl3Component {
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.loader.loading$.next(true)
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.werk = params.get('werk')
@@ -59,12 +56,10 @@ export class PlantStockLvl3Component {
             });
           }) */
           this.rollupData()
-          this.loader.loading$.next(false)
         })
       } else {
         this.plandate = this.tools.getPlanDate(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
         this.rollupData()
-        this.loader.loading$.next(false)
       }
     })
   }

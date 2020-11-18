@@ -4,10 +4,10 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
 import { ToolsService } from './tools.service';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { ConfigState } from '@store/config.state';
+import { ConfigActions, ConfigState } from '@store/config.state';
 import { Config, ReportInfo, ReportTypes } from '@other/interfaces';
 
 @Injectable()
@@ -50,6 +50,7 @@ export class ApiService {
   heartbeat: Subscription;
 
   getSavedReportData(reportKey: ReportTypes): Observable<any[]> {
+    this._store.dispatch( new ConfigActions.SetParameter('loading', true) );
     const reportInfo: ReportInfo = this._store.selectSnapshot(ConfigState.GetReportInfo)(reportKey);
     const config = this._store.selectSnapshot<Config>(ConfigState);
     if (this.corpintra || config.corpintra) {
@@ -103,6 +104,9 @@ export class ApiService {
           console.log(`${reportKey} - Fail at getting report table data`);
           return err;
         }),
+        finalize(() => {
+          this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
+        }),
         map(html => {
           // Convert HTML to JSON and formatting
           let columns = [];
@@ -125,6 +129,9 @@ export class ApiService {
     } else {
       // Get report from local
       return this.http.get<any[]>(`assets/reports/${reportInfo.fallback}`).pipe(
+        finalize(() => {
+          this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
+        }),
         tap(_ => this.reportDates[reportKey] = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'))
       );
     }

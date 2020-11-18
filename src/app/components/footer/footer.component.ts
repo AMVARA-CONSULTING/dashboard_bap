@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from '@services/config.service';
-import { LoadingService } from '@services/loading.service';
 import { Router } from '@angular/router';
+import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { ConfigState } from '@store/config.state';
 
 @Component({
   selector: 'footer',
@@ -9,20 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.lighter]': 'loading'
+    '[class.lighter]': 'loading$'
   }
 })
 export class FooterComponent {
 
+  @ViewSelectSnapshot(ConfigState.GetLoading) loading$ !: boolean;
+
   constructor(
     public config: ConfigService,
-    public loader: LoadingService,
     private router: Router
-  ) {
-    this.loader.loading$.subscribe(bol => this.loading = bol);
-  }
-
-  loading = false;
+  ) { }
 
   goHelp() {
     this.router.navigate(['help'], { queryParamsHandling: 'merge' });

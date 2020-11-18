@@ -1,6 +1,7 @@
 {
-  "version": "2.54.0",
+  "version": "2.55.0",
   "debug": true,
+  "loading": true,
   "language": "en",
   "appTitle": "DIP",
   "scenario": "dev",
@@ -285,6 +286,12 @@
     }
   },
   "changelog": [
+    {
+      "version": "2.55.0",
+      "text": [
+        "Add Order Backlog"
+      ]
+    },
     {
       "version": "2.46.1",
       "text": [

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LoadingService } from '@services/loading.service';
+import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { ConfigState } from '@store/config.state';
 
 @Component({
   selector: 'loader',
@@ -9,10 +10,6 @@ import { LoadingService } from '@services/loading.service';
 })
 export class LoaderComponent {
 
-  constructor(public loader: LoadingService) {
-    this.loader.loading$.subscribe(bol => this.loading = bol);
-  }
-
-  loading = false;
+  @ViewSelectSnapshot(ConfigState.GetLoading) loading$ !: boolean;
 
 }

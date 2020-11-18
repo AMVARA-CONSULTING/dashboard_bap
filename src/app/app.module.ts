@@ -17,7 +17,6 @@ import { RoutingModule } from './routing.module';
 // Services - aka providers
 // Used to communicate components
 
-import { LoadingService } from '@services/loading.service';
 import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
@@ -133,7 +132,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     CookiesExpiredComponent
   ],
   providers: [
-    LoadingService,
     DataService,
     ApiService,
     ConnectionService,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { ApiService } from '@services/api.service';
-import { LoadingService } from '@services/loading.service';
 import { ConfigService } from '@services/config.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
@@ -32,7 +31,6 @@ export class OrderIntakeMainComponent implements OnInit {
   constructor(
     public data: DataService,
     private api: ApiService,
-    private loader: LoadingService,
     private config: ConfigService,
     private router: Router,
     private title: Title,
@@ -47,7 +45,6 @@ export class OrderIntakeMainComponent implements OnInit {
   plandate: string = ''
 
   ngOnInit() {
-    this.loader.loading$.next(true)
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length === 0) {
       this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(res => {
@@ -55,12 +52,10 @@ export class OrderIntakeMainComponent implements OnInit {
         this.data.orderIntakeData = res;
         (window as any).orderIntake = res;
         this.rollupData()
-        this.loader.loading$.next(false)
       })
     } else {
       this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true)
       this.rollupData()
-      this.loader.loading$.next(false)
     }
   }
 

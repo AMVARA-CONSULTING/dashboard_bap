@@ -24,7 +24,9 @@
               "src/assets",
               "src/manifest.json",
               "src/manifest.json",
-              "src/more.html"
+              "src/more.html",
+              "src/scripts/DEPLOY_DIP_PROD_TRUCKS.ps1",
+              "src/scripts/DEPLOY_DIP_PROD_VANS.ps1"
             ],
             "styles": [
               {

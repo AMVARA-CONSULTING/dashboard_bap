@@ -110,7 +110,9 @@ export class MyHammerConfig extends HammerGestureConfig {
       developmentMode: !environment.production
     }),
     NgxsSelectSnapshotModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production
+    }),
     // Angular Material Modules
     MatTooltipModule,
     MatSidenavModule,

@@ -1,6 +1,6 @@
 {
   "version": "2.55.0",
-  "debug": false,
+  "debug": true,
   "loading": true,
   "language": "en",
   "appTitle": "DIP",

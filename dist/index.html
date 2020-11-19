@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>DIP - Data Informations Platform</title>
+  <title>BAP</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1976d2">
+  <meta name="theme-color" content="#23233E">
   <meta name="apple-mobile-web-app-capable" content="yes"/>
 <link rel="stylesheet" href="styles.6c1b6206d65b84cfdd7a.css"></head>
-<body>
+<body theme="dark">
+  <script>
+    var lightThemeStorage = localStorage.getItem('light_theme')
+    if (lightThemeStorage === 'yes') document.body.setAttribute('theme', 'light')
+  </script>
   <dip-root>
     <style>
       html,
@@ -71,7 +75,7 @@
         margin: auto;
         left: 0;
         right: 0;
-        background-image: url(assets/loading.svg);
+        background-image: url(assets/loading-fake.svg);
         background-repeat: no-repeat;
         background-size: cover;
         animation-name: rotate;
@@ -104,6 +108,14 @@
         text-align: center;
       }
 
+      body[theme="light"] .amvaraLoading:before {
+        background-color: rgba(240, 240, 240, .9);
+      }
+
+      body[theme="light"] .title {
+        color: #333;
+      }
+
       @keyframes rotate {
         0% {
           transform: rotate(0deg);
@@ -119,12 +131,12 @@
         <div class="outside"></div>
         <div class="middle"></div>
         <div class="inside"></div>
-        <div class="title">DIP</div>
+        <div class="title">BAP</div>
       </div>
-      <div class="loadingTitle">Data Informations Platform</div>
+      <div class="loadingTitle">Data Platform</div>
     </div>
   </dip-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script src="runtime-es2015.f79ddaafd789111bd11d.js" type="module"></script><script src="runtime-es5.f79ddaafd789111bd11d.js" nomodule defer></script><script src="polyfills-es5.0435b693ccb291b775fe.js" nomodule defer></script><script src="polyfills-es2015.d58a43462b8af4cec6db.js" type="module"></script><script src="main-es2015.0ca813849f7176db0941.js" type="module"></script><script src="main-es5.0ca813849f7176db0941.js" nomodule defer></script></body>
+<script src="runtime-es2015.f79ddaafd789111bd11d.js" type="module"></script><script src="runtime-es5.f79ddaafd789111bd11d.js" nomodule defer></script><script src="polyfills-es5.0435b693ccb291b775fe.js" nomodule defer></script><script src="polyfills-es2015.d58a43462b8af4cec6db.js" type="module"></script><script src="main-es2015.66190e2150a8b93ac3cc.js" type="module"></script><script src="main-es5.66190e2150a8b93ac3cc.js" nomodule defer></script></body>
 
 </html>

@@ -1,5 +1,5 @@
 {
-	"version": "2.57.0",
+	"version": "2.58.0",
 	"debug": false,
 	"loading": true,
 	"language": "en",
@@ -22,28 +22,13 @@
 		"allocation": true,
 		"plant_stock": true
 	},
+    "capabilities": {
+      "dev": "i606D0768D6AC4241AADD880B4B72EC06",
+      "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
+    },
 	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
-	"contacts": {
-		"trucks": [
-			{
-				"name": "Ralf Roeber",
-				"description": "Coordinator",
-				"telephone": "+34 717 10 26 03"
-			},
-			{
-				"name": "Alex Barba",
-				"description": "Programmer",
-				"telephone": "+34 640 91 59 83"
-			},
-			{
-				"name": "Luís Torroja",
-				"description": "Designer",
-				"telephone": "+34 670 61 74 71"
-			}
-		]
-	},
 	"reports": {
 		"vans": {
 			"dev": {
@@ -262,6 +247,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.58.0",
+		  "text": [
+			"Order Backlog - Change actual and previous year of L1 to actual and previous day",
+			"Fix HammerJS swiping functions",
+			"Make common config and customs for each environment"
+		  ]
+		},
 		{
 		  "version": "2.57.0",
 		  "text": [

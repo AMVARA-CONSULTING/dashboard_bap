@@ -11,8 +11,8 @@ export class GroupOrPlantNamePipe implements PipeTransform {
   @SelectSnapshot(ConfigState.GetLanguageHuman) language: ILanguage;
 
   // Get plant group name
-  transform(values: any[], type: 'plant' | 'group'): string {
-    return values[0][type === 'group' ? BacklogColumns[`PlantGroup${this.language}`] : BacklogColumns[`Plant${this.language}`]];
+  transform(values: any[], type: 'plant' | 'group' | 'zone'): string {
+    return values[0][['group', 'zone'].includes(type) ? BacklogColumns[`PlantGroup${this.language}`] : BacklogColumns[`Plant${this.language}`]];
   }
 
 }

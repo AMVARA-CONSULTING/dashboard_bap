@@ -5,6 +5,8 @@ import { ToolsService } from '@services/tools.service';
 import { CognosService } from './cognos.service';
 import { Store } from '@ngxs/store';
 import { ConfigActions } from '@store/config.state';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ConfigService {
@@ -23,8 +25,14 @@ export class ConfigService {
   load(): Promise<void> {
     return new Promise(resolve => {
       const corpintra = location.hostname.indexOf('corpintra.net') > -1;
-      const configFile = corpintra ? 'cognos.json' : 'config.json';
-      this.http.get('assets/' + configFile).subscribe((config: Config) => {
+      const configFile = corpintra ? 'config_daimler.json' : 'config.json';
+      forkJoin([
+        this.http.get('assets/config_common.json'),
+        this.http.get('assets/' + configFile)
+      ]).pipe(
+        // Merge common config with custom
+        map(([common, config]: [Config, Config]) => ({ ...common, ...config}))
+      ).subscribe((config: Config) => {
         (window as any).config = config;
         const search: any = this.tools.getJsonFromUrl();
         config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0;

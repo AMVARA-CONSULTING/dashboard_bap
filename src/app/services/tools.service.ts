@@ -39,6 +39,34 @@ export class ToolsService {
     return rows;
   }
 
+  /**
+   * Function to convert CSV string data to JSOn Array data
+   * @param csv string csv data
+   * @param numeralFields array of indexes which should parsed as numeral
+   * @param removeHeaders provide true to remove first line of headers
+   */
+  csvToJson(csv: string, numeralFields: number[], removeHeaders: boolean = true) {
+    const lines: any[] = csv.split('\n');
+    const data = [];
+    if (removeHeaders) {
+      lines.splice(0, 1);
+    }
+    const length = lines.length;
+    let i = 1;
+    for ( ; i < length; i++ ) {
+      // Remove empty lines
+      if (lines[i].trim().length === 0) {
+        continue;
+      }
+      const values = lines[i].split(';');
+      numeralFields.forEach(num => {
+        values[num] = isNaN(values[num]) ? 0 : parseFloat(values[num]);
+      });
+      data.push(values);
+    }
+    return data;
+  }
+
   getPlanDate(text: string, moment, config: ConfigService, firstMonth?: boolean): string {
     firstMonth = firstMonth || false;
     if (firstMonth) {

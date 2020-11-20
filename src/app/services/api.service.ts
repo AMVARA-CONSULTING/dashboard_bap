@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
@@ -75,12 +75,18 @@ export class ApiService {
         }),
         switchMap(json => {
           // Get last saved report content
-          const mimeType = json.data.find(item => item.format === 'HTML')._meta.links.content.mimeType;
-          if (mimeType) {
-            // Report has mimeType
-            const nextLink = json.data.find(item => item.format === 'HTML')._meta.links.content.url;
-            this.reportDates[reportKey] = json.data.find(item => item.format === 'HTML').modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { responseType: 'text' });
+          const csv = json.data.find(item => item.format === 'CSV');
+          const html = json.data.find(item => item.format === 'HTML');
+          if (html && html._meta.links.content.mimeType) {
+            // Report has mimeType of type HTML
+            const nextLink = html._meta.links.content.url;
+            this.reportDates[reportKey] = html.modificationTime;
+            return this.http.get(config.apiDomain + nextLink, { observe: 'response', responseType: 'text' });
+          } else if (csv && csv._meta.links.content.mimeType) {
+            // Report has mimeType of type CSV
+            const nextLink = csv._meta.links.content.url;
+            this.reportDates[reportKey] = csv.modificationTime;
+            return this.http.get(config.apiDomain + nextLink, { observe: 'response', responseType: 'text' });
           } else {
             // Report doesn't have mimeType, it means we have to use second way of get it
             return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`).pipe(
@@ -107,13 +113,25 @@ export class ApiService {
         finalize(() => {
           this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
         }),
-        map(html => {
-          // Convert HTML to JSON and formatting
+        map((response: HttpResponse<any>) => {
+          // Convert HTML / CSV to JSON and formatting
+          // MIME Type can be either text/html or application/csv
+          const mimeType = response.headers.get('Content-Type').split(';')[0].trim();
           let columns = [];
           try {
             columns = config.reports[config.target].columns[reportKey].shouldBeNumber;
           } catch (err) { }
-          let rows = this.tools.htmlToJson(html, `[lid=${reportInfo.selector}] tr`);
+          // MIME Type can be either text/html or application/csv
+          let rows = [];
+          switch (mimeType) {
+            case 'text/html':
+              rows = this.tools.htmlToJson(response.body, `[lid=${reportInfo.selector}] tr`);
+              break;
+            case 'application/csv':
+              rows = this.tools.csvToJson(response.body, columns);
+              break;
+            default:
+          }
           // Convert fields to numbers
           if (columns.length > 0) {
             rows = rows.map(row => {

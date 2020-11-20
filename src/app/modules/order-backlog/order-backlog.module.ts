@@ -31,6 +31,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { DistinctItemsPipe } from './pipes/distinct-items.pipe';
 import { OrderBacklogRouter } from './services/order-backlog-router.service';
 import { OrderBacklogHeaderComponent } from './components/order-backlog-header/order-backlog-header.component';
+import { FormatLatestDayPipe } from './pipes/format-latest-day.pipe';
+import { FilterDayPipe } from './pipes/filter-day.pipe';
 
 const routes: Routes = [
   {
@@ -93,7 +95,9 @@ const routes: Routes = [
     PreviousMonthPipe,
     DistinctItemsPipe,
     ReversePipe,
-    OrderBacklogHeaderComponent
+    OrderBacklogHeaderComponent,
+    FormatLatestDayPipe,
+    FilterDayPipe
   ],
   providers: [
     OrderBacklogRouter

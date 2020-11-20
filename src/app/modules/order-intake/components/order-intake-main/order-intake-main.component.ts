@@ -23,7 +23,7 @@ import { ReportTypes } from '@other/interfaces';
   ],
   host: {
     '(swiperight)': 'data.go("plant-stock")',
-    '(swipeleft)': 'data.go("production-program")'
+    '(swipeleft)': 'data.go("order-backlog")'
   }
 })
 export class OrderIntakeMainComponent implements OnInit {

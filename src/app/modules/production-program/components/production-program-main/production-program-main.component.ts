@@ -31,7 +31,7 @@ import { ReportTypes } from '@other/interfaces';
     ])
   ],
   host: {
-    '(swiperight)': 'data.go("order-intake")',
+    '(swiperight)': 'data.go("order-backlog")',
     '(swipeleft)': 'data.go("allocation")'
   }
 })

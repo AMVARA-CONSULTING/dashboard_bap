@@ -23,6 +23,8 @@ export namespace OrderBacklog {
   defaults: {
     rows: [],
     plandate: '',
+    latestDay: '',
+    previousDay: '',
     actualDateRange: [],
     previousDateRange: []
   }
@@ -46,62 +48,19 @@ export class OrderBacklogState {
         }, {}));
         // Sort months in descending order (from newer to older)
         monthsAvailable.sort((a, b) => moment(b, 'YYYY-MM').valueOf() - moment(a, 'YYYY-MM').valueOf());
+        // Get latest day available
+        const latestDay = [ ...rows ].sort((a, b) => moment(b[BacklogColumns.Date], 'YYYY-MM-DD').valueOf() - moment(a[BacklogColumns.Date], 'YYYY-MM-DD').valueOf())[0][BacklogColumns.Date];
+        // Get previous day available
+        const previousDay = rows.filter(row => row[BacklogColumns.Date].substring(0, 7) === moment(latestDay, 'YYYY-MM-DD').subtract(1, 'months').format('YYYY-MM'))[0][BacklogColumns.Date];
         // Get months of current date range
         const actualDates = monthsAvailable.slice(0, 12);
         // Get months of previous date range
         const previousDates = monthsAvailable.slice(12, 24);
-        // Scramble data
-        /* const scramblers = [
-          {
-            column: BacklogColumns.ProductEnglish,
-            language: 'en',
-            value: 'commerce.productName()'
-          },
-          {
-            column: BacklogColumns.ProductDeutsch,
-            language: 'de',
-            value: 'commerce.productName()'
-          },
-          {
-            column: BacklogColumns.RegionEnglish,
-            language: 'en',
-            value: 'address.city()'
-          },
-          {
-            column: BacklogColumns.RegionDeutsch,
-            language: 'de',
-            value: 'address.city()'
-          }
-        ];
-        const fakerCopy = faker;
-        scramblers.forEach(scrambler => {
-          const column = scrambler.column;
-          faker.locale = scrambler.language;
-          Object.keys(data.rows.reduce((r, a) => {
-            r[a[column]] = r[a[column]] || [];
-            r[a[column]].push(a);
-            return r;
-          }, {}))
-          .map(product => ({ orig: product, scrambled: eval(`fakerCopy.${scrambler.value}`) }))
-          .forEach(t => {
-            data.rows = data.rows.map(row => {
-              if (row[column] === t.orig) {
-                row[column] = t.scrambled;
-              }
-              return row;
-            });
-          });
-        });
-        let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(JSON.stringify(data.rows));
-        let exportFileDefaultName = 'Backlog.json';
-        let linkElement = document.createElement('a');
-        linkElement.setAttribute('href', dataUri);
-        linkElement.setAttribute('download', exportFileDefaultName);
-        linkElement.click();
-        console.log(data.rows); */
         setState({
           rows: rows,
           plandate: this._api.reportDates.orderBacklog,
+          latestDay: latestDay,
+          previousDay: previousDay,
           actualDateRange: actualDates,
           previousDateRange: previousDates
         });
@@ -134,6 +93,15 @@ export class OrderBacklogState {
   @Selector()
   static GetPlanDate(ctx: ReportState) {
     return ctx.plandate;
+  }
+
+  // Get latest day
+  @Selector()
+  static GetLatestAndPreviousDay(ctx: ReportState) {
+    return {
+      latestDay: ctx.latestDay,
+      previousDay: ctx.previousDay
+    };
   }
 
 }

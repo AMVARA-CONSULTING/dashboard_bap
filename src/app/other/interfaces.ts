@@ -137,6 +137,13 @@ export interface ReportState {
     plandate: string;
     actualDateRange: string[];
     previousDateRange: string[];
+    latestDay: string;
+    previousDay: string;
+}
+
+export interface OrderBacklogDays {
+    latestDay: string;
+    previousDay: string;
 }
 
 export interface DateRanges {

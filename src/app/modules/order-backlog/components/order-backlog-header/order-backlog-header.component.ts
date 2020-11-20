@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { OrderBacklogDays } from '@other/interfaces';
 import { DataService } from '@services/data.service';
+import { OrderBacklogState } from '@store/order-backlog.state';
 
 @Component({
   selector: 'order-backlog-header',
@@ -9,8 +12,12 @@ import { DataService } from '@services/data.service';
 })
 export class OrderBacklogHeaderComponent {
 
+  @ViewSelectSnapshot(OrderBacklogState.GetLatestAndPreviousDay) days$ !: OrderBacklogDays;
+
   constructor(
     public _data: DataService
   ) { }
+
+  @Input() type: 'ranges' | 'day' = 'ranges';
 
 }

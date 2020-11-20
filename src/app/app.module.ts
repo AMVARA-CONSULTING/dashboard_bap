@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER, Injectable } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -100,6 +100,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatInputModule,
     MatButtonModule,
     SharedModule,
+    HammerModule,
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,

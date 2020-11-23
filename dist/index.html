@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DIP - Data Informations Platform</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+<link rel="stylesheet" href="styles.6c1b6206d65b84cfdd7a.css"></head>
+<body>
+  <dip-root>
+    <style>
+      html,
+      body {
+        overflow: hidden;
+        margin: auto;
+        background-color: #101010;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
+      }
+
+      body {
+        background-color: #101010;
+        font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
+      }
+
+      .amvaraLoading {
+        display: block;
+        position: fixed;
+        height: 500px;
+        width: 300px;
+        text-align: center;
+        font-size: 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 99;
+      }
+
+      .amvaraLoading:before {
+        content: "";
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(24, 24, 32, 0.92);
+      }
+
+      .amvaraLoadingLogo {
+        display: block;
+        position: relative;
+        height: 200px;
+        width: 200px;
+        margin: 0 auto;
+      }
+
+      .outside {
+        display: block;
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        background-image: url(assets/loading.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        animation-name: rotate;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      .title {
+        display: block;
+        position: absolute;
+        height: 343px;
+        width: 200px;
+        top: 40px;
+        margin: auto;
+        left: 0;
+        color: #d2d2d2;
+        margin-top: 200px;
+        font-size: 90pt;
+        right: 0;
+      }
+
+      .loadingTitle {
+        position: fixed;
+        bottom: 30px;
+        margin: auto;
+        width: 100%;
+        left: 0;
+        font-size: 11pt;
+        text-align: center;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <div class="amvaraLoading">
+      <div class="amvaraLoadingLogo">
+        <div class="outside"></div>
+        <div class="middle"></div>
+        <div class="inside"></div>
+        <div class="title">DIP</div>
+      </div>
+      <div class="loadingTitle">Data Informations Platform</div>
+    </div>
+  </dip-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script src="runtime-es2015.722b95fe030e1fa832a4.js" type="module"></script><script src="runtime-es5.722b95fe030e1fa832a4.js" nomodule defer></script><script src="polyfills-es5.0435b693ccb291b775fe.js" nomodule defer></script><script src="polyfills-es2015.d58a43462b8af4cec6db.js" type="module"></script><script src="main-es2015.9d61cff52c15e714976d.js" type="module"></script><script src="main-es5.9d61cff52c15e714976d.js" nomodule defer></script></body>
+
+</html>

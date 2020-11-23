@@ -4,9 +4,13 @@ import { ToolsService } from './tools.service';
 import { UserCapabilities, HeaderLink, Config } from '@other/interfaces';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { ConfigState } from '@store/config.state';
 
 @Injectable()
 export class CognosService {
+
+  @SelectSnapshot(ConfigState) config: Config;
 
   constructor(
     private http: HttpClient,
@@ -24,17 +28,17 @@ export class CognosService {
   userCapabilities: UserCapabilities;
 
   // Gets the available reports based on the user capabilities object
-  getLinksWithAccess(config: Config) {
+  getLinksWithAccess() {
     const links: HeaderLink[] = [
       { link: '/order-intake', text: 'order_intake' },
       { link: '/order-backlog', text: 'order_backlog'},
       { link: '/production-program', text: 'production_program' },
       { link: '/allocation', text: 'allocation' },
       { link: '/plant-stock', text: 'plant_stock' }
-    ].filter(link => config.enableReports[link.text]);
+    ].filter(link => this.config.enableReports[link.text]);
     if (location.hostname.indexOf('corpintra.net') > -1) {
-      const scenarioProperties = { ...this.userCapabilities[config.target] };
-      for (let prop in scenarioProperties) {
+      const scenarioProperties = { ...this.userCapabilities[this.config.target] };
+      for (const prop in scenarioProperties) {
         if (!scenarioProperties[prop]) delete scenarioProperties[prop]
       }
       const haveAccessTo = Object.keys(scenarioProperties);
@@ -99,14 +103,14 @@ export class CognosService {
           mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
           trucks: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()),
-            order_backlog: false,
+            order_backlog: true,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase())
           },
           vans: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()),
-            order_backlog: false,
+            order_backlog: true,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())

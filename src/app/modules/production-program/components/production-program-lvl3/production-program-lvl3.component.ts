@@ -13,8 +13,8 @@ import { ReportTypes } from '@other/interfaces';
   templateUrl: './production-program-lvl3.component.html',
   styleUrls: ['./production-program-lvl3.component.scss'],
   host: {
-    '(swiperight)': 'data.go("order-intake")',
-    '(swipeleft)': 'data.go("allocation")'
+    '(swiperight)': 'data.goFrom("production_program", $event)',
+    '(swipeleft)': 'data.goFrom("production_program", $event)'
   }
 })
 export class ProductionProgramLvl3Component {

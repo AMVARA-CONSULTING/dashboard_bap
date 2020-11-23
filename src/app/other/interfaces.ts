@@ -31,7 +31,7 @@ export interface IConfigReports {
 }
 
 export interface IConfigEnvironment {
-    dev: IReports<ReportInfo>;
+    int: IReports<ReportInfo>;
     prod: IReports<ReportInfo>;
     columns: IReports<any>;
 }

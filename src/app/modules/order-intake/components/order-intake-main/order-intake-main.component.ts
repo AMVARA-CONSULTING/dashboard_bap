@@ -22,8 +22,8 @@ import { ReportTypes } from '@other/interfaces';
     ])
   ],
   host: {
-    '(swiperight)': 'data.go("plant-stock")',
-    '(swipeleft)': 'data.go("order-backlog")'
+    '(swiperight)': 'data.goFrom("order_intake", $event)',
+    '(swipeleft)': 'data.goFrom("order_intake", $event)'
   }
 })
 export class OrderIntakeMainComponent implements OnInit {

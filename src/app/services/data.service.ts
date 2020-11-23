@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { CognosService } from './cognos.service';
 
 @Injectable()
 export class DataService {
@@ -21,13 +22,39 @@ export class DataService {
     private connection: ConnectionService,
     private router: Router,
     private ac: ActivatedRoute,
+    private _cognos: CognosService,
     private _breakpoints: BreakpointObserver
   ) {
     (window as any).data = this;
   }
 
-  go(page): void {
-    this.router.navigate(['/' + page], { queryParamsHandling: 'merge' })
+  // Handle swipe page change using origin page
+  goFrom(fromPage: string, swipeAction: any): void {
+    // Get available links
+    const links = [
+      ...this._cognos.getLinksWithAccess(),
+      { link: '/about', text: 'about' },
+      { link: '/help', text: 'help' }
+    ];
+    // Find current page link
+    const currentPageIndex = links.findIndex(link => link.text === fromPage);
+    let link;
+    if (swipeAction.type === 'swipeleft') {
+      // Go to next report
+      if (currentPageIndex === links.length - 1) {
+        link = links[0];
+      } else {
+        link = links[currentPageIndex + 1];
+      }
+    } else {
+      // Go to previous report
+      if (currentPageIndex === 0) {
+        link = links[links.length - 1];
+      } else {
+        link = links[currentPageIndex - 1];
+      }
+    }
+    this.router.navigate([link.link], { queryParamsHandling: 'merge' });
   }
 
   init() {

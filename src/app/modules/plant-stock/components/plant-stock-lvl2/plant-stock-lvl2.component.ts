@@ -13,8 +13,8 @@ import { ReportTypes } from '@other/interfaces';
   templateUrl: './plant-stock-lvl2.component.html',
   styleUrls: ['./plant-stock-lvl2.component.scss'],
   host: {
-    '(swiperight)': 'data.go("allocation")',
-    '(swipeleft)': 'data.go("order-intake")'
+    '(swiperight)': 'data.goFrom("plant_stock", $event)',
+    '(swipeleft)': 'data.goFrom("plant_stock", $event)'
   }
 })
 export class PlantStockLvl2Component {

@@ -31,8 +31,8 @@ import { ReportTypes } from '@other/interfaces';
     ])
   ],
   host: {
-    '(swiperight)': 'data.go("order-backlog")',
-    '(swipeleft)': 'data.go("allocation")'
+    '(swiperight)': 'data.goFrom("production_program", $event)',
+    '(swipeleft)': 'data.goFrom("production_program", $event)'
   }
 })
 export class ProductionProgramMainComponent implements OnInit {

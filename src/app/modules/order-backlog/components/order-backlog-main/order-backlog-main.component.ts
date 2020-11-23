@@ -23,8 +23,8 @@ import { DataService } from '@services/data.service';
     ])
   ],
   host: {
-    '(swiperight)': '_data.go("order-intake")',
-    '(swipeleft)': '_data.go("production-program")'
+    '(swiperight)': '_data.goFrom("order_backlog", $event)',
+    '(swipeleft)': '_data.goFrom("order_backlog", $event)'
   }
 })
 export class OrderBacklogMainComponent {

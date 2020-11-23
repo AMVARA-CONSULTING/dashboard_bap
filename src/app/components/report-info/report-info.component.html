@@ -4,9 +4,9 @@
     <span class="prop">ReportName:</span> <span class="val">{{ name | async }}</span>
   </div>
   <div class="id">
-    <span class="prop">ID:</span> <span class="val">{{ id }}</span>
+    <span class="prop">ID:</span> <span class="val">{{ id | async }}</span>
   </div>
   <div class="date">
-    <span class="prop">Date:</span> <span class="val">{{ date }} {{ hour }}</span>
+    <span class="prop">Date:</span> <span class="val">{{ date | async }} {{ hour | async }}</span>
   </div>
 </div>

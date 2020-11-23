@@ -16,8 +16,8 @@ import { ConfigActions } from '@store/config.state';
   styleUrls: ['./about.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '(swiperight)': 'data.go("plant-stock")',
-    '(swipeleft)': 'data.go("help")'
+    '(swiperight)': 'data.goFrom("about", $event)',
+    '(swipeleft)': 'data.goFrom("about", $event)'
   }
 })
 export class AboutComponent implements OnInit {
@@ -56,9 +56,10 @@ export class AboutComponent implements OnInit {
       { title: 'Order Intake', type: 'orderIntake' },
       { title: 'Production program', type: 'productionProgram' },
       { title: 'Allocation', type: 'allocation' },
-      { title: 'Plant stock', type: 'plantStock' }
+      { title: 'Plant stock', type: 'plantStock' },
+      { title: 'Order Backlog', type: 'orderBacklog' }
     ];
-    const availableLinks = this._cognos.getLinksWithAccess(this.config.config).map(link => link.text);
+    const availableLinks = this._cognos.getLinksWithAccess().map(link => link.text);
     if (this.config.config.debug) {
       console.log(availableLinks);
     }

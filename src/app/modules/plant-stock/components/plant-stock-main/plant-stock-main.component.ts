@@ -22,8 +22,8 @@ import { ReportTypes } from '@other/interfaces';
     ]),
   ],
   host: {
-    '(swiperight)': 'data.go("allocation")',
-    '(swipeleft)': 'data.go("order-intake")'
+    '(swiperight)': 'data.goFrom("plant_stock", $event)',
+    '(swipeleft)': 'data.goFrom("plant_stock", $event)'
   }
 })
 export class PlantStockMainComponent {

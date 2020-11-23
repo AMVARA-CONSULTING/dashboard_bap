@@ -67,6 +67,23 @@ export class ToolsService {
     return data;
   }
 
+  csvToJsonNamed(data): any {
+    const rows = [];
+    const lines: any[] = data.split('\n');
+    const headers = lines.shift().split(';').map(el => el.trim());
+    lines.forEach(line => {
+      if (line.length > 0) {
+        const newRow = {};
+        line.split(';').forEach((element, index) => {
+          newRow[headers[index]] = element.trim();
+        });
+        rows.push(newRow);
+      }
+    });
+    return rows;
+  }
+
+
   getPlanDate(text: string, moment, config: ConfigService, firstMonth?: boolean): string {
     firstMonth = firstMonth || false;
     if (firstMonth) {

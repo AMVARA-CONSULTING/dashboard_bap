@@ -37,9 +37,14 @@ export class AppComponent implements OnInit {
     if (this.api.corpintra || location.hostname === 'localhost') {
       // Heartbeat
       const pathname = location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/';
-      this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ =>
-        this.http.get(pathname + 'assets/keep.alive.txt', { observe: 'response', responseType: 'text' }).pipe(retry(3))
-          .subscribe()
+      this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ => {
+        const cacheBurst = (new Date()).getTime();
+        this.http.get(pathname + `assets/keep.alive.txt?=${cacheBurst}`, {
+          observe: 'response', responseType: 'text'
+        }).pipe(
+          retry(3)
+        ).subscribe();
+        }
       );
     }
     this._location.onPopState(() => {
@@ -51,7 +56,7 @@ export class AppComponent implements OnInit {
     this.translate.setDefaultLang('en');
     this.translate.use(localStorage.getItem('lang') || config.config.language);
     // If going to a report, check it has access, and if not, redirect to another one with access
-    const links = this._cognos.getLinksWithAccess({ ...this.config.config });
+    const links = this._cognos.getLinksWithAccess();
     this.reports.next(links);
     if (!location.hash.includes('help') && !location.hash.includes('about')) {
       if (links.length > 0) {

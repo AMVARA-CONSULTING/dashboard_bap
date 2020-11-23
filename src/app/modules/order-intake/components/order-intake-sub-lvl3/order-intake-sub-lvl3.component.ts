@@ -13,8 +13,8 @@ import { ReportTypes } from '@other/interfaces';
   templateUrl: './order-intake-sub-lvl3.component.html',
   styleUrls: ['./order-intake-sub-lvl3.component.scss'],
   host: {
-    '(swiperight)': 'data.go("plant-stock")',
-    '(swipeleft)': 'data.go("production-program")'
+    '(swiperight)': 'data.goFrom("order_intake", $event)',
+    '(swipeleft)': 'data.goFrom("order_intake", $event)'
   }
 })
 export class OrderIntakeSubLvl3Component {

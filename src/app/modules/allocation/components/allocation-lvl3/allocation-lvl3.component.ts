@@ -28,8 +28,8 @@ import { ConfigActions } from '@store/config.state';
     ])
   ],
   host: {
-    '(swiperight)': 'data.go("production-program")',
-    '(swipeleft)': 'data.go("plant-stock")'
+    '(swiperight)': 'data.goFrom("allocation", $event)',
+    '(swipeleft)': 'data.goFrom("allocation", $event)'
   }
 })
 export class AllocationLvl3Component {

@@ -128,7 +128,11 @@ export class ApiService {
               rows = this.tools.htmlToJson(response.body, `[lid=${reportInfo.selector}] tr`);
               break;
             case 'application/csv':
-              rows = this.tools.csvToJson(response.body, columns);
+              if (reportKey === ReportTypes.OrderBacklog) {
+                rows = this.tools.csvToJsonNamed(response.body);
+              } else {
+                rows = this.tools.csvToJson(response.body, columns);
+              }
               break;
             default:
           }

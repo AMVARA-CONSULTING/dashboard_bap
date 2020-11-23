@@ -22,7 +22,7 @@ export class HeaderComponent {
     private _cognos: CognosService
   ) {
     // Load available links for the header, only those will be visible
-    const links = this._cognos.getLinksWithAccess({ ...this.config.config });
+    const links = this._cognos.getLinksWithAccess();
     this.reports = links;
     const lightThemeStorage = localStorage.getItem('light_theme');
     if (lightThemeStorage === 'yes') {

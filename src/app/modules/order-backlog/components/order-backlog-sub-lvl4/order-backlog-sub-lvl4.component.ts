@@ -19,8 +19,8 @@ import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlo
   styleUrls: ['./order-backlog-sub-lvl4.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '(swiperight)': 'data.go("plant-stock")',
-    '(swipeleft)': 'data.go("production-program")'
+    '(swiperight)': 'data.goFrom("order_backlog", $event)',
+    '(swipeleft)': 'data.goFrom("order_backlog", $event)'
   }
 })
 export class OrderBacklogSubLvl4Component {

@@ -16,22 +16,18 @@ export class CapabilityAccess implements CanLoad {
   canLoad(route: Route, segments: UrlSegment[]): boolean {
     if (this._config.config.debug) console.log(route.path)
     if (location.hostname.indexOf('corpintra.net') > -1) {
-        const currentRoute = route.path
-        const target = this._config.config.target
+        const currentRoute = route.path.replace(/\-/, '_');
+        const target = this._config.config.target;
         if (this._config.config.debug) console.log('Target:', target)
         if (this._config.config.debug) console.log('Conf:', this._cognos.userCapabilities[target])
-        let access = false
-        switch (currentRoute) {
-            case 'order-intake': access = this._cognos.userCapabilities[target].order_intake; break;
-            case 'production-program': access = this._cognos.userCapabilities[target].production_program; break;
-            case 'allocation': access = this._cognos.userCapabilities[target].allocation; break;
-            case 'plant-stock': access = this._cognos.userCapabilities[target].plant_stock; break;
-            default: access = false
-        }
-        if (this._config.config.debug)  console.log('Decision:', access)
-        return access
+        let access = false;
+        try {
+          access = this._cognos.userCapabilities[target][currentRoute];
+        } catch (err) { }
+        if (this._config.config.debug) console.log('Decision:', access)
+        return access;
     } else {
-        return true
+        return true;
     }
   }
 }

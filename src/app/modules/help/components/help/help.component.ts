@@ -8,8 +8,8 @@ import { DataService } from '@services/data.service';
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.scss'],
   host: {
-    '(swiperight)': 'data.go("about")',
-    '(swipeleft)': 'data.go("order-intake")'
+    '(swiperight)': 'data.goFrom("help", $event)',
+    '(swipeleft)': 'data.goFrom("help", $event)'
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })

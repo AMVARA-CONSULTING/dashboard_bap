@@ -13,10 +13,10 @@ import { ReportTypes } from '@other/interfaces';
 })
 export class ReportInfoComponent implements OnChanges {
 
-  date = '';
-  id = '';
+  date = new BehaviorSubject<string>('');
+  id = new BehaviorSubject<string>('');
   name = new BehaviorSubject<string>('x');
-  hour = '';
+  hour = new BehaviorSubject<string>('');
 
   constructor(
     private config: ConfigService,
@@ -28,9 +28,12 @@ export class ReportInfoComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const type = changes.type.currentValue;
-    this.id = this.config.config.reports[this.config.config.target][this.config.config.scenario][type];
+    this.id.next(this.config.config.reports[this.config.config.target][this.config.config.scenario][type].id);
     if (this.api.reportDates[type].length === 0) {
       switch (type) {
+        case 'orderBacklog':
+          this.api.getSavedReportData(ReportTypes.OrderBacklog).subscribe(_ => this.rollup(type));
+          break;
         case 'orderIntake':
           this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(_ => this.rollup(type));
           break;
@@ -50,11 +53,12 @@ export class ReportInfoComponent implements OnChanges {
   }
 
   rollup(type: string): void {
-    this.date = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('DD/MM/YYYY')
-    this.hour = moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm');
-    const scenarios = ['dev', 'prod'];
+    this.date.next(moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('DD/MM/YYYY'));
+    this.hour.next(moment(this.api.reportDates[type], 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('HH:mm'));
+    const scenarios = ['int', 'prod'];
     const targets = ['trucks', 'vans'];
     const ids = {
+      orderBacklog: [],
       orderIntake: [],
       allocation: [],
       plantStock: [],
@@ -67,21 +71,23 @@ export class ReportInfoComponent implements OnChanges {
       for (const target of targets) {
         // tslint:disable-next-line: forin
         for (const scenario of scenarios) {
-          if (this.config.config.reports[target][scenario][key]) {
-            ids[key].push(this.config.config.reports[target][scenario][key]);
+          if (this.config.config.reports[target][scenario][key].id) {
+            ids[key].push(this.config.config.reports[target][scenario][key].id);
           }
         }
       }
     }
     // Check Order Intake
     // tslint:disable-next-line: curly
-    if (ids.orderIntake.includes(this.id)) this.name.next('MobileCockpit_V2_14.3_dev');
+    if (ids.orderIntake.includes(this.id.getValue())) this.name.next('MobileCockpit_V2_14.3_dev');
     // tslint:disable-next-line: curly
-    if (ids.productionProgram.includes(this.id)) this.name.next('Planning_Truck');
+    if (ids.productionProgram.includes(this.id.getValue())) this.name.next('Planning_Truck');
     // tslint:disable-next-line: curly
-    if (ids.allocation.includes(this.id)) this.name.next('Allocation_Truck');
+    if (ids.allocation.includes(this.id.getValue())) this.name.next('Allocation_Truck');
     // tslint:disable-next-line: curly
-    if (ids.plantStock.includes(this.id)) this.name.next('Plant_Stock_Truck');
+    if (ids.plantStock.includes(this.id.getValue())) this.name.next('Plant_Stock_Truck');
+    // tslint:disable-next-line: curly
+    if (ids.orderBacklog.includes(this.id.getValue())) this.name.next('Order_Backlog_Truck');
   }
 
 }

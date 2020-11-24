@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToolsService } from './tools.service';
 import { UserCapabilities, HeaderLink, Config } from '@other/interfaces';
 import { catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
 
@@ -25,7 +25,7 @@ export class CognosService {
     if (parts.length == 2) return parts.pop().split(';').shift()
   }
 
-  userCapabilities: UserCapabilities;
+  userCapabilities = new BehaviorSubject<UserCapabilities>(null);
 
   // Gets the available reports based on the user capabilities object
   getLinksWithAccess() {
@@ -37,7 +37,7 @@ export class CognosService {
       { link: '/plant-stock', text: 'plant_stock' }
     ].filter(link => this.config.enableReports[link.text]);
     if (location.hostname.indexOf('corpintra.net') > -1) {
-      const scenarioProperties = { ...this.userCapabilities[this.config.target] };
+      const scenarioProperties = { ...this.userCapabilities.getValue()[this.config.target] };
       for (const prop in scenarioProperties) {
         if (!scenarioProperties[prop]) delete scenarioProperties[prop]
       }
@@ -97,8 +97,7 @@ export class CognosService {
           }
           return r;
         }, []);
-        if (config.debug) console.log(rows)
-        this.userCapabilities = {
+        this.userCapabilities.next({
           admin: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Admins'.toLowerCase()),
           mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
           trucks: {
@@ -115,8 +114,8 @@ export class CognosService {
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())
           }
-        }
-        if (config.debug) console.log(this.userCapabilities)
+        });
+        if (config.debug && this.userCapabilities.getValue().admin) console.log(this.userCapabilities.getValue())
         if (iframe) iframe.remove()
         if (app) app.style.display = '';
         return resolve();

@@ -19,10 +19,10 @@ export class CapabilityAccess implements CanLoad {
         const currentRoute = route.path.replace(/\-/, '_');
         const target = this._config.config.target;
         if (this._config.config.debug) console.log('Target:', target)
-        if (this._config.config.debug) console.log('Conf:', this._cognos.userCapabilities[target])
+        if (this._config.config.debug && this._cognos.userCapabilities.getValue().admin) console.log('Conf:', this._cognos.userCapabilities.getValue()[target])
         let access = false;
         try {
-          access = this._cognos.userCapabilities[target][currentRoute];
+          access = this._cognos.userCapabilities.getValue()[target][currentRoute];
         } catch (err) { }
         if (this._config.config.debug) console.log('Decision:', access)
         return access;

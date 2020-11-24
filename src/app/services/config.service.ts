@@ -41,9 +41,6 @@ export class ConfigService {
         search.delay = search.delay ? search.delay * 1000 : null;
         config.language = localStorage.getItem('lang') as ILanguage || config.language;
         // config.corpintra = corpintra;
-        if (config.debug) {
-          console.log(config);
-        }
         if (corpintra) {
           this.cognos.load(config.capabilities[config.scenario], { ...config }).then(_ => {
             setTimeout(() => resolve(), search.delay || config.delay);

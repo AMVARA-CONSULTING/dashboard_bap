@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +23,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatExpansionModule,
-    NgxJsonViewerModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,

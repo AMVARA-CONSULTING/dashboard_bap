@@ -1,5 +1,5 @@
 {
-	"version": "2.60.0",
+	"version": "2.61.0",
 	"debug": false,
 	"loading": true,
 	"language": "en",
@@ -247,6 +247,13 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.61.0",
+		  "text": [
+			"#2707 - Show technnical information in correct order",
+			"#2707 - Hide sensitive data to non admin users"
+		  ]
+		},
 		{
 		  "version": "2.60.0",
 		  "text": [

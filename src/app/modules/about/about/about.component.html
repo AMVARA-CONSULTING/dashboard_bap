@@ -51,7 +51,6 @@
         <li>@ngx-translate {{ ngx_translateVersion }}: <a href="https://github.com/ngx-translate/core/blob/master/LICENSE" target="_blank">MIT License</a></li>
         <li>angular-svg-round-progressbar {{ progressVersion }}: <a href="https://github.com/crisbeto/angular-svg-round-progressbar/blob/master/LICENSE" target="_blank">MIT License</a></li>
         <li>ng-connection-service {{ connectionVersion }}: <a href="https://github.com/ultrasonicsoft/ng-connection-service/blob/master/LICENSE" target="_blank">MIT License</a></li>
-        <li>ngx-json-viewer {{ jsonViewerVersion }}: <a href="https://github.com/hivivo/ngx-json-viewer/blob/master/LICENSE" target="_blank">MIT License</a></li>
       </ul>
     </div>
   </mat-expansion-panel>
@@ -63,8 +62,9 @@
     </mat-expansion-panel-header>
     Service Worker Status: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
     <report-info *ngFor="let report of reportInfos | async" [title]="report.title" [type]="report.type"></report-info>
-    <p style="cursor: pointer;" (click)="showConfig = !showConfig"><span>Show actual config</span></p>
-    <ngx-json-viewer *ngIf="showConfig" [json]="config.config" [expanded]="false"></ngx-json-viewer>
+    <div *ngIf="(_cognos.userCapabilities | async )?.admin">
+      <b>Hint:</b> Press Alt + F11 everywhere to show current config in the Browser Console.
+    </div>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@services/config.service';
@@ -10,6 +10,7 @@ import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
 import { BehaviorSubject, interval, timer } from 'rxjs';
 import { retry, tap } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'dip-root',
@@ -21,6 +22,15 @@ export class AppComponent implements OnInit {
   preventUpdate = false;
   reports = new BehaviorSubject<HeaderLink[]>([]);
 
+  // Log current NGXS State when pressing Alt + F11, everywhere
+  @HostListener('document:keydown.Alt.F11')
+  showState() {
+    if (this._cognos.userCapabilities.getValue().admin) {
+      console.log(this._store.snapshot());
+    }
+  }
+
+
   constructor(
     public data: DataService,
     private translate: TranslateService,
@@ -29,7 +39,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private api: ApiService,
     private http: HttpClient,
-    private _cognos: CognosService
+    private _cognos: CognosService,
+    private _store: Store
   ) {
     if (this.config.config.simulateUnauthorized > 0) {
       timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);

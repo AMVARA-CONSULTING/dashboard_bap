@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit {
     private snack: MatSnackBar,
     private data: DataService,
     private _tools: ToolsService,
-    private _cognos: CognosService,
+    public _cognos: CognosService,
     private _store: Store
   ) {
     this.data.currentLevel = 1;
@@ -38,10 +38,8 @@ export class AboutComponent implements OnInit {
     this.ngx_translateVersion = this._tools.formatVersion(dependencies['@ngx-translate/core']);
     this.progressVersion = this._tools.formatVersion(dependencies['angular-svg-round-progressbar']);
     this.connectionVersion = this._tools.formatVersion(dependencies['ng-connection-service']);
-    this.jsonViewerVersion = this._tools.formatVersion(dependencies['ngx-json-viewer']);
   }
 
-  jsonViewerVersion;
   connectionVersion;
   progressVersion;
   ngx_translateVersion;
@@ -54,19 +52,19 @@ export class AboutComponent implements OnInit {
     // Only show available reports info, this prevents the user from seeing things it shouldn't see
     let reportInfos: ReportInfo[] = [
       { title: 'Order Intake', type: 'orderIntake' },
+      { title: 'Order Backlog', type: 'orderBacklog' },
       { title: 'Production program', type: 'productionProgram' },
       { title: 'Allocation', type: 'allocation' },
-      { title: 'Plant stock', type: 'plantStock' },
-      { title: 'Order Backlog', type: 'orderBacklog' }
+      { title: 'Plant stock', type: 'plantStock' }
     ];
     const availableLinks = this._cognos.getLinksWithAccess().map(link => link.text);
     if (this.config.config.debug) {
-      console.log(availableLinks);
+      console.log('Available links:', availableLinks);
     }
     reportInfos = reportInfos.filter(report => availableLinks.indexOf(report.title.toLowerCase().replace(/\ /g, '_')) > -1);
     this.reportInfos.next(reportInfos);
     if (this.config.config.debug) {
-      console.log(reportInfos);
+      console.log('Available reports:', reportInfos);
     }
   }
 
@@ -81,8 +79,6 @@ export class AboutComponent implements OnInit {
     this.translate.reloadLang(this.config.config.language);
     this.snack.open('Language reloaded successfully!', 'OK', { duration: 3000 });
   }
-
-  showConfig = false;
 
   reportInfos = new BehaviorSubject<ReportInfo[]>([]);
 

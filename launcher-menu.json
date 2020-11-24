@@ -8,12 +8,22 @@
       "INT": {
         "description": "target",
         "TRUCKS": "buildAndDeploy:int:trucks",
-        "VANS": "buildAndDeploy:int:vans"
+        "VANS": "buildAndDeploy:int:vans",
+        "BOTH": [
+          "build-cognos",
+          "deploy:int:trucks",
+          "deploy:int:vans"
+        ]
       },
       "PROD": {
         "description": "target",
         "TRUCKS": "buildAndDeploy:prod:trucks",
-        "VANS": "buildAndDeploy:prod:vans"
+        "VANS": "buildAndDeploy:prod:vans",
+        "BOTH": [
+          "build-cognos",
+          "deploy:prod:trucks",
+          "deploy:prod:vans"
+        ]
       }
     },
     "Deploy": {
@@ -21,12 +31,20 @@
       "INT": {
         "description": "target",
         "TRUCKS": "deploy:int:trucks",
-        "VANS": "deploy:int:vans"
+        "VANS": "deploy:int:vans",
+        "BOTH": [
+          "deploy:int:trucks",
+          "deploy:int:vans"
+        ]
       },
       "PROD": {
         "description": "target",
         "TRUCKS": "deploy:prod:trucks",
-        "VANS": "deploy:prod:vans"
+        "VANS": "deploy:prod:vans",
+        "BOTH": [
+          "deploy:prod:trucks",
+          "deploy:prod:vans"
+        ]
       }
     }
   }

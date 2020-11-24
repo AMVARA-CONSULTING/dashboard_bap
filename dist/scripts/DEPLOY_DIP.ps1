@@ -58,6 +58,11 @@ function Sure {
     return $input -eq "y"
 }
 
+# Set path to script folder
+$scriptPath = $MyInvocation.MyCommand.Path
+$dir = Split-Path $scriptPath
+cd $dir
+
 # Backup files
 
 cd ..
@@ -82,20 +87,22 @@ Write-Host "Selected target: $target"
 
 if ($sure -eq $False) {
     if ( (!(Sure)) ) {
+        cd ..
         exit
     }
 }
 
 # Make backup of destiny files
 
-echo "Making backup..."
 $baseFolder = "\\sedcspi1001f.emea.isn.corpintra.net\eedc_o00030\ibiss-isn-shared-$env\shared-internal\webcontent\DIPRE\"
 if (Test-Path $baseFolder) {
     Write-Host "Destiny network folder is accessible"
 } else {
     Write-Host "Destiny network folder is not accessible, exiting..."
+    cd ..
     exit
 }
+Write-Host "Making backup..."
 $subfolder = ""
 if ( $env -eq "int" ) {
     if ( $target -eq "trucks" ) {
@@ -118,15 +125,18 @@ Copy-Item $destiny"assets" -Recurse -Destination $backupsFolder$time"\assets" -E
 
 # Copy files to destiny
 
-echo "Copying new files..."
+echo "Removing destiny files..."
 # Remove main files of destiny folder except for more.html
 Get-ChildItem $destiny"*.*" -exclude more.html | Where { ! $_.PSIsContainer } | remove-item -ErrorAction SilentlyContinue
 # Remove assets folder of destiny folder
 Remove-Item $destiny"assets" -Force -Recurse -ErrorAction SilentlyContinue
 
+echo "Copying new files..."
 # Create assets folder in destiny
 Start-Sleep -s 2
 $null = New-Item -ItemType directory -Path $destiny"assets"
+# Rename index.cognos.html to index.html
+Rename-Item -Path index.cognos.html -NewName index.html
 # Copy all files to destiny, including assets folder
 Copy-item -Force -Recurse -Path "*" -Destination $destiny
 # Copy-item more.html -Destination $destiny

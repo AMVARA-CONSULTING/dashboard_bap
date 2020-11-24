@@ -1,5 +1,5 @@
 {
-	"version": "2.62.0",
+	"version": "2.63.0",
 	"debug": false,
 	"loading": true,
 	"language": "en",
@@ -247,6 +247,13 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.63.0",
+		  "text": [
+			"#2694 - Remove humanized numbers of Order Backlog",
+			"Improve npm scripts"
+		  ]
+		},
 		{
 		  "version": "2.62.0",
 		  "text": [

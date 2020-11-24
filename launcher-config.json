@@ -10,21 +10,14 @@
     "build-cognos": [
       "npx json -I -f .//angular.json -e \"this.projects.dip.architect.build.options.index='src/index.cognos.html'\"",
       "npx ng build --prod --aot",
-      "dist",
-      "rename index.cognos.html index.html",
-      "..",
       "npx json -I -f ./angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\""
     ],
     "buildAndDeploy:$env:$target": [
       "build-cognos",
-      "dist/scripts",
-      "deploy:$env:$target",
-      "../.."
+      "deploy:$env:$target"
     ],
     "deploy:$env:$target": [
-      "dist/scripts",
-      "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./DEPLOY_DIP.ps1 -env $env -target $target -sure",
-      "../.."
+      "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./dist/scripts/DEPLOY_DIP.ps1 -env $env -target $target -sure"
     ]
   }
 }

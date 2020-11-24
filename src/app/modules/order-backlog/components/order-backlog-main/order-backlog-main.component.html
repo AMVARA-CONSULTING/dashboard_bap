@@ -17,7 +17,7 @@
           <ng-container *ngLet="zone.value | filterDay:'previous' | sumQuantity as previousValue">
             <div class="actual" [innerHTML]="currentValue | toNumber"></div>
             <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -36,7 +36,7 @@
           <ng-container *ngLet="zone.value | filterDay:'previous' | sumQuantity as previousValue">
             <div class="actual" [innerHTML]="currentValue | toNumber"></div>
             <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -49,7 +49,7 @@
           <ng-container *ngLet="plant.value | filterDay:'previous' | sumQuantity as previousValue">
             <div class="actual" [innerHTML]="currentValue | toNumber"></div>
             <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-            <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
           </ng-container>
         </ng-container>
       </div>

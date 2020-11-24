@@ -22,7 +22,7 @@
               <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
                 <div class="actual" [innerHTML]="currentValue | toNumber"></div>
                 <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-                <div class="delta" [innerHTML]="previousValue | difference:currentValue | async"></div>
+                <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
               </ng-container>
             </ng-container>
           </div>
@@ -41,7 +41,7 @@
                     <ng-container *ngLet="month.key | previousMonth:previousYearMonths | sumQuantity as previousValue">
                       <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
                       <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
-                      <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
+                      <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
                     </ng-container>
                   </ng-container>
                 </div>

@@ -19,7 +19,7 @@
             <div class="actual" [innerHTML]="currentValue | toNumber"></div>
             <ng-container *ngLet="plantOrZoneRows | filterYear:'previous' | sumQuantity as previousValue">
               <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
+              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
             </ng-container>
           </ng-container>
         </div>
@@ -36,7 +36,7 @@
                 <div class="actual" [innerHTML]="currentValue | toNumber"></div>
                 <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
                   <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
+                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
                 </ng-container>
               </ng-container>
             </div>
@@ -58,7 +58,7 @@
             <div class="actual" [innerHTML]="currentValue | toNumber"></div>
             <ng-container *ngLet="previousRows | sumQuantity as previousValue">
               <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
+              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
             </ng-container>
           </ng-container>
         </div>
@@ -85,7 +85,7 @@
                 <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
                   <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
                     <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
-                    <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
+                    <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
                   </ng-container>
                 </ng-container>
               </ng-container>

@@ -253,7 +253,8 @@
 			"#2713 - Change server status text",
 			"#2709 - Merge heartbeat with new version detection",
 			"#2712 - Fix incorrect previous and delta values in Order Backlog Lvl 4",
-			"#2710 - Improved deploy script with command line parameters"
+			"#2710 - Improved deploy script with command line parameters",
+			"#2696 - Update barcharts to new gradient style"
 		  ]
 		},
 		{

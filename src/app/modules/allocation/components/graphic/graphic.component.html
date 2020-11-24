@@ -1,8 +1,8 @@
-<div [ngClass]="{'no-animation': disableAnimations}" (click)="goMonth(month.month)" *ngFor="let month of months; trackBy: getIndex;"
+<div (click)="goMonth(month.month)" *ngFor="let month of months; trackBy: getIndex;"
   [style.width.%]="width" class="month">
-  <div class="program" matTooltipPosition="above" matTooltipClass="program" [matTooltip]="month.program | toNumber"
-    [ngClass]="{zero: !ready}" [style.height.%]="(month.program * 100 / maxNumber) || 1">
+  <div class="program" [ngClass]="{zero: !ready}" [style.height.%]="(month.program * 100 / maxNumber) || 1">
     <div style="position:relative;width:100%;height:100%;">
+      <div class="value" *ngIf="!(_data.mobile$ | async)">{{ month.program | toNumber }}</div>
       <div matTooltipPosition="above" matTooltipClass="allocation" [matTooltip]="month.allocation | toNumber" class="allocation"
         [ngClass]="{zero: !ready}" [style.height.%]="month.allocation * 100 / month.program"></div>
     </div>

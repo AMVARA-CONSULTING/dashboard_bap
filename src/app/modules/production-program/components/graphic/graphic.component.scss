@@ -44,7 +44,13 @@
             border-radius: 3px;
             width: calc(50% - 2px);
             transition: height .7s ease-in-out;
-            background-color: $cyan-text-material;
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba($cyan-text, .5));
+            border-top: 3px solid $cyan-text;
+            text-align: center;
+            color: rgba(white, .7);
+            text-shadow: 0 0 3px black;
+            padding-top: 5px;
+            font-size: 15px;
             &.zero {
                 height: 0% !important;
             }
@@ -56,7 +62,17 @@
             border-radius: 3px;
             width: calc(50% - 2px);
             transition: height .7s ease-in-out;
-            background-color: $yellow-text-material;
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba($yellow-text, .5));
+            border-top: 3px solid $yellow-text;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                font-size: 15px;
+                color: rgba($yellow-text, .9);
+                text-shadow: 0 0 3px black;
+            }
             &.zero {
                 height: 0% !important;
             }
@@ -68,7 +84,13 @@
             border-radius: 3px;
             width: calc(50% - 5px);
             transition: height .7s ease-in-out;
-            background-color: rgba($semi-white, .5);
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba($semi-white, .5));
+            border-top: 3px solid $semi-white;
+            text-align: center;
+            color: rgba(white, .7);
+            text-shadow: 0 0 3px black;
+            padding-top: 5px;
+            font-size: 15px;
             &.zero {
                 height: 0% !important;
             }
@@ -95,13 +117,29 @@
         .zone {
             .bars {
                 .actual {
-                    background-color: $petrol !important;
+                    background: linear-gradient(to top, rgba(0,0,0,0), rgba($petrol, .6)) !important;
+                    .value {
+                        color: rgba(black, .6) !important;
+                        text-shadow: 0 0 3px white !important;
+                    }
+                    font-weight: bold;
+                    border-top-color: $petrol !important;
                 }
                 .previous {
-                    background-color: $orange !important;
+                    background: linear-gradient(to top, rgba(0,0,0,0), rgba($orange, .6)) !important;
+                    .value {
+                        color: rgba(black, .6) !important;
+                        text-shadow: 0 0 3px white !important;
+                    }
+                    font-weight: bold;
+                    border-top-color: $orange !important;
                 }
                 .reserve {
-                    background-color: grey !important;
+                    background: linear-gradient(to top, rgba(0,0,0,0), rgba(grey, .6)) !important;
+                    color: rgba(black, .6) !important;
+                    text-shadow: 0 0 3px white !important;
+                    font-weight: bold;
+                    border-top-color: grey !important;
                 }
             }
             .title {

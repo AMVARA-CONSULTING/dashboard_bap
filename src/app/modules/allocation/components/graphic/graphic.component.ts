@@ -1,3 +1,4 @@
+import { DataService } from './../../../../services/data.service';
 import { Component, Input } from '@angular/core';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,6 +23,7 @@ import * as moment from 'moment';
 export class GraphicComponent {
 
   constructor(
+    public _data: DataService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {

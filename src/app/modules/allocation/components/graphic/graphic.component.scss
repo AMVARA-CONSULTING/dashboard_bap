@@ -60,7 +60,8 @@
         border-radius: 3px;
         transition: all .3s ease-in-out;
         width: 100%;
-        background-color: lighten($cyan-text-material, 10);
+        background: linear-gradient(to top, rgba(0,0,0,0), rgba($cyan-text, .5));
+        border-top: 3px solid $cyan-text;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -75,12 +76,23 @@
         border-radius: 3px;
         transition: all .3s ease-in-out;
         width: calc(100% - 20px);
-        background-color: $yellow-text-material;
+        background: linear-gradient(to top, rgba(0,0,0,0), rgba($yellow-text, .5));
+        border-top: 3px solid $yellow-text;
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         margin: auto;
+        text-align: center;
+        .value {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: -25px;
+            color: rgba($yellow-text, .9);
+            text-shadow: 0 0 3px black;
+            font-size: 15px;
+        }
     }
 }
 
@@ -103,10 +115,17 @@
         }
         .month {
             .allocation {
-                background-color: $petrol !important;
+                background: linear-gradient(to top, rgba(0,0,0,0), rgba($petrol, .6)) !important;
+                border-top-color: $petrol !important;
             }
             .program {
-                background-color: $orange !important;
+                background: linear-gradient(to top, rgba(0,0,0,0), rgba($orange, .6)) !important;
+                .value {
+                    color: rgba(black, .6) !important;
+                    text-shadow: 0 0 3px white !important;
+                }
+                font-weight: bold;
+                border-top-color: $orange !important;
             }
             .date {
                 color: $light-grey4;

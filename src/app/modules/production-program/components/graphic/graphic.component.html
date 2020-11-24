@@ -2,9 +2,15 @@
   <div class="zone" (click)="goZone(zoneKey)" *ngFor="let zoneKey of zoneKeys" [style.width.%]="barsWidth">
     <div class="bars">
       <div style="position: relative; height: 100%;">
-        <div matTooltipPosition="above" matTooltipClass="previous" [matTooltip]="_data.sumByIndex(rows[zoneKey], 17) | toNumber" [ngClass]="{zero: !ready}" class="previous" [style.height.%]="zones[zoneKey].percentPrevious"></div>
-        <div matTooltipPosition="above" matTooltipClass="actual" [matTooltip]="_data.sumByIndex(rows[zoneKey], 15) | toNumber" [ngClass]="{zero: !ready}" class="actual" [style.height.%]="zones[zoneKey].percentActual"></div>
-        <div matTooltipPosition="above" matTooltipClass="reserve_g" [matTooltip]="_data.sumByIndex(rows[zoneKey], 22) | toNumber" [ngClass]="{zero: !ready}" class="reserve" [style.height.%]="zones[zoneKey].percentReserve"></div>
+        <div [ngClass]="{zero: !ready}" class="previous" [style.height.%]="zones[zoneKey].percentPrevious">
+          <div class="value" *ngIf="!(_data.mobile$ | async)">{{ (_data.sumByIndex(rows[zoneKey], 17) | toNumber) }}</div>
+        </div>
+        <div [ngClass]="{zero: !ready}" class="actual" [style.height.%]="zones[zoneKey].percentActual">
+          <div class="value" *ngIf="!(_data.mobile$ | async)">{{ (_data.sumByIndex(rows[zoneKey], 15) | toNumber) }}</div>
+        </div>
+        <div [ngClass]="{zero: !ready}" class="reserve" [style.height.%]="zones[zoneKey].percentReserve">
+          <div class="value" *ngIf="!(_data.mobile$ | async)">{{ (_data.sumByIndex(rows[zoneKey], 22) | toNumber) }}</div>
+        </div>
       </div>
     </div>
     <div class="title">{{ zones[zoneKey].title.trim() }}</div>

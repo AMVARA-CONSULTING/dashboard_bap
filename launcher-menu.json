@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "description": "",
+    "Build:": "build",
+    "Build for Cognos:": "build-cognos",
+    "Build and Deploy": {
+      "description": "environment",
+      "INT": {
+        "description": "target",
+        "TRUCKS": "buildAndDeploy:int:trucks",
+        "VANS": "buildAndDeploy:int:vans"
+      },
+      "PROD": {
+        "description": "target",
+        "TRUCKS": "buildAndDeploy:prod:trucks",
+        "VANS": "buildAndDeploy:prod:vans"
+      }
+    },
+    "Deploy": {
+      "description": "environment",
+      "INT": {
+        "description": "target",
+        "TRUCKS": "deploy:int:trucks",
+        "VANS": "deploy:int:vans"
+      },
+      "PROD": {
+        "description": "target",
+        "TRUCKS": "deploy:prod:trucks",
+        "VANS": "deploy:prod:vans"
+      }
+    }
+  }
+}

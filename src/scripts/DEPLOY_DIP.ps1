@@ -7,7 +7,8 @@
 
 param (
     [Parameter()][ValidateSet('int','prod')][string[]]$env,
-    [Parameter()][ValidateSet('trucks','vans')][string[]]$target
+    [Parameter()][ValidateSet('trucks','vans')][string[]]$target,
+    [Switch]$sure
 )
 
 # Functions
@@ -79,14 +80,22 @@ Write-Host "`n"
 Write-Host "Selected environment: $env"
 Write-Host "Selected target: $target"
 
-if ( (!(Sure)) ) {
-    exit
+if ($sure -eq $False) {
+    if ( (!(Sure)) ) {
+        exit
+    }
 }
 
 # Make backup of destiny files
 
 echo "Making backup..."
 $baseFolder = "\\sedcspi1001f.emea.isn.corpintra.net\eedc_o00030\ibiss-isn-shared-$env\shared-internal\webcontent\DIPRE\"
+if (Test-Path $baseFolder) {
+    Write-Host "Destiny network folder is accessible"
+} else {
+    Write-Host "Destiny network folder is not accessible, exiting..."
+    exit
+}
 $subfolder = ""
 if ( $env -eq "int" ) {
     if ( $target -eq "trucks" ) {

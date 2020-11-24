@@ -65,7 +65,7 @@ import { environment } from 'environments/environment';
 /** Store States */
 import { OrderBacklogState } from '@store/order-backlog.state';
 import { ConfigState } from '@store/config.state';
-import { ServiceWorkerModule } from '@angular/service-worker';
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 declare var Hammer: any;
 

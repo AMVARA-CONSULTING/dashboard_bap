@@ -1,11 +1,14 @@
 # AMVARA
+# 2020-11-24 ABP Add command line script parameters
 # 2020-11-23 ABP Create menu to deploy on INT / PROD and TRUCKS / VANS
 # 2019-10-01 ABP Modify script deploy path and better code
 # 2019-09-30 ABP Add manifest modification
 # Deploy script to DIP PROD Vans
 
-$env = ""
-$target = "trucks"
+param (
+    [Parameter()][ValidateSet('int','prod')][string[]]$env,
+    [Parameter()][ValidateSet('trucks','vans')][string[]]$target
+)
 
 # Functions
 
@@ -66,8 +69,12 @@ if (!(Test-Path "manifest.json" -PathType Leaf)) {
 # Run prompts
 cls
 Write-Host "========= DEPLOY DIP ========="
-$env = EnvMenu
-$target = TargetMenu
+if ($env -eq $null) {
+    $env = EnvMenu
+}
+if ($target -eq $null) {
+    $target = TargetMenu
+}
 Write-Host "`n"
 Write-Host "Selected environment: $env"
 Write-Host "Selected target: $target"

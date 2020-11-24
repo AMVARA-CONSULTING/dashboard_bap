@@ -1,5 +1,4 @@
-import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'new-update',
@@ -9,8 +8,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class NewUpdateComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<NewUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  reload = () => location.reload(true);
 
 }

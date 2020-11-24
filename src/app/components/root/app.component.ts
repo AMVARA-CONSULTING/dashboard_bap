@@ -1,16 +1,21 @@
+import { NewUpdateComponent } from './../../dialogs/new-update/new-update.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Config } from './../../other/interfaces';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService } from '@services/config.service';
 import { LocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '@services/api.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
 import { BehaviorSubject, interval, timer } from 'rxjs';
-import { retry, tap } from 'rxjs/operators';
+import { retry, tap, map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
+import { versionToNumber } from '@other/functions';
+import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { ConfigState } from '@store/config.state';
 
 @Component({
   selector: 'dip-root',
@@ -19,7 +24,6 @@ import { Store } from '@ngxs/store';
 })
 export class AppComponent implements OnInit {
 
-  preventUpdate = false;
   reports = new BehaviorSubject<HeaderLink[]>([]);
 
   // Log current NGXS State when pressing Alt + F11, everywhere
@@ -30,31 +34,61 @@ export class AppComponent implements OnInit {
     }
   }
 
+  @SelectSnapshot(ConfigState) config !: Config;
 
   constructor(
     public data: DataService,
     private translate: TranslateService,
-    private config: ConfigService,
     private _location: LocationStrategy,
     private router: Router,
     private api: ApiService,
     private http: HttpClient,
     private _cognos: CognosService,
-    private _store: Store
+    private _store: Store,
+    private _dialog: MatDialog
   ) {
-    if (this.config.config.simulateUnauthorized > 0) {
-      timer(this.config.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);
+    if (this.config.simulateUnauthorized > 0) {
+      timer(this.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);
     }
     if (this.api.corpintra || location.hostname === 'localhost') {
-      // Heartbeat
+      // Heartbeat and check updates
       const pathname = location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/';
-      this.api.heartbeat = interval(config.config.heartbeat).subscribe(_ => {
-        const cacheBurst = (new Date()).getTime();
-        this.http.get(pathname + `assets/keep.alive.txt?=${cacheBurst}`, {
-          observe: 'response', responseType: 'text'
+      this.api.heartbeat = interval(this.config.heartbeat).subscribe(_ => {
+        // Request to common config instead of keep.alive.txt
+        // Therefore we can maintain session alive and check newer versions at the same time
+        this.http.get(pathname + `assets/config_common.json`, {
+          observe: 'response',
+          responseType: 'text',
+          params: {
+            'ngsw-bypass': '1', // Bypass Service Worker Cache
+            'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
+          }
         }).pipe(
-          retry(3)
-        ).subscribe();
+          // Retry request up to 3 times
+          retry(3),
+          // Map response to body text
+          map((response: HttpResponse<any>) => response.body as string)
+        ).subscribe(body => {
+          // Parse text to JSON and compare version with current config
+          let serverConfig: Partial<Config>;
+          try {
+            serverConfig = JSON.parse(body);
+          } catch (err) {
+            serverConfig = { version: '0' };
+            if (this.config.debug) {
+              console.log('There was an error parsing config_common.json from server');
+            }
+          }
+          const currentVersion = versionToNumber(this.config.version);
+          const newerVersion = versionToNumber(serverConfig.version);
+          if (newerVersion > currentVersion) {
+            // New version detected
+            this._dialog.open(NewUpdateComponent, {
+              disableClose: true,
+              panelClass: 'newUpdate'
+            });
+          }
+        });
         }
       );
     }
@@ -65,7 +99,7 @@ export class AppComponent implements OnInit {
     });
     data.init();
     this.translate.setDefaultLang('en');
-    this.translate.use(localStorage.getItem('lang') || config.config.language);
+    this.translate.use(localStorage.getItem('lang') || this.config.language);
     // If going to a report, check it has access, and if not, redirect to another one with access
     const links = this._cognos.getLinksWithAccess();
     this.reports.next(links);
@@ -81,7 +115,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.data.lightTheme.valueChanges.pipe(
-      tap(value => this.data.sidenavOpened.next(false)),
+      tap(_ => this.data.sidenavOpened.next(false)),
       tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
     ).subscribe(light => {
       if (light) {

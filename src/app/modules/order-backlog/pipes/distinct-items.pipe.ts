@@ -12,6 +12,11 @@ export class DistinctItemsPipe implements PipeTransform {
 
   transform(rows: any[], type: 'region' | 'product'): any {
     const column = type === 'region' ? BacklogColumns[`Region${this.language}`] : BacklogColumns[`Product${this.language}`];
+    console.log(rows.reduce((r, a) => {
+      r[a[column]] = r[a[column]] || [];
+      r[a[column]].push(a);
+      return r;
+    }, {}))
     return rows.reduce((r, a) => {
       r[a[column]] = r[a[column]] || [];
       r[a[column]].push(a);

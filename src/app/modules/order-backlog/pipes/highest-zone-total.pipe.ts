@@ -1,9 +1,9 @@
 import { KeyValue } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
-import { DateRanges } from '@other/interfaces';
+import { OrderBacklogDays } from '@other/interfaces';
 import { OrderBacklogState } from '@store/order-backlog.state';
-import { FilterYearFn } from './filter-year.pipe';
+import { FilterDayFn } from './filter-day.pipe';
 import { SumQuantityFn } from './sum-quantity.pipe';
 
 @Pipe({
@@ -11,7 +11,7 @@ import { SumQuantityFn } from './sum-quantity.pipe';
 })
 export class HighestZoneTotalPipe implements PipeTransform {
 
-  @SelectSnapshot(OrderBacklogState.GetDateRanges) ranges !: DateRanges;
+  @SelectSnapshot(OrderBacklogState.GetLatestAndPreviousDay) days$ !: OrderBacklogDays;
 
   transform(zones: KeyValue<string, any[]>[]): number {
     // Calculate highest current and previous year total of all zones
@@ -19,8 +19,8 @@ export class HighestZoneTotalPipe implements PipeTransform {
     // The maximum value should be the highest total (current/previous) of all given zones
     let highest = 0;
     zones.forEach(zone => {
-      const totalCurrent = SumQuantityFn( FilterYearFn( zone.value, 'current', this.ranges ) );
-      const totalPrevious = SumQuantityFn( FilterYearFn( zone.value, 'previous', this.ranges ) );
+      const totalCurrent = SumQuantityFn( FilterDayFn( zone.value, 'current', this.days$ ) );
+      const totalPrevious = SumQuantityFn( FilterDayFn( zone.value, 'previous', this.days$ ) );
       if (totalCurrent > highest) {
         highest = totalCurrent;
       }

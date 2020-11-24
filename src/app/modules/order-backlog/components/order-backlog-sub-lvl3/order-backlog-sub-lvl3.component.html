@@ -15,8 +15,8 @@
         </div>
         <ng-container *ngLet="plantOrZoneRows | filterYear:'current' | sumQuantity as currentValue">
           <ng-container *ngLet="plantOrZoneRows | filterYear:'previous' | sumQuantity as previousValue">
-            <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
-            <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber"></div>
             <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
           </ng-container>
         </ng-container>
@@ -31,8 +31,8 @@
           </div>
           <ng-container *ngLet="rows | sumQuantity as currentValue">
             <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
-              <div class="actual" [innerHTML]="currentValue | toNumber | async"></div>
-              <div class="previous" [innerHTML]="previousValue | toNumber | async"></div>
+              <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+              <div class="previous" [innerHTML]="previousValue | toNumber"></div>
               <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
             </ng-container>
           </ng-container>
@@ -48,11 +48,11 @@
             <div class="title">{{ region.key }}</div>
             <!-- Bind current value -->
             <ng-container *ngLet="region.value | sumQuantity as currentValue">
-              <div class="actual cyan" [innerHTML]="currentValue | toNumber | async"></div>
+              <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
               <!-- Bind and check previous value, it can be not found in some cases! -->
               <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
                 <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
-                  <div class="previous orange" [innerHTML]="previousValue | toNumber | async"></div>
+                  <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
                   <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
                 </ng-container>
               </ng-container>
@@ -74,11 +74,11 @@
             <div class="title">{{ product.key }}</div>
             <!-- Bind current value -->
             <ng-container *ngLet="product.value | sumQuantity as currentValue">
-              <div class="actual cyan" [innerHTML]="currentValue | toNumber | async"></div>
+              <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
               <!-- Bind and check previous value, it can be not found in some cases! -->
               <ng-container *ngIf="previousProducts[product.key] as previousProduct; else dummyPrevious">
                 <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
-                  <div class="previous orange" [innerHTML]="previousValue | toNumber | async"></div>
+                  <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
                   <div class="delta grey" [innerHTML]="previousValue | difference:currentValue | async"></div>
                 </ng-container>
               </ng-container>

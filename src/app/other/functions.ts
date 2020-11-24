@@ -80,3 +80,10 @@ export function numeralFn(value: number | string, htmlFormat: boolean = true) {
       return `${isNegative ? '- ' : ''}${formatted} ${symbol}`;
     }
 }
+
+/**
+ * Converts a dotted format version to number
+ */
+export function versionToNumber(version: string): number {
+  return parseInt(version.replace(/\./, ''), 10);
+}

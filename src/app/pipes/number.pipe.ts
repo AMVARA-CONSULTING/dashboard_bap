@@ -1,40 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
-import { numeralFn } from '@other/functions';
 import { ILanguage } from '@other/interfaces';
-import { DataService } from '@services/data.service';
 import { ConfigState } from '@store/config.state';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Pipe({
   name: 'toNumber'
 })
 export class NumberPipe implements PipeTransform {
 
-  constructor(
-    private _ac: ActivatedRoute,
-    private _data: DataService
-  ) { }
-
   @SelectSnapshot(ConfigState.GetLanguage) language: ILanguage;
 
-  transform(value: number, sign: boolean = false, comma: boolean = true): string | Observable<string> {
-    // Temporarily only check mobile in Order Backlog
-    if (this._ac.snapshot.data.title === 'order_backlog') {
-      return this._data.mobile$.pipe(
-        map(mobile => {
-          if (mobile) {
-            return numeralFn(value, true);
-          } else {
-            return ToNumberFn(value, sign, comma, this.language);
-          }
-        })
-      );
-    } else {
-      return ToNumberFn(value, sign, comma, this.language);
-    }
+  transform(value: number, sign: boolean = false, comma: boolean = true): string {
+    return ToNumberFn(value, sign, comma, this.language);
   }
 
 }

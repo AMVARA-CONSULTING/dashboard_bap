@@ -13,5 +13,5 @@ deploy:
   script:
     - route=$(pwd)
     - npm install
-    - npm run build
+    - npm start build
     - sudo cp -rf ./dist/* /home/amvara/projects/dip-more/

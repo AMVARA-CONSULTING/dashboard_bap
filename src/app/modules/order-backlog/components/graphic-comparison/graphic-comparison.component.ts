@@ -5,7 +5,6 @@ import { BacklogColumns, NgxLineChart } from '@other/interfaces';
 import { OrderBacklogState } from '@store/order-backlog.state';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { curveCatmullRom } from 'd3-shape';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
 import { map, startWith } from 'rxjs/operators';
@@ -19,8 +18,6 @@ import { map, startWith } from 'rxjs/operators';
 export class OrderBacklogGraphicComparisonComponent implements OnChanges {
 
   chart$ = new BehaviorSubject<NgxLineChart>([]);
-
-  curve = curveCatmullRom;
 
   colorScheme$: Observable<any>;
 

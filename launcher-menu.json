@@ -1,9 +1,9 @@
 {
   "menu": {
-    "description": "",
-    "Build:": "build",
+    "description": "option",
+    "Build for Amvara:": "build",
     "Build for Cognos:": "build-cognos",
-    "Build and Deploy": {
+    "Build for Cognos and Deploy": {
       "description": "environment",
       "INT": {
         "description": "target",

@@ -1,5 +1,5 @@
 {
-	"version": "2.63.0",
+	"version": "2.64.0",
 	"debug": false,
 	"loading": true,
 	"language": "en",
@@ -247,6 +247,16 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.64.0",
+		  "text": [
+			"#2694 - Make Order Backlog Line Chart with spline lines",
+			"#2694 - Add selector for each level of Order Backlog",
+			"#2694 - Don't show plant/zone total values for Order Backlog L2, L3 & L4",
+			"Fix bug where page was empty when a region or product doesn't have previous values",
+			"#2719 - Add the permission name for Order Backlog (Trucks/Vans)"
+		  ]
+		},
 		{
 		  "version": "2.63.0",
 		  "text": [

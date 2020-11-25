@@ -30,22 +30,6 @@
         &.total {
             background-color: $bg-white-lvl1;
         }
-        &.arrow .title:after {
-            transition: left .2s ease-in-out;
-            content: "";
-            position: absolute;
-            height: 12px;
-            width: 12px;
-            top: 0;
-            bottom: 0;
-            left: -2px;
-            transform: rotate(180deg);
-            margin: auto;
-            display: block;
-            background-image: url(^assets/arrow.svg);
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
         &.zone {
             cursor: pointer;
         }

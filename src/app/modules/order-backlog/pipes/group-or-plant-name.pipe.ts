@@ -12,7 +12,11 @@ export class GroupOrPlantNamePipe implements PipeTransform {
 
   // Get plant group name
   transform(values: any[], type: 'plant' | 'group' | 'zone'): string {
-    return values[0][['group', 'zone'].includes(type) ? BacklogColumns[`PlantGroup${this.language}`] : BacklogColumns[`Plant${this.language}`]];
+    return groupOrPlantNameFn(values, type, this.language);
   }
 
+}
+
+export function groupOrPlantNameFn(values: any[], type: 'plant' | 'group' | 'zone', language): string {
+  return values[0][['group', 'zone'].includes(type) ? BacklogColumns[`PlantGroup${language}`] : BacklogColumns[`Plant${language}`]];
 }

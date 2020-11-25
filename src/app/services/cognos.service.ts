@@ -102,14 +102,14 @@ export class CognosService {
           mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
           trucks: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()),
-            order_backlog: true,
+            order_backlog: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order_Back_Log'.toLowerCase()) || true,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase())
           },
           vans: {
             order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()),
-            order_backlog: true,
+            order_backlog: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Van_Management_Order_Back_Log'.toLowerCase()) || true,
             production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()),
             allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
             plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())

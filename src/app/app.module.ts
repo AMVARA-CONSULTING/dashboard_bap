@@ -44,7 +44,6 @@ import { NavigationGuard } from './guards/navigation-guard.guard';
 import { AccessCodeComponent } from './components/access-code/access-code.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CognosService } from '@services/cognos.service';
 import { CookiesExpiredComponent } from './dialogs/cookies-expired/cookies-expired.component';
@@ -102,9 +101,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatButtonModule,
     SharedModule,
     HammerModule,
-    FormsModule,
     MatSlideToggleModule,
-    ReactiveFormsModule,
     NgxsModule.forRoot([
       OrderBacklogState,
       ConfigState

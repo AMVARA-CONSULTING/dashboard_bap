@@ -12,19 +12,18 @@
           <!-- Headers -->
           <order-backlog-header></order-backlog-header>
           <!-- Header Row of current select plant / zone -->
-          <div class="header-row arrow zone" (click)="_obRouter.goToMainView()">
-            <div class="title">
-              <span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">
-                {{ rows | groupOrPlantName:params.plant }}
-              </span>
+          <div class="header-row zone">
+            <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+            <div class="title with-selector">
+              <dip-plant-selector></dip-plant-selector>
             </div>
-            <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
+            <!-- <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
               <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
                 <div class="actual" [innerHTML]="currentValue | toNumber"></div>
                 <div class="previous" [innerHTML]="previousValue | toNumber"></div>
                 <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
               </ng-container>
-            </ng-container>
+            </ng-container> -->
           </div>
           <!-- Content Rows -->
           <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">

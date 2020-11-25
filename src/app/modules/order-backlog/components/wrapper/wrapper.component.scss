@@ -11,6 +11,63 @@
     display: block;
 }
 
+// Stylize zone and plant option of selector
+::ng-deep .plant-select-panel {
+    .zone {
+        color: rgba(white, .7);
+        .mat-option-text {
+            text-transform: uppercase;
+        }
+    }
+    .plant {
+        padding-left: 40px;
+    }
+    .mat-optgroup-label {
+        color: rgba($yellow-text, .9);
+    }
+}
+
+:host::ng-deep .header-row {
+    position: relative;
+    // Fix mat-select to correctly fit into title row
+    .title.with-selector {
+        flex: initial;
+        padding-left: 20px !important;
+        .mat-form-field-infix {
+            border-top: 0;
+            width: 50px;
+        }
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+    }
+    // Arrow icon before title
+    i.arrow {
+        position: absolute;
+        height: 100%;
+        width: 25px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transform: rotate(180deg);
+        margin: auto;
+        display: block;
+        background-image: url(^assets/arrow.svg);
+        background-size: 7px;
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: 5px;
+        transition: background-position-x .2s ease-in-out;
+        @include desktop {
+            width: 50px;
+        }
+    }
+    // Arrow hover animation
+    &:hover i.arrow {
+        background-position-x: 15px;
+    }
+}
+
 ::ng-deep order-backlog-sub-lvl2, ::ng-deep order-backlog-main, ::ng-deep order-backlog-sub-lvl3 {
     position: fixed;
     top: 0;

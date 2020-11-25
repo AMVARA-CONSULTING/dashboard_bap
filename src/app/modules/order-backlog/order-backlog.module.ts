@@ -1,3 +1,4 @@
+import { MonthSelectorComponent } from './components/selectors/month-selector/month-selector.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -33,6 +34,8 @@ import { OrderBacklogRouter } from './services/order-backlog-router.service';
 import { OrderBacklogHeaderComponent } from './components/order-backlog-header/order-backlog-header.component';
 import { FormatLatestDayPipe } from './pipes/format-latest-day.pipe';
 import { FilterDayPipe } from './pipes/filter-day.pipe';
+import { PlantSelectorComponent } from './components/selectors/plant-selector/plant-selector.component';
+import { ProductRegionSelectorComponent } from './components/selectors/product-region-selector/product-region-selector.component';
 
 const routes: Routes = [
   {
@@ -73,6 +76,7 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
+    // Components
     OrderBacklogWrapperComponent,
     OrderBacklogMainComponent,
     OrderBacklogGraphicComponent,
@@ -80,6 +84,12 @@ const routes: Routes = [
     OrderBacklogSubLvl3Component,
     OrderBacklogSubLvl4Component,
     OrderBacklogGraphicComparisonComponent,
+    OrderBacklogHeaderComponent,
+    // Selectors
+    PlantSelectorComponent,
+    MonthSelectorComponent,
+    ProductRegionSelectorComponent,
+    // Pipes
     GroupOrPlantNamePipe,
     FilterYearPipe,
     SumQuantityPipe,
@@ -95,7 +105,6 @@ const routes: Routes = [
     PreviousMonthPipe,
     DistinctItemsPipe,
     ReversePipe,
-    OrderBacklogHeaderComponent,
     FormatLatestDayPipe,
     FilterDayPipe
   ],

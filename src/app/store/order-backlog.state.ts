@@ -50,8 +50,10 @@ export class OrderBacklogState {
         monthsAvailable.sort((a, b) => moment(b, 'YYYY-MM').valueOf() - moment(a, 'YYYY-MM').valueOf());
         // Get latest day available
         const latestDay = [ ...rows ].sort((a, b) => moment(b[BacklogColumns.Date], 'YYYY-MM-DD').valueOf() - moment(a[BacklogColumns.Date], 'YYYY-MM-DD').valueOf())[0][BacklogColumns.Date];
-        // Get previous day available
-        const previousDay = rows.filter(row => row[BacklogColumns.Date].substring(0, 7) === moment(latestDay, 'YYYY-MM-DD').subtract(1, 'months').format('YYYY-MM'))[0][BacklogColumns.Date];
+        // Get last day available of previous month
+        const previousDay = rows
+                            .filter(row => row[BacklogColumns.Date].substring(0, 7) === moment(latestDay, 'YYYY-MM-DD').subtract(1, 'years').format('YYYY-MM'))
+                            .sort((a, b) => moment(b[BacklogColumns.Date], 'YYYY-MM-DD').valueOf() - moment(a[BacklogColumns.Date], 'YYYY-MM-DD').valueOf())[0][BacklogColumns.Date];
         // Get months of current date range
         const actualDates = monthsAvailable.slice(0, 12);
         // Get months of previous date range

@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SelectYearComponent } from '../../dialogs/select-year/select-year.component';
 import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { DipQuadroCircularMetersComponent } from '@components/quadro-circular-meters/quadro-circular-meters.component';
@@ -18,6 +17,7 @@ import { DipCircularMetersComponent } from '@components/circular-meters/circular
 import { PlantStockSortingPipe } from '@pipes/plant-stock-sorting.pipe';
 import { ReportInfoComponent } from '@components/report-info/report-info.component';
 import { ThemeSwitcherComponent } from '@components/theme-switcher/theme-switcher.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -39,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatIconModule,
     MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     CommonModule,
     MatSelectModule,
@@ -61,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     SelectYearComponent,
     MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     DipQuadroCircularMetersComponent,
     DipCircularMetersComponent,

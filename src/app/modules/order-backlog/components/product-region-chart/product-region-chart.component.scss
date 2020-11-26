@@ -1,0 +1,70 @@
+
+@import 'colors';
+
+:host {
+    display: block;
+    flex: 1 70%;
+    height: 100%;
+    .wrapper {
+        display: flex;
+        height: 100%;
+        width: calc(100% - 40px);
+        flex-direction: column;
+        .bar-wrapper {
+            position: relative;
+            flex: 0 33.3333333%;
+            max-height: 33.3333333%;
+            padding: 2px 0;
+            box-sizing: border-box;
+            transition: all 1.2s ease-in-out;
+            transition-delay: .3s;
+            .bar {
+                position: absolute;
+                width: 100%;
+                height: calc(100% - 4px);
+                border-radius: 3px;
+                font-size: 12px;
+                .relative {
+                    position: relative;
+                    .value {
+                        position: absolute;
+                        right: -45px;
+                        width: 40px;
+                    }
+                }
+                &.actual {
+                    background: linear-gradient(to bottom, $cyan-text, darken($cyan-text, 10));
+                    .value {
+                        color: lighten($cyan-text, 10);
+                    }
+                }
+                &.previous {
+                    background: linear-gradient(to bottom, $yellow-text, darken($yellow-text, 10));
+                    .value {
+                        color: lighten($yellow-text, 10);;
+                    }
+                }
+                &.delta {
+                    &.positive {
+                        background: linear-gradient(to bottom, #8bc34a, darken(#8bc34a, 10));
+                        .value {
+                            color: lighten(#8bc34a, 10);
+                            &:before {
+                                content: "+ ";
+                            }
+                        }
+                    }
+                    &.negative {
+                        background: linear-gradient(to bottom, #ff5252, darken(#ff5252, 10));
+                        .value {
+                            color: lighten(#ff5252, 10);
+                            &:before {
+                                content: "- ";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

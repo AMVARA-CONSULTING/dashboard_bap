@@ -1,7 +1,7 @@
 {
-	"version": "2.64.0",
+	"version": "2.66.0",
 	"debug": false,
-	"loading": true,
+	"loading": false,
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "int",
@@ -247,6 +247,22 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.66.0",
+		  "text": [
+			"#2717 - Create propetype waterfall chart for Order Backlog Lvl 3 & 4",
+			"#2721 - Fix selector text above total numbers",
+			"#2720 - Fix double click in go back arrow button of Order Backlog",
+			"#2694 - Improve Help page with new design"
+		  ]
+		},
+		{
+		  "version": "2.65.0",
+		  "text": [
+			"#2720 - Fixed z-index and space of arrow back of Order Backlog",
+			"#2721 - Fixed mat-select value out of selector by implement custom mat-select-trigger"
+		  ]
+		},
 		{
 		  "version": "2.64.0",
 		  "text": [

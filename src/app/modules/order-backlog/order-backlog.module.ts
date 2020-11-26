@@ -1,3 +1,6 @@
+import { AbsPipe } from './pipes/abs.pipe';
+import { ProductRegionChartComponent } from './components/product-region-chart/product-region-chart.component';
+import { ProductRegionLabelFormatPipe } from './pipes/product-region-label-format.pipe';
 import { MonthSelectorComponent } from './components/selectors/month-selector/month-selector.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -85,6 +88,7 @@ const routes: Routes = [
     OrderBacklogSubLvl4Component,
     OrderBacklogGraphicComparisonComponent,
     OrderBacklogHeaderComponent,
+    ProductRegionChartComponent,
     // Selectors
     PlantSelectorComponent,
     MonthSelectorComponent,
@@ -106,7 +110,9 @@ const routes: Routes = [
     DistinctItemsPipe,
     ReversePipe,
     FormatLatestDayPipe,
-    FilterDayPipe
+    FilterDayPipe,
+    ProductRegionLabelFormatPipe,
+    AbsPipe
   ],
   providers: [
     OrderBacklogRouter

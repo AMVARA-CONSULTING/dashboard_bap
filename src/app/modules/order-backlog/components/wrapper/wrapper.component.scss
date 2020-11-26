@@ -33,22 +33,31 @@
     .title.with-selector {
         flex: initial;
         padding-left: 20px !important;
+        @include desktop {
+            padding-left: 30px !important;
+        }
         .mat-form-field-infix {
             border-top: 0;
-            width: 50px;
         }
         .mat-form-field-wrapper {
             padding-bottom: 0;
+        }
+        .mat-form-field .mat-select-value {
+            padding-right: 5px;
+        }
+        .mat-form-field {
+            max-width: 90px !important;
         }
     }
     // Arrow icon before title
     i.arrow {
         position: absolute;
         height: 100%;
-        width: 25px;
+        width: 35px;
         top: 0;
         bottom: 0;
         left: 0;
+        z-index: 99;
         transform: rotate(180deg);
         margin: auto;
         display: block;
@@ -56,15 +65,22 @@
         background-size: 7px;
         background-repeat: no-repeat;
         background-position-y: center;
-        background-position-x: 5px;
+        background-position-x: 15px;
         transition: background-position-x .2s ease-in-out;
+        &:hover {
+            background-position-x: 25px;
+        }
         @include desktop {
-            width: 50px;
+            width: 60px;
         }
     }
-    // Arrow hover animation
-    &:hover i.arrow {
-        background-position-x: 15px;
+}
+
+:host::ng-deep {
+    dip-month-selector,
+    dip-product-region-selector,
+    dip-plant-selector {
+        display: block;
     }
 }
 

@@ -131,6 +131,7 @@ a {
 
 .navigations {
     margin-top: 20px;
+    margin-bottom: 100px;
     display: flex;
     flex-wrap: wrap;
     .navigation {
@@ -198,6 +199,31 @@ a {
                 background-position: center;
                 background-repeat: no-repeat;
             }
+        }
+    }
+}
+
+@include lightTheme {
+    :host .navigations .navigation .content {
+        .dropdowns {
+            background-image: url(^assets/img/light/DIP_Helpgra_selectors_white-08.png);
+        }
+        .go-depth {
+            background-image: url(^assets/img/light/DIP_Helpgra_hierarchy_white-04.png);
+        }
+    }
+    :host .helpers .helper {
+        .portrait_landscape {
+            background-image: url(^assets/img/dark/DIP_Helpgra_mobile_black-02.png);
+        }
+        .scroll_swipe {
+            background-image: url(^assets/img/dark/DIP_Helpgra_tablet_black-03.png);
+        }
+        .hand1 {
+            background-image: url(^assets/img/hand1.svg);
+        }
+        .hand2 {
+            background-image: url(^assets/img/hand2.svg);
         }
     }
 }

@@ -4,10 +4,7 @@
 :host {
     display: block;
     background-color: $main-bg-body-color;
-}
-
-@include lightTheme {
-    :host {
+    @include light-theme {
         background-color: $main-bg-body-color-light !important;
     }
 }

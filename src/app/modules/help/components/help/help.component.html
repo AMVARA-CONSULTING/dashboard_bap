@@ -1,4 +1,4 @@
-<help-title>General Information</help-title>
+<help-title>{{ 'help.general' | translate }}</help-title>
 <div class="contact-info">
   <div class="category">
     iBISS:
@@ -19,12 +19,10 @@
     </contact>
   </div>
 </div>
-<help-title>{{ config.config.appTitle }} Functions</help-title>
+<help-title>{{ config.config.appTitle }} {{ 'help.functions' | translate }}</help-title>
 <p>{{ 'help.lightTheme' | translate }}</p>
 <app-theme-switcher></app-theme-switcher>
-<p>
-  This application is adapted for any device and visualization. You can navigate through it with different options.
-</p>
+<p>{{ 'help.device_adapted' | translate }}</p>
 <div class="helpers">
   <div class="helper">
     <div class="title"></div>
@@ -48,7 +46,7 @@
 </div>
 <div class="navigations">
   <div class="navigation">
-    <div class="title">Year & Location Selectors</div>
+    <div class="title">{{ 'help.year_selector' | translate }}</div>
     <div class="arrows">
       <div class="item">
         <div class="icon arrow-down"></div>
@@ -59,15 +57,15 @@
     </div>
   </div>
   <div class="navigation">
-    <div class="title">Hierarchy</div>
+    <div class="title">{{ 'help.tree' | translate }}</div>
     <div class="arrows">
       <div class="item">
         <div class="icon arrow-right"></div>
-        <div class="text">Detail</div>
+        <div class="text">{{ 'help.detail' | translate }}</div>
       </div>
       <div class="item">
         <div class="icon arrow-left"></div>
-        <div class="text">Detail</div>
+        <div class="text">{{ 'help.detail' | translate }}</div>
       </div>
     </div>
     <div class="content">

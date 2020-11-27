@@ -33,9 +33,18 @@
         "software": "Software",
         "licenses": "Lizenzhinweise",
         "technical_information": "Technische Informationen",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "reload_lang": "Sprachdateien neu laden",
+        "connection": "Verbindung zum Server",
+        "lang": "Sprache"
     },
     "help": {
-        "lightTheme": "Diese Applikation bietet ein dunkles und ein helles Layout - auswählbar hiernach. Die Einstellung wird je Gerät gespeichert. Für die mobile Nutzung wird das dunkle Layout empfohlen, da dieses mehr Kontrast bietet."
+        "lightTheme": "DIP bietet ein dunkles und ein helles Layout - auswählbar hiernach. Die Einstellung wird je Gerät gespeichert. Für die mobile Nutzung wird das dunkle Layout empfohlen, da dieses mehr Kontrast bietet.",
+        "functions": "Funktionen",
+        "general": "Allgemeine Informationen",
+        "device_adapted": "Diese Anwendung ist für jedes Gerät und jede Visualisierung geeignet. Sie können mit verschiedenen Optionen durch sie navigieren.",
+        "detail": "Einzelheiten",
+        "year_selector": "Jahr & Standort-Selektoren",
+        "tree": "Hierarchie"
     }
 }

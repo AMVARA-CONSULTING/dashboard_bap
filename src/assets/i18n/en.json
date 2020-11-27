@@ -33,9 +33,18 @@
         "software": "Software",
         "licenses": "Licenses",
         "technical_information": "Technical Information",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "reload_lang": "Reload language files",
+        "connection": "Connection to server",
+        "lang": "Language"
     },
     "help": {
-        "lightTheme": "This application offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast."
+        "lightTheme": "This application offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast.",
+        "functions": "Functions",
+        "general": "General Information",
+        "device_adapted": "This application is adapted for any device and visualization. You can navigate through it with different options.",
+        "detail": "Detail",
+        "year_selector": "Year & Location Selectors",
+        "tree": "Hierarchy"
     }
 }

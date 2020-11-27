@@ -90,6 +90,7 @@ a {
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
         }
         .content {
             flex: 1;
@@ -162,8 +163,12 @@ a {
                 align-items: center;
                 justify-content: center;
                 .icon {
-                    height: 100px;
-                    width: 100px;
+                    height: 70px;
+                    width: 70px;
+                    @include desktop {
+                        height: 100px;
+                        width: 100px;
+                    }
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -190,6 +195,9 @@ a {
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
+                @include light-theme {
+                    background-image: url(^assets/img/light/DIP_Helpgra_selectors_white-08.png);
+                }
             }
             .go-depth {
                 width: 300px;
@@ -198,20 +206,15 @@ a {
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
+                @include light-theme {
+                    background-image: url(^assets/img/light/DIP_Helpgra_hierarchy_white-04.png);
+                }
             }
         }
     }
 }
 
 @include lightTheme {
-    :host .navigations .navigation .content {
-        .dropdowns {
-            background-image: url(^assets/img/light/DIP_Helpgra_selectors_white-08.png);
-        }
-        .go-depth {
-            background-image: url(^assets/img/light/DIP_Helpgra_hierarchy_white-04.png);
-        }
-    }
     :host .helpers .helper {
         .portrait_landscape {
             background-image: url(^assets/img/dark/DIP_Helpgra_mobile_black-02.png);

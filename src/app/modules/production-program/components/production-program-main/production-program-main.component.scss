@@ -100,14 +100,23 @@
                 color: $lighten-cyan-text;
                 font-size: 21px;
                 font-weight: bold;
+                @include tabletLandscape {
+                    font-size: 18px;
+                }
             }
             .plan {
                 font-size: 21px;
                 font-weight: bold;
+                @include tabletLandscape {
+                    font-size: 18px;
+                }
             }
             .reserve {
                 font-size: 21px;
                 font-weight: bold;
+                @include tabletLandscape {
+                    font-size: 18px;
+                }
             }
         }
     }

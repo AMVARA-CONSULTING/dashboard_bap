@@ -141,7 +141,7 @@ html {
 html, body {
     color: $semi-white;
     background-color: $main-bg-body-color;
-    @include lightTheme {
+    @include light-theme {
         background-color: $main-bg-body-color-light;
     }
     /* background-image: url(^assets/neurons_grey.jpg);

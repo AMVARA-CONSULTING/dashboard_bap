@@ -1,5 +1,5 @@
 {
-	"version": "2.66.0",
+	"version": "2.67.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.67.0",
+		  "text": [
+			"#2718 - PP > Fix for iPhone X and Tablet Landscape"
+		  ]
+		},
 		{
 		  "version": "2.66.0",
 		  "text": [

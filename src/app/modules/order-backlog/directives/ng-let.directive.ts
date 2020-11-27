@@ -19,11 +19,11 @@ export class LetDirective {
       }
       // if value is empty destroy the component
       // here it's acctualy works like ngIf (will rerender on non-empty value)
-      if (!value) {
+      /* if (!value) {
         this._ref.destroy();
         this._ref = undefined;
         return;
-      }
+      } */
       // add the value to the context
       this._ref.context.$implicit = this.context.ngLet = value;
     }

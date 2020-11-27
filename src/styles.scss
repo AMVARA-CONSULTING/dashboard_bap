@@ -1,5 +1,5 @@
 
-@import 'app/other/colors';
+@import 'colors';
 @import "material-theme";
 
 @font-face {
@@ -68,7 +68,7 @@ html {
     background: $main-bg-body-color !important;
 }
 
-@include lightTheme {
+@include light-theme-global {
     color: $text-color;
     ::-webkit-scrollbar-track {
         background-color: $light-grey2;
@@ -116,7 +116,7 @@ html {
     z-index: 99;
 }
 
-@include lightTheme {
+@include light-theme-global {
     .data-header,
     order-backlog-header,
     .plandate {
@@ -141,7 +141,7 @@ html {
 html, body {
     color: $semi-white;
     background-color: $main-bg-body-color;
-    @include light-theme {
+    @include light-theme-global {
         background-color: $main-bg-body-color-light;
     }
     /* background-image: url(^assets/neurons_grey.jpg);
@@ -307,7 +307,7 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     border-right: 5px solid transparent;
     border-top: 5px solid $cyan-text;
 }
-@include lightTheme {
+@include light-theme-global {
     .mat-tooltip.actual:after, .mat-tooltip.allocation:after {
         border-top: 5px solid $cyan-text-light;
     }

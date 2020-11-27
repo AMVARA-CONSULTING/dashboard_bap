@@ -11,22 +11,26 @@ export class ProductRegionChartComponent implements OnChanges {
 
   @Input() current !: number;
   @Input() previous: number = null;
+  @Input() maximum !: number;
+
+  maxWidth$ = new BehaviorSubject<string>('100%');
 
   // Percents
   actualPercent = new BehaviorSubject<number>(0);
-  deltaPercent = new BehaviorSubject<number>(0);
+  // deltaPercent = new BehaviorSubject<number>(0);
   previousPercent = new BehaviorSubject<number>(0);
 
   // Delta offset percent
-  deltaPosition = new BehaviorSubject<number>(0);
+  // deltaPosition = new BehaviorSubject<number>(0);
 
   // Delta value
-  deltaValue = new BehaviorSubject<number>(0);
+  // deltaValue = new BehaviorSubject<number>(0);
 
   ngOnChanges(changes: SimpleChanges) {
     // Grab current values
     const current = changes.current.currentValue;
     const previous = (changes.previous && changes.previous.currentValue) || 0;
+    const maximum = changes.maximum.currentValue;
     if (!isNaN(current)) {
       // Check if previous is valid
       // If previous is not valid, only show total bar
@@ -35,24 +39,25 @@ export class ProductRegionChartComponent implements OnChanges {
         // Calculate highest value
         highestValue = Math.max(current, previous);
       }
+      this.maxWidth$.next(this.calculatePercent(maximum, highestValue) + '%');
       const actualPercent = this.calculatePercent(highestValue, current);
       this.actualPercent.next(actualPercent);
       const previousPercent = this.calculatePercent(highestValue, previous);
       this.previousPercent.next(previousPercent);
-      const difference = current - previous;
-      this.deltaValue.next(difference);
-      let deltaPercent;
+      // const difference = current - previous;
+      // this.deltaValue.next(difference);
+      /* let deltaPercent;
       if (difference > 0) {
         deltaPercent = this.calculatePercent(highestValue, difference);
       } else {
         deltaPercent = this.calculatePercent(highestValue, previous - current);
-      }
-      this.deltaPercent.next(deltaPercent);
-      if (difference > 0) {
+      } */
+      // this.deltaPercent.next(deltaPercent);
+      /* if (difference > 0) {
         this.deltaPosition.next(previousPercent);
       } else {
         this.deltaPosition.next(actualPercent);
-      }
+      }*/
     }
   }
 

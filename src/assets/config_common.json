@@ -1,5 +1,5 @@
 {
-	"version": "2.67.0",
+	"version": "2.68.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.68.0",
+		  "text": [
+			"Improve Light Theme SCSS selector",
+			"Fix and show horizontal bar chart over Order Backlog LVL 3 & 4",
+			"Fix ngLet directive"
+		  ]
+		},
 		{
 		  "version": "2.67.0",
 		  "text": [

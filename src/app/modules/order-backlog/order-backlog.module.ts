@@ -1,3 +1,5 @@
+import { MaxPipe } from './pipes/max.pipe';
+import { DefaultPipe } from './pipes/default.pipe';
 import { AbsPipe } from './pipes/abs.pipe';
 import { ProductRegionChartComponent } from './components/product-region-chart/product-region-chart.component';
 import { ProductRegionLabelFormatPipe } from './pipes/product-region-label-format.pipe';
@@ -112,7 +114,9 @@ const routes: Routes = [
     FormatLatestDayPipe,
     FilterDayPipe,
     ProductRegionLabelFormatPipe,
-    AbsPipe
+    AbsPipe,
+    DefaultPipe,
+    MaxPipe
   ],
   providers: [
     OrderBacklogRouter

@@ -1,12 +1,9 @@
-<div class="wrapper">
+<div class="wrapper" [style.width]="maxWidth$ | async">
   <div class="bar-wrapper" [style.width.%]="actualPercent | async | startWith:0 | async">
-    <div class="bar actual">
-      <div class="relative">
-        <div class="value">{{ current }}</div>
-      </div>
-    </div>
+    <div class="bar actual"></div>
   </div>
-  <ng-container *ngLet="deltaValue | async as value">
+  <!-- No delta bar for this moment -->
+  <!-- <ng-container *ngLet="deltaValue | async as value">
     <div class="bar-wrapper" [style.left.%]="deltaPosition | async | startWith:0 | async" [style.width.%]="deltaPercent | async | startWith:0 | async">
       <div class="bar delta" [class.neutral]="value === 0" [class.positive]="value > 0" [class.negative]="value < 0">
         <div class="relative">
@@ -14,12 +11,8 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  </ng-container> -->
   <div class="bar-wrapper" [style.width.%]="previousPercent | async | startWith:0 | async">
-    <div class="bar previous">
-      <div class="relative">
-        <div class="value">{{ previous }}</div>
-      </div>
-    </div>
+    <div class="bar previous"></div>
   </div>
 </div>

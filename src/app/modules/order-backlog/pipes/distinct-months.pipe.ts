@@ -1,4 +1,3 @@
-import { KeyValue } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 import { BacklogColumns } from '@other/interfaces';
 import * as moment from 'moment';

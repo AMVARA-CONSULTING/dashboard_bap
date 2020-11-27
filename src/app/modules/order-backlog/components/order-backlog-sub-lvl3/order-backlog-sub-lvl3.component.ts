@@ -1,3 +1,4 @@
+import { DataService } from '@services/data.service';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@services/config.service';
@@ -7,7 +8,6 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { OrderBacklogState } from '@store/order-backlog.state';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CustomSelectors } from '@other/custom-selectors';
 import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 
@@ -26,8 +26,6 @@ export class OrderBacklogSubLvl3Component {
   // Retrieve plan date
   @ViewSelectSnapshot(OrderBacklogState.GetPlanDate) plandate$ !: string;
 
-  // Wether or not we are on mobile view
-  mobile$: Observable<boolean>;
   // Rows used for higher totals
   plantOrZoneRows$: Observable<any[]>;
   // All params comming from URL
@@ -37,14 +35,13 @@ export class OrderBacklogSubLvl3Component {
 
   constructor(
     public _ac: ActivatedRoute,
+    public _data: DataService,
     private config: ConfigService,
     private _title: Title,
     private _store: Store,
-    private _breakpoints: BreakpointObserver,
     public _obRouter: OrderBacklogRouter
   ) {
     this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
-    this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
     // Grab all params from URL
     this.params$ = this._ac.paramMap.pipe(
       map(params => params.keys.reduce((r, a) => (r[a] = params.get(a), r), {}))

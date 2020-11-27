@@ -34,31 +34,43 @@ $light-grey3: #666666;
 $light-grey4: #333333;
 
 @mixin lightTheme {
-	body[theme="light"] {
+    body[theme="light"] {
         @content;
     }
 }
 
+// Mixin used to change styling for Light Theme
+// Used in components only
 @mixin light-theme {
     body[theme="light"] :host & {
         @content;
     }
 }
 
+// Used in global styles only
 @mixin light-theme-global {
-    body[theme="light"] & {
+    body[theme="light"] {
+        @content;
+    }
+}
+
+// Mixin used to change styling for Dark Theme
+// Used in components only
+@mixin dark-theme {
+	body[theme="dark"] :host & {
+        @content;
+    }
+}
+
+// Used in global styles only
+@mixin dark-theme-global {
+	body[theme="dark"] {
         @content;
     }
 }
 
 @mixin darkTheme {
 	body[theme="dark"] {
-        @content;
-    }
-}
-
-@mixin dark-theme {
-	body[theme="dark"] :host & {
         @content;
     }
 }

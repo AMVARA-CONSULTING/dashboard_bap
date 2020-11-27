@@ -1,3 +1,4 @@
+import { DataService } from '@services/data.service';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@services/config.service';
@@ -49,7 +50,8 @@ export class OrderBacklogSubLvl4Component {
     private _title: Title,
     private _store: Store,
     private _breakpoints: BreakpointObserver,
-    public _obRouter: OrderBacklogRouter
+    public _obRouter: OrderBacklogRouter,
+    public _data: DataService
   ) {
     this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
     this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );

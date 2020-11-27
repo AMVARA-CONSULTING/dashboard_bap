@@ -1,10 +1,13 @@
 
-@import '../../other/colors';
+@import 'colors';
 
 :host {
     display: block;
     background-color: $main-bg-body-color;
-    @include light-theme {
+}
+
+@include lightTheme {
+    :host {
         background-color: $main-bg-body-color-light !important;
     }
 }

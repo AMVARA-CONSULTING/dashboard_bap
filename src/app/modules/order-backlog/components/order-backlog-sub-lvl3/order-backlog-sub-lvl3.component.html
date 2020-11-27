@@ -42,25 +42,28 @@
         <!-- Region rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
           <!-- Iterate over each region -->
-          <div class="lvl2-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'region', region.key)" *ngFor="let region of rows | distinctItems:'region' | keyvalue">
-            <div class="title">{{ region.key }}</div>
-            <!-- Bind current value -->
-            <ng-container *ngLet="region.value | sumQuantity as currentValue">
-              <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
-              <!-- Bind and check previous value, it can be not found in some cases! -->
-              <ng-container *ngIf="previousRegions[region.key] as previousRegion; else dummyPrevious">
-                <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
-                  <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
-                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+          <ng-container *ngLet="rows | distinctItems:'region' | keyvalue as regions">
+            <ng-container *ngLet="regions | max as maximum">
+              <div class="lvl3-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'region', region.key)" *ngFor="let region of regions">
+                <div class="title">{{ region.key }}</div>
+                <!-- Bind current and previous value, previous can be not found in some cases! -->
+                <ng-container *ngLet="region.value | sumQuantity as currentValue">
+                  <!-- Bind and check previous value, it can be not found in some cases! -->
+                  <ng-container *ngIf="previousRegions[region.key] | default:[] as previousRegion; else dummyPrevious">
+                    <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
+                      <!-- Bind template of LVL 3 Row -->
+                      <ng-container *ngTemplateOutlet="responsiveRow; context: { current: currentValue, previous: previousValue, maximum: maximum }"></ng-container>
+                    </ng-container>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
+                <!-- Template for when a region title is not found in a previous month -->
+                <ng-template #dummyPrevious>
+                  <div class="previous orange">-</div>
+                  <div class="delta grey">-</div>
+                </ng-template>
+              </div>
             </ng-container>
-            <!-- Template for when a region title is not found in a previous month -->
-            <ng-template #dummyPrevious>
-              <div class="previous orange">-</div>
-              <div class="delta grey">-</div>
-            </ng-template>
-          </div>
+          </ng-container>
         </ng-container>
         <div class="title-header">
           <div class="title">PRODUCTS</div>
@@ -68,27 +71,47 @@
         <!-- Product rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">
           <!-- Iterate over each product -->
-          <div class="lvl2-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'product', product.key)" *ngFor="let product of rows | distinctItems:'product' | keyvalue">
-            <div class="title">{{ product.key }}</div>
-            <!-- Bind current value -->
-            <ng-container *ngLet="product.value | sumQuantity as currentValue">
-              <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
-              <!-- Bind and check previous value, it can be not found in some cases! -->
-              <ng-container *ngIf="previousProducts[product.key] as previousProduct; else dummyPrevious">
-                <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
-                  <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
-                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+          <ng-container *ngLet="rows | distinctItems:'product' | keyvalue as products">
+            <ng-container *ngLet="products | max as maximum">
+              <div class="lvl3-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'product', product.key)" *ngFor="let product of products">
+                <div class="title">{{ product.key }}</div>
+                <!-- Bind current and previous value, previous can be not found in some cases! -->
+                <ng-container *ngLet="product.value | sumQuantity as currentValue">
+                  <ng-container *ngLet="previousProducts[product.key] | default:[] as previousProduct">
+                    <ng-container *ngLet="previousProduct | sumQuantity as previousValue">
+                      <!-- Bind template of LVL 3 Row -->
+                      <ng-container *ngTemplateOutlet="responsiveRow; context: { current: currentValue, previous: previousValue, maximum: maximum }"></ng-container>
+                    </ng-container>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
-              <!-- Template for when a product title is not found in a previous month -->
-              <ng-template #dummyPrevious>
-                <div class="previous orange">-</div>
-                <div class="delta grey">-</div>
-              </ng-template>
+              </div>
             </ng-container>
-          </div>
+          </ng-container>
         </ng-container>
       </ng-container>
     </div>
   </ng-container>
 </ng-container>
+<!-- Template for LVL 3 Rows -->
+<ng-template #responsiveRow let-current="current" let-previous="previous" let-maximum="maximum">
+  <!-- Check mobile view-->
+  <ng-container *ngIf="_data.mobile$ | async; then mobileRow else desktopRow"></ng-container>
+  <!-- Template for mobile-tabletPortrait -->
+  <ng-template #mobileRow>
+    <ng-container *ngTemplateOutlet="lvl3Row; context: { current: current, previous: previous }"></ng-container>
+    <!-- Bind numbers template -->
+    <dip-product-region-chart class="mobile" [current]="current" [previous]="previous" [maximum]="maximum"></dip-product-region-chart>
+  </ng-template>
+  <!-- Template for TabletLandscape-Desktop -->
+  <ng-template #desktopRow>
+    <dip-product-region-chart class="desktop" [current]="current" [previous]="previous" [maximum]="maximum"></dip-product-region-chart>
+    <!-- Bind numbers template -->
+    <ng-container *ngTemplateOutlet="lvl3Row; context: { current: current, previous: previous }"></ng-container>
+  </ng-template>
+</ng-template>
+<!-- Template used in every row to show the numbers -->
+<ng-template #lvl3Row let-current="current" let-previous="previous">
+  <div class="actual cyan" [innerHTML]="current | toNumber"></div>
+  <div class="previous orange" [innerHTML]="previous | toNumber"></div>
+  <div class="delta grey" [innerHTML]="previous | difference:current"></div>
+</ng-template>

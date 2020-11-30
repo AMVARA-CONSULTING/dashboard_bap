@@ -23,47 +23,6 @@
     box-sizing: border-box;
 }
 
-.select-plant {
-    display: flex;
-    height: 35px;
-    width: 100%;
-    background-color: $bg-white-lvl3;
-    line-height: 35px;
-    padding: 0 15px;
-    .selector {
-        flex: 40%;
-    }
-    .program_allocation {
-        flex: 1;
-        text-align: right;
-    }
-    .program, .allocation, .percent {
-        flex: 1 20%;
-        padding-right: 10px;
-        @include desktop {
-            flex: 0 0 150px;
-        }
-        box-sizing: border-box;
-        text-align: right;
-    }
-    .percent {
-        padding-right: 0;
-    }
-    .mobile {
-        display: block;
-        @media (min-width: 600px) {
-            display: none;
-        }
-    }
-    
-    .desktop {
-        display: none;
-        @media (min-width: 600px) {
-            display: block;
-        }
-    }
-}
-
 .total-allocation, .total-program {
     flex: 1 20%;
     text-align: right;
@@ -72,7 +31,7 @@
     }
     padding: 12px 10px 12px 0;
     box-sizing: border-box;
-    font-size: 15px;
+    @include totalStyle;
 }
 
 .total-allocation {
@@ -162,9 +121,7 @@ header {
             background-color: $bg-white-lvl3;
         }
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         display: flex;
         width: 100%;
         padding: 12px 40px;
@@ -206,6 +163,7 @@ header {
             @include desktop {
                 flex: 0 0 150px;
             }
+            @include detailStyle;
             box-sizing: border-box;
         }
         .program {
@@ -217,6 +175,7 @@ header {
         .percent {
             flex: 1 20%;
             text-align: right;
+            @include detailStyle;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -310,7 +269,7 @@ header {
         }
         .row {
             background-color: white !important;
-            border-bottom: 2px solid $light-grey2 !important;
+            border-bottom: 1px solid $light-grey2 !important;
             .month {
                 color: $light-grey4 !important;
                 font-weight: bold;

@@ -1,5 +1,5 @@
 {
-	"version": "2.68.0",
+	"version": "2.69.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.69.0",
+		  "text": [
+			"Implement design changes"
+		  ]
+		},
 		{
 		  "version": "2.68.0",
 		  "text": [

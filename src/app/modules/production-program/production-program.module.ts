@@ -5,7 +5,6 @@ import { ProductionProgramMainComponent } from './components/production-program-
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { SharedModule } from '@modules/shared/shared.module';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductionProgramLvl2Component } from './components/production-program-lvl2/production-program-lvl2.component';
 import { ProductionProgramLvl3Component } from './components/production-program-lvl3/production-program-lvl3.component';
 
@@ -42,7 +41,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    MatTooltipModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

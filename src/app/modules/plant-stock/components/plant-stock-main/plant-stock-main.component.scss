@@ -30,7 +30,7 @@
     overflow: hidden;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 240px;
@@ -66,14 +66,15 @@
         .headers, .overview-group {
             display: flex;
             width: 100%;
-            line-height: 40px;
-            padding: 0 15px;
+            line-height: 25px;
+            padding: 10px 15px;
+            align-items: center;
             box-sizing: border-box;
             .empty, .werk {
                 flex: 1;
             }
             .actual, .previous, .delta {
-                flex: 0 100px;
+                flex: 0 85px;
             }
             .actual, .previous, .delta {
                 text-align: right;
@@ -89,19 +90,14 @@
             .empty {
                 cursor: pointer;
             }
+            .actual, .previous, .delta {
+                @include totalStyle;
+            }
             .actual {
                 color: $lighten-cyan-text;
-                font-size: 21px;
-                font-weight: bold;
             }
             .previous {
                 color: $yellow-text;
-                font-size: 21px;
-                font-weight: bold;
-            }
-            .delta {
-                font-size: 21px;
-                font-weight: bold;
             }
         }
     }
@@ -153,6 +149,7 @@ header {
             text-align: right;
             padding-right: 10px;
             box-sizing: border-box;
+            @include totalStyle;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -174,9 +171,7 @@ header {
             background-color: $bg-white-lvl3;
         }
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         display: flex;
         width: 100%;
         padding: 12px 15px;
@@ -219,6 +214,7 @@ header {
             }
             padding-right: 10px;
             box-sizing: border-box;
+            @include detailStyle;
         }
         .previous {
             color: $yellow-text;
@@ -318,7 +314,7 @@ header {
         }
         .row {
             background-color: white !important;
-            border-bottom: 2px solid $light-grey2 !important;
+            border-bottom: 1px solid $light-grey2 !important;
             .werk {
                 color: $light-grey4 !important;
                 font-weight: bold;

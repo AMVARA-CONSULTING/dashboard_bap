@@ -72,9 +72,7 @@ header {
             background-color: $bg-white-lvl3;
         }
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         display: flex;
         width: 100%;
         padding: 12px 40px;
@@ -117,6 +115,7 @@ header {
             }
             padding-right: 10px;
             box-sizing: border-box;
+            @include detailStyle;
         }
         .program {
             color: $yellow-text;
@@ -129,6 +128,7 @@ header {
             @include desktop {
                 flex: 0 0 150px;
             }
+            @include detailStyle;
             text-align: right;
         }
     }
@@ -218,7 +218,7 @@ header {
         }
         .row {
             background-color: white !important;
-            border-bottom: 2px solid $light-grey2 !important;
+            border-bottom: 1px solid $light-grey2 !important;
             .month {
                 color: $light-grey4 !important;
                 font-weight: bold;

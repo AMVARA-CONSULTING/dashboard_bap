@@ -7,7 +7,6 @@ import { MonthSelectorComponent } from './components/selectors/month-selector/mo
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '@modules/shared/shared.module';
 import { OrderBacklogWrapperComponent } from './components/wrapper/wrapper.component';
 import { OrderBacklogMainComponent } from './components/order-backlog-main/order-backlog-main.component';
@@ -75,7 +74,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatTooltipModule,
     LayoutModule,
     NgxChartsModule,
     SharedModule

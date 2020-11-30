@@ -175,8 +175,8 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     }
     .header-row {
         .actual, .previous, .delta {
-            font-size: 1.2rem !important;
-            font-weight: bold;
+            // font-size: 1.2rem !important;
+            // font-weight: bold;
         }
     }
     header .mat-form-field {
@@ -189,6 +189,12 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
     plant-stock-wrapper .plandate {
         margin-bottom: -20px;
     }
+}
+
+.cdk-overlay-backdrop {
+    opacity: 1 !important;
+    background-color: rgba(black, .3);
+    backdrop-filter: blur(1px);
 }
 
 .mat-drawer-content {

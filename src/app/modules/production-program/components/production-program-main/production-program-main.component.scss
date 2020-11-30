@@ -36,7 +36,7 @@
     overflow: hidden;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 240px;
@@ -98,25 +98,13 @@
             }
             .customer {
                 color: $lighten-cyan-text;
-                font-size: 21px;
-                font-weight: bold;
-                @include tabletLandscape {
-                    font-size: 18px;
-                }
+                @include totalStyle;
             }
             .plan {
-                font-size: 21px;
-                font-weight: bold;
-                @include tabletLandscape {
-                    font-size: 18px;
-                }
+                @include totalStyle;
             }
             .reserve {
-                font-size: 21px;
-                font-weight: bold;
-                @include tabletLandscape {
-                    font-size: 18px;
-                }
+                @include totalStyle;
             }
         }
     }
@@ -142,7 +130,9 @@
         .title {
             text-transform: uppercase;
             flex: 1 35%;
-            letter-spacing: 1px;
+            @include desktop {
+                letter-spacing: 1px;
+            }
         }
         .customer, .plan, .total {
             padding-right: 10px;
@@ -151,7 +141,7 @@
         .customer, .plan, .total {
             flex: 1 20%;
             text-align: right;
-            font-size: 15px;
+            @include totalStyle;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -187,9 +177,7 @@
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
         }
@@ -230,6 +218,7 @@
         .customer, .plan, .total {
             flex: 1 20%;
             text-align: right;
+            @include detailStyle;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -438,14 +427,14 @@
         }
         .plant {
             background-color: white !important;
-            border-bottom: 2px solid $light-grey2 !important;
+            border-bottom: 1px solid $light-grey2 !important;
             .title {
                 color: $light-grey4 !important;
                 font-weight: bold;
             }
             .plan,
             .reserve {
-                color: $text-color !important;
+                color: $light-grey3 !important;
                 font-weight: bold;
             }
             .customer {

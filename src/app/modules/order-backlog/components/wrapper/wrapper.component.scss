@@ -13,6 +13,7 @@
 
 // Stylize zone and plant option of selector
 ::ng-deep .plant-select-panel {
+    min-width: calc(100% + 60px) !important;
     .zone {
         color: rgba(white, .7);
         .mat-option-text {

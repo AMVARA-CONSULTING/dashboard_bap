@@ -33,18 +33,12 @@ import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
 
 // Angular Material
 
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolsService } from '@services/tools.service';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { NavigationGuard } from './guards/navigation-guard.guard';
 import { AccessCodeComponent } from './components/access-code/access-code.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { CognosService } from '@services/cognos.service';
 import { CookiesExpiredComponent } from './dialogs/cookies-expired/cookies-expired.component';
 
@@ -57,7 +51,6 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { AuthInterceptor } from '@services/http-interceptor';
 import { APP_BASE_HREF } from '@angular/common';
 import { OnlyNumbers } from './directives/only-numbers.directive';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SharedModule } from '@modules/shared/shared.module';
 import { environment } from 'environments/environment';
 
@@ -96,12 +89,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     SharedModule,
     HammerModule,
-    MatSlideToggleModule,
     NgxsModule.forRoot([
       OrderBacklogState,
       ConfigState
@@ -112,10 +101,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production
     }),
-    // Angular Material Modules
-    MatTooltipModule,
-    MatSidenavModule,
-    MatDialogModule,
     // Plugins
     RoundProgressModule,
     TranslateModule.forRoot({

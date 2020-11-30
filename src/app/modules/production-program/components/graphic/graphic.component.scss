@@ -86,11 +86,15 @@
             transition: height .7s ease-in-out;
             background: linear-gradient(to top, rgba(0,0,0,0), rgba($semi-white, .5));
             border-top: 3px solid $semi-white;
-            text-align: center;
-            color: rgba(white, .7);
-            text-shadow: 0 0 3px black;
             padding-top: 5px;
-            font-size: 15px;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                font-size: 15px;
+                color: rgba(white, .7);
+            }
             &.zero {
                 height: 0% !important;
             }
@@ -136,7 +140,9 @@
                 }
                 .reserve {
                     background: linear-gradient(to top, rgba(0,0,0,0), rgba(grey, .6)) !important;
-                    color: rgba(black, .6) !important;
+                    .value {
+                        color: rgba(black, .6) !important;
+                    }
                     text-shadow: 0 0 3px white !important;
                     font-weight: bold;
                     border-top-color: grey !important;

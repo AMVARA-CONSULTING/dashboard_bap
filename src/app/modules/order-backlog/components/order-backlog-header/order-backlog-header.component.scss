@@ -60,7 +60,6 @@
 
 @include lightTheme {
     :host {
-        background-color: white;
         margin-top: 10px;
         @include desktop {
             margin-top: 20px;

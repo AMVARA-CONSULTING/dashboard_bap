@@ -3,12 +3,14 @@
 
 :host {
     display: block;
-    padding: 20px;
-    padding-top: 30px;
+    padding: 30px 20px;
     box-sizing: border-box;
     max-width: 1000px;
     margin: 0 auto;
     touch-action: pan-y !important;
+    @include tablet {
+        padding: 30px 60px;
+    }
 }
 
 :host::ng-deep app-theme-switcher {
@@ -85,8 +87,17 @@ a {
         }
         display: flex;
         flex-direction: column;
-        .title {
-            flex: 0 70px;
+        .title.empty {
+            flex: 0 20px;
+            margin-top: 20px;
+            @include tabletLandscapeUp {
+                flex: 0 20px;
+                margin: 60px 0 50px;
+            }
+        }
+        .title:not(.empty) {
+            flex: 0 20px;
+            margin: 60px 0 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,20 +124,19 @@ a {
         background-size: contain;
         background-repeat: no-repeat;
     }
-    .hand1, .hand2 {
-        width: 50px;
-        height: 90px;
+    .hands {
+        width: 100%;
+        height: 140px;
+        @include desktop {
+            height: 120px;
+        }
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-    }
-    .hand1 {
-        background-image: url(^assets/img/hand1.svg);
-    }
-    .hand2 {
-        margin-left: 80px;
-        height: 95px;
-        background-image: url(^assets/img/hand2.svg);
+        background-image: url(^assets/img/light/DIP_Helpgra_hands_white-11.png);
+        @include light-theme {
+            background-image: url(^assets/img/dark/DIP_Helpgra_hands_black-01.png);
+        }
     }
 }
 
@@ -158,17 +168,15 @@ a {
             align-items: center;
             justify-content: center;
             flex: 0 100px;
+            width: 100%;
             .item {
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: space-around;
+                width: 130px;
                 .icon {
-                    height: 70px;
-                    width: 70px;
-                    @include desktop {
-                        height: 100px;
-                        width: 100px;
-                    }
+                    height: 50px;
+                    width: 50px;
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;

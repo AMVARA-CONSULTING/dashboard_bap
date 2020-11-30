@@ -43,7 +43,7 @@
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         flex-wrap: wrap;
     }
-    background: linear-gradient(to bottom, transparent, $bg-white-lvl1);
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 243px;
@@ -75,7 +75,7 @@
         max-width: 40%;
         border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
-        padding-right: 20px;
+        padding-right: 40px;
         @include mobileLandscape {
             flex: 1 50%;
             max-width: 50%;
@@ -87,21 +87,16 @@
                 flex: 0 0 95px !important;
             }
         }
-        .headers, .overview-group {
+        .overview-group {
             display: flex;
             width: 100%;
             line-height: 40px;
             padding: 0 15px;
+            padding-right: 0;
             box-sizing: border-box;
-            .empty, .actual, .previous {
+            & > * {
                 flex: 1;
             }
-            .actual, .previous {
-                text-align: right;
-                font-size: 21px !important;
-            }
-        }
-        .overview-group {
             transition: background .1s ease-in-out;
             border-radius: 5px;
             cursor: pointer;
@@ -113,13 +108,13 @@
             }
             .actual {
                 color: $lighten-cyan-text;
-                font-size: 1.2em;
-                font-weight: bold;
+                @include totalStyle;
+                text-align: right;
             }
             .previous {
                 color: $yellow-text;
-                font-size: 1.2em;
-                font-weight: bold;
+                @include totalStyle;
+                text-align: right;
             }
         }
     }
@@ -199,10 +194,10 @@
         cursor: pointer;
         .title {
             flex: 1 70%;
-            letter-spacing: 1px;
             @include desktop {
                 font-size: 17px;
                 line-height: 25px;
+                letter-spacing: 1px;
             }
             text-transform: uppercase;
         }
@@ -212,8 +207,7 @@
                 flex: 0 0 150px;
             }
             text-align: right;
-            font-weight: bold;
-            font-size: 22px;
+            @include totalStyle;
         }
         .actual {
             color: $lighten-cyan-text;
@@ -231,9 +225,7 @@
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         &:hover .title {
             &:after {
                 left: 10px;
@@ -277,7 +269,7 @@
         .actual, .previous {
             flex: 1 15%;
             text-align: right;
-            font-size: 15px;
+            @include detailStyle;
             @include desktop {
                 flex: 0 0 150px;
             }

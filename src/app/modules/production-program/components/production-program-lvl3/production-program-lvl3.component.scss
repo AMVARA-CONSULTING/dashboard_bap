@@ -90,7 +90,7 @@
                 flex: 0 0 150px;
             }
             text-align: right;
-            font-size: 15px;
+            @include totalStyle;
             padding-right: 10px;
         }
         .total div:nth-child(2) {
@@ -100,7 +100,6 @@
         .reserve {
             flex: 1 10%;
             text-align: right;
-            font-size: 15px;
             @include desktop {
                 flex: 0 0 150px;
             }
@@ -152,9 +151,11 @@
         display: flex;
         text-transform: uppercase;
         background-color: $bg-white-lvl1;
-        letter-spacing: 1px;
         .title {
             flex: 1 100%;
+            @include desktop {
+                letter-spacing: 1px;
+            }
         }
     }
     .lvl2-row {
@@ -167,9 +168,7 @@
         display: flex;
         cursor: pointer;
         border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom-color: $yellow-text !important;
-        }
+        @include rowHoverEffect;
         &:nth-child(even) {
             background-color: $bg-white-lvl3;
         }
@@ -188,6 +187,7 @@
             }
             text-align: right;
             padding-right: 10px;
+            @include detailStyle;
         }
         .total div:nth-child(2) {
             margin-top: 10px;
@@ -349,14 +349,14 @@
         }
         .lvl2-row {
             background-color: white !important;
-            border-bottom: 2px solid $light-grey2 !important;
+            border-bottom: 1px solid $light-grey2 !important;
             .title {
                 color: $light-grey4 !important;
                 font-weight: bold;
             }
             .plan,
             .reserve {
-                color: $text-color !important;
+                color: $light-grey3 !important;
                 font-weight: bold;
             }
             .customer {

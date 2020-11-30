@@ -46,11 +46,15 @@
             transition: height .7s ease-in-out;
             background: linear-gradient(to top, rgba(0,0,0,0), rgba($cyan-text, .5));
             border-top: 3px solid $cyan-text;
-            text-align: center;
-            color: rgba(white, .7);
-            text-shadow: 0 0 3px black;
             padding-top: 5px;
-            font-size: 15px;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                @include totalStyle;
+                color: rgba($cyan-text, .9);
+            }
             &.zero {
                 height: 0% !important;
             }
@@ -64,11 +68,15 @@
             transition: height .7s ease-in-out;
             background: linear-gradient(to top, rgba(0,0,0,0), rgba($yellow-text, .5));
             border-top: 3px solid $yellow-text;
-            text-align: center;
-            color: rgba(white, .7);
-            text-shadow: 0 0 3px black;
             padding-top: 5px;
-            font-size: 15px;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                @include totalStyle;
+                color: rgba($yellow-text, .9);
+            }
             &.zero {
                 height: 0% !important;
             }
@@ -94,16 +102,16 @@
             .bars {
                 .actual {
                     background: linear-gradient(to top, rgba(0,0,0,0), rgba($petrol, .6)) !important;
-                    color: rgba(black, .6) !important;
-                    text-shadow: 0 0 3px white !important;
-                    font-weight: bold;
+                    .value {
+                        color: $petrol !important;
+                    }
                     border-top-color: $petrol !important;
                 }
                 .previous {
                     background: linear-gradient(to top, rgba(0,0,0,0), rgba($orange, .6)) !important;
-                    color: rgba(black, .6) !important;
-                    text-shadow: 0 0 3px white !important;
-                    font-weight: bold;
+                    .value {
+                        color: $orange !important;
+                    }
                     border-top-color: $orange !important;
                 }
             }

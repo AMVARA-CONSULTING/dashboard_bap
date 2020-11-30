@@ -7,12 +7,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MaxPipe implements PipeTransform {
 
-  transform(values: KeyValue<string, any[]>[]): number {
-    if (!values || values.length === 0) {
-      return 0;
+  transform(currentValues: KeyValue<string, any[]>[], previousValues: KeyValue<string, any[]>[]): number {
+    let highestCurrent = 0;
+    let highestPrevious = 0;
+    // Get maximum value of current items
+    if (currentValues && currentValues.length > 0) {
+      const numbers = currentValues.map(value => SumQuantityFn(value.value));
+      highestCurrent = Math.max(...numbers);
     }
-    const numbers = values.map(value => SumQuantityFn(value.value));
-    return Math.max(...numbers);
+    // Get maximum value of previous items
+    if (previousValues && previousValues.length > 0) {
+      const numbers = previousValues.map(value => SumQuantityFn(value.value));
+      highestPrevious = Math.max(...numbers);
+    }
+    // Get total highest
+    return Math.max(highestCurrent, highestPrevious);
   }
 
 }

@@ -71,7 +71,7 @@
         <!-- Items rows -->
         <ng-container *ngLet="previousRows$ | async | distinctItems:oppositeType as previousRegions">
           <ng-container *ngLet="rows | distinctItems:oppositeType | keyvalue as items">
-            <ng-container *ngLet="items | max as maximum">
+            <ng-container *ngLet="items | max:(previousRegions | keyvalue) as maximum">
               <!-- Iterate over each region -->
               <div class="lvl4-row" (click)="goItem(oppositeType, item.key)" *ngFor="let item of items">
                 <div class="title">{{ item.key }}</div>

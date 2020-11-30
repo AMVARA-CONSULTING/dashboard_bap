@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { OrderIntakeSubLvl2Component } from './components/order-intake-sub-lvl2/order-intake-sub-lvl2.component';
 import { OrderIntakeWrapperComponent } from './components/wrapper/wrapper.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { OrderIntakeSubLvl3Component } from './components/order-intake-sub-lvl3/order-intake-sub-lvl3.component';
 import { SharedModule } from '@modules/shared/shared.module';
 
@@ -37,7 +36,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatTooltipModule,
     SharedModule
   ],
   declarations: [

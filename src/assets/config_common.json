@@ -1,5 +1,5 @@
 {
-	"version": "2.69.0",
+	"version": "2.70.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.70.0",
+		  "text": [
+			"#2716 - Implemented custom CSS for login"
+		  ]
+		},
 		{
 		  "version": "2.69.0",
 		  "text": [

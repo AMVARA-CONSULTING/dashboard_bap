@@ -84,11 +84,15 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
         });
         // Push previous value
         const previousMonthIndex = previousMonthsRange[i];
+        let originalItem = null;
+        try {
+          originalItem = moment(previousMonths[previousMonthIndex][0][BacklogColumns.Date], 'YYYY-MM').toDate();
+        } catch (err) { }
         chart[1].series.push({
           name: moment(currentMonths[currentMonthIndex][0][BacklogColumns.Date], 'YYYY-MM').toDate(),
           value: SumQuantityFn(previousMonths[previousMonthIndex]),
           extra: {
-            original: moment(previousMonths[previousMonthIndex][0][BacklogColumns.Date], 'YYYY-MM').toDate()
+            original: originalItem
           }
         });
       }

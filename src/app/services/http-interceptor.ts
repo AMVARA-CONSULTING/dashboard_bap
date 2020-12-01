@@ -40,6 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
             catchError((err: HttpErrorResponse) => {
                 return this.handleAuthError(err);
             })
-        )
+        );
     }
 }

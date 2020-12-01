@@ -1,7 +1,7 @@
 {
-	"version": "2.63.0",
+	"version": "2.69.0",
 	"debug": false,
-	"loading": true,
+	"loading": false,
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "int",
@@ -14,7 +14,7 @@
 		"de": "Deutsch"
 	},
 	"apiLink": "/internal/bi/v1/",
-	"apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
+	"apiDomain": "",
 	"enableReports": {
 		"order_backlog": true,
 		"order_intake": true,
@@ -26,7 +26,7 @@
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
       "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
     },
-	"corpintra": true,
+	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"reports": {
@@ -247,6 +247,52 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.69.0",
+		  "text": [
+			"Implement design changes"
+		  ]
+		},
+		{
+		  "version": "2.68.0",
+		  "text": [
+			"Improve Light Theme SCSS selector",
+			"Fix and show horizontal bar chart over Order Backlog LVL 3 & 4",
+			"Fix ngLet directive"
+		  ]
+		},
+		{
+		  "version": "2.67.0",
+		  "text": [
+			"#2718 - PP > Fix for iPhone X and Tablet Landscape"
+		  ]
+		},
+		{
+		  "version": "2.66.0",
+		  "text": [
+			"#2717 - Create propetype waterfall chart for Order Backlog Lvl 3 & 4",
+			"#2721 - Fix selector text above total numbers",
+			"#2720 - Fix double click in go back arrow button of Order Backlog",
+			"#2694 - Improve Help page with new design"
+		  ]
+		},
+		{
+		  "version": "2.65.0",
+		  "text": [
+			"#2720 - Fixed z-index and space of arrow back of Order Backlog",
+			"#2721 - Fixed mat-select value out of selector by implement custom mat-select-trigger"
+		  ]
+		},
+		{
+		  "version": "2.64.0",
+		  "text": [
+			"#2694 - Make Order Backlog Line Chart with spline lines",
+			"#2694 - Add selector for each level of Order Backlog",
+			"#2694 - Don't show plant/zone total values for Order Backlog L2, L3 & L4",
+			"Fix bug where page was empty when a region or product doesn't have previous values",
+			"#2719 - Add the permission name for Order Backlog (Trucks/Vans)"
+		  ]
+		},
 		{
 		  "version": "2.63.0",
 		  "text": [

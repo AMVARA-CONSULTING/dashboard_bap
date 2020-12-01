@@ -66,6 +66,11 @@ export class CognosService {
             iframe.style.height = '100%';
             iframe.style.width = '100%';
             iframe.style.border = '0';
+            const _this = this;
+            iframe.onload = function() {
+              // Manually add DaimlerLoginCSS to login iframe
+              _this.addCSStoLogin(location.protocol + '//' + location.host + location.pathname + 'assets/css/custom_login.css');
+            };
             iframe.src = '/internal/bi/?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&ui_appbar=false&ui_navbar=false&format=HTML&Download=false';
             document.body.appendChild(iframe);
             // AMVARA_triggerReport sended login is done
@@ -75,6 +80,15 @@ export class CognosService {
             });
           });
     });
+  }
+
+  addCSStoLogin(cssFile: string) {
+    const head = window.frames[0].document.getElementsByTagName('head')[0];
+    const link = window.frames[0].document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = cssFile;
+    head.appendChild(link);
   }
 
   loadCapabilities(CapabilitiesReportID, resolve, config: Config, iframe?, app?) {

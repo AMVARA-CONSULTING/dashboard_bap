@@ -10,14 +10,11 @@
     width: 100%;
     overflow: hidden;
     z-index: 99;
-    background: $header-bg-color 40%;
+    background: $header-bg-color;
     transform: translate3d(0,0,0);
-}
-
-
-@include lightTheme {
-    :host {
-        background: $header-bg-color-light !important;
+    border-bottom: 1px solid $header-border-color;
+    @include light-theme-host {
+        background: $header-bg-color-light;
         box-shadow: 0 0 10px grey;
         ul li,
         .mat-slide-toggle {
@@ -61,12 +58,19 @@
         .app-title {
             letter-spacing: 0.35em;
             line-height: 22px;
+            @include light-theme {
+                color: $light-grey4;
+            }
         }
         .app-confidential {
             font-size: 9px;
             color: red;
             letter-spacing: 1px;
             margin: 5px 0 0 3px;
+            @include light-theme {
+                font-weight: bold;
+                color: red;
+            }
         }
     }
     font-size: 33px;
@@ -104,6 +108,9 @@
         animation-duration: 1.3s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        @include light-theme {
+            background-image: url(^assets/loader_circle_outside_light.svg);
+        }
     }
     .middle {
         display: block;
@@ -123,6 +130,9 @@
         animation-duration: 1.3s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        @include light-theme {
+            background-image: url(^assets/loader_circle_middle_light.svg);
+        }
     }
     .inter {
         display: block;
@@ -141,26 +151,8 @@
         animation-duration: 1.3s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-    }
-}
-
-@include lightTheme {
-    :host .logo {
-        .app-title {
-            color: $light-grey4 !important;
-        }
-        .app-confidential {
-            font-weight: bold;
-            color: red;
-        }
-        .inter {
+        @include light-theme {
             background-image: url(^assets/loader_circle_inside_light.svg);
-        }
-        .middle {
-            background-image: url(^assets/loader_circle_middle_light.svg);
-        }
-        .outer {
-            background-image: url(^assets/loader_circle_outside_light.svg);
         }
     }
 }
@@ -185,7 +177,7 @@
         position: relative;
         white-space: nowrap;
         &:hover:after, &.active:after {
-            height: 1px;
+            height: 2px;
             width: 100%;
         }
         &:after {
@@ -196,7 +188,7 @@
             margin: auto;
             left: 0;
             right: 0;
-            bottom: 8px;
+            bottom: 0;
             transition: width .2s ease-in-out;
             background-color: $yellow-text;
         }

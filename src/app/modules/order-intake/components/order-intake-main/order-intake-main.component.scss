@@ -43,7 +43,8 @@
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         flex-wrap: wrap;
     }
-    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    background-color: $body-bg-color;
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 243px;
@@ -185,12 +186,14 @@
         @include mobile {
             padding: 12px 20px 12px 15px;
         }
+        align-items: center;
         position: relative;
         border-bottom: 1px solid transparent;
         &:hover {
             border-bottom-color: $yellow-text !important;
         }
-        background-color: $bg-white-lvl1;
+        // background-color: $bg-white-lvl1;
+        background-color: $group-bg-color;
         cursor: pointer;
         .title {
             flex: 1 70%;
@@ -234,10 +237,12 @@
             box-sizing: border-box;
         }
         &:nth-child(even) {
-            background-color: $bg-white-lvl3;
+            // background-color: $bg-white-lvl3;
+            background-color: $row-even-bg-color;
         }
         &:nth-child(odd) {
-            background-color: $bg-white-lvl4;
+            // background-color: $bg-white-lvl4;
+            background-color: $row-odd-bg-color;
         }
         .title {
             transition: padding-left .15s ease-in-out;

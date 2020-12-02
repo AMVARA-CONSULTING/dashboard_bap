@@ -26,7 +26,8 @@
             padding-right: 40px;
         }
         box-sizing: border-box;
-        background-color: $bg-white-lvl3;
+        // background-color: $bg-white-lvl3;
+        background-color: $body-bg-color;
         .empty {
             flex: 1 70%;
             padding-left: 5px;
@@ -39,6 +40,9 @@
             letter-spacing: 1px;
         }
     }
+    .total-headers {
+        flex: 1 100%;
+    }
     .header-row {
         display: flex;
         flex: 1 100%;
@@ -46,12 +50,17 @@
         @include mobile {
             padding: 12px 20px 12px 15px;
         }
+        background-color: $total-upper-bg-color;
+        border-bottom: 2px solid $body-bg-color;
         .title {
             flex: 1 70%;
             position: relative;
         }
+        &:last-of-type {
+            background-color: $total-lower-bg-color;
+        }
         &.total {
-            background-color: $bg-white-lvl1;
+            // background-color: $bg-white-lvl1;
         }
         &.arrow .title:after {
             transition: left .2s ease-in-out;
@@ -73,7 +82,7 @@
             cursor: pointer;
         }
         &.plant, &.zone {
-            background-color: $bg-white-lvl3;
+            // background-color: $bg-white-lvl3;
             cursor: pointer;
             .title {
                 padding-left: 25px;
@@ -130,7 +139,8 @@
         }
         text-transform: uppercase;
         display: flex;
-        background-color: $bg-white-lvl1;
+        // background-color: $bg-white-lvl1;
+        background-color: $group-bg-color;
         .title {
             flex: 1 100%;
             @include desktop {
@@ -151,10 +161,12 @@
         border-bottom: 1px solid transparent;
         @include rowHoverEffect;
         &:nth-child(even) {
-            background-color: $bg-white-lvl3;
+            // background-color: $bg-white-lvl3;
+            background-color: $row-even-bg-color;
         }
         &:nth-child(odd) {
-            background-color: $bg-white-lvl4;
+            // background-color: $bg-white-lvl4;
+            background-color: $row-odd-bg-color;
         }
         &:hover .title {
             padding-left: 30px;

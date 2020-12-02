@@ -19,6 +19,7 @@
     @include desktop {
         padding-right: 40px;
     }
+    // background-color: $graphic-bg-color;
     box-sizing: border-box;
     .empty {
         flex: 1 70%;
@@ -44,18 +45,18 @@
         flex-wrap: wrap;
     }
     // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
-    background-color: $body-bg-color;
+    background-color: $graphic-bg-color;
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     @include desktop {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     .graphic {
         flex: 1 60%;
@@ -74,7 +75,7 @@
     .simple {
         flex: 1 40%;
         max-width: 40%;
-        border-left: 3px solid rgba($color: #000, $alpha: .35);
+        // border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
         padding-right: 40px;
         @include mobileLandscape {

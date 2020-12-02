@@ -12,7 +12,7 @@
     z-index: 99;
     background: $header-bg-color;
     transform: translate3d(0,0,0);
-    border-bottom: 1px solid $header-border-color;
+    // border-bottom: 1px solid $header-border-color;
     @include light-theme-host {
         background: $header-bg-color-light;
         box-shadow: 0 0 10px grey;

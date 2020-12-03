@@ -128,16 +128,17 @@
         @include mobile {
             padding: 12px 20px 12px 15px;
         }
-        @include rowHoverEffect;
         display: flex;
         cursor: pointer;
         &:nth-child(even) {
             // background-color: $bg-white-lvl3;
             background-color: $row-even-bg-color;
+            @include rowHoverEffect(true);
         }
         &:nth-child(odd) {
             // background-color: $bg-white-lvl4;
             background-color: $row-odd-bg-color;
+            @include rowHoverEffect(false);
         }
         .title {
             flex: 1 70%;

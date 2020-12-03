@@ -1,5 +1,5 @@
 {
-	"version": "2.71.0",
+	"version": "2.72.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.72.0",
+		  "text": [
+			"#2685 - Improve graphic bg color and rows bg color"
+		  ]
+		},
 		{
 		  "version": "2.71.0",
 		  "text": [

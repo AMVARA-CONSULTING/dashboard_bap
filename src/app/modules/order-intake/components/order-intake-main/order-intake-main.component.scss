@@ -47,7 +47,7 @@
     max-height: 0;
     overflow: hidden;
     transition: all .6s ease-in-out;
-    border-color: rgba($color: #000, $alpha: .2);
+    // border-color: rgba($color: #000, $alpha: .2);
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         flex-wrap: wrap;
     }
@@ -57,13 +57,13 @@
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
+        // border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     @include desktop {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
+        // border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     .graphic {
         flex: 1 60%;
@@ -196,6 +196,7 @@
         }
         align-items: center;
         position: relative;
+        border-top: 3px solid $body-bg-color;
         border-bottom: 1px solid transparent;
         &:hover {
             border-bottom-color: $yellow-text !important;

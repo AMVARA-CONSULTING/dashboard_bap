@@ -32,7 +32,7 @@ $graphic-bg-color: darken($group-bg-color, 2); // Used for graphics
 $body-bg-color: darken($group-bg-color, 5); // Used for body
 $row-even-bg-color: $body-bg-color; // Used for detail even rows
 $total-border-color: $body-bg-color; // Used for border between total headers
-$row-odd-bg-color: lighten($total-lower-bg-color, 1); // Used for detail odd rows
+$row-odd-bg-color: $total-lower-bg-color; // Used for detail odd rows
 
 
 

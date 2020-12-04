@@ -1,5 +1,5 @@
 {
-	"version": "2.73.0",
+	"version": "2.74.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.74.0",
+		  "text": [
+			"Adjust dark theme colors and borders"
+		  ]
+		},
 		{
 		  "version": "2.73.0",
 		  "text": [

@@ -59,6 +59,8 @@ import { OrderBacklogState } from '@store/order-backlog.state';
 import { ConfigState } from '@store/config.state';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { NetworkErrorHandlingModule } from 'network-error-handling';
+
 declare var Hammer: any;
 
 @Injectable()
@@ -86,8 +88,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     RoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
     HammerModule,
@@ -110,6 +112,7 @@ export class MyHammerConfig extends HammerGestureConfig {
           deps: [HttpClient],
       }
     }),
+    NetworkErrorHandlingModule
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],
   entryComponents: [

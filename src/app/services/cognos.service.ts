@@ -50,7 +50,7 @@ export class CognosService {
 
   load(CapabilitiesReportID, config: Config): Promise<void> {
     return new Promise(resolve => {
-      this.http.get('/internal/bi/v1/ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg', { observe: 'response', responseType: 'text' })
+      this.http.get('/internal/bi/v1/ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg', { observe: 'response' })
         .subscribe(
           success => {
             // Retrieve XSRF Token
@@ -143,14 +143,14 @@ export class CognosService {
   getUserCapabilities(ReportID): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get(`/internal/bi/v1/identity`, {
+        this.http.get<any>(`/internal/bi/v1/identity`, {
           headers: {
             'X-XSRF-TOKEN': this.tools.xsrf_token,
             'X-Requested-With': 'XMLHttpRequest'
           },
-          responseType: 'json'
-        }).subscribe((rows: any) => {
-          observer.next({ success: true, data: rows.data });
+          observe: 'response'
+        }).subscribe(rows => {
+          observer.next({ success: true, data: rows.body.data });
           observer.complete();
         }, err => {
           observer.next({ success: false, data: [], error: 'CAP - Fail at retrieving report info.', more: err });

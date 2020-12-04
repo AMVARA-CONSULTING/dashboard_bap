@@ -27,12 +27,12 @@ export class ConfigService {
       const corpintra = location.hostname.indexOf('corpintra.net') > -1;
       const configFile = corpintra ? 'config_daimler.json' : 'config.json';
       forkJoin([
-        this.http.get('assets/config_common.json'),
-        this.http.get('assets/' + configFile)
+        this.http.get<Config>('assets/config_common.json', { observe: 'response' }),
+        this.http.get<Config>('assets/' + configFile, { observe: 'response' })
       ]).pipe(
         // Merge common config with custom
-        map(([common, config]: [Config, Config]) => ({ ...common, ...config}))
-      ).subscribe((config: Config) => {
+        map(([common, config]) => ({ ...common.body, ...config.body }))
+      ).subscribe(config => {
         (window as any).config = config;
         const search: any = this.tools.getJsonFromUrl();
         config.simulateUnauthorized = search.unauthorized ? search.unauthorized : 0;

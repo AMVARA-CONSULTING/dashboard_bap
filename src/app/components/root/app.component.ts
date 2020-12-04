@@ -50,15 +50,14 @@ export class AppComponent implements OnInit {
     if (this.config.simulateUnauthorized > 0) {
       timer(this.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);
     }
-    if (this.api.corpintra || location.hostname === 'localhost') {
+    if (this.api.corpintra || location.hostname !== 'localhost') {
       // Heartbeat and check updates
       const pathname = location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/';
       this.api.heartbeat = interval(this.config.heartbeat).subscribe(_ => {
         // Request to common config instead of keep.alive.txt
         // Therefore we can maintain session alive and check newer versions at the same time
-        this.http.get(pathname + `assets/config_common.json`, {
+        this.http.get<Config>(pathname + `assets/config_common.json`, {
           observe: 'response',
-          responseType: 'text',
           params: {
             'ngsw-bypass': '1', // Bypass Service Worker Cache
             'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
@@ -66,21 +65,10 @@ export class AppComponent implements OnInit {
         }).pipe(
           // Retry request up to 3 times
           retry(3),
-          // Map response to body text
-          map((response: HttpResponse<any>) => response.body as string)
-        ).subscribe(body => {
+        ).subscribe(res => {
           // Parse text to JSON and compare version with current config
-          let serverConfig: Partial<Config>;
-          try {
-            serverConfig = JSON.parse(body);
-          } catch (err) {
-            serverConfig = { version: '0' };
-            if (this.config.debug) {
-              console.log('There was an error parsing config_common.json from server');
-            }
-          }
           const currentVersion = versionToNumber(this.config.version);
-          const newerVersion = versionToNumber(serverConfig.version);
+          const newerVersion = versionToNumber(res.body.version);
           if (newerVersion > currentVersion) {
             // New version detected
             this._dialog.open(NewUpdateComponent, {

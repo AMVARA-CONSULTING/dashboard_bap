@@ -22,6 +22,20 @@ $bg-white-lvl3: rgba($color: $bg-white-lvl3-pure, $alpha: .4);
 $bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
 $row-hover: rgba(white, .02);
 
+// New Dark Theme specs
+$header-bg-color: black; // Used for Header
+$header-border-color: #808080; // Used for header border bottom
+$total-upper-bg-color: #1A1A1A; // Used for total and group rows
+$total-lower-bg-color: #111111; // Used for last total row of report total headers
+$group-bg-color: $total-upper-bg-color; // Used for group rows
+$graphic-bg-color: darken($group-bg-color, 2); // Used for graphics
+$body-bg-color: darken($group-bg-color, 5); // Used for body
+$row-even-bg-color: $body-bg-color; // Used for detail even rows
+$total-border-color: $body-bg-color; // Used for border between total headers
+$row-odd-bg-color: lighten($total-lower-bg-color, 1); // Used for detail odd rows
+
+
+
 // Light theme
 $text-color: lighten(black, 5);
 $main-bg-body-color-light: darken(white, 3);
@@ -43,10 +57,14 @@ $light-grey4: #333333;
     font-size: 15px;
 }
 
-@mixin rowHoverEffect {
+@mixin rowHoverEffect($even: true) {
     @include dark-theme {
         &:hover {
-            background-color: rgba(white, .02) !important;
+            @if $even {
+                background-color: lighten($row-even-bg-color, 2) !important;
+            } @else {
+                background-color: lighten($row-odd-bg-color, 2) !important;
+            }
         }
     }
     @include light-theme {
@@ -66,6 +84,13 @@ $light-grey4: #333333;
 // Used in components only
 @mixin light-theme {
     body[theme="light"] :host & {
+        @content;
+    }
+}
+
+// Mixin used for Light Theme when parent caller already has :host prefix
+@mixin light-theme-host {
+    body[theme="light"] & {
         @content;
     }
 }

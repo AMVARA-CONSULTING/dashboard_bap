@@ -1,18 +1,20 @@
-<div class="data-header">
-  <div class="empty"></div>
-  <div class="report-date">{{ plandate }}</div>
-  <div class="glyph">&Oslash;</div>
-</div>
-<div class="overview">
-  <div class="graphic">
-    <order-intake-graphic [data]="data.orderIntakeData"></order-intake-graphic>
+<div class="report-header">
+  <div class="data-header">
+    <div class="empty"></div>
+    <div class="report-date">{{ plandate }}</div>
+    <div class="glyph">&Oslash;</div>
   </div>
-  <div class="simple">
-    <div (click)="goZone(rowGroups[key][0][0])" class="overview-group" *ngFor="let key of rowKeys">
-      <div class="empty">{{
-        rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
-      <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
-      <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
+  <div class="overview">
+    <div class="graphic">
+      <order-intake-graphic [data]="data.orderIntakeData"></order-intake-graphic>
+    </div>
+    <div class="simple">
+      <div (click)="goZone(rowGroups[key][0][0])" class="overview-group" *ngFor="let key of rowKeys">
+        <div class="empty">{{
+          rowGroups[key][0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]] }}</div>
+        <div class="actual">{{ data.sumByIndex(rowGroups[key], 12) | toNumber }}</div>
+        <div class="previous">{{ data.sumByIndex(rowGroups[key], 13) | toNumber }}</div>
+      </div>
     </div>
   </div>
 </div>

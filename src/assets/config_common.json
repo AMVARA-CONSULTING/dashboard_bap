@@ -256,6 +256,18 @@
 		  ]
 		},
 		{
+		  "version": "2.72.0",
+		  "text": [
+			"#2685 - Improve graphic bg color and rows bg color"
+		  ]
+		},
+		{
+		  "version": "2.71.0",
+		  "text": [
+			"#2685 - Implement new Dark Theme in Order Intake"
+		  ]
+		},
+		{
 		  "version": "2.70.0",
 		  "text": [
 			"#2716 - Implemented custom CSS for login"

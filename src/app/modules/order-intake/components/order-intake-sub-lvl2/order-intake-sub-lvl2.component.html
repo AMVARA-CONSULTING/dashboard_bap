@@ -4,33 +4,35 @@
     <div class="report-date">{{ plandate }}</div>
     <div class="glyph">&Oslash;</div>
   </div>
-  <ng-container *ngIf="ZoneID != null && groupInfo">
-    <div class="header-row total">
-      <div class="title">TOTAL</div>
-      <div class="actual">{{ groupInfo.totalActual | toNumber }}</div>
-      <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
-    </div>
-    <div class="header-row arrow zone" (click)="return()">
-      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-          groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</span></div>
-      <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
-      <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="PlantID != null && groupInfo">
-    <div class="header-row total">
-      <div class="title">{{
-        groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</div>
-      <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
-      <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
-    </div>
-    <div class="header-row arrow plant" (click)="return()">
-      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-          groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</span></div>
-      <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
-      <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>
-    </div>
-  </ng-container>
+  <div class="total-headers">
+    <ng-container *ngIf="ZoneID != null && groupInfo">
+      <div class="header-row total">
+        <div class="title">TOTAL</div>
+        <div class="actual">{{ groupInfo.totalActual | toNumber }}</div>
+        <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
+      </div>
+      <div class="header-row arrow zone" (click)="return()">
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+            groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</span></div>
+        <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
+        <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="PlantID != null && groupInfo">
+      <div class="header-row total">
+        <div class="title">{{
+          groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</div>
+        <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
+        <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
+      </div>
+      <div class="header-row arrow plant" (click)="return()">
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+            groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</span></div>
+        <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
+        <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>
+      </div>
+    </ng-container>
+  </div>
   <dip-circular-meters [actualValue]="groupInfo.progressValue1" [previousValue]="groupInfo.progressValue2" [actual]="groupInfo.progress1 || 0"
     [previous]="groupInfo.progress2 || 0" *ngIf="ready && groupInfo"></dip-circular-meters>
   <div class="title-header">

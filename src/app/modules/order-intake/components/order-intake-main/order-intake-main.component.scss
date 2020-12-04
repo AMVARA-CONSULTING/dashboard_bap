@@ -11,7 +11,7 @@
     height: 30px;
     line-height: 30px;
     @include desktop {
-        margin-top: 20px;
+        // margin-top: 20px;
         margin-bottom: -20px;
     }
     position: relative;
@@ -19,6 +19,7 @@
     @include desktop {
         padding-right: 40px;
     }
+    // background-color: $graphic-bg-color;
     box-sizing: border-box;
     .empty {
         flex: 1 70%;
@@ -33,6 +34,13 @@
     }
 }
 
+.report-header {
+    background-color: $graphic-bg-color;
+    @include desktop {
+        padding-top: 20px;
+    }
+}
+
 .overview {
     display: flex;
     width: 100%;
@@ -43,18 +51,19 @@
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         flex-wrap: wrap;
     }
-    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    // background-color: $graphic-bg-color;
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     @include desktop {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .5);
     }
     .graphic {
         flex: 1 60%;
@@ -73,7 +82,7 @@
     .simple {
         flex: 1 40%;
         max-width: 40%;
-        border-left: 3px solid rgba($color: #000, $alpha: .35);
+        // border-left: 3px solid rgba($color: #000, $alpha: .35);
         padding: 30px;
         padding-right: 40px;
         @include mobileLandscape {
@@ -185,12 +194,14 @@
         @include mobile {
             padding: 12px 20px 12px 15px;
         }
+        align-items: center;
         position: relative;
         border-bottom: 1px solid transparent;
         &:hover {
             border-bottom-color: $yellow-text !important;
         }
-        background-color: $bg-white-lvl1;
+        // background-color: $bg-white-lvl1;
+        background-color: $group-bg-color;
         cursor: pointer;
         .title {
             flex: 1 70%;
@@ -225,7 +236,6 @@
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
-        @include rowHoverEffect;
         &:hover .title {
             &:after {
                 left: 10px;
@@ -234,10 +244,14 @@
             box-sizing: border-box;
         }
         &:nth-child(even) {
-            background-color: $bg-white-lvl3;
+            // background-color: $bg-white-lvl3;
+            background-color: $row-even-bg-color;
+            @include rowHoverEffect(true);
         }
         &:nth-child(odd) {
-            background-color: $bg-white-lvl4;
+            // background-color: $bg-white-lvl4;
+            background-color: $row-odd-bg-color;
+            @include rowHoverEffect(false);
         }
         .title {
             transition: padding-left .15s ease-in-out;

@@ -28,37 +28,35 @@ export class ProductRegionChartComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // Grab current values
-    const current = changes.current.currentValue;
+    const current = changes.current.currentValue || 0;
     const previous = (changes.previous && changes.previous.currentValue) || 0;
     const maximum = changes.maximum.currentValue;
-    if (!isNaN(current)) {
-      // Check if previous is valid
-      // If previous is not valid, only show total bar
-      let highestValue = current;
-      if (!isNaN(previous)) {
-        // Calculate highest value
-        highestValue = Math.max(current, previous);
-      }
-      this.maxWidth$.next(this.calculatePercent(maximum, highestValue) + '%');
-      const actualPercent = this.calculatePercent(highestValue, current);
-      this.actualPercent.next(actualPercent);
-      const previousPercent = this.calculatePercent(highestValue, previous);
-      this.previousPercent.next(previousPercent);
-      // const difference = current - previous;
-      // this.deltaValue.next(difference);
-      /* let deltaPercent;
-      if (difference > 0) {
-        deltaPercent = this.calculatePercent(highestValue, difference);
-      } else {
-        deltaPercent = this.calculatePercent(highestValue, previous - current);
-      } */
-      // this.deltaPercent.next(deltaPercent);
-      /* if (difference > 0) {
-        this.deltaPosition.next(previousPercent);
-      } else {
-        this.deltaPosition.next(actualPercent);
-      }*/
+    // Check if previous is valid
+    // If previous is not valid, only show total bar
+    let highestValue = current;
+    if (!isNaN(previous)) {
+      // Calculate highest value
+      highestValue = Math.max(current, previous);
     }
+    this.maxWidth$.next(this.calculatePercent(maximum, highestValue) + '%');
+    const actualPercent = this.calculatePercent(highestValue, current);
+    this.actualPercent.next(actualPercent);
+    const previousPercent = this.calculatePercent(highestValue, previous);
+    this.previousPercent.next(previousPercent);
+    // const difference = current - previous;
+    // this.deltaValue.next(difference);
+    /* let deltaPercent;
+    if (difference > 0) {
+      deltaPercent = this.calculatePercent(highestValue, difference);
+    } else {
+      deltaPercent = this.calculatePercent(highestValue, previous - current);
+    } */
+    // this.deltaPercent.next(deltaPercent);
+    /* if (difference > 0) {
+      this.deltaPosition.next(previousPercent);
+    } else {
+      this.deltaPosition.next(actualPercent);
+    }*/
   }
 
   calculatePercent(total: number, part: number): number {

@@ -5,7 +5,7 @@
     <!-- Overview -->
     <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
       <!-- Headers -->
-      <order-backlog-header></order-backlog-header>
+      <order-backlog-header type="day"></order-backlog-header>
       <!-- Header Row of currented select plant / zone -->
       <div class="header-row zone">
         <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
@@ -70,7 +70,7 @@
       <ng-container *ngLet="params.type === 'region' ? 'product' : 'region' as oppositeType">
         <!-- Items rows -->
         <ng-container *ngLet="previousRows$ | async | distinctItems:oppositeType as previousRegions">
-          <ng-container *ngLet="rows | distinctItems:oppositeType | keyvalue as items">
+          <ng-container *ngLet="rows | distinctItems:oppositeType:previousRegions | keyvalue as items">
             <ng-container *ngLet="items | max:(previousRegions | keyvalue) as maximum">
               <!-- Iterate over each region -->
               <div class="lvl4-row" (click)="goItem(oppositeType, item.key)" *ngFor="let item of items">

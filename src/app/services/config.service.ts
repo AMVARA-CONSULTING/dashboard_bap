@@ -25,7 +25,10 @@ export class ConfigService {
   load(): Promise<void> {
     return new Promise(resolve => {
       const corpintra = location.hostname.indexOf('corpintra.net') > -1;
-      const configFile = corpintra ? 'config_daimler.json' : 'config.json';
+      let configFile = corpintra ? 'config_daimler.json' : 'config.json';
+      if (location.hostname === 'localhost') {
+        configFile = 'config_dev.json';
+      }
       forkJoin([
         this.http.get('assets/config_common.json'),
         this.http.get('assets/' + configFile)

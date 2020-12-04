@@ -1,22 +1,80 @@
 <div class="empty"></div>
-<ng-container *ngIf="type === 'ranges'; else day">
-    <ng-container *ngIf="_data.mobile$ | async; else rangeDesktopHeaders">
-        <div class="report-date">
-            <div class="upper">Last</div>
-            <div class="lower">12 Month</div>
-        </div>
-        <div class="report-date">
-            <div class="upper">Previous</div>
-            <div class="lower">12 Month</div>
-        </div>
+<ng-container [ngSwitch]="level">
+    <!-- Level 1 Headers -->
+    <ng-container *ngSwitchCase="1">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">{{ days$.latestDay | formatLatestDay }}</div>
+                <div class="lower"></div>
+            </div>
+            <div class="report-date">
+                <div class="upper">Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">{{ days$.latestDay | formatLatestDay }}</div>
+            <div class="report-date">Prev. Year</div>
+        </ng-template>
     </ng-container>
-    <ng-template #rangeDesktopHeaders>
-        <div class="report-date">Last 12 Month</div>
-        <div class="report-date">Prev. 12 Month</div>
-    </ng-template>
+    <!-- Level 2 Headers -->
+    <ng-container *ngSwitchCase="2">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">Last</div>
+                <div class="lower">12 Month</div>
+            </div>
+            <div class="report-date">
+                <div class="upper">Prev.</div>
+                <div class="lower">12 Month</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">Last 12 month</div>
+            <div class="report-date">Prev. 12 Month</div>
+        </ng-template>
+    </ng-container>
+    <!-- Level 3 Headers -->
+    <ng-container *ngSwitchCase="3">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">Last</div>
+                <div class="lower">12 Month</div>
+            </div>
+            <div class="report-date">
+                <div class="upper">Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">Last 12 month</div>
+            <div class="report-date">Prev. Year</div>
+        </ng-template>
+    </ng-container>
+    <!-- Level 4 Headers -->
+    <ng-container *ngSwitchCase="4">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">Last</div>
+                <div class="lower">12 Month</div>
+            </div>
+            <div class="report-date">
+                <div class="upper">Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">Last 12 month</div>
+            <div class="report-date">Prev. Year</div>
+        </ng-template>
+    </ng-container>
 </ng-container>
-<ng-template #day>
-    <div class="report-date">{{ days$.latestDay | formatLatestDay }}</div>
-    <div class="report-date">Prev. Month</div>
-</ng-template>
 <div class="glyph">&Delta;</div>

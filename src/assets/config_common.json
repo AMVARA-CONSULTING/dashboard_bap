@@ -1,5 +1,5 @@
 {
-	"version": "2.70.0",
+	"version": "2.73.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,14 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.73.0",
+		  "text": [
+			"#2728 - Fix Order Backlog Prev. Year header",
+			"#2712 - Show Products/Regions in Order Backlog LVL 3 & 4 even when they don't have values in current month",
+			"#2712 - Order Backlog correct delta value in missing rows"
+		  ]
+		},
 		{
 		  "version": "2.70.0",
 		  "text": [

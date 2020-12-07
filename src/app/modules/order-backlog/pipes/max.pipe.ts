@@ -12,15 +12,15 @@ export class MaxPipe implements PipeTransform {
     let highestPrevious = 0;
     // Get maximum value of current items
     if (currentValues && currentValues.length > 0) {
-      const numbers = currentValues.map(value => SumQuantityFn(value.value));
+      const numbers = currentValues.map(value => SumQuantityFn(value.value)).filter(num => !isNaN(num));
       highestCurrent = Math.max(...numbers);
     }
     // Get maximum value of previous items
     if (previousValues && previousValues.length > 0) {
-      const numbers = previousValues.map(value => SumQuantityFn(value.value));
+      const numbers = previousValues.map(value => SumQuantityFn(value.value)).filter(num => !isNaN(num));
       highestPrevious = Math.max(...numbers);
     }
-    // Get total highest
+    // Get total highest^
     return Math.max(highestCurrent, highestPrevious);
   }
 

@@ -42,7 +42,7 @@
         <!-- Region rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
           <!-- Iterate over each region -->
-          <ng-container *ngLet="rows | distinctItems:'region' | keyvalue as regions">
+          <ng-container *ngLet="rows | distinctItems:'region':previousRegions | keyvalue as regions">
             <ng-container *ngLet="regions | max:(previousRegions | keyvalue) as maximum">
               <div class="lvl3-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'region', region.key)" *ngFor="let region of regions">
                 <div class="title">{{ region.key }}</div>
@@ -71,7 +71,7 @@
         <!-- Product rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">
           <!-- Iterate over each product -->
-          <ng-container *ngLet="rows | distinctItems:'product' | keyvalue as products">
+          <ng-container *ngLet="rows | distinctItems:'product':previousProducts | keyvalue as products">
             <ng-container *ngLet="products | max:(previousProducts | keyvalue) as maximum">
               <div class="lvl3-row" (click)="_obRouter.goToProductRegionView(_ac, null, null, null, 'product', product.key)" *ngFor="let product of products">
                 <div class="title">{{ product.key }}</div>

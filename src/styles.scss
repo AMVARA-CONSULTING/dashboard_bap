@@ -42,14 +42,13 @@
     src: url(^assets/c063004t.ttf) format('truetype');
 }
 
-body {
+body,
+dip-root * {
     font-family: "CorpoS", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 @include mobile {
     .graphic .werk .title {
@@ -380,9 +379,6 @@ button, .mat-option, .mat-select-value-text, .mat-expansion-panel-header, .mat-e
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
-
 .darker-dialog .mat-dialog-container {
     background-color: $bg-white-lvl3;
 }
@@ -436,4 +432,14 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .mat-sidenav-container {
     transition: .15s -webkit-filter ease-in-out;
+}
+
+@include dark-theme-global {
+    .error-dialog .mat-dialog-container {
+        background-color: $main-shady-color;
+        color: rgba(255,255,255,.8);
+        .mat-dialog-title {
+            color: $yellow-text;
+        }
+    }
 }

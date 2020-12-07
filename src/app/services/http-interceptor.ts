@@ -1,30 +1,33 @@
-import { MatDialog } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
 import { ToolsService } from './tools.service';
-import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor(
-        private _dialog: MatDialog,
-        private _api: ApiService,
         private _tools: ToolsService
     ) { }
 
+    getCookie(name) {
+      const value = '; ' + document.cookie;
+      const parts = value.split('; ' + name + '=');
+      if (parts.length == 2) return parts.pop().split(';').shift()
+    }
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let request = req;
-        if (this._tools.xsrf_token) {
+        // Get XSRF Token either from cookie or previously saved, cookie has preference
+        const xsrf = this.getCookie('XSRF-TOKEN') || this._tools.xsrf_token;
+        if (xsrf) {
             request = req.clone({
                 setHeaders: {
-                    'X-XSRF-TOKEN': this._tools.xsrf_token
+                    'X-XSRF-TOKEN': xsrf
                 }
             });
         }
-        return next.handle(request).pipe(
+        return next.handle(request);
+        /* .pipe(
             filter(e => e.type !== 0),
             tap(_ => {
                 if (!this._api.authorized && !this._api.reloadDialog) {
@@ -35,6 +38,6 @@ export class AuthInterceptor implements HttpInterceptor {
                     });
                 }
             })
-        );
+        ); */
     }
 }

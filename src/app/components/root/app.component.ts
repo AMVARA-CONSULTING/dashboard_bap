@@ -11,7 +11,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
 import { BehaviorSubject, interval, timer } from 'rxjs';
-import { retry, tap, map } from 'rxjs/operators';
+import { retry, tap, map, startWith } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { versionToNumber } from '@other/functions';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
@@ -57,7 +57,6 @@ export class AppComponent implements OnInit {
         // Request to common config instead of keep.alive.txt
         // Therefore we can maintain session alive and check newer versions at the same time
         this.http.get<Config>(pathname + `assets/config_common.json`, {
-          observe: 'response',
           params: {
             'ngsw-bypass': '1', // Bypass Service Worker Cache
             'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
@@ -68,7 +67,7 @@ export class AppComponent implements OnInit {
         ).subscribe(res => {
           // Parse text to JSON and compare version with current config
           const currentVersion = versionToNumber(this.config.version);
-          const newerVersion = versionToNumber(res.body.version);
+          const newerVersion = versionToNumber(res.version);
           if (newerVersion > currentVersion) {
             // New version detected
             this._dialog.open(NewUpdateComponent, {
@@ -103,6 +102,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.data.lightTheme.valueChanges.pipe(
+      startWith(false),
       tap(_ => this.data.sidenavOpened.next(false)),
       tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
     ).subscribe(light => {

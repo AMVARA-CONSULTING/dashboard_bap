@@ -1,5 +1,5 @@
 {
-	"version": "2.69.0",
+	"version": "2.77.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -13,8 +13,9 @@
 		"en": "English",
 		"de": "Deutsch"
 	},
+	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
-	"apiDomain": "",
+	"apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"enableReports": {
 		"order_backlog": true,
 		"order_intake": true,
@@ -26,7 +27,7 @@
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
       "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
     },
-	"corpintra": false,
+	"corpintra": true,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"reports": {
@@ -247,6 +248,61 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.76.0",
+		  "text": [
+			"#2731 - Fix today header of Order Backlog",
+			"#2729 - Implement plugin of network-error-handling"
+		  ]
+		},
+		{
+		  "version": "2.76.0",
+		  "text": [
+			"#2729 - Create new login",
+			"#2731 - Order Backlog - Show selected month date instead of Last 12 Month"
+		  ]
+		},
+		{
+		  "version": "2.75.0",
+		  "text": [
+			"#2712 - Order Backlog - LVL 4 - Fix selector and rows when selected item doesn't exist on current period",
+			"Fix return click of LVL 4 to LVL 1",
+			"#2728 - Show Prev. Year in all levels of Order Backlog",
+			"#2696 - Fix new dark theme issues on Light Theme"
+		  ]
+		},
+		{
+		  "version": "2.74.0",
+		  "text": [
+			"Adjust dark theme colors and borders"
+		  ]
+		},
+		{
+		  "version": "2.73.0",
+		  "text": [
+			"#2728 - Fix Order Backlog Prev. Year header",
+			"#2712 - Show Products/Regions in Order Backlog LVL 3 & 4 even when they don't have values in current month",
+			"#2712 - Order Backlog correct delta value in missing rows"
+		  ]
+		},
+		{
+		  "version": "2.72.0",
+		  "text": [
+			"#2685 - Improve graphic bg color and rows bg color"
+		  ]
+		},
+		{
+		  "version": "2.71.0",
+		  "text": [
+			"#2685 - Implement new Dark Theme in Order Intake"
+		  ]
+		},
+		{
+		  "version": "2.70.0",
+		  "text": [
+			"#2716 - Implemented custom CSS for login"
+		  ]
+		},
 		{
 		  "version": "2.69.0",
 		  "text": [

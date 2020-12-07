@@ -1,0 +1,37 @@
+
+@import 'colors';
+
+.mat-form-field {
+    width: 100%;
+}
+
+h2 {
+    color: $yellow-text;
+}
+
+:host::ng-deep .mat-form-field-label {
+    color: $yellow-text !important;
+}
+
+:host::ng-deep input {
+    color: rgba(white, .8);
+}
+
+:host::ng-deep .mat-form-field-flex {
+    background-color: rgba(255,255,255,.05);
+}
+
+:host::ng-deep .mat-form-field-underline:before {
+    background-color: $yellow-text !important;
+}
+
+::ng-deep .login-panel .mat-dialog-container {
+    background-color: $main-shady-color;
+    @include light-theme-global {
+        background-color: $main-bg-body-color-light;
+    }
+}
+
+button:disabled {
+    background-color: rgba(white, .075) !important;
+}

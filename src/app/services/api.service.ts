@@ -46,7 +46,7 @@ export class ApiService {
     if (this.corpintra || config.corpintra) {
       // Get report from Live Server
       let firstId = '';
-      return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`, { observe: 'response' }).pipe(
+      return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`).pipe(
         catchError(err => {
           // Catch error on getting info from Report ID
           console.log(`${reportKey} - Fail at getting report info.`);
@@ -54,9 +54,9 @@ export class ApiService {
         }),
         switchMap(json => {
           // Get report versions
-          firstId = json.body.data[0].id;
-          const nextLink = json.body.data[0]._meta.links.outputs.url;
-          return this.http.get<any>(config.apiDomain + nextLink, { observe: 'response' });
+          firstId = json.data[0].id;
+          const nextLink = json.data[0]._meta.links.outputs.url;
+          return this.http.get<any>(config.apiDomain + nextLink);
         }),
         catchError(err => {
           // Catch error on getting report versions
@@ -65,33 +65,33 @@ export class ApiService {
         }),
         switchMap(json => {
           // Get last saved report content
-          const csv = json.body.data.find(item => item.format === 'CSV');
-          const html = json.body.data.find(item => item.format === 'HTML');
+          const csv = json.data.find(item => item.format === 'CSV');
+          const html = json.data.find(item => item.format === 'HTML');
           if (html && html._meta.links.content.mimeType) {
             // Report has mimeType of type HTML
             const nextLink = html._meta.links.content.url;
             this.reportDates[reportKey] = html.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
           } else if (csv && csv._meta.links.content.mimeType) {
             // Report has mimeType of type CSV
             const nextLink = csv._meta.links.content.url;
             this.reportDates[reportKey] = csv.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
           } else {
             // Report doesn't have mimeType, it means we have to use second way of get it
-            return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`, { observe: 'response' }).pipe(
+            return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`).pipe(
               catchError(err => {
                 // Catch error on getting first items
                 console.log(`${reportKey} - Fail at getting first items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${data.body.data[0].id}/items`, { observe: 'response' })),
+              switchMap(data => this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${data.data[0].id}/items`)),
               catchError(err => {
                 // Catch error on getting second items
                 console.log(`${reportKey} - Fail at getting second items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.body.data[0].id}/content`, { observe: 'response' }))
+              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.data[0].id}/content`, { responseType: 'text', observe: 'response' }))
             );
           }
         }),
@@ -140,12 +140,11 @@ export class ApiService {
       );
     } else {
       // Get report from local
-      return this.http.get<any[]>(`assets/reports/${reportInfo.fallback}`, { observe: 'response' }).pipe(
+      return this.http.get<any[]>(`assets/reports/${reportInfo.fallback}`).pipe(
         finalize(() => {
           this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
         }),
-        tap(_ => this.reportDates[reportKey] = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')),
-        map(res => res.body)
+        tap(_ => this.reportDates[reportKey] = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'))
       );
     }
   }

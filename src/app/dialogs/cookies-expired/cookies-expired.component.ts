@@ -14,6 +14,6 @@ export class CookiesExpiredComponent {
   ) {}
 
   relogin(): void {
-    location.reload()
+    location.reload();
   }
 }

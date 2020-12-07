@@ -33,6 +33,16 @@
     }
 }
 
+/*.report-header {
+    background-color: $graphic-bg-color;
+    @include desktop {
+        padding-top: 20px;
+    }
+    @include light-theme {
+        background-color: transparent;
+    }
+}*/
+
 .overview {
     display: flex;
     width: 100%;
@@ -179,6 +189,13 @@
 .zone {
     display: block;
     position: relative;
+    @include light-theme {
+        &:not(:first-child) {
+            .zone-header {
+                border-top-width: 0;
+            }
+        }
+    }
     .zone-header {
         display: flex;
         padding: 12px 40px 12px 40px;
@@ -187,6 +204,9 @@
         }
         position: relative;
         border-bottom: 1px solid transparent;
+        @include light-theme {
+            border-top-color: white;
+        }
         &:hover {
             border-bottom-color: $yellow-text !important;
         }

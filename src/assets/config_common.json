@@ -1,5 +1,5 @@
 {
-	"version": "2.74.0",
+	"version": "2.76.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -247,6 +247,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.76.0",
+		  "text": [
+			"#2724 - Production Program - Fix error on LVL 3 when a zone/group is selected"
+		  ]
+		},
 		{
 		  "version": "2.75.0",
 		  "text": [

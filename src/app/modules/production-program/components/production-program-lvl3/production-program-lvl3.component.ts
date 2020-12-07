@@ -164,17 +164,21 @@ export class ProductionProgramLvl3Component {
     }, {})[rows[0][0]]
     // Getting rows only for the plant selected
     // If type is plant group by plant sub id
-    let reducedIndexForZoneLevel = 3
-    let reducedSelector = rows[0][3]
-    if (this.type == 'zone') {
-      reducedIndexForZoneLevel = this.config.config.language == 'en' ? 10 : 9
-      reducedSelector = this.region_id
+    let reducedIndexForZoneLevel = 3;
+    let reducedSelector = rows[0][3];
+    if (this.type === 'zone') {
+      if (this.ProductID != null) {
+        reducedIndexForZoneLevel = this.config.config.language === 'en' ? 12 : 11;
+      } else {
+        reducedIndexForZoneLevel = this.config.config.language === 'en' ? 10 : 9;
+      }
+      reducedSelector = this.region_id;
     }
     let plantRows = rows.reduce((r, a) => {
-      r[a[reducedIndexForZoneLevel]] = r[a[reducedIndexForZoneLevel]] || []
-      r[a[reducedIndexForZoneLevel]].push(a)
-      return r
-    }, {})[reducedSelector]
+      r[a[reducedIndexForZoneLevel]] = r[a[reducedIndexForZoneLevel]] || [];
+      r[a[reducedIndexForZoneLevel]].push(a);
+      return r;
+    }, {})[reducedSelector];
     // Collect data info for data headers
     this.groupInfo = {
       zone: this.ZoneID != null,
@@ -249,32 +253,6 @@ export class ProductionProgramLvl3Component {
 
   returnToMain(): void {
     this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
-  }
-
-  forward(): void {
-    if (this.data.lastTap2) {
-      if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
-      } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
-      }
-    }
-  }
-
-  goProduct(ProductID): void {
-    this.data.lastTap = {
-      type: 'region',
-      key: encodeURI(ProductID)
-    }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute, replaceUrl: true })
-  }
-
-  goRegion(RegionID): void {
-    this.data.lastTap = {
-      type: 'product',
-      key: encodeURI(RegionID)
-    }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
 }

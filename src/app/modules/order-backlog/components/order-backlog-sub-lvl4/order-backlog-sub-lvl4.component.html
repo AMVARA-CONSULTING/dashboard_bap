@@ -8,7 +8,7 @@
       <order-backlog-header type="day"></order-backlog-header>
       <!-- Header Row of currented select plant / zone -->
       <div class="header-row zone">
-        <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+        <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
         <div class="title with-selector">
           <dip-plant-selector></dip-plant-selector>
         </div>
@@ -42,7 +42,7 @@
       <div class="header-row zone">
         <i class="arrow" (click)="_obRouter.goToMonthView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to month view"></i>
         <div class="title with-selector">
-          <dip-product-region-selector [rows]="monthRows$ | async"></dip-product-region-selector>
+          <dip-product-region-selector [rows]="monthRows$ | async" [previousRows]="previousRows$ | async"></dip-product-region-selector>
         </div>
         <ng-container *ngLet="rows | sumQuantity as currentValue">
           <div class="actual" [innerHTML]="currentValue | toNumber"></div>
@@ -70,7 +70,7 @@
       <ng-container *ngLet="params.type === 'region' ? 'product' : 'region' as oppositeType">
         <!-- Items rows -->
         <ng-container *ngLet="previousRows$ | async | distinctItems:oppositeType as previousRegions">
-          <ng-container *ngLet="rows | distinctItems:oppositeType:previousRegions | keyvalue as items">
+          <ng-container *ngLet="rows | distinctItems:oppositeType:previousRegions | mockMissingPreviousRows:previousRegions | keyvalue as items">
             <ng-container *ngLet="items | max:(previousRegions | keyvalue) as maximum">
               <!-- Iterate over each region -->
               <div class="lvl4-row" (click)="goItem(oppositeType, item.key)" *ngFor="let item of items">

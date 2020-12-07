@@ -248,6 +248,15 @@
 	},
 	"changelog": [
 		{
+		  "version": "2.75.0",
+		  "text": [
+			"#2712 - Order Backlog - LVL 4 - Fix selector and rows when selected item doesn't exist on current period",
+			"Fix return click of LVL 4 to LVL 1",
+			"#2728 - Show Prev. Year in all levels of Order Backlog",
+			"#2696 - Fix new dark theme issues on Light Theme"
+		  ]
+		},
+		{
 		  "version": "2.74.0",
 		  "text": [
 			"Adjust dark theme colors and borders"

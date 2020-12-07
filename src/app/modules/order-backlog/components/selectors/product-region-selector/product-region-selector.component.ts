@@ -39,4 +39,5 @@ export class ProductRegionSelectorComponent {
   }
 
   @Input() rows: any[];
+  @Input() previousRows: any[];
 }

@@ -40,6 +40,8 @@ import { FormatLatestDayPipe } from './pipes/format-latest-day.pipe';
 import { FilterDayPipe } from './pipes/filter-day.pipe';
 import { PlantSelectorComponent } from './components/selectors/plant-selector/plant-selector.component';
 import { ProductRegionSelectorComponent } from './components/selectors/product-region-selector/product-region-selector.component';
+import { JoinArraysPipe } from './pipes/join-arrays.pipe';
+import { MockMissingPreviousRowsPipe } from './pipes/mock-missing-previous-rows.pipe';
 
 const routes: Routes = [
   {
@@ -114,7 +116,9 @@ const routes: Routes = [
     ProductRegionLabelFormatPipe,
     AbsPipe,
     DefaultPipe,
-    MaxPipe
+    MaxPipe,
+    JoinArraysPipe,
+    MockMissingPreviousRowsPipe
   ],
   providers: [
     OrderBacklogRouter

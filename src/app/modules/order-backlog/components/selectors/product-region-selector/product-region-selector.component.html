@@ -3,15 +3,17 @@
     <mat-select-trigger>
       <span class="mat-select-value-custom">{{ regionProductControl.value | productRegionLabelFormat | async }}</span>
     </mat-select-trigger>
-    <mat-optgroup label="REGIONS">
-      <ng-container *ngFor="let region of rows | distinctItems:'region' | keyvalue">
-        <mat-option value="region|{{region.key}}">{{ region.key }}</mat-option>
-      </ng-container>
-    </mat-optgroup>
-    <mat-optgroup label="PRODUCTS">
-      <ng-container *ngFor="let product of rows | distinctItems:'product' | keyvalue">
-        <mat-option value="product|{{product.key}}">{{ product.key }}</mat-option>
-      </ng-container>
-    </mat-optgroup>
+    <ng-container *ngLet="rows | joinArrays:previousRows as allRows">
+      <mat-optgroup label="REGIONS">
+        <ng-container *ngFor="let region of allRows | distinctItems:'region' | keyvalue">
+          <mat-option value="region|{{region.key}}">{{ region.key }}</mat-option>
+        </ng-container>
+      </mat-optgroup>
+      <mat-optgroup label="PRODUCTS">
+        <ng-container *ngFor="let product of allRows | distinctItems:'product' | keyvalue">
+          <mat-option value="product|{{product.key}}">{{ product.key }}</mat-option>
+        </ng-container>
+      </mat-optgroup>
+    </ng-container>
   </mat-select>
 </mat-form-field>

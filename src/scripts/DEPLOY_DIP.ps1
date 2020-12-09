@@ -1,4 +1,5 @@
 # AMVARA
+# 2020-12-09 RRO added new PROD destiny folder
 # 2020-11-24 ABP Add command line script parameters
 # 2020-11-23 ABP Create menu to deploy on INT / PROD and TRUCKS / VANS
 # 2019-10-01 ABP Modify script deploy path and better code
@@ -10,6 +11,12 @@ param (
     [Parameter()][ValidateSet('trucks','vans')][string[]]$target,
     [Switch]$sure
 )
+
+
+#
+# SAVE path from where we are executing
+#
+$pwd_ORI = $pwd.Path
 
 # Functions
 
@@ -87,14 +94,20 @@ Write-Host "Selected target: $target"
 
 if ($sure -eq $False) {
     if ( (!(Sure)) ) {
-        cd ..
+        cd "$pwd_ORI"
         exit
     }
 }
 
 # Make backup of destiny files
 
-$baseFolder = "\\sedcspi1001f.emea.isn.corpintra.net\eedc_o00030\ibiss-isn-shared-$env\shared-internal\webcontent\DIPRE\"
+if ( $env -eq "prod" ) {
+	$baseFolder = "\\sedcspi1001f.emea.isn.corpintra.net\eedc_o00030\ibiss-isn-shared-$env\shared-internal-ca111\webcontent\DIPRE\"
+} else {
+	$baseFolder = "\\sedcspi1001f.emea.isn.corpintra.net\eedc_o00030\ibiss-isn-shared-$env\shared-internal\webcontent\DIPRE\"
+}
+Write-Host "baseFolder: $baseFolder"
+
 if (Test-Path $baseFolder) {
     Write-Host "Destiny network folder is accessible"
 } else {
@@ -123,6 +136,7 @@ $null = New-Item -ItemType directory -Path $backupsFolder$time
 Copy-Item -Path $destiny"*.*" -Destination $backupsFolder$time -ErrorAction SilentlyContinue
 Copy-Item $destiny"assets" -Recurse -Destination $backupsFolder$time"\assets" -ErrorAction SilentlyContinue
 
+
 # Copy files to destiny
 
 echo "Removing destiny files..."
@@ -135,8 +149,14 @@ echo "Copying new files..."
 # Create assets folder in destiny
 Start-Sleep -s 2
 $null = New-Item -ItemType directory -Path $destiny"assets"
-# Rename index.cognos.html to index.html
-Rename-Item -Path index.cognos.html -NewName index.html
+
+# Rename index.cognos.html to index.html ... only if it exists
+if ((Test-Path "index.cognos.html" -PathType Leaf)) {
+	Write-Host "Renaming index.cognos.html to index.html"
+	Rename-Item -Path index.cognos.html -NewName index.html
+} else {
+	Write-Host "Not performing any changes on index.html ... [OK]"
+}
 # Copy all files to destiny, including assets folder
 Copy-item -Force -Recurse -Path "*" -Destination $destiny
 # Copy-item more.html -Destination $destiny

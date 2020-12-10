@@ -1,5 +1,5 @@
 {
-	"version": "2.76.0",
+	"version": "2.78.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -116,27 +116,32 @@
 			},
 			"prod": {
 				"orderIntake": {
-					"id": "i8FE1CDBDAB774436822C5C5B34F35B20",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='MobileCockpit_V2_14.3_dev']",
+					"id": "i2AD75238E29E4EFC95459968E96EE4A3",
 					"selector": "AMVARA_DATA_OI",
 					"fallback": "Order_Intake.json"
 				},
 				"allocation": {
-					"id": "iADCD47BE42994DF392219CDDBB86186D",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='Allocation_Truck']",
+					"id": "iC28A617086514235AC969AA840ABD5FC",
 					"selector": "Final",
 					"fallback": "Allocation.json"
 				},
 				"plantStock": {
-					"id": "iDDEA70370FFF48208E4E541101AF961A",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='Plant_Stock_Truck']",
+					"id": "i2E4A6258F67349968B74C66817DDBFB3",
 					"selector": "AMVARA_DATA_PS",
 					"fallback": "Plant_Stock.json"
 				},
 				"productionProgram": {
-					"id": "iF5C9F3DECFFF4D22A80F0CCAC716AA0D",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='Planning_Truck']",
+					"id": "i3E6770E95A9E4BB08B3616BC3EE6A306",
 					"selector": "Liste1",
 					"fallback": "Planning.json"
 				},
 				"orderBacklog": {
-					"id": "TDB",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='Order_Backlog_Truck']",
+					"id": "i0F2C43C961E04D17AA68FC332CB71894",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
 				}
@@ -247,6 +252,19 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.78.0",
+		  "text": [
+			"Fixed ID of PP report"
+		  ]
+		},
+		{
+		  "version": "2.77.0",
+		  "text": [
+			"#2731 - Fix today header of Order Backlog",
+			"#2729 - Implement plugin of network-error-handling"
+		  ]
+		},
 		{
 		  "version": "2.76.0",
 		  "text": [

@@ -27,8 +27,10 @@
             padding-right: 40px;
         }
         box-sizing: border-box;
-        // background-color: $bg-white-lvl3;
-        background-color: $body-bg-color;
+        background-color: $bg-white-lvl3;
+        @include new-dark-theme {
+            background-color: $new-dark-body-bg-color;
+        }
         .empty {
             flex: 1 70%;
             padding-left: 5px;
@@ -51,17 +53,21 @@
         @include mobile {
             padding: 12px 20px 12px 15px;
         }
-        background-color: $total-upper-bg-color;
-        border-bottom: 2px solid $body-bg-color;
+        &.total {
+            background-color: $bg-white-lvl1;
+        }
+        @include new-dark-theme {
+            background-color: $new-dark-total-upper-bg-color;
+            border-bottom: 2px solid $new-dark-body-bg-color;
+        }
         .title {
             flex: 1 70%;
             position: relative;
         }
-        &:last-of-type {
-            background-color: $total-lower-bg-color;
-        }
-        &.total {
-            // background-color: $bg-white-lvl1;
+        @include new-dark-theme {
+            &:last-of-type {
+                background-color: $new-dark-total-lower-bg-color !important;
+            }
         }
         &.arrow .title:after {
             transition: left .2s ease-in-out;
@@ -83,10 +89,13 @@
             cursor: pointer;
         }
         &.plant {
-            // background-color: $bg-white-lvl4;
+            background-color: $bg-white-lvl4;
+            @include new-dark-theme {
+                background-color: initial;
+            }
         }
         &.sub2 {
-            // background-color: $bg-white-lvl3;
+            background-color: $bg-white-lvl3;
         }
         &.plant, &.zone, &.sub2, &.sub3 {
             cursor: pointer;
@@ -131,13 +140,17 @@
         display: flex;
         cursor: pointer;
         &:nth-child(even) {
-            // background-color: $bg-white-lvl3;
-            background-color: $row-even-bg-color;
+            background-color: $bg-white-lvl3;
+            @include new-dark-theme {
+                background-color: $new-dark-row-even-bg-color;
+            }
             @include rowHoverEffect(true);
         }
         &:nth-child(odd) {
-            // background-color: $bg-white-lvl4;
-            background-color: $row-odd-bg-color;
+            background-color: $bg-white-lvl4;
+            @include new-dark-theme {
+                background-color: $new-dark-row-odd-bg-color;
+            }
             @include rowHoverEffect(false);
         }
         .title {

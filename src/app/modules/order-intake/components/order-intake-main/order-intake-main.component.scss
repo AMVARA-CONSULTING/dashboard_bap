@@ -19,7 +19,10 @@
     @include desktop {
         padding-right: 40px;
     }
-    // background-color: $graphic-bg-color;
+    // background-color: $body-bg-color;
+    @include new-dark-theme {
+        background-color: $new-dark-graphic-bg-color;
+    }
     box-sizing: border-box;
     .empty {
         flex: 1 70%;
@@ -35,7 +38,10 @@
 }
 
 .report-header {
-    background-color: $graphic-bg-color;
+    // background-color: $graphic-bg-color;
+    @include new-dark-theme {
+        background-color: $new-dark-graphic-bg-color;
+    }
     @include desktop {
         padding-top: 20px;
     }
@@ -54,19 +60,28 @@
     @media (min-width: 400px) and (max-width: 800px) and (orientation: landscape) {
         flex-wrap: wrap;
     }
-    // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    @include new-dark-theme {
+        background: initial;
+    }
     // background-color: $graphic-bg-color;
     @media screen and (min-width: 400px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        // border-bottom: 3px solid rgba($color: #000, $alpha: .5);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .1);
+        @include new-dark-theme {
+            border-bottom: 0;
+        }
     }
     @include desktop {
         max-height: 1000px;
         min-height: 243px;
         overflow: auto;
-        // border-bottom: 3px solid rgba($color: #000, $alpha: .5);
+        border-bottom: 3px solid rgba($color: #000, $alpha: .1);
+        @include new-dark-theme {
+            border-bottom: 0;
+        }
     }
     .graphic {
         flex: 1 60%;
@@ -85,7 +100,10 @@
     .simple {
         flex: 1 40%;
         max-width: 40%;
-        // border-left: 3px solid rgba($color: #000, $alpha: .35);
+        border-left: 3px solid rgba($color: #000, $alpha: .35);
+        @include new-dark-theme {
+            border-left: 0;
+        }
         padding: 30px;
         padding-right: 40px;
         @include mobileLandscape {
@@ -206,16 +224,20 @@
         }
         align-items: center;
         position: relative;
-        border-top: 3px solid $body-bg-color;
         border-bottom: 1px solid transparent;
+        @include new-dark-theme {
+            border-top: 3px solid $new-dark-body-bg-color;
+        }
         @include light-theme {
             border-top-color: white;
         }
         &:hover {
             border-bottom-color: $yellow-text !important;
         }
-        // background-color: $bg-white-lvl1;
-        background-color: $group-bg-color;
+        background-color: $bg-white-lvl1;
+        @include new-dark-theme {
+            background-color: $new-dark-group-bg-color;
+        }
         cursor: pointer;
         .title {
             flex: 1 70%;
@@ -250,6 +272,9 @@
         position: relative;
         cursor: pointer;
         border-bottom: 1px solid transparent;
+        &:hover {
+            border-bottom-color: $yellow-text;
+        }
         &:hover .title {
             &:after {
                 left: 10px;
@@ -258,13 +283,17 @@
             box-sizing: border-box;
         }
         &:nth-child(even) {
-            // background-color: $bg-white-lvl3;
-            background-color: $row-even-bg-color;
+            background-color: $bg-white-lvl3;
+            @include new-dark-theme {
+                background-color: $new-dark-row-even-bg-color;
+            }
             @include rowHoverEffect(true);
         }
         &:nth-child(odd) {
-            // background-color: $bg-white-lvl4;
-            background-color: $row-odd-bg-color;
+            background-color: $bg-white-lvl4;
+            @include new-dark-theme {
+                background-color: $new-dark-row-odd-bg-color;
+            }
             @include rowHoverEffect(false);
         }
         .title {

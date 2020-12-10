@@ -21,7 +21,7 @@
       body {
         overflow: hidden;
         margin: auto;
-        background-color: black;
+        background-color: #101010;
         height: 100%;
         width: 100%;
         box-sizing: border-box;
@@ -29,8 +29,12 @@
       }
 
       body {
-        background-color: black;
+        background-color: #101010;
         font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
+      }
+
+      body[theme=new-dark] {
+        background-color: black;
       }
 
       .amvaraLoading {
@@ -55,6 +59,10 @@
         height: 100vh;
         top: 0;
         left: 0;
+        background-color: rgba(24, 24, 32, 0.92);
+      }
+
+      body[theme=new-dark] .amvaraLoading:before {
         background-color: #0C0C0C;
       }
 

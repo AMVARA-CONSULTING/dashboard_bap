@@ -23,16 +23,16 @@ $bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
 $row-hover: rgba(white, .02);
 
 // New Dark Theme specs
-$header-bg-color: black; // Used for Header
-$header-border-color: #808080; // Used for header border bottom
-$total-upper-bg-color: #1A1A1A; // Used for total and group rows
-$total-lower-bg-color: #111111; // Used for last total row of report total headers
-$group-bg-color: $total-upper-bg-color; // Used for group rows
-$graphic-bg-color: darken($group-bg-color, 2); // Used for graphics
-$body-bg-color: darken($group-bg-color, 5); // Used for body
-$row-even-bg-color: $body-bg-color; // Used for detail even rows
-$total-border-color: $body-bg-color; // Used for border between total headers
-$row-odd-bg-color: $total-lower-bg-color; // Used for detail odd rows
+$new-dark-header-bg-color: black; // Used for Header
+$new-dark-header-border-color: #808080; // Used for header border bottom
+$new-dark-total-upper-bg-color: #1A1A1A; // Used for total and group rows
+$new-dark-total-lower-bg-color: #111111; // Used for last total row of report total headers
+$new-dark-group-bg-color: $new-dark-total-upper-bg-color; // Used for group rows
+$new-dark-graphic-bg-color: darken($new-dark-group-bg-color, 2); // Used for graphics
+$new-dark-body-bg-color: darken($new-dark-group-bg-color, 5); // Used for body
+$new-dark-row-even-bg-color: $new-dark-body-bg-color; // Used for detail even rows
+$new-dark-total-border-color: $new-dark-body-bg-color; // Used for border between total headers
+$new-dark-row-odd-bg-color: $new-dark-total-lower-bg-color; // Used for detail odd rows
 
 
 
@@ -58,12 +58,15 @@ $light-grey4: #333333;
 }
 
 @mixin rowHoverEffect($even: true) {
-    @include dark-theme {
+    &:hover {
+        background-color: rgba(white, .02);
+    }
+    @include new-dark-theme {
         &:hover {
             @if $even {
-                background-color: lighten($row-even-bg-color, 2) !important;
+                background-color: lighten($new-dark-row-even-bg-color, 2) !important;
             } @else {
-                background-color: lighten($row-odd-bg-color, 2) !important;
+                background-color: lighten($new-dark-row-odd-bg-color, 2) !important;
             }
         }
     }
@@ -119,6 +122,27 @@ $light-grey4: #333333;
 
 @mixin darkTheme {
 	body[theme="dark"] {
+        @content;
+    }
+}
+
+// Mixin used to change styling for Dark Theme
+// Used in components only
+@mixin new-dark-theme {
+	body[theme="new-dark"] :host & {
+        @content;
+    }
+}
+
+@mixin new-dark-theme-host {
+	body[theme="new-dark"] & {
+        @content;
+    }
+}
+
+// Used in global styles only
+@mixin new-dark-theme-global {
+	body[theme="new-dark"] {
         @content;
     }
 }

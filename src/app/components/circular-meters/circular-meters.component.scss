@@ -6,8 +6,10 @@
     flex: 1 100%;
     height: 170px;
     position: relative;
-    // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
-    background-color: $body-bg-color;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    @include new-dark-theme-host {
+        background: $new-dark-body-bg-color;
+    }
     border-bottom: 2px solid rgba(black, .05);
     .meter {
         flex: 1 50%;

@@ -139,7 +139,10 @@ html {
 
 html, body {
     color: $semi-white;
-    background-color: $body-bg-color;
+    background-color: $main-bg-body-color;
+    @include new-dark-theme-global {
+        background-color: $new-dark-body-bg-color;
+    }
     @include light-theme-global {
         background-color: $main-bg-body-color-light;
     }

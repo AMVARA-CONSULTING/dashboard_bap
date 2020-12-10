@@ -10,7 +10,10 @@
     width: 100%;
     overflow: hidden;
     z-index: 99;
-    background: $header-bg-color;
+    background: $header-bg-color 40%;
+    @include new-dark-theme-host {
+        background: $new-dark-header-bg-color;
+    }
     transform: translate3d(0,0,0);
     // border-bottom: 1px solid $header-border-color;
     @include light-theme-host {

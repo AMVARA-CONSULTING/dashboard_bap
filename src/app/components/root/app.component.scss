@@ -3,7 +3,10 @@
 
 :host {
     display: block;
-    // background-color: $main-bg-body-color;
+    background-color: $main-bg-body-color;
+    @include new-dark-theme-host {
+        background-color: initial;
+    }
 }
 
 @include lightTheme {

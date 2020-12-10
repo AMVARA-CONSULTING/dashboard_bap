@@ -7,8 +7,10 @@
     bottom: 0;
     left: 0;
     z-index: 99;
-    // background-color: $main-bg-body-color;
-    background-color: $header-bg-color;
+    background-color: $main-bg-body-color;
+    @include new-dark-theme-host {
+        background-color: $new-dark-header-bg-color;
+    }
     line-height: 32px;
     padding: 0 15px;
 }

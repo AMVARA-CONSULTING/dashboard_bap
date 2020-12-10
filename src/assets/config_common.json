@@ -27,7 +27,7 @@
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
       "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
     },
-	"corpintra": true,
+	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"reports": {

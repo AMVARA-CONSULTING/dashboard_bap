@@ -30,11 +30,11 @@ export class ConfigService {
         configFile = 'config_dev.json';
       }
       forkJoin([
-        this.http.get<Config>('assets/config_common.json', { observe: 'response' }),
-        this.http.get<Config>('assets/' + configFile, { observe: 'response' })
+        this.http.get<Config>('assets/config_common.json'),
+        this.http.get<Config>('assets/' + configFile)
       ]).pipe(
         // Merge common config with custom
-        map(([common, config]) => ({ ...common.body, ...config.body }))
+        map(([common, config]) => ({ ...common, ...config }))
       ).subscribe(config => {
         (window as any).config = config;
         const search: any = this.tools.getJsonFromUrl();

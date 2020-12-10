@@ -42,10 +42,7 @@
     <ng-container *ngSwitchCase="3">
         <!-- Mobile -->
         <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
-            <div class="report-date">
-                <div class="upper">Last</div>
-                <div class="lower">12 Month</div>
-            </div>
+            <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthMobile"></ng-container>
             <div class="report-date">
                 <div class="upper">Prev.</div>
                 <div class="lower">Year</div>
@@ -53,7 +50,7 @@
         </ng-container>
         <!-- Desktop -->
         <ng-template #desktopHeaders>
-            <div class="report-date">Last 12 month</div>
+            <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthDesktop"></ng-container>
             <div class="report-date">Prev. Year</div>
         </ng-template>
     </ng-container>
@@ -61,10 +58,7 @@
     <ng-container *ngSwitchCase="4">
         <!-- Mobile -->
         <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
-            <div class="report-date">
-                <div class="upper">Last</div>
-                <div class="lower">12 Month</div>
-            </div>
+            <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthMobile"></ng-container>
             <div class="report-date">
                 <div class="upper">Prev.</div>
                 <div class="lower">Year</div>
@@ -72,9 +66,25 @@
         </ng-container>
         <!-- Desktop -->
         <ng-template #desktopHeaders>
-            <div class="report-date">Last 12 month</div>
+            <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthDesktop"></ng-container>
             <div class="report-date">Prev. Year</div>
         </ng-template>
     </ng-container>
 </ng-container>
+<ng-template #today>
+    <div class="report-date">
+        <div class="upper">{{ currentMonthDate$ | async | formatLatestDay }}</div>
+    </div>
+</ng-template>
+<ng-template #last12MonthMobile>
+    <div class="report-date">
+        <div class="upper">Last</div>
+        <div class="lower">12 Month</div>
+    </div>
+</ng-template>
+<ng-template #last12MonthDesktop>
+    <div class="report-date">
+        <div class="upper">Last 12 Month</div>
+    </div>
+</ng-template>
 <div class="glyph">&Delta;</div>

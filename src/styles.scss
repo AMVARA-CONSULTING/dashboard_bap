@@ -433,3 +433,13 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .mat-sidenav-container {
     transition: .15s -webkit-filter ease-in-out;
 }
+
+@include dark-theme-global {
+    .error-dialog .mat-dialog-container {
+        background-color: $main-shady-color;
+        color: rgba(255,255,255,.8);
+        .mat-dialog-title {
+            color: $yellow-text;
+        }
+    }
+}

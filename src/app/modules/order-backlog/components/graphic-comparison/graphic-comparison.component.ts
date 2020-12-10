@@ -68,7 +68,7 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
       // Create basic scheme for chart
       const chart: NgxLineChart = [
         { name: 'Last 12 Month', series: [] },
-        { name: 'Prev. 12 Month', series: [] }
+        { name: 'Prev. Year', series: [] }
       ];
       let i = 0;
       const length = currentMonthsRange.length;

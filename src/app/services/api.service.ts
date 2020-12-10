@@ -71,12 +71,12 @@ export class ApiService {
             // Report has mimeType of type HTML
             const nextLink = html._meta.links.content.url;
             this.reportDates[reportKey] = html.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
           } else if (csv && csv._meta.links.content.mimeType) {
             // Report has mimeType of type CSV
             const nextLink = csv._meta.links.content.url;
             this.reportDates[reportKey] = csv.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
           } else {
             // Report doesn't have mimeType, it means we have to use second way of get it
             return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`, { observe: 'response' }).pipe(

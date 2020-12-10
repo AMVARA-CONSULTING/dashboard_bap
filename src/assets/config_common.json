@@ -1,5 +1,5 @@
 {
-	"version": "2.78.0",
+	"version": "2.79.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -13,8 +13,9 @@
 		"en": "English",
 		"de": "Deutsch"
 	},
+	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
-	"apiDomain": "",
+	"apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
 	"enableReports": {
 		"order_backlog": true,
 		"order_intake": true,
@@ -26,7 +27,7 @@
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
       "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
     },
-	"corpintra": false,
+	"corpintra": true,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"reports": {
@@ -253,6 +254,18 @@
 	},
 	"changelog": [
 		{
+		  "version": "2.79.0",
+		  "text": [
+			"Merge theme and Int changes"
+		  ]
+		},
+		{
+		  "version": "2.78.0",
+		  "text": [
+			"Fixed ID of PP report"
+		  ]
+		},
+		{
 		  "version": "2.78.0",
 		  "text": [
 			"Fixed ID of PP report"
@@ -268,7 +281,9 @@
 		{
 		  "version": "2.76.0",
 		  "text": [
-			"#2724 - Production Program - Fix error on LVL 3 when a zone/group is selected"
+			"#2724 - Production Program - Fix error on LVL 3 when a zone/group is selected",
+			"#2729 - Create new login",
+			"#2731 - Order Backlog - Show selected month date instead of Last 12 Month"
 		  ]
 		},
 		{

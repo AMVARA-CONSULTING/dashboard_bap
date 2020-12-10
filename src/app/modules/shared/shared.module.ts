@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { LoginDialog } from 'app/dialogs/login/login.component';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -53,7 +54,8 @@ const materialModules = [
     DipQuadroCircularMetersComponent,
     PlantStockSortingPipe,
     ReportInfoComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    LoginDialog
   ],
   imports: [
     FormsModule,
@@ -80,6 +82,7 @@ const materialModules = [
   exports: [
     NumberPipe,
     SelectYearComponent,
+    LoginDialog,
     FormsModule,
     ReactiveFormsModule,
     DipQuadroCircularMetersComponent,

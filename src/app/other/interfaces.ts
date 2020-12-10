@@ -7,6 +7,7 @@ export interface Config {
     reports: IConfigReports;
     delay: number;
     scenario: string;
+    portal: string;
     contacts: any[];
     cognosApiWorkaround: boolean;
     apiLink: string;

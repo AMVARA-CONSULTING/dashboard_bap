@@ -8,14 +8,15 @@ import * as moment from 'moment';
 export class DistinctMonthsPipe implements PipeTransform {
 
   // Retrieve rows classified by month in descending order (current is first)
-  transform(rows: any[]): any {
-    return rows
-            .reduce((r, a) => {
-              const month = moment(a[BacklogColumns.Date], 'YYYY-MM-DD').format('YYYY-MM');
-              r[month] = r[month] || [];
-              r[month].push(a);
-              return r;
-            }, {});
-  }
+  transform = (rows: any[]) => DistinctMonthsFn(rows);
 
+}
+
+export function DistinctMonthsFn(rows: any[]) {
+  return rows.reduce((r, a) => {
+    const month = moment(a[BacklogColumns.Date], 'YYYY-MM-DD').format('YYYY-MM');
+    r[month] = r[month] || [];
+    r[month].push(a);
+    return r;
+  }, {});
 }

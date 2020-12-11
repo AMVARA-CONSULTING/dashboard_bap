@@ -272,12 +272,6 @@
 		  ]
 		},
 		{
-		  "version": "2.78.0",
-		  "text": [
-			"Fixed ID of PP report"
-		  ]
-		},
-		{
 		  "version": "2.77.0",
 		  "text": [
 			"#2731 - Fix today header of Order Backlog",

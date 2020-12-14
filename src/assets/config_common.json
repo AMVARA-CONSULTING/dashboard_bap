@@ -1,5 +1,5 @@
 {
-	"version": "2.80.0",
+	"version": "2.81.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -253,6 +253,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.81.0",
+		  "text": [
+			"#2735 - Fix dark theme in About & Help"
+		  ]
+		},
 		{
 		  "version": "2.80.0",
 		  "text": [

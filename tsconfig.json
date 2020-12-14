@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "target": "es2015",
+    "removeComments": true,
     "typeRoots": [
       "node_modules/@types"
     ],

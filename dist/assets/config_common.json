@@ -1,5 +1,5 @@
 {
-	"version": "2.80.0",
+	"version": "2.82.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -259,6 +259,18 @@
 	},
 	"changelog": [
 		{
+		  "version": "2.82.0",
+		  "text": [
+			"#2729 - Improved performance of login caused by default blur on animated background"
+		  ]
+		},
+		{
+		  "version": "2.81.0",
+		  "text": [
+			"#2735 - Fix dark theme in About & Help"
+		  ]
+		},
+		{
 		  "version": "2.80.0",
 		  "text": [
 			"Convert new dark theme as standalone theme"
@@ -268,12 +280,6 @@
 		  "version": "2.79.0",
 		  "text": [
 			"Merge theme and Int changes"
-		  ]
-		},
-		{
-		  "version": "2.78.0",
-		  "text": [
-			"Fixed ID of PP report"
 		  ]
 		},
 		{

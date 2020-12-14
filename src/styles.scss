@@ -446,3 +446,9 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
         }
     }
 }
+
+// Disable blurred background on login dialog
+.login-backdrop {
+    backdrop-filter: initial !important;
+    background-color: rgba(black, .5) !important;
+}

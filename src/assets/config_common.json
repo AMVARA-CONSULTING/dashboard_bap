@@ -1,5 +1,5 @@
 {
-	"version": "2.81.0",
+	"version": "2.82.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -258,6 +258,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.82.0",
+		  "text": [
+			"#2729 - Improved performance of login caused by default blur on animated background"
+		  ]
+		},
 		{
 		  "version": "2.81.0",
 		  "text": [

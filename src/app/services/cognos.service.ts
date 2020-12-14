@@ -100,6 +100,7 @@ export class CognosService {
               }).subscribe(_ => {
                 this._dialog.open(LoginDialog, {
                   panelClass: 'login-panel',
+                  backdropClass: 'login-backdrop',
                   disableClose: true
                 }).afterClosed().subscribe(result => {
                   this.doLogin(config, 'EMEA', result.user, result.password).subscribe(data => {

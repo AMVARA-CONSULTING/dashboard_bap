@@ -72,7 +72,7 @@ export class CognosService {
 
   load(CapabilitiesReportID, config: Config): Promise<void> {
     return new Promise(resolve => {
-      this.http.get(`${config.apiDomain}${config.apiLink}v1/ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg`, {
+      this.http.get(`${config.apiDomain}${config.apiLink}ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg`, {
         responseType: 'text',
         observe: 'response',
         params: {
@@ -130,7 +130,7 @@ export class CognosService {
       // Manually add DaimlerLoginCSS to login iframe
       _this.addCSStoLogin(location.protocol + '//' + location.host + location.pathname + 'assets/css/custom_login.css');
     };
-    iframe.src = `${config.apiLink}?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&ui_appbar=false&ui_navbar=false&format=HTML&Download=false`;
+    iframe.src = `${config.portal}?pathRef=.public_folders%2F0201_DIPRE%2FCOCKPIT%2FReportOutputs%2FAMVARA_triggerReport&ui_appbar=false&ui_navbar=false&format=HTML&Download=false`;
     document.body.appendChild(iframe);
     // AMVARA_triggerReport sended login is done
     window.addEventListener('complete', () => {
@@ -200,7 +200,7 @@ export class CognosService {
   getUserCapabilities(config: Config): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get<any>(`${config.apiLink}v1/identity`, {
+        this.http.get<any>(`${config.apiLink}identity`, {
           headers: {
             'X-XSRF-TOKEN': this.tools.xsrf_token,
             'X-Requested-With': 'XMLHttpRequest'

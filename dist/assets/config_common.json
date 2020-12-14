@@ -1,5 +1,5 @@
 {
-	"version": "2.78.0",
+	"version": "2.80.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -15,7 +15,7 @@
 	},
 	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
-	"apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
+	"apiDomain": "",
 	"enableReports": {
 		"order_backlog": true,
 		"order_intake": true,
@@ -27,7 +27,7 @@
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
       "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
     },
-	"corpintra": true,
+	"corpintra": false,
 	"heartbeat": 300000,
 	"simulateUnauthorized": true,
 	"reports": {
@@ -61,27 +61,32 @@
 			},
 			"prod": {
 				"orderIntake": {
-					"id": "i5F21FA7DBAF64A539EDBDEC44E297D23",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Order Intake Van']",
+					"id": "iB88DC942461C4F5781E3695025D47611",
 					"selector": "AMVARA_DATA_OI",
 					"fallback": "Order_Intake.json"
 				},
 				"allocation": {
-					"id": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Allocation_Van']",
+					"id": "i2DBBA6A281204714AD068AA0F75D33AA",
 					"selector": "Final",
 					"fallback": "Allocation.json"
 				},
 				"plantStock": {
-					"id": "i2EAF00D6E22B4519A494072EB13916BC",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Plant_Stock_Van']",
+					"id": "i4B092995578C45E98EAF4DA706367390",
 					"selector": "AMVARA_DATA_PS",
 					"fallback": "Plant_Stock.json"
 				},
 				"productionProgram": {
-					"id": "i5A7CE73C7BFC4115A641B5564E39DD66",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+					"id": "i64B58867650046A08FA2653775E5D215",
 					"selector": "Liste1",
 					"fallback": "Planning.json"
 				},
 				"orderBacklog": {
-					"id": "TDB",
+					"reportSearchpath": "--- ReportID unknown ... to be defined in config_common.json ---",
+					"id": " --- ReportID unknown ... to be defined in config_common.json ---",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
 				}
@@ -253,6 +258,24 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.80.0",
+		  "text": [
+			"Convert new dark theme as standalone theme"
+		  ]
+		},
+		{
+		  "version": "2.79.0",
+		  "text": [
+			"Merge theme and Int changes"
+		  ]
+		},
+		{
+		  "version": "2.78.0",
+		  "text": [
+			"Fixed ID of PP report"
+		  ]
+		},
 		{
 		  "version": "2.78.0",
 		  "text": [

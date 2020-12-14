@@ -61,27 +61,32 @@
 			},
 			"prod": {
 				"orderIntake": {
-					"id": "i5F21FA7DBAF64A539EDBDEC44E297D23",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Order Intake Van']",
+					"id": "iB88DC942461C4F5781E3695025D47611",
 					"selector": "AMVARA_DATA_OI",
 					"fallback": "Order_Intake.json"
 				},
 				"allocation": {
-					"id": "iE2CFA48EF3F746C38EBA3B45D868F2C8",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Allocation_Van']",
+					"id": "i2DBBA6A281204714AD068AA0F75D33AA",
 					"selector": "Final",
 					"fallback": "Allocation.json"
 				},
 				"plantStock": {
-					"id": "i2EAF00D6E22B4519A494072EB13916BC",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Plant_Stock_Van']",
+					"id": "i4B092995578C45E98EAF4DA706367390",
 					"selector": "AMVARA_DATA_PS",
 					"fallback": "Plant_Stock.json"
 				},
 				"productionProgram": {
-					"id": "i5A7CE73C7BFC4115A641B5564E39DD66",
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+					"id": "i64B58867650046A08FA2653775E5D215",
 					"selector": "Liste1",
 					"fallback": "Planning.json"
 				},
 				"orderBacklog": {
-					"id": "TDB",
+					"reportSearchpath": "--- ReportID unknown ... to be defined in config_common.json ---",
+					"id": " --- ReportID unknown ... to be defined in config_common.json ---",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
 				}

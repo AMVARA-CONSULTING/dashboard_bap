@@ -3,16 +3,6 @@
 
 :host {
     display: block;
-    background-color: $main-bg-body-color;
-    @include new-dark-theme-host {
-        background-color: initial;
-    }
-}
-
-@include lightTheme {
-    :host {
-        // background-color: $main-bg-body-color-light !important;
-    }
 }
 
 .content {

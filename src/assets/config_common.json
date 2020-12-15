@@ -1,5 +1,5 @@
 {
-	"version": "2.82.0",
+	"version": "2.83.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -258,6 +258,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.83.0",
+		  "text": [
+			"#2696 - Implement New Dark Theme in all views"
+		  ]
+		},
 		{
 		  "version": "2.82.0",
 		  "text": [

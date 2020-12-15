@@ -6,34 +6,36 @@
     <div class="overview" *ngLet="plantOrZoneRows$ | async as plantOrZoneRows">
       <!-- Headers -->
       <order-backlog-header></order-backlog-header>
-      <!-- Header Row of current select plant / zone -->
-      <div class="header-row zone">
-        <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
-        <div class="title with-selector">
-          <dip-plant-selector></dip-plant-selector>
-        </div>
-        <!-- <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
-          <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
-            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
-            <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
-          </ng-container>
-        </ng-container> -->
-      </div>
       <ng-container *ngLet="params.month | previousMonth:(plantOrZoneRows | distinctMonths | keyvalue) as previousMonthRows">
-        <!-- Header Row of current selected month -->
-        <div class="header-row zone">
-          <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to plant/zone view"></i>
-          <div class="title with-selector">
-            <dip-month-selector [rows]="plantOrZoneRows"></dip-month-selector>
+        <div class="header-rows">
+          <!-- Header Row of current select plant / zone -->
+          <div class="header-row zone">
+            <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+            <div class="title with-selector">
+              <dip-plant-selector></dip-plant-selector>
+            </div>
+            <!-- <ng-container *ngLet="rows | filterYear:'current' | sumQuantity as currentValue">
+              <ng-container *ngLet="rows | filterYear:'previous' | sumQuantity as previousValue">
+                <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+                <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+                <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+              </ng-container>
+            </ng-container> -->
           </div>
-          <ng-container *ngLet="rows | sumQuantity as currentValue">
-            <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
-              <div class="actual" [innerHTML]="currentValue | toNumber"></div>
-              <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+          <!-- Header Row of current selected month -->
+          <div class="header-row zone">
+            <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to plant/zone view"></i>
+            <div class="title with-selector">
+              <dip-month-selector [rows]="plantOrZoneRows"></dip-month-selector>
+            </div>
+            <ng-container *ngLet="rows | sumQuantity as currentValue">
+              <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
+                <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+                <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+                <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+              </ng-container>
             </ng-container>
-          </ng-container>
+          </div>
         </div>
         <!-- Content Rows -->
         <div class="title-header">

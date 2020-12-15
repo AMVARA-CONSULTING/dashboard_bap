@@ -20,9 +20,6 @@
         padding-right: 40px;
     }
     // background-color: $body-bg-color;
-    @include new-dark-theme {
-        background-color: $new-dark-graphic-bg-color;
-    }
     box-sizing: border-box;
     .empty {
         flex: 1 70%;
@@ -226,7 +223,7 @@
         position: relative;
         border-bottom: 1px solid transparent;
         @include new-dark-theme {
-            border-top: 3px solid $new-dark-body-bg-color;
+            // border-top: 3px solid $new-dark-body-bg-color;
         }
         @include light-theme {
             border-top-color: white;

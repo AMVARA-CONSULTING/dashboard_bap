@@ -14,6 +14,9 @@
         height: 30px;
         line-height: 30px;
         padding-right: 40px;
+        &.level1 {
+            margin-top: 0 !important;
+        }
     }
     .empty {
         flex: 1 30%;
@@ -62,7 +65,7 @@
     :host {
         margin-top: 10px;
         @include desktop {
-            margin-top: 20px;
+            margin-top: 20px !important;
         }
     }
 }

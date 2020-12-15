@@ -452,3 +452,35 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     backdrop-filter: initial !important;
     background-color: rgba(black, .5) !important;
 }
+
+.login-panel {
+    h2 {
+        color: $yellow-text;
+    }
+    .mat-form-field-label {
+        color: $yellow-text !important;
+    }
+    input {
+        color: rgba(white, .8);
+    }
+    .mat-form-field-flex {
+        background-color: rgba(255,255,255,.05);
+    }
+    .mat-form-field-underline:before {
+        background-color: $yellow-text !important;
+    }
+    .mat-dialog-container {
+        background-color: $main-shady-color;
+        @include light-theme-global {
+            background-color: $main-bg-body-color-light;
+        }
+    }
+    button:disabled {
+        background-color: rgba(white, .075) !important;
+    }
+}
+
+.header-rows {
+    flex: 1 100%;
+    width: 100%;
+}

@@ -33,52 +33,54 @@
       </div>
     </div>
   </header>
-  <ng-container *ngIf="ZoneID != null && groupInfo">
-    <div class="header-row total">
-      <div class="title">TOTAL</div>
-      <div class="customer">{{ groupInfo.totalCustomer | toNumber }}</div>
-      <div class="plan">{{ groupInfo.totalPlan | toNumber }}</div>
-      <div class="total">
-        <div>{{ groupInfo.totalTotal | toNumber }}</div>
-        <div *ngIf="groupInfo.totalTotalDiff != 0">{{ groupInfo.totalTotalDiff | toNumber }}</div>
+  <div class="header-rows">
+    <ng-container *ngIf="ZoneID != null && groupInfo">
+      <div class="header-row total">
+        <div class="title">TOTAL</div>
+        <div class="customer">{{ groupInfo.totalCustomer | toNumber }}</div>
+        <div class="plan">{{ groupInfo.totalPlan | toNumber }}</div>
+        <div class="total">
+          <div>{{ groupInfo.totalTotal | toNumber }}</div>
+          <div *ngIf="groupInfo.totalTotalDiff != 0">{{ groupInfo.totalTotalDiff | toNumber }}</div>
+        </div>
+        <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
       </div>
-      <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
-    </div>
-    <div class="header-row arrow zone" (click)="return()">
-      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-          groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1] }}</span></div>
-      <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
-      <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
-      <div class="total">
-        <div>{{ groupInfo.zoneTotal | toNumber }}</div>
-        <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+      <div class="header-row arrow zone" (click)="return()">
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+            groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1] }}</span></div>
+        <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
+        <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
+        <div class="total">
+          <div>{{ groupInfo.zoneTotal | toNumber }}</div>
+          <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+        </div>
+        <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
       </div>
-      <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="PlantID != null && groupInfo">
-    <div class="header-row total">
-      <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1] }}</div>
-      <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
-      <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
-      <div class="total">
-        <div>{{ groupInfo.zoneTotal | toNumber }}</div>
-        <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+    </ng-container>
+    <ng-container *ngIf="PlantID != null && groupInfo">
+      <div class="header-row total">
+        <div class="title">{{ groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1] }}</div>
+        <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
+        <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
+        <div class="total">
+          <div>{{ groupInfo.zoneTotal | toNumber }}</div>
+          <div *ngIf="groupInfo.zoneTotalDiff != 0">{{ groupInfo.zoneTotalDiff | toNumber:true }}</div>
+        </div>
+        <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
       </div>
-      <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
-    </div>
-    <div class="header-row arrow plant" (click)="return()">
-      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
-          groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6] }}</span></div>
-      <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
-      <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>
-      <div class="total">
-        <div>{{ groupInfo.plantTotal | toNumber }}</div>
-        <div *ngIf="groupInfo.plantTotalDiff != 0">{{ groupInfo.plantTotalDiff | toNumber:true }}</div>
+      <div class="header-row arrow plant" (click)="return()">
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+            groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6] }}</span></div>
+        <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
+        <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>
+        <div class="total">
+          <div>{{ groupInfo.plantTotal | toNumber }}</div>
+          <div *ngIf="groupInfo.plantTotalDiff != 0">{{ groupInfo.plantTotalDiff | toNumber:true }}</div>
+        </div>
+        <div class="reserve">{{ groupInfo.plantReserve | toNumber }}</div>
       </div>
-      <div class="reserve">{{ groupInfo.plantReserve | toNumber }}</div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
   <dip-quadro-circular-meters [customer]="groupInfo.progress1 || 0" [plan]="groupInfo.progress2 || 0" [total]="groupInfo.progress3 || 0"
     [reserve]="groupInfo.progress4 || 0" [customerValue]="groupInfo.progress1Value || 0" [planValue]="groupInfo.progress2Value || 0"
     [totalValue]="groupInfo.progress3Value || 0" [reserveValue]="groupInfo.progress4Value || 0" *ngIf="ready && groupInfo"></dip-quadro-circular-meters>

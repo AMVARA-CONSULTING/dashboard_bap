@@ -1,26 +1,28 @@
-<div class="plandate">
-  <div class="empty"></div>{{ 'plandate' | translate }}: {{ plandate }}
-</div>
-<div class="overview">
-  <div class="graphic">
-    <plant-stock-graphic [werks]="werkbestands | keyvalue | plantStockSorting"></plant-stock-graphic>
+<div class="report-header">
+  <div class="plandate">
+    <div class="empty"></div>{{ 'plandate' | translate }}: {{ plandate }}
   </div>
-  <div class="simple">
-    <div class="headers">
-      <div class="empty"></div>
-      <div class="actual">{{ plandate }}</div>
-      <div class="previous">Prev. Month</div>
-      <div class="delta">&Delta;</div>
+  <div class="overview">
+    <div class="graphic">
+      <plant-stock-graphic [werks]="werkbestands | keyvalue | plantStockSorting"></plant-stock-graphic>
     </div>
-    <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
-      <div class="werk">{{
-        werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.corpintra ? config.config.language : 'en']] }}</div>
-      <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) |
-        toNumber }}</div>
-      <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
-        toNumber }}</div>
-      <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) |
-        toNumber:true }}</div>
+    <div class="simple">
+      <div class="headers">
+        <div class="empty"></div>
+        <div class="actual">{{ plandate }}</div>
+        <div class="previous">Prev. Month</div>
+        <div class="delta">&Delta;</div>
+      </div>
+      <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
+        <div class="werk">{{
+          werk.value[0][config.config.reports.trucks.columns.plantStock.werkbestandName[config.config.corpintra ? config.config.language : 'en']] }}</div>
+        <div class="actual">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) |
+          toNumber }}</div>
+        <div class="previous">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) |
+          toNumber }}</div>
+        <div class="delta">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.delta) |
+          toNumber:true }}</div>
+      </div>
     </div>
   </div>
 </div>

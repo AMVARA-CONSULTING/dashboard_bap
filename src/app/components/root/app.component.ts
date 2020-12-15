@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
       if (light) {
         document.body.setAttribute('theme', 'light');
       } else {
-        document.body.setAttribute('theme', 'dark');
+        document.body.setAttribute('theme', 'new-dark');
       }
     });
     /*if (this.sw.isEnabled) {

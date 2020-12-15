@@ -1,25 +1,27 @@
-<!-- Header Info -->
-<order-backlog-header type="day"></order-backlog-header>
 <!-- Quick Overview -->
 <ng-container *ngLet="zones$ | keyvalue | startWith:[] | async as zones">
-  <div class="overview">
-    <div class="graphic">
-      <!-- Graphic -->
-      <order-backlog-graphic [zones]="zones"></order-backlog-graphic>
-    </div>
-    <!-- Overview of plant groups -->
-    <div class="simple">
-      <div (click)="_obRouter.goToPlantZoneView(_ac, 'zone', zone.key)" class="overview-group" *ngFor="let zone of zones">
-        <div class="empty">{{ zone.value | groupOrPlantName:'group' }}</div>
-        <!-- Map current value -->
-        <ng-container *ngLet="zone.value | filterDay:'current' | sumQuantity as currentValue">
-          <!-- Map previous value -->
-          <ng-container *ngLet="zone.value | filterDay:'previous' | sumQuantity as previousValue">
-            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
-            <div class="previous" [innerHTML]="previousValue | toNumber"></div>
-            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+  <div class="report-header">
+    <!-- Header Info -->
+    <order-backlog-header type="day"></order-backlog-header>
+    <div class="overview">
+      <div class="graphic">
+        <!-- Graphic -->
+        <order-backlog-graphic [zones]="zones"></order-backlog-graphic>
+      </div>
+      <!-- Overview of plant groups -->
+      <div class="simple">
+        <div (click)="_obRouter.goToPlantZoneView(_ac, 'zone', zone.key)" class="overview-group" *ngFor="let zone of zones">
+          <div class="empty">{{ zone.value | groupOrPlantName:'group' }}</div>
+          <!-- Map current value -->
+          <ng-container *ngLet="zone.value | filterDay:'current' | sumQuantity as currentValue">
+            <!-- Map previous value -->
+            <ng-container *ngLet="zone.value | filterDay:'previous' | sumQuantity as previousValue">
+              <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+              <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+              <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+            </ng-container>
           </ng-container>
-        </ng-container>
+        </div>
       </div>
     </div>
   </div>

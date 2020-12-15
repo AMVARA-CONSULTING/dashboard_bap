@@ -1,0 +1,85 @@
+
+@import 'colors';
+
+@include new-dark-theme-global {
+    .report-header {
+        background-color: $new-dark-graphic-bg-color;
+        @include desktop {
+            padding-top: 20px;
+        }
+        .overview {
+            background: none !important;
+        }
+    }
+    .overview {
+        border-bottom: 3px solid $new-dark-body-bg-color !important;
+    }
+    .overview .simple {
+        border-left: none !important;
+    }
+    .mat-sidenav-content header {
+        background-color: $new-dark-body-bg-color !important;
+    }
+    .title-header,
+    .group-header {
+        background-color: $new-dark-group-bg-color !important;
+        border-bottom: 2px solid $new-dark-body-bg-color !important;
+    }
+    $rowLevels: 2, 3, 4, 5;
+    @each $level in $rowLevels {
+        .lvl#{$level}-row {
+            &:nth-child(even) {
+                background-color: $new-dark-row-even-bg-color !important;
+            }
+            &:nth-child(odd) {
+                background-color: $new-dark-row-odd-bg-color !important;
+            }
+        }
+    }
+    dip-quadro-circular-meters,
+    dip-circular-meters {
+        background: $new-dark-body-bg-color !important;
+        .meter {
+            border-left: none !important;
+        }
+    }
+    .data-header {
+        background-color: transparent !important;
+    }
+    .header-row,
+    .return,
+    .return2 {
+        background-color: $new-dark-total-upper-bg-color !important;
+        border-bottom: 2px solid $new-dark-body-bg-color !important;
+        &:last-of-type {
+            background-color: $new-dark-total-lower-bg-color !important;
+        }
+    }
+    .row {
+        &:nth-child(even) {
+            background-color: $new-dark-row-even-bg-color !important;
+        }
+        &:nth-child(odd) {
+            background-color: $new-dark-row-odd-bg-color !important;
+        }
+    }
+    .plandate {
+        margin-top: 0 !important;
+    }
+    .zone {
+        &:not(:first-of-type) {
+            .zone-header {
+                border-top: 3px solid $new-dark-body-bg-color;
+            }
+        }
+        .zone-header {
+            background-color: $new-dark-group-bg-color !important;
+        }
+        .plant:nth-child(even) {
+            background-color: $new-dark-row-even-bg-color !important;
+        }
+        .plant:nth-child(odd) {
+            background-color: $new-dark-row-odd-bg-color !important;
+        }
+    }
+}

@@ -5,7 +5,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'dip-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginDialog {

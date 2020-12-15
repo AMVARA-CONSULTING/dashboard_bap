@@ -112,7 +112,11 @@ export class MyHammerConfig extends HammerGestureConfig {
           deps: [HttpClient],
       }
     }),
-    NetworkErrorHandlingModule
+    NetworkErrorHandlingModule.forRoot({
+      debug: environment.production,
+      authType: 'cognos',
+      cognosNamespace: 'EMEA'
+    })
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],
   entryComponents: [

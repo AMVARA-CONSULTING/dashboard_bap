@@ -1,4 +1,4 @@
-<div class="logo" routerLink="/" [class.running]="loading$">
+<div class="logo" routerLink="/" [class.running]="loading$ | async">
   <div class="inter"></div>
   <div class="middle"></div>
   <div class="outer"></div>

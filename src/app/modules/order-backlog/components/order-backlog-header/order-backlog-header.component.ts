@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DistinctMonthsFn } from '@modules/order-backlog/pipes/distinct-months.pipe';
 import { FilterYearFn } from '@modules/order-backlog/pipes/filter-year.pipe';
@@ -27,6 +27,10 @@ export class OrderBacklogHeaderComponent {
   currentMonthDate$: Observable<string>;
 
   level: number;
+
+  @HostBinding('class') get themeClass() {
+    return `level${this.level}`;
+  };
 
   currentMonth = moment().format('YYYY-MM');
 

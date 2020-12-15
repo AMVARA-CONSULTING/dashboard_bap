@@ -1,23 +1,25 @@
-<div class="data-header">
-  <div class="empty"></div>
-  <div class="report-date">{{ 'plandate' | translate }}: {{ plandate }}</div>
-</div>
-<div class="overview" [@overview]="ready">
-  <div class="graphic">
-    <production-program-graphic [year]="year" [data]="data.productionProgramData"></production-program-graphic>
+<div class="report-header">
+  <div class="data-header">
+    <div class="empty"></div>
+    <div class="report-date">{{ 'plandate' | translate }}: {{ plandate }}</div>
   </div>
-  <div class="simple">
-    <div class="headers">
-      <div class="empty"></div>
-      <div class="customer">KU</div>
-      <div class="plan">PL</div>
-      <div class="reserve">SR</div>
+  <div class="overview" [@overview]="ready">
+    <div class="graphic">
+      <production-program-graphic [year]="year" [data]="data.productionProgramData"></production-program-graphic>
     </div>
-    <div (click)="goZone(rowsGroupsGlobal[zone.key][0][0])" class="overview-group" *ngFor="let zone of rowsGroupsGlobal | keyvalue">
-      <div class="empty">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)].trim() }}</div>
-      <div class="customer">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 15) | toNumber }}</div>
-      <div class="plan">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 16) | toNumber }}</div>
-      <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}</div>
+    <div class="simple">
+      <div class="headers">
+        <div class="empty"></div>
+        <div class="customer">KU</div>
+        <div class="plan">PL</div>
+        <div class="reserve">SR</div>
+      </div>
+      <div (click)="goZone(rowsGroupsGlobal[zone.key][0][0])" class="overview-group" *ngFor="let zone of rowsGroupsGlobal | keyvalue">
+        <div class="empty">{{ rowsGroupsGlobal[zone.key][0][(config.config.language == 'en' ? 1 : 2)].trim() }}</div>
+        <div class="customer">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 15) | toNumber }}</div>
+        <div class="plan">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 16) | toNumber }}</div>
+        <div class="reserve">{{ data.sumByIndex(rowsGroupsGlobal[zone.key], 22) | toNumber }}</div>
+      </div>
     </div>
   </div>
 </div>

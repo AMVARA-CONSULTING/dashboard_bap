@@ -40,10 +40,6 @@ export class AboutComponent implements OnInit {
     this.connectionVersion = this._tools.formatVersion(dependencies['ng-connection-service']);
   }
 
-  newTheme() {
-    document.body.setAttribute('theme', 'new-dark');
-  }
-
   connectionVersion;
   progressVersion;
   ngx_translateVersion;

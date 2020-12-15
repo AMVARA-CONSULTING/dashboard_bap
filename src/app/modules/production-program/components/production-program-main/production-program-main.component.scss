@@ -14,8 +14,11 @@
     padding: 0 20px 0 15px;
     @include desktop {
         padding-right: 40px;
-        margin-top: 20px;
+        // margin-top: 20px;
         margin-bottom: -20px;
+    }
+    @include light-theme {
+        margin-top: 20px;
     }
     box-sizing: border-box;
     .empty {
@@ -36,7 +39,10 @@
     overflow: hidden;
     transition: all .6s ease-in-out;
     border-color: black;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    // background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    @include new-dark-theme {
+        background-color: $new-dark-graphic-bg-color;
+    }
     @media screen and (min-width: 600px) and (orientation: landscape) {
         max-height: 1000px;
         min-height: 240px;

@@ -40,12 +40,53 @@ export class ToolsService {
   }
 
   /**
+   * Sanitizes a CSV text string
+   * @param csv String of CSV file
+   * @url https://stackoverflow.com/questions/53776683/regex-find-newline-between-double-quotes-and-replace-with-space
+   */
+  sanitizeCSV(csv: string): string {
+    // Remove new lines and carriage returns between double quotes
+    csv = csv.replace(/"[^"]*"/g, (match, capture) => match.replace(/[\n\r]\s*/g, ''));
+    return csv;
+  }
+
+  /**
+   * Retrieves a list of valid delimiters for a given CSV string
+   * @param csv String of CSV file
+   * @param delimiters Array of possible delimiters
+   * @param fallbackDelimiter Default delimiter to use if no other is found
+   * @url https://www.elasticfeed.com/a1bd25ce92c8282f28bbaf96fef109bd/
+   * @returns An array of possible delimiters
+   */
+  guessCSVDelimiter(csv: string, delimiters: string[] = [';',',','\t'], fallbackDelimiter: string = '\t'): string {
+    // Filter delimiters by validating function
+    const validDelimiters = delimiters.filter(checkDelimiter);
+    return validDelimiters.length > 0 ? validDelimiters[0] : fallbackDelimiter;
+    function checkDelimiter(delimiter) {
+      // Set default number of fields per line
+      let cache = -1;
+      // Split lines and make sure every line using current delimiter has the same length of fields
+      return csv.split('\n').every(checkLength);
+      function checkLength(line) {
+        if (!line) return true;
+        // Get number of fields in current line
+        const length = line.split(delimiter).length;
+        if (cache < 0) cache = length;
+        // Check if final line field count is same as first line
+        return cache === length && length > 1;
+      }
+    }
+  }
+
+  /**
    * Function to convert CSV string data to JSOn Array data
    * @param csv string csv data
    * @param numeralFields array of indexes which should parsed as numeral
    * @param removeHeaders provide true to remove first line of headers
    */
   csvToJson(csv: string, numeralFields: number[], removeHeaders: boolean = true) {
+    csv = this.sanitizeCSV(csv);
+    const delimiter = this.guessCSVDelimiter(csv);
     const lines: any[] = csv.split('\n');
     const data = [];
     if (removeHeaders) {
@@ -58,7 +99,7 @@ export class ToolsService {
       if (lines[i].trim().length === 0) {
         continue;
       }
-      const values = lines[i].split(';');
+      const values = lines[i].split(delimiter);
       numeralFields.forEach(num => {
         values[num] = isNaN(values[num]) ? 0 : parseFloat(values[num]);
       });
@@ -67,14 +108,16 @@ export class ToolsService {
     return data;
   }
 
-  csvToJsonNamed(data): any {
+  csvToJsonNamed(csv: string): any[] {
+    csv = this.sanitizeCSV(csv);
+    const delimiter = this.guessCSVDelimiter(csv);
     const rows = [];
-    const lines: any[] = data.split('\n');
-    const headers = lines.shift().split(';').map(el => el.trim());
+    const lines: any[] = csv.split('\n');
+    const headers = lines.shift().split(delimiter).map(el => el.trim());
     lines.forEach(line => {
       if (line.length > 0) {
         const newRow = {};
-        line.split(';').forEach((element, index) => {
+        line.split(delimiter).forEach((element, index) => {
           newRow[headers[index]] = element.trim();
         });
         rows.push(newRow);

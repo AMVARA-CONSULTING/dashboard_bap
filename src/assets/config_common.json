@@ -1,5 +1,5 @@
 {
-	"version": "2.83.0",
+	"version": "2.85.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -258,6 +258,18 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.85.0",
+		  "text": [
+			"#2738 - Implement smarter CSV parsing and sanitizing"
+		  ]
+		},
+		{
+		  "version": "2.84.0",
+		  "text": [
+			"#2696 - Fix Light theme not being preserved after reloading"
+		  ]
+		},
 		{
 		  "version": "2.83.0",
 		  "text": [

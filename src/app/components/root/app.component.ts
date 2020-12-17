@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.data.lightTheme.valueChanges.pipe(
-      startWith(false),
+      startWith(localStorage.getItem('light_theme') === 'yes'),
       tap(_ => this.data.sidenavOpened.next(false)),
       tap(value => localStorage.setItem('light_theme', value ? 'yes' : 'no'))
     ).subscribe(light => {

@@ -91,7 +91,7 @@ export class ApiService {
                 console.log(`${reportKey} - Fail at getting second items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.body.data[0].id}/content`, { observe: 'response' }))
+              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.body.data[0].id}/content`, { observe: 'response', responseType: 'text' }))
             );
           }
         }),

@@ -113,7 +113,10 @@ export class MyHammerConfig extends HammerGestureConfig {
       }
     }),
     NetworkErrorHandlingModule.forRoot({
-      debug: environment.production,
+      reporting: {
+        sentryDSN: 'https://b75afd9cf4c649b9b06e341b545ecd27@sentry.amvara.de/7'
+      },
+      debug: !environment.production,
       authType: 'cognos',
       cognosNamespace: 'EMEA'
     })

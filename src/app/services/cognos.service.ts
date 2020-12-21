@@ -8,6 +8,7 @@ import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialog } from 'app/dialogs/login/login.component';
+import { InterceptorParams } from 'network-error-handling';
 
 @Injectable()
 export class CognosService {
@@ -70,16 +71,17 @@ export class CognosService {
     });
   }
 
-  load(CapabilitiesReportID, config: Config): Promise<void> {
+  load(config: Config): Promise<void> {
     return new Promise(resolve => {
       this.http.get(`${config.apiDomain}${config.apiLink}ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg`, {
         responseType: 'text',
         observe: 'response',
-        params: {
-          skipInterceptor: 'yes',
-          'ngsw-bypass': '1', // Bypass Service Worker Cache
-          'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
-        }
+        params: new InterceptorParams({
+          skipInterceptor: true,
+          ignoreDiskCache: true,
+          ignoreServiceWorkerCache: true,
+          ignoreProxyCache: true
+        })
       })
       .subscribe(
           success => {
@@ -93,10 +95,11 @@ export class CognosService {
               // Trigger XSRF Token cookie generation
               this.http.get(`${config.apiDomain}${config.portal}`, {
                 responseType: 'text',
-                params: {
-                  'ngsw-bypass': '1', // Bypass Service Worker Cache
-                  'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
-                }
+                params: new InterceptorParams({
+                  ignoreDiskCache: true,
+                  ignoreProxyCache: true,
+                  ignoreServiceWorkerCache: true
+                })
               }).subscribe(_ => {
                 this._dialog.open(LoginDialog, {
                   panelClass: 'login-panel',
@@ -201,12 +204,7 @@ export class CognosService {
   getUserCapabilities(config: Config): Observable<{ success: boolean, data?: any[], error?: string, more?: any }> {
     if (location.hostname.indexOf('corpintra.net') > -1) {
       return new Observable(observer => {
-        this.http.get<any>(`${config.apiLink}identity`, {
-          headers: {
-            'X-XSRF-TOKEN': this.tools.xsrf_token,
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        }).subscribe(rows => {
+        this.http.get<any>(`${config.apiLink}identity`).subscribe(rows => {
           observer.next({ success: true, data: rows.data });
           observer.complete();
         }, err => {

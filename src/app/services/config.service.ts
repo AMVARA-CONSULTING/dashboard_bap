@@ -45,7 +45,7 @@ export class ConfigService {
         config.language = localStorage.getItem('lang') as ILanguage || config.language;
         // config.corpintra = corpintra;
         if (corpintra) {
-          this.cognos.load(config.capabilities[config.scenario], { ...config }).then(_ => {
+          this.cognos.load({ ...config }).then(_ => {
             setTimeout(() => resolve(), search.delay || config.delay);
           });
         } else {

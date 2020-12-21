@@ -9,6 +9,7 @@ import { Observable, Subscription, throwError } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { ConfigActions, ConfigState } from '@store/config.state';
 import { Config, ReportInfo, ReportTypes } from '@other/interfaces';
+import { InterceptorParams } from 'network-error-handling';
 
 @Injectable()
 export class ApiService {
@@ -37,6 +38,17 @@ export class ApiService {
 
   authorized = true;
 
+  expectResponse(mime: string) {
+    return new InterceptorParams({
+      contentChecks: {
+        headers: {
+          'Content-Type': mime
+        },
+        shouldMatchContentType: true
+      }
+    })
+  }
+
   heartbeat: Subscription;
 
   getSavedReportData(reportKey: ReportTypes): Observable<any[]> {
@@ -46,7 +58,10 @@ export class ApiService {
     if (this.corpintra || config.corpintra) {
       // Get report from Live Server
       let firstId = '';
-      return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`, { observe: 'response' }).pipe(
+      return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`, {
+        params: this.expectResponse('application/hola'),
+        observe: 'response'
+      }).pipe(
         catchError(err => {
           // Catch error on getting info from Report ID
           console.log(`${reportKey} - Fail at getting report info.`);
@@ -56,7 +71,10 @@ export class ApiService {
           // Get report versions
           firstId = json.body.data[0].id;
           const nextLink = json.body.data[0]._meta.links.outputs.url;
-          return this.http.get<any>(config.apiDomain + nextLink, { observe: 'response' });
+          return this.http.get<any>(config.apiDomain + nextLink, {
+            observe: 'response',
+            params: this.expectResponse('application/json')
+          });
         }),
         catchError(err => {
           // Catch error on getting report versions
@@ -71,27 +89,44 @@ export class ApiService {
             // Report has mimeType of type HTML
             const nextLink = html._meta.links.content.url;
             this.reportDates[reportKey] = html.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, {
+              responseType: 'text',
+              observe: 'response',
+              params: this.expectResponse('/html'),
+            });
           } else if (csv && csv._meta.links.content.mimeType) {
             // Report has mimeType of type CSV
             const nextLink = csv._meta.links.content.url;
             this.reportDates[reportKey] = csv.modificationTime;
-            return this.http.get(config.apiDomain + nextLink, { responseType: 'text', observe: 'response' });
+            return this.http.get(config.apiDomain + nextLink, {
+              responseType: 'text',
+              observe: 'response',
+              params: this.expectResponse('/csv')
+            });
           } else {
             // Report doesn't have mimeType, it means we have to use second way of get it
-            return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`, { observe: 'response' }).pipe(
+            return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${firstId}/items`, {
+              observe: 'response',
+              params: this.expectResponse('application/json')
+            }).pipe(
               catchError(err => {
                 // Catch error on getting first items
                 console.log(`${reportKey} - Fail at getting first items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${data.body.data[0].id}/items`, { observe: 'response' })),
+              switchMap(data => this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${data.body.data[0].id}/items`, {
+                observe: 'response',
+                params: this.expectResponse('application/json')
+              })),
               catchError(err => {
                 // Catch error on getting second items
                 console.log(`${reportKey} - Fail at getting second items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.body.data[0].id}/content`, { observe: 'response', responseType: 'text' }))
+              switchMap(data => this.http.get(`${config.apiDomain}${config.apiLink}disp/repository/sid/cm/oid/${data.body.data[0].id}/content`, {
+                observe: 'response',
+                responseType: 'text'
+              }))
             );
           }
         }),
@@ -140,7 +175,10 @@ export class ApiService {
       );
     } else {
       // Get report from local
-      return this.http.get<any[]>(`assets/reports/${reportInfo.fallback}`, { observe: 'response' }).pipe(
+      return this.http.get<any[]>(`assets/reports/${reportInfo.fallback}`, {
+        observe: 'response',
+        params: this.expectResponse('application/json')
+      }).pipe(
         finalize(() => {
           this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
         }),

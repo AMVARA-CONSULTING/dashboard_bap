@@ -20,8 +20,6 @@ import { PercentPipe } from './pipes/percent.pipe';
 import { HighestZoneTotalPipe } from './pipes/highest-zone-total.pipe';
 import { DifferencePipe } from './pipes/difference.pipe';
 import { StartWithPipe } from './pipes/start-with.pipe';
-import { Store } from '@ngxs/store';
-import { OrderBacklog } from '@store/order-backlog.state';
 import { LayoutModule } from '@angular/cdk/layout';
 import { OrderBacklogSubLvl2Component } from './components/order-backlog-sub-lvl2/order-backlog-sub-lvl2.component';
 import { DistinctMonthsPipe } from './pipes/distinct-months.pipe';
@@ -124,12 +122,4 @@ const routes: Routes = [
     OrderBacklogRouter
   ]
 })
-export class OrderBacklogModule {
-
-  constructor(
-    private _store: Store
-  ) {
-    // Get Order Backlog Data
-    this._store.dispatch( new OrderBacklog.Get() );
-  }
-}
+export class OrderBacklogModule { }

@@ -7,15 +7,16 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '@services/api.service';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HeaderLink } from '@other/interfaces';
 import { CognosService } from '@services/cognos.service';
 import { BehaviorSubject, interval, timer } from 'rxjs';
-import { retry, tap, map, startWith } from 'rxjs/operators';
+import { tap, startWith } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { versionToNumber } from '@other/functions';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
+import { InterceptorParams } from 'network-error-handling';
 
 @Component({
   selector: 'dip-root',
@@ -57,14 +58,13 @@ export class AppComponent implements OnInit {
         // Request to common config instead of keep.alive.txt
         // Therefore we can maintain session alive and check newer versions at the same time
         this.http.get<Config>(pathname + `assets/config_common.json`, {
-          params: {
-            'ngsw-bypass': '1', // Bypass Service Worker Cache
-            'cache-bust': (new Date()).getTime().toString() // Cache busting parameter
-          }
-        }).pipe(
-          // Retry request up to 3 times
-          retry(3),
-        ).subscribe(res => {
+          params: new InterceptorParams({
+            ignoreDiskCache: true,
+            ignoreProxyCache: true,
+            ignoreServiceWorkerCache: true,
+            silent: true
+          })
+        }).subscribe(res => {
           // Parse text to JSON and compare version with current config
           const currentVersion = versionToNumber(this.config.version);
           const newerVersion = versionToNumber(res.version);

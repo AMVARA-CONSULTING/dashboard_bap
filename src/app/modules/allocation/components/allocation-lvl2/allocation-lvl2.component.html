@@ -41,7 +41,7 @@
         config.config.reports.trucks.columns.allocation.allocation) | toNumber }}</div>
       <div class="program">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.allocation.program) |
         toNumber }}</div>
-      <div class="percent">{{ tools.percent(data.sumByIndex(region.value,
+      <div class="percent">{{ percent(data.sumByIndex(region.value,
         config.config.reports.trucks.columns.allocation.allocation), data.sumByIndex(region.value,
         config.config.reports.trucks.columns.allocation.program), true, true, true) }}</div>
     </div>
@@ -54,7 +54,7 @@
         config.config.reports.trucks.columns.allocation.allocation) | toNumber }}</div>
       <div class="program">{{ data.sumByIndex(product.value, config.config.reports.trucks.columns.allocation.program) |
         toNumber }}</div>
-      <div class="percent">{{ tools.percent(data.sumByIndex(product.value,
+      <div class="percent">{{ percent(data.sumByIndex(product.value,
         config.config.reports.trucks.columns.allocation.allocation), data.sumByIndex(product.value,
         config.config.reports.trucks.columns.allocation.program), true, true, true) }}</div>
     </div>

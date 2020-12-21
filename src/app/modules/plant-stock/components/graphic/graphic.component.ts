@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ConfigService } from '@services/config.service';
-import { ToolsService } from '@services/tools.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '@services/data.service';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { percent } from '@other/functions';
 
 @Component({
   selector: 'plant-stock-graphic',
@@ -20,9 +20,10 @@ import { trigger, transition, query, style, stagger, animate } from '@angular/an
 })
 export class GraphicComponent implements OnChanges {
 
+  percent = percent;
+
   constructor(
     public config: ConfigService,
-    public tools: ToolsService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public data: DataService

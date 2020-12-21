@@ -9,6 +9,7 @@ export interface Config {
     scenario: string;
     portal: string;
     contacts: any[];
+    reportLinks: ReportLink[];
     cognosApiWorkaround: boolean;
     apiLink: string;
     apiDomain: string;
@@ -24,6 +25,11 @@ export interface Config {
     heartbeat: number;
     capabilities: any;
     enableReports: any;
+}
+
+export interface ReportLink {
+    link: string;
+    text: string;
 }
 
 export interface IConfigReports {

@@ -33,7 +33,6 @@ import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
 
 // Angular Material
 
-import { ToolsService } from '@services/tools.service';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
@@ -132,7 +131,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     ApiService,
     ConnectionService,
     ConfigService,
-    ToolsService,
     NavigationGuard,
     CognosService,
     AuthInterceptor,
@@ -150,7 +148,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      deps: [ToolsService],
       multi: true
     },
     {

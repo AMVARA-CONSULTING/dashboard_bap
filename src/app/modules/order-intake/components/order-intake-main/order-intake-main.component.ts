@@ -6,8 +6,8 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { ToolsService } from '@services/tools.service';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
   selector: 'order-intake-main',
@@ -33,8 +33,7 @@ export class OrderIntakeMainComponent implements OnInit {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title,
-    private tools: ToolsService
+    private title: Title
   ) {
     (window as any).moment = moment
     this.title.setTitle(this.config.config.appTitle + ' - Order Intake')
@@ -48,13 +47,13 @@ export class OrderIntakeMainComponent implements OnInit {
     // If no Order Intake rows were found, get them
     if (this.data.orderIntakeData.length === 0) {
       this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(res => {
-        this.plandate = this.tools.getPlanDate(res[0][11], moment, this.config, true);
+        this.plandate = getPlanDateWithMoment(res[0][11], moment, true);
         this.data.orderIntakeData = res;
         (window as any).orderIntake = res;
         this.rollupData()
       })
     } else {
-      this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true)
+      this.plandate = getPlanDateWithMoment(this.data.orderIntakeData[0][11], moment, true)
       this.rollupData()
     }
   }

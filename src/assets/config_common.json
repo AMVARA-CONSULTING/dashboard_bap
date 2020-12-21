@@ -13,6 +13,13 @@
 		"en": "English",
 		"de": "Deutsch"
 	},
+	"reportLinks": [
+		{ "link": "/order-intake", "text": "order_intake" },
+    	{ "link": "/order-backlog", "text": "order_backlog"},
+    	{ "link": "/production-program", "text": "production_program" },
+    	{ "link": "/allocation", "text": "allocation" },
+    	{ "link": "/plant-stock", "text": "plant_stock" }
+	],
 	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
 	"apiDomain": "",
@@ -258,6 +265,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.87.0",
+		  "text": [
+			"#2697 - Code review"
+		  ]
+		},
 		{
 		  "version": "2.86.0",
 		  "text": [

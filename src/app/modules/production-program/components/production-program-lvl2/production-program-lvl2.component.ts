@@ -5,8 +5,8 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { ToolsService } from '@services/tools.service';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
   selector: 'production-program-lvl2',
@@ -32,8 +32,7 @@ export class ProductionProgramLvl2Component {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title,
-    private tools: ToolsService
+    private title: Title
   ) {
     title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
@@ -49,7 +48,7 @@ export class ProductionProgramLvl2Component {
       // If no Order Intake rows were found, get them
       if (this.data.productionProgramData.length == 0) {
         this.api.getSavedReportData(ReportTypes.ProductionProgram).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][14], moment, this.config);
+          this.plandate = getPlanDateWithMoment(res[0][14], moment);
           this.data.productionProgramData = res;
           this.productionProgramData = res.filter(dat => dat[13] == this.year);
           if (this.ZoneID != null) {
@@ -66,7 +65,7 @@ export class ProductionProgramLvl2Component {
           }
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
+        this.plandate = getPlanDateWithMoment(this.data.productionProgramData[0][14], moment)
         this.productionProgramData = this.data.productionProgramData.filter(dat => dat[13] == this.year)
         this.years = Object.keys(this.data.classifyByIndex(this.data.productionProgramData, 13))
         // Transform numeric values to real numeric values, also checking NaN or null

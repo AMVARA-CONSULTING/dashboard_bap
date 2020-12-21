@@ -48,10 +48,11 @@ export class AppComponent implements OnInit {
     private _store: Store,
     private _dialog: MatDialog
   ) {
-    if (this.config.simulateUnauthorized > 0) {
+    // Not used anymore
+    /* if (this.config.simulateUnauthorized > 0) {
       timer(this.config.simulateUnauthorized).subscribe(_ => this.api.authorized = false);
-    }
-    if (this.api.corpintra || location.hostname !== 'localhost') {
+    } */
+    if (this.config.corpintra || location.hostname !== 'localhost') {
       // Heartbeat and check updates
       const pathname = location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/';
       this.api.heartbeat = interval(this.config.heartbeat).subscribe(_ => {
@@ -90,13 +91,9 @@ export class AppComponent implements OnInit {
     // If going to a report, check it has access, and if not, redirect to another one with access
     const links = this._cognos.getLinksWithAccess();
     this.reports.next(links);
-    if (!location.hash.includes('help') && !location.hash.includes('about')) {
-      if (links.length > 0) {
-        this.router.navigate([links[0].link]);
-      } else {
-        // Unable to access to any report, then main page is Help
-        this.router.navigate(['/help']);
-      }
+    if (!location.hash.includes('help') && !location.hash.includes('about') && links.length === 0) {
+      // Unable to access to any report, then main page is Help
+      this.router.navigate(['/help']);
     }
   }
 

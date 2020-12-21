@@ -5,8 +5,8 @@ import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { ToolsService } from '@services/tools.service';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
   selector: 'order-intake-sub-lvl3',
@@ -35,8 +35,7 @@ export class OrderIntakeSubLvl3Component {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title,
-    private tools: ToolsService
+    private title: Title
   ) {
     title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
@@ -62,7 +61,7 @@ export class OrderIntakeSubLvl3Component {
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length === 0) {
         this.api.getSavedReportData(ReportTypes.OrderIntake).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][11], moment, this.config, true);
+          this.plandate = getPlanDateWithMoment(res[0][11], moment, true);
           this.data.orderIntakeData = res;
           try {
             this.rollupData()
@@ -71,7 +70,7 @@ export class OrderIntakeSubLvl3Component {
           }
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.orderIntakeData[0][11], moment, this.config, true);
+        this.plandate = getPlanDateWithMoment(this.data.orderIntakeData[0][11], moment, true);
         try {
           this.rollupData();
         } catch (err) {

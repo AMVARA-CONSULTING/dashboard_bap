@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { CookiesExpiredComponent } from 'app/dialogs/cookies-expired/cookies-expired.component';
 import * as moment from 'moment';
-import { ToolsService } from './tools.service';
 import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { ConfigActions, ConfigState } from '@store/config.state';
 import { Config, ReportInfo, ReportTypes } from '@other/interfaces';
 import { InterceptorParams } from 'network-error-handling';
+import { csvToJson, csvToJsonNamed, htmlToJson } from '@other/functions';
 
 @Injectable()
 export class ApiService {
 
-  corpintra = false;
-
   constructor(
     private http: HttpClient,
-    private dialog: MatDialog,
-    private tools: ToolsService,
     private _store: Store
   ) {
     (window as any).api = this;
-    this.corpintra = location.hostname.indexOf('corpintra.net') > -1;
   }
 
+  /** Holder for report dates */
   reportDates = {
     orderIntake: '',
     orderBacklog: '',
@@ -34,10 +28,12 @@ export class ApiService {
     plantStock: ''
   };
 
-  reloadDialog: MatDialogRef<CookiesExpiredComponent>;
 
-  authorized = true;
+  // reloadDialog: MatDialogRef<CookiesExpiredComponent>;
 
+  // authorized = true;
+
+  // Constructor for expected response content
   expectResponse(mime: string) {
     return new InterceptorParams({
       contentChecks: {
@@ -49,13 +45,20 @@ export class ApiService {
     })
   }
 
+  // Variable holder for heartbeat
   heartbeat: Subscription;
 
+  /**
+   * Retrieve report data from Cognos
+   * @param reportKey Key of report to request, see ReportTypes
+   * @returns Observable<any[]>
+   */
   getSavedReportData(reportKey: ReportTypes): Observable<any[]> {
+    // Enable loading
     this._store.dispatch( new ConfigActions.SetParameter('loading', true) );
     const reportInfo: ReportInfo = this._store.selectSnapshot(ConfigState.GetReportInfo)(reportKey);
     const config = this._store.selectSnapshot<Config>(ConfigState);
-    if (this.corpintra || config.corpintra) {
+    if (config.corpintra) {
       // Get report from Live Server
       let firstId = '';
       return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`, {
@@ -150,13 +153,15 @@ export class ApiService {
           let rows = [];
           switch (mimeType) {
             case 'text/html':
-              rows = this.tools.htmlToJson(response.body, `[lid=${reportInfo.selector}] tr`);
+              // Parse as HTML
+              rows = htmlToJson(response.body, `[lid=${reportInfo.selector}] tr`);
               break;
             case 'application/csv':
+              // Parse as CSV
               if (reportKey === ReportTypes.OrderBacklog) {
-                rows = this.tools.csvToJsonNamed(response.body);
+                rows = csvToJsonNamed(response.body);
               } else {
-                rows = this.tools.csvToJson(response.body, columns);
+                rows = csvToJson(response.body, columns);
               }
               break;
             default:
@@ -179,9 +184,11 @@ export class ApiService {
         observe: 'response',
         params: this.expectResponse('application/json')
       }).pipe(
+        // Disable loading on finish
         finalize(() => {
           this._store.dispatch( new ConfigActions.SetParameter('loading', false) );
         }),
+        // Set current date
         tap(_ => this.reportDates[reportKey] = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')),
         map(res => res.body)
       );

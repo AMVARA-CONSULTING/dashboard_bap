@@ -19,7 +19,7 @@
     "allocation": true,
     "plant_stock": true
   },
-  "corpintra": false,
+  "corpintra": true,
   "simulateUnauthorized": true,
   "contacts": {
     "trucks": [

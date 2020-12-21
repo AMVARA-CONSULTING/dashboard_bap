@@ -122,4 +122,4 @@ const routes: Routes = [
     OrderBacklogRouter
   ]
 })
-export class OrderBacklogModule { }
+export class OrderBacklogModule {}

@@ -1,4 +1,4 @@
 {
-    "apiDomain": "",
-    "corpintra": false
+    "apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
+    "corpintra": true
 }

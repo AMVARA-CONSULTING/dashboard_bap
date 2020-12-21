@@ -3,10 +3,10 @@ import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
-import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
   selector: 'plant-stock-lvl3',
@@ -33,7 +33,6 @@ export class PlantStockLvl3Component {
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
-    private tools: ToolsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -46,7 +45,7 @@ export class PlantStockLvl3Component {
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
         this.api.getSavedReportData(ReportTypes.PlantStock).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
+          this.plandate = getPlanDateWithMoment(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, true)
           this.data.plantStockData = res
           // Transform numeric values to real numeric values, also checking NaN or null
           // DEPRECATED
@@ -58,7 +57,7 @@ export class PlantStockLvl3Component {
           this.rollupData()
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
+        this.plandate = getPlanDateWithMoment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, true)
         this.rollupData()
       }
     })
@@ -103,8 +102,8 @@ export class PlantStockLvl3Component {
     this.hofbDelta = this.data.sumByIndex(filteredRowsByHofbestand, this.config.config.reports.trucks.columns.plantStock.delta)
     this.regions = { ...this.data.classifyByIndex(filteredRowsByHofbestand, regionName[this.config.config.corpintra ? this.config.config.language : 'en']) }
     this.products = { ...this.data.classifyByIndex(filteredRowsByHofbestand, productName[this.config.config.corpintra ? this.config.config.language : 'en']) }
-    this.actualValue = +this.tools.percent(this.hofbActual, this.werkActual)
-    this.previousValue = +this.tools.percent(this.hofbPrevious, this.werkPrevious)
+    this.actualValue = +percent(this.hofbActual, this.werkActual)
+    this.previousValue = +percent(this.hofbPrevious, this.werkPrevious)
     setTimeout(() => {
       this.ready = true
     })

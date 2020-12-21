@@ -53,7 +53,7 @@
         | toNumber }}</div>
       <div class="program">{{ data.sumByIndex(row.value, config.config.reports.trucks.columns.allocation.program) |
         toNumber }}</div>
-      <div class="percent">{{ tools.percent(data.sumByIndex(row.value,
+      <div class="percent">{{ percent(data.sumByIndex(row.value,
         config.config.reports.trucks.columns.allocation.allocation), data.sumByIndex(row.value,
         config.config.reports.trucks.columns.allocation.program), true, true, true) }}</div>
     </div>

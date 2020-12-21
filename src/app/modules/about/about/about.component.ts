@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '@services/data.service';
 import { dependencies } from '../../../../../package.json';
-import { ToolsService } from '@services/tools.service';
 import { CognosService } from '@services/cognos.service';
 import { BehaviorSubject } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { ConfigActions } from '@store/config.state';
+import { formatVersion } from '@other/functions';
 
 @Component({
   selector: 'about',
@@ -27,17 +27,16 @@ export class AboutComponent implements OnInit {
     private translate: TranslateService,
     private snack: MatSnackBar,
     private data: DataService,
-    private _tools: ToolsService,
     public _cognos: CognosService,
     private _store: Store
   ) {
     this.data.currentLevel = 1;
     this.angularVersion = VERSION.full;
-    this.momentVersion = this._tools.formatVersion(dependencies.moment);
-    this.hammerVersion = this._tools.formatVersion(dependencies.hammerjs);
-    this.ngx_translateVersion = this._tools.formatVersion(dependencies['@ngx-translate/core']);
-    this.progressVersion = this._tools.formatVersion(dependencies['angular-svg-round-progressbar']);
-    this.connectionVersion = this._tools.formatVersion(dependencies['ng-connection-service']);
+    this.momentVersion = formatVersion(dependencies.moment);
+    this.hammerVersion = formatVersion(dependencies.hammerjs);
+    this.ngx_translateVersion = formatVersion(dependencies['@ngx-translate/core']);
+    this.progressVersion = formatVersion(dependencies['angular-svg-round-progressbar']);
+    this.connectionVersion = formatVersion(dependencies['ng-connection-service']);
   }
 
   connectionVersion;

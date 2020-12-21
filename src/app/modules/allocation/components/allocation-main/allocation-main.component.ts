@@ -4,10 +4,10 @@ import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
 import { ConfigService } from '@services/config.service';
-import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
   selector: 'allocation-main',
@@ -49,7 +49,6 @@ export class AllocationMainComponent {
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
-    private tools: ToolsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -61,12 +60,12 @@ export class AllocationMainComponent {
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
+          this.plandate = getPlanDateWithMoment(res[0][18], moment)
           this.data.allocationData = res;
           this.rollupData()
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.allocationData[0][18], moment, this.config)
+        this.plandate = getPlanDateWithMoment(this.data.allocationData[0][18], moment)
         this.rollupData()
       }
     })
@@ -126,7 +125,7 @@ export class AllocationMainComponent {
         month: monthCorrected,
         program: program,
         allocation: allocation,
-        percent: this.tools.percent(allocation, program, true, true, true)
+        percent: percent(allocation, program, true, true, true)
       })
     })
     this.months = info

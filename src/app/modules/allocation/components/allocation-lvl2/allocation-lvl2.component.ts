@@ -4,10 +4,10 @@ import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import * as moment from 'moment';
 import { ConfigService } from '@services/config.service';
-import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
   selector: 'allocation-lvl2',
@@ -33,6 +33,8 @@ import { ReportTypes } from '@other/interfaces';
 })
 export class AllocationLvl2Component {
 
+  percent = percent;
+
   ready: boolean = false
 
   plandate: string = ''
@@ -52,7 +54,6 @@ export class AllocationLvl2Component {
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
-    private tools: ToolsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -65,12 +66,12 @@ export class AllocationLvl2Component {
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][18], moment, this.config)
+          this.plandate = getPlanDateWithMoment(res[0][18], moment)
           this.data.allocationData = res
           this.rollupData()
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.allocationData[0][18], moment, this.config)
+        this.plandate = getPlanDateWithMoment(this.data.allocationData[0][18], moment)
         this.rollupData()
       }
     })
@@ -133,7 +134,7 @@ export class AllocationLvl2Component {
         month: monthCorrected,
         program: program,
         allocation: allocation,
-        percent: this.tools.percent(allocation, program, true, true, true)
+        percent: percent(allocation, program, true, true, true)
       })
     })
     const maxProgram = Math.max(...info.map(mon => mon.program))
@@ -143,8 +144,8 @@ export class AllocationLvl2Component {
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     this.partNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
-    this.percentAllocation = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
-    this.percentProgram = +this.tools.percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), maxProgram, false, false, false)
+    this.percentAllocation = +percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation), this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
+    this.percentProgram = +percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), maxProgram, false, false, false)
     this.programNumber = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.regions = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language])
     this.monthMomentum = moment(this.date, 'YYYYMM').format('MMMM YYYY')

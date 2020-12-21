@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
+import { Config } from '@other/interfaces';
 import { DataService } from '@services/data.service';
+import { ConfigState } from '@store/config.state';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -13,6 +16,9 @@ import { environment } from '../../../environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccessCodeComponent {
+  
+  /** Just-In-Time Config State */
+  @SelectSnapshot(ConfigState) config !: Config;
 
   origin = '';
   lang = '';
@@ -26,13 +32,8 @@ export class AccessCodeComponent {
     private http: HttpClient,
     private ac: ActivatedRoute
   ) {
-    const grantedDomains = ['ibiss-analytics-int.es.corpintra.net', 'ibiss-analytics.es.corpintra.net'];
-    if (grantedDomains.indexOf(location.hostname) > -1) {
-      this.data.accessGranted = true;
-      this.router.navigate(['/'], { queryParamsHandling: 'merge' });
-      return;
-    }
-    if (!environment.production) {
+    // Prevent showing access code if we are already in production or Cognos Server
+    if (!environment.production || this.config.corpintra) {
       this.data.accessGranted = true;
       this.router.navigate(['/'], { queryParamsHandling: 'merge' });
       return;

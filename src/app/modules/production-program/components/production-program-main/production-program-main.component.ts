@@ -6,8 +6,8 @@ import { ConfigService } from '@services/config.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { ToolsService } from '@services/tools.service';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
   selector: 'production-program-main',
@@ -43,8 +43,7 @@ export class ProductionProgramMainComponent implements OnInit {
     private route: ActivatedRoute,
     private config: ConfigService,
     private router: Router,
-    private title: Title,
-    private tools: ToolsService
+    private title: Title
   ) {
     this.title.setTitle(this.config.config.appTitle + ' - Production Program')
   }
@@ -59,12 +58,12 @@ export class ProductionProgramMainComponent implements OnInit {
       // If no Production rows were found, get them
       if (this.data.productionProgramData.length === 0) {
         this.api.getSavedReportData(ReportTypes.ProductionProgram).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][14], moment, this.config);
+          this.plandate = getPlanDateWithMoment(res[0][14], moment);
           this.data.productionProgramData = res;
           this.rollupData()
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.productionProgramData[0][14], moment, this.config)
+        this.plandate = getPlanDateWithMoment(this.data.productionProgramData[0][14], moment)
         this.rollupData()
       }
     })

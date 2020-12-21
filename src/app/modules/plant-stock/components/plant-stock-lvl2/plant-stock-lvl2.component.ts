@@ -4,9 +4,9 @@ import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
-import { ToolsService } from '@services/tools.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReportTypes } from '@other/interfaces';
+import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
   selector: 'plant-stock-lvl2',
@@ -32,7 +32,6 @@ export class PlantStockLvl2Component {
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
-    private tools: ToolsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -44,12 +43,12 @@ export class PlantStockLvl2Component {
       // If no Plant Stock rows were found, get them
       if (this.data.plantStockData.length == 0) {
         this.api.getSavedReportData(ReportTypes.PlantStock).subscribe(res => {
-          this.plandate = this.tools.getPlanDate(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
+          this.plandate = getPlanDateWithMoment(res[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, true)
           this.data.plantStockData = res
           this.rollupData()
         })
       } else {
-        this.plandate = this.tools.getPlanDate(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, this.config, true)
+        this.plandate = getPlanDateWithMoment(this.data.plantStockData[0][config.config.reports.trucks.columns.plantStock.actualDate], moment, true)
         this.rollupData()
       }
     })
@@ -102,8 +101,8 @@ export class PlantStockLvl2Component {
       this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'nicht definiert'], { replaceUrl: true })
       return
     }
-    this.actualValue = this.tools.percent(this.werkActual, this.totalActual)
-    this.previousValue = this.tools.percent(this.werkPrevious, this.totalPrevious)
+    this.actualValue = percent(this.werkActual, this.totalActual)
+    this.previousValue = percent(this.werkPrevious, this.totalPrevious)
     setTimeout(() => {
       this.ready = true
     })

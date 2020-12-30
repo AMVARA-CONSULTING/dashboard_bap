@@ -63,7 +63,7 @@
     {{ 'about.connection' | translate }}: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
     <report-info *ngFor="let report of reportInfos | async" [title]="report.title" [type]="report.type"></report-info>
     <div *ngIf="(_cognos.userCapabilities | async )?.admin">
-      <b>Hint:</b> Press Alt + F11 everywhere to show current config in the Browser Console.
+      <b>Hint:</b> Press Alt + F11 to show current config in the Browser Console.
     </div>
   </mat-expansion-panel>
   <mat-expansion-panel>

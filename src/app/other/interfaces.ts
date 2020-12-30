@@ -1,4 +1,3 @@
-
 export interface Config {
     version: string;
     debug: boolean;
@@ -12,7 +11,10 @@ export interface Config {
     reportLinks: ReportLink[];
     cognosApiWorkaround: boolean;
     apiLink: string;
+
+    /* apiDomain serves as backend URL for DEV environments, and is normally blank */
     apiDomain: string;
+    
     copyright: string;
     license: string;
     corpintra: boolean;

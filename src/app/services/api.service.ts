@@ -62,7 +62,7 @@ export class ApiService {
       // Get report from Live Server
       let firstId = '';
       return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${reportInfo.id}/versions`, {
-        params: this.expectResponse('application/hola'),
+        params: this.expectResponse('application/json'),
         observe: 'response'
       }).pipe(
         catchError(err => {
@@ -117,10 +117,23 @@ export class ApiService {
                 console.log(`${reportKey} - Fail at getting first items`);
                 return throwError(err);
               }),
-              switchMap(data => this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${data.body.data[0].id}/items`, {
-                observe: 'response',
-                params: this.expectResponse('application/json')
-              })),
+              switchMap(data => {
+                // Filter items by "output"
+                const items: any[] = data.body.data.filter(item => item.type === 'output');
+                if (items.length === 0) {
+                  return throwError('No output found');
+                }
+                // Sort items by modificationTime
+                items.sort((a, b) => moment(b.modificationTime, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').valueOf() - moment(a.modificationTime, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').valueOf());
+                const item = items[0];
+                // Set report date
+                this.reportDates[reportKey] = item.modificationTime;
+                // Return second request
+                return this.http.get<any>(`${config.apiDomain}${config.apiLink}objects/${item.id}/items`, {
+                  observe: 'response',
+                  params: this.expectResponse('application/json')
+                })
+              }),
               catchError(err => {
                 // Catch error on getting second items
                 console.log(`${reportKey} - Fail at getting second items`);

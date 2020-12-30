@@ -12,7 +12,7 @@ export interface Config {
     cognosApiWorkaround: boolean;
     apiLink: string;
 
-    /* apiDomain serves as backend URL for DEV environments, and is normally blank */
+    /** apiDomain serves as backend URL for DEV environments, and is normally blank */
     apiDomain: string;
     
     copyright: string;

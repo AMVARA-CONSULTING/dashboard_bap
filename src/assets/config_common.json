@@ -1,5 +1,5 @@
 {
-	"version": "2.86.0",
+	"version": "2.88.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -265,6 +265,12 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.88.0",
+		  "text": [
+			"#2697 - Code review V2"
+		  ]
+		},
 		{
 		  "version": "2.87.0",
 		  "text": [

@@ -481,6 +481,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     }
     button:disabled {
         background-color: rgba(white, .075) !important;
+        color: rgba(255,255,255,.3);
     }
 }
 

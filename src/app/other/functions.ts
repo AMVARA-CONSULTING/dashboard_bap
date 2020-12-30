@@ -189,8 +189,8 @@ export function guessCSVDelimiter(csv: string, delimiters: string[] = [';',',','
  * @param removeHeaders provide true to remove first line of headers
  */
 export function csvToJson(csv: string, numeralFields: number[], removeHeaders: boolean = true) {
-  csv = this.sanitizeCSV(csv);
-  const delimiter = this.guessCSVDelimiter(csv);
+  csv = sanitizeCSV(csv);
+  const delimiter = guessCSVDelimiter(csv);
   const lines: any[] = csv.split('\n');
   const data = [];
   if (removeHeaders) {
@@ -219,8 +219,8 @@ export function csvToJson(csv: string, numeralFields: number[], removeHeaders: b
  * @param removeHeaders provide true to remove first line of headers
  */
 export function csvToJsonNamed(csv: string): any[] {
-  csv = this.sanitizeCSV(csv);
-  const delimiter = this.guessCSVDelimiter(csv);
+  csv = sanitizeCSV(csv);
+  const delimiter = guessCSVDelimiter(csv);
   const rows = [];
   const lines: any[] = csv.split('\n');
   const headers = lines.shift().split(delimiter).map(el => el.trim());

@@ -49,7 +49,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     // Only show available reports info, this prevents the user from seeing things it shouldn't see
-    let reportInfos: ReportInfo[] = [
+    let reportInfos: AboutReport[] = [
       { title: 'Order Intake', type: 'orderIntake' },
       { title: 'Order Backlog', type: 'orderBacklog' },
       { title: 'Production program', type: 'productionProgram' },
@@ -79,11 +79,11 @@ export class AboutComponent implements OnInit {
     this.snack.open('Language reloaded successfully!', 'OK', { duration: 3000 });
   }
 
-  reportInfos = new BehaviorSubject<ReportInfo[]>([]);
+  reportInfos = new BehaviorSubject<AboutReport[]>([]);
 
 }
 
-export interface ReportInfo {
+interface AboutReport {
   title: string;
   type: string;
 }

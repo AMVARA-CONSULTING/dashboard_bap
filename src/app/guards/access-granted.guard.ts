@@ -21,7 +21,7 @@ export class AccessGranted implements CanActivate {
     if (this.config.corpintra) {
       // Check user capabilities in Cognos Server
       this.data.accessGranted = this._cognos.userCapabilities.getValue()[this.config.target][route.data.title];
-      if (this.data.accessGranted) {
+      if (this.data.accessGranted || ['about','help'].includes(route.data.title)) {
         return true;
       } else {
         return this.router.createUrlTree(['/'], { queryParamsHandling: 'merge' })

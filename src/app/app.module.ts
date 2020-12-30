@@ -36,7 +36,6 @@ import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
 import { SelectYearComponent } from './dialogs/select-year/select-year.component';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewUpdateComponent } from './dialogs/new-update/new-update.component';
-import { NavigationGuard } from './guards/navigation-guard.guard';
 import { AccessCodeComponent } from './components/access-code/access-code.component';
 import { CognosService } from '@services/cognos.service';
 import { CookiesExpiredComponent } from './dialogs/cookies-expired/cookies-expired.component';
@@ -131,7 +130,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     ApiService,
     ConnectionService,
     ConfigService,
-    NavigationGuard,
     CognosService,
     AuthInterceptor,
     {

@@ -241,7 +241,7 @@ export class CognosService {
     if (config.corpintra) {
       return new Observable(observer => {
         // Return XHR of user capabilities
-        this.http.get<any>(`${config.apiLink}identity`).subscribe(rows => {
+        this.http.get<any>(`${config.apiDomain}${config.apiLink}identity`).subscribe(rows => {
           observer.next({ success: true, data: rows.data });
           observer.complete();
         }, err => {

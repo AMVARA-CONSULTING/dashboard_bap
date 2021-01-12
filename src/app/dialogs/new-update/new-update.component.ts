@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { InterceptorParams } from 'network-error-handling';
+import { InterceptorParams } from 'ngx-network-error';
 import { finalize } from 'rxjs/operators';
 
 @Component({

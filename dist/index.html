@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>BAP</title>
+  <title>DIP - Data Informations Platform</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#23233E">
+  <meta name="theme-color" content="#1976d2">
   <meta name="apple-mobile-web-app-capable" content="yes"/>
-<link rel="stylesheet" href="styles.21b68c78c43e2065085d.css"></head>
-<body theme="dark">
-  <script>
-    var lightThemeStorage = localStorage.getItem('light_theme')
-    if (lightThemeStorage === 'yes') document.body.setAttribute('theme', 'light')
-  </script>
+<link rel="stylesheet" href="styles.92e2ec4de76825984517.css"></head>
+<body>
   <dip-root>
     <style>
       html,
@@ -31,10 +30,6 @@
       body {
         background-color: #101010;
         font-family: "CorpoS", "Arial", "sans-serif", "HelveticaNeue", "Verdana" !important;
-      }
-
-      body[theme=new-dark] {
-        background-color: black;
       }
 
       .amvaraLoading {
@@ -62,10 +57,6 @@
         background-color: rgba(24, 24, 32, 0.92);
       }
 
-      body[theme=new-dark] .amvaraLoading:before {
-        background-color: #0C0C0C;
-      }
-
       .amvaraLoadingLogo {
         display: block;
         position: relative;
@@ -83,7 +74,7 @@
         margin: auto;
         left: 0;
         right: 0;
-        background-image: url(assets/loading-fake.svg);
+        background-image: url(assets/loading.svg);
         background-repeat: no-repeat;
         background-size: cover;
         animation-name: rotate;
@@ -116,14 +107,6 @@
         text-align: center;
       }
 
-      body[theme="light"] .amvaraLoading:before {
-        background-color: rgba(240, 240, 240, .9);
-      }
-
-      body[theme="light"] .title {
-        color: #333;
-      }
-
       @keyframes rotate {
         0% {
           transform: rotate(0deg);
@@ -139,12 +122,12 @@
         <div class="outside"></div>
         <div class="middle"></div>
         <div class="inside"></div>
-        <div class="title">BAP</div>
+        <div class="title">DIP</div>
       </div>
-      <div class="loadingTitle">Data Platform</div>
+      <div class="loadingTitle">Data Informations Platform</div>
     </div>
   </dip-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script src="runtime-es2015.37ea61fe454715290d05.js" type="module"></script><script src="runtime-es5.37ea61fe454715290d05.js" nomodule defer></script><script src="polyfills-es5.fbd295ce9f5cbb1af969.js" nomodule defer></script><script src="polyfills-es2015.74bd3f474857a201fd60.js" type="module"></script><script src="main-es2015.f43b09961091f0c3a407.js" type="module"></script><script src="main-es5.f43b09961091f0c3a407.js" nomodule defer></script></body>
+<script src="runtime-es2015.65f297a5e2d748776126.js" type="module"></script><script src="runtime-es5.65f297a5e2d748776126.js" nomodule defer></script><script src="polyfills-es5.fbd295ce9f5cbb1af969.js" nomodule defer></script><script src="polyfills-es2015.74bd3f474857a201fd60.js" type="module"></script><script src="main-es2015.4dd912554a73ae34fe46.js" type="module"></script><script src="main-es5.4dd912554a73ae34fe46.js" nomodule defer></script></body>
 
 </html>

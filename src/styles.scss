@@ -489,3 +489,19 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     flex: 1 100%;
     width: 100%;
 }
+
+input {
+    filter: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: hsla(0,0%,100%,.8);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.cdk-overlay-container {
+    z-index: 1000;
+}

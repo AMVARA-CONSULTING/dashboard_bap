@@ -57,7 +57,7 @@ import { OrderBacklogState } from '@store/order-backlog.state';
 import { ConfigState } from '@store/config.state';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { NetworkErrorHandlingModule } from 'network-error-handling';
+import { NgxNetworkErrorModule } from 'ngx-network-error';
 
 declare var Hammer: any;
 
@@ -110,7 +110,7 @@ export class MyHammerConfig extends HammerGestureConfig {
           deps: [HttpClient],
       }
     }),
-    NetworkErrorHandlingModule.forRoot({
+    NgxNetworkErrorModule.forRoot({
       reporting: {
         sentryDSN: 'https://b75afd9cf4c649b9b06e341b545ecd27@sentry.amvara.de/7'
       },

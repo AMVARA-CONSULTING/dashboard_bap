@@ -16,7 +16,7 @@ import { Store } from '@ngxs/store';
 import { versionToNumber } from '@other/functions';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
-import { InterceptorParams } from 'network-error-handling';
+import { InterceptorParams } from 'ngx-network-error';
 
 @Component({
   selector: 'dip-root',

@@ -1,4 +1,7 @@
 {
     "apiDomain": "https://ibiss-analytics-int.es.corpintra.net",
-    "corpintra": true
+    "corpintra": true,
+    "scenario": "int",
+	"portal": "/internal/bi/",
+	"apiLink": "/internal/bi/v1/"
 }

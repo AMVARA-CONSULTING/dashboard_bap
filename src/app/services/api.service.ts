@@ -6,7 +6,7 @@ import { Observable, Subscription, throwError } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { ConfigActions, ConfigState } from '@store/config.state';
 import { Config, ReportInfo, ReportTypes } from '@other/interfaces';
-import { InterceptorParams } from 'network-error-handling';
+import { InterceptorParams } from 'ngx-network-error';
 import { csvToJson, csvToJsonNamed, htmlToJson } from '@other/functions';
 
 @Injectable()

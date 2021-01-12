@@ -1,5 +1,5 @@
 {
-	"version": "2.87.0",
+	"version": "2.90.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
@@ -265,6 +265,26 @@
 		}
 	},
 	"changelog": [
+		{
+		  "version": "2.90.0",
+		  "text": [
+			"#2709 - Change location of login error to center",
+			"#2709 - Get error message from XHR response",
+			"#2709 - Switch network plugin to ngx-network-error"
+		  ]
+		},
+		{
+		  "version": "2.89.0",
+		  "text": [
+			"#2729 - Implement workaround for white autofill background"
+		  ]
+		},
+		{
+		  "version": "2.88.0",
+		  "text": [
+			"#2697 - Code review V2"
+		  ]
+		},
 		{
 		  "version": "2.87.0",
 		  "text": [

@@ -7,7 +7,7 @@ import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialog } from 'app/dialogs/login/login.component';
-import { InterceptorParams } from 'network-error-handling';
+import { InterceptorParams } from 'ngx-network-error';
 
 @Injectable()
 export class CognosService {
@@ -67,7 +67,9 @@ export class CognosService {
       observe: 'response',
       // Skip interceptor of errors
       params: new InterceptorParams({
-        skipInterceptor: true
+        retry: {
+          count: 2
+        }
       }),
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
@@ -87,7 +89,9 @@ export class CognosService {
         observe: 'response',
         // Bypass any cache
         params: new InterceptorParams({
-          skipInterceptor: true,
+          // Only make XHR go through error interceptor if newLogin is enabled
+          // Because will be enabled a Login Dialog will be shown automatically
+          ...(localStorage.getItem('newLogin') !== 'true' && { skipInterceptor: true }),
           ignoreDiskCache: true,
           ignoreServiceWorkerCache: true,
           ignoreProxyCache: true
@@ -100,7 +104,7 @@ export class CognosService {
           },
           err => {
             // Login
-            if (localStorage.getItem('newLogin') === 'true') {
+            /* if (localStorage.getItem('newLogin') === 'true') {
               // Trigger XSRF Token cookie generation
               this.http.get(`${config.apiDomain}${config.portal}`, {
                 responseType: 'text',
@@ -127,10 +131,10 @@ export class CognosService {
                   });
                 });
               });
-            } else {
+            } else { */
               // If new login is disabled, use old method with iframe to log in
               this.doLoginWithIframe(resolve, config);
-            }
+            //}
           });
     });
   }

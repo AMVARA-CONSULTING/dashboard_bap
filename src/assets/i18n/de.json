@@ -10,6 +10,22 @@
     },
     "connected": "Verbunden",
     "not_connected": "Nicht verbunden",
+    "return": {
+        "main": "Zurück zur Hauptansicht",
+        "second": "Kehre zur zweiten Ebene zurück",
+        "month": "Kehre zum Monatsniveau zurück",
+        "zone": "Zurück zur Anlagen- / Zonenebene",
+        "werkbestand": "Kehre zum Werkbestand zurück"
+    },
+    "belong_to": {
+        "customers": "Einheiten von Kunden.",
+        "plan": "Zu Plan gehörende Einheiten.",
+        "plan_unit": "Summe der Kunden- und Planeinheiten.",
+        "reserved": "Einheiten reserviert."
+    },
+    "prev_month": "Zurück Monat",
+    "prev_year": "Vorheriges Jahr",
+    "last_x_month": "Letzte 12 Monate",
     "plandate": "Stand",
     "region": "Region",
     "product": "Produkt",

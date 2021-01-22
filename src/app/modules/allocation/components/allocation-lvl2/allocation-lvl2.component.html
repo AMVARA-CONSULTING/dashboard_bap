@@ -23,7 +23,7 @@
 </header>
 <header class="return" *ngIf="ready">
   <div class="month" (click)="returnToMain()">
-    <div class="first-row" matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{
+    <div class="first-row" matTooltipClass="after" matTooltip="{{ 'return.main' | translate}}" matTooltipPosition="after" style="display: inline-block">{{
       monthMomentum }}</div>
   </div>
   <div class="total-allocation">{{ totalAllocation | toNumber }}</div>

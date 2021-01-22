@@ -16,7 +16,7 @@
         <!-- Desktop -->
         <ng-template #desktopHeaders>
             <div class="report-date">{{ days$.latestDay | formatLatestDay }}</div>
-            <div class="report-date">Prev. Year</div>
+            <div class="report-date">{{ 'prev_year' | translate }}</div>
         </ng-template>
     </ng-container>
     <!-- Level 2 Headers -->
@@ -34,8 +34,8 @@
         </ng-container>
         <!-- Desktop -->
         <ng-template #desktopHeaders>
-            <div class="report-date">Last 12 month</div>
-            <div class="report-date">Prev. Year</div>
+            <div class="report-date">{{ 'last_x_month' | translate }}</div>
+            <div class="report-date">{{ 'prev_year' | translate }}</div>
         </ng-template>
     </ng-container>
     <!-- Level 3 Headers -->
@@ -51,7 +51,7 @@
         <!-- Desktop -->
         <ng-template #desktopHeaders>
             <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthDesktop"></ng-container>
-            <div class="report-date">Prev. Year</div>
+            <div class="report-date">{{ 'prev_year' | translate }}</div>
         </ng-template>
     </ng-container>
     <!-- Level 4 Headers -->
@@ -67,7 +67,7 @@
         <!-- Desktop -->
         <ng-template #desktopHeaders>
             <ng-container *ngIf="(currentMonthDate$ | async).substring(0,7) === currentMonth; then today else last12MonthDesktop"></ng-container>
-            <div class="report-date">Prev. Year</div>
+            <div class="report-date">{{ 'prev_year' | translate }}</div>
         </ng-template>
     </ng-container>
 </ng-container>
@@ -84,7 +84,7 @@
 </ng-template>
 <ng-template #last12MonthDesktop>
     <div class="report-date">
-        <div class="upper">Last 12 Month</div>
+        <div class="upper">{{ 'last_x_month' | translate }}</div>
     </div>
 </ng-template>
 <div class="glyph">&Delta;</div>

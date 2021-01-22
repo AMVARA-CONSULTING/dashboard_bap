@@ -10,7 +10,23 @@
     },
     "connected": "Connectat",
     "not_connected": "No connectat",
-    "plandate": "com a",
+    "return": {
+        "main": "Tornar a la vista principal",
+        "second": "Tornar al segon nivell",
+        "month": "Tornar al nivell de mesos",
+        "zone": "Tornar al nivell de fàbrica/zona",
+        "werkbestand": "Tornar al nivell de Werkbestand"
+    },
+    "belong_to": {
+        "customers": "Unitats pertanyents a clients.",
+        "plan": "Unitats pertanents a plans.",
+        "plan_unit": "Total de clients i plans.",
+        "reserved": "Unitats pertanyens a reservats."
+    },
+    "prev_month": "Últim mes",
+    "prev_year": "Últim any",
+    "last_x_month": "Últims 12 mesos",
+    "plandate": "a",
     "region": "Regió",
     "product": "Producte",
     "regions": "Regions",

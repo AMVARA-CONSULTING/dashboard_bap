@@ -10,7 +10,23 @@
     },
     "connected": "Conectado",
     "not_connected": "No conectado",
-    "plandate": "como en",
+    "return": {
+        "main": "Volver a la vista principal",
+        "second": "Volver al segundo nivel",
+        "month": "Volver al nivel de meses",
+        "zone": "Volver al nivel de fábrica/zona", 
+        "werkbestand": "Volver al nivel de Werkbestand"
+    },
+    "belong_to": {
+        "customers": "Unidades pertenecientes a los clientes.",
+        "plan": "Unidades pertenecientes a los planes.",
+        "plan_unit": "Total de clientes y planes.",
+        "reserved": "Unidades pertenecientes a reservados."
+    },
+    "prev_month": "Último mes",
+    "prev_year": "Último año",
+    "last_x_month": "Últimos 12 meses",
+    "plandate": "a",
     "region": "Región",
     "product": "Producto",
     "regions": "Regiones",

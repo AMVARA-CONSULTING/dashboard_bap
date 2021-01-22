@@ -15,19 +15,19 @@
       </mat-form-field>
     </div>
     <div class="customer">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to customers." style="display: inline-block;">{{
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="{{ 'belong_to.customers' | translate }}" style="display: inline-block;">{{
         'production_program.customer' | translate }}</div>
     </div>
     <div class="plan">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to plan." style="display: inline-block;">{{
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="{{ 'belong_to.plan' | translate }}" style="display: inline-block;">{{
         'production_program.plan' | translate }}</div>
     </div>
     <div class="total">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Sum of customer and plan units." style="display: inline-block;">{{
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="{{ 'belong_to.plan_unit' | translate }}" style="display: inline-block;">{{
         'production_program.total' | translate }}</div>
     </div>
     <div class="reserve">
-      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="Units belonging to reserved." style="display: inline-block;">
+      <div matTooltipClass="above" matTooltipPosition="above" matTooltip="{{ 'belong_to.reserved' | translate }}" style="display: inline-block;">
         <span class="desktop">{{ 'production_program.reserve' | translate }}</span>
         <span class="mobile">SR</span>
       </div>
@@ -46,7 +46,7 @@
         <div class="reserve">{{ groupInfo.totalReserve | toNumber }}</div>
       </div>
       <div class="header-row arrow zone" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
             groupInfo.zoneRows[0][config.config.language == 'en' ? 2 : 1] }}</span></div>
         <div class="customer">{{ groupInfo.zoneCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.zonePlan | toNumber }}</div>
@@ -69,7 +69,7 @@
         <div class="reserve">{{ groupInfo.zoneReserve | toNumber }}</div>
       </div>
       <div class="header-row arrow plant" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
             groupInfo.plantRows[0][config.config.language == 'en' ? 7 : 6] }}</span></div>
         <div class="customer">{{ groupInfo.plantCustomer | toNumber }}</div>
         <div class="plan">{{ groupInfo.plantPlan | toNumber }}</div>

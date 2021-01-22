@@ -10,6 +10,22 @@
     },
     "connected": "Connected",
     "not_connected": "Not connected",
+    "return": {
+        "main": "Return to main view",
+        "second": "Return to second level",
+        "month": "Return to month level",
+        "zone": "Return to plant/zone level", 
+        "werkbestand": "Return to Werkbestand level"
+    },
+    "belong_to": {
+        "customers": "Units belonging to customers.",
+        "plan": "Units belonging to plan.",
+        "plan_unit": "Sum of customer and plan units.",
+        "reserved": "Units belonging to reserved."
+    },
+    "prev_month": "Prev. Month",
+    "prev_year": "Prev. Year",
+    "last_x_month": "Last 12 month",
     "plandate": "as at",
     "region": "Region",
     "product": "Product",

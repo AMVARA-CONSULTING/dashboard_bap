@@ -10,7 +10,7 @@
       <div class="headers">
         <div class="empty"></div>
         <div class="actual">{{ plandate }}</div>
-        <div class="previous">Prev. Month</div>
+        <div class="previous">{{ 'prev_month' | translate }}</div>
         <div class="delta">&Delta;</div>
       </div>
       <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
@@ -37,7 +37,7 @@
     </mat-form-field>
   </div>
   <div class="actual">{{ plandate }}</div>
-  <div class="previous">Prev. Month</div>
+  <div class="previous">{{ 'prev_month' | translate }}</div>
   <div class="delta">&Delta;</div>
 </header>
 <div class="content-wrapper" [@list]>

@@ -12,16 +12,16 @@
         <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow sub2" (click)="returnToMain()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate}}">{{
             groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow sub3" (click)="return()">
-        <div *ngIf="RegionID != null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to second level">{{
+        <div *ngIf="RegionID != null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
             'region' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.region[config.config.language]]}}</span></div>
-        <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to second level">{{
+        <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
             'product' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.product[config.config.language]]}}</span></div>
         <div class="actual">{{ data.sumByIndex(subRows,this.config.config.reports.trucks.columns.orderIntake.actual) |
@@ -38,16 +38,16 @@
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow sub2" (click)="returnToMain()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate}}">{{
             groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow sub3" (click)="return()">
-        <div *ngIf="RegionID != null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to second level">{{
+        <div *ngIf="RegionID != null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
             'region' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.region[config.config.language]]}}</span></div>
-        <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to second level">{{
+        <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
             'product' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.product[config.config.language]]}}</span></div>
         <div class="actual">{{ data.sumByIndex(subRows,this.config.config.reports.trucks.columns.orderIntake.actual) |

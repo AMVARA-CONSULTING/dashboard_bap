@@ -23,7 +23,7 @@
 </header>
 <header class="return" *ngIf="ready">
   <div class="month" (click)="returnToMain()">
-    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{
+    <div matTooltipClass="after" matTooltip="{{ 'return.main' | translate }}" matTooltipPosition="after" style="display: inline-block">{{
       monthMomentum }}</div>
   </div>
   <div class="total-allocation">{{ totalAllocation | toNumber }}</div>
@@ -32,9 +32,9 @@
 </header>
 <header class="return2" *ngIf="ready">
   <div class="month" (click)="returnToParent()">
-    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
+    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="{{ 'return.month' | translate }}" matTooltipPosition="after"
       style="display: inline-block">{{ 'region' | translate }} - {{ region_id }}</div>
-    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
+    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="{{ 'return.month' | translate }}" matTooltipPosition="after"
       style="display: inline-block">{{ 'product' | translate }} - {{ region_id }}</div>
   </div>
   <div class="total-allocation">{{ subtotalAllocation | toNumber }}</div>

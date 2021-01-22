@@ -12,7 +12,7 @@
         <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow zone" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
             groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
@@ -26,7 +26,7 @@
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow plant" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
             groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>

@@ -59,10 +59,12 @@
     }
 }
 
-p a, p span {
-    color: $lighten-cyan-text;
-    text-decoration: none;
-}
+:host::ng-deep {
+    p a, p span {
+        color: $lighten-cyan-text;
+        text-decoration: none;
+    }
+} 
 
 @include lightTheme {
     :host p span {

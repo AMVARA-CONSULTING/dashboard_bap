@@ -10,7 +10,7 @@
       <div class="headers">
         <div class="empty"></div>
         <div class="actual">{{ plandate }}</div>
-        <div class="previous">Prev. Month</div>
+        <div class="previous">{{ 'prev_month' | translate }}</div>
         <div class="delta">&Delta;</div>
       </div>
       <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
@@ -37,7 +37,7 @@
     </mat-form-field>
   </div>
   <div class="actual">{{ plandate }}</div>
-  <div class="previous">Prev. Month</div>
+  <div class="previous">{{ 'prev_month' | translate }}</div>
   <div class="delta">&Delta;</div>
 </header>
 <div class="content-wrapper">
@@ -50,7 +50,7 @@
     </div>
     <div class="group-header return arrow-right">
       <div class="werk" (click)="returnToMain()">
-        <div matTooltip="Return to main level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
+        <div matTooltip="{{ 'return.main' | translate }}" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
           werk }}</div>
       </div>
       <div class="actual">{{ werkActual | toNumber }}</div>
@@ -59,7 +59,7 @@
     </div>
     <div *ngIf="hofb != 'not defined' && hofb != 'nicht definiert'" class="group-header return arrow-right">
       <div class="werk" (click)="returnToLvl2()">
-        <div matTooltip="Return to werkbestand level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
+        <div matTooltip="{{ 'return.werkbestand' | translate }}" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
           hofb }}</div>
       </div>
       <div class="actual">{{ hofbActual | toNumber }}</div>

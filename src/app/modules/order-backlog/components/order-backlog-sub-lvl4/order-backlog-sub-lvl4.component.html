@@ -9,7 +9,7 @@
       <div class="header-rows">
         <!-- Header Row of currented select plant / zone -->
         <div class="header-row zone">
-          <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+          <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}"></i>
           <div class="title with-selector">
             <dip-plant-selector></dip-plant-selector>
           </div>
@@ -25,7 +25,7 @@
           <ng-container *ngLet="previousMonthRows$ | async as previousMonthRows">
             <!-- Header Row of current selected month -->
             <div class="header-row zone">
-              <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to plant/zone view"></i>
+              <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.zone' | translate }}"></i>
               <div class="title with-selector">
                 <dip-month-selector [rows]="plantOrZoneRows"></dip-month-selector>
               </div>
@@ -41,7 +41,7 @@
         </ng-container>
         <!-- Header Row of current selected product / region -->
         <div class="header-row zone">
-          <i class="arrow" (click)="_obRouter.goToMonthView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to month view"></i>
+          <i class="arrow" (click)="_obRouter.goToMonthView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.month' | translate }}"></i>
           <div class="title with-selector">
             <dip-product-region-selector [rows]="monthRows$ | async" [previousRows]="previousRows$ | async"></dip-product-region-selector>
           </div>

@@ -23,6 +23,17 @@
         "plan_unit": "Sum of customer and plan units.",
         "reserved": "Units belonging to reserved."
     },
+    "change": {
+        "plant": "Change selected plant",
+        "year": "Change selected year"
+    },
+    "description": {
+        "coordinator": "Coordinator",
+        "designer": "Designer",
+        "programmer": "Programmer"
+    },
+    "portrait": "Portrait & Landscape",
+    "swipe": "Swipe & Scroll",
     "prev_month": "Prev. Month",
     "prev_year": "Prev. Year",
     "last_x_month": "Last 12 month",
@@ -63,6 +74,11 @@
         "device_adapted": "This application is adapted for any device and visualization. You can navigate through it with different options.",
         "detail": "Detail",
         "year_selector": "Year & Location Selectors",
-        "tree": "Hierarchy"
+        "tree": "Hierarchy",
+        "language_change": "Language changed successfully!",
+        "language_reload": "Language reloaded successfully!",
+        "report_name": "Report Name",
+        "date": "Date",
+        "not_running": "Not running"
     }
 }

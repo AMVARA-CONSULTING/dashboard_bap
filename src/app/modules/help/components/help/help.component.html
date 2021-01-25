@@ -14,7 +14,7 @@
   <div class="telephones">
     <contact *ngFor="let contact of contacts; let i = index;">
       <name>{{ contact.name }}</name>
-      <description>{{ contact.description }}</description>
+      <description>{{ 'description.'+(contact.description | lowercase ) | translate }}</description>
       <tel>{{ contact.telephone }}</tel>
     </contact>
   </div>
@@ -31,13 +31,13 @@
     </div>
   </div>
   <div class="helper">
-    <div class="title">Portrait & Landscape</div>
+    <div class="title">{{ 'portrait' | translate }}</div>
     <div class="content">
       <div class="portrait_landscape"></div>
     </div>
   </div>
   <div class="helper">
-    <div class="title">Scroll & Swipe</div>
+    <div class="title">{{ 'swipe' | translate }}</div>
     <div class="content">
       <div class="scroll_swipe"></div>
     </div>

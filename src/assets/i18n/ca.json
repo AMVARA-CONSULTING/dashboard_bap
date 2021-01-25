@@ -23,6 +23,17 @@
         "plan_unit": "Total de clients i plans.",
         "reserved": "Unitats pertanyens a reservats."
     },
+    "change": {
+        "plant": "Canviar la fàbrica seleccionada",
+        "year": "Canviar l'any seleccionat"
+    },
+    "description": {
+        "coordinator": "Coordinador",
+        "designer": "Disenyador",
+        "programmer": "Programador"
+    },
+    "portrait": "Vertical i horitzontal",
+    "swipe": "Lliscar vertical i horitzontalment",
     "prev_month": "Últim mes",
     "prev_year": "Últim any",
     "last_x_month": "Últims 12 mesos",
@@ -63,6 +74,11 @@
         "device_adapted": "Aquesta aplicació està adaptada per a tot tipus de dispositius i visualitzacions. Pot navegar a través d'ella amb diferents opcions.",
         "detail": "Detalls",
         "year_selector": "Selector d'any i ubicació",
-        "tree": "Jerarquia"
+        "tree": "Jerarquia",
+        "language_change": "Idioma canviat amb èxit!",
+        "language_reload": "Idioma recarregat amb èxit!",
+        "report_name": "Nom de l'informe",
+        "date": "Data",
+        "not_running": "No està corrent"
     }
 }

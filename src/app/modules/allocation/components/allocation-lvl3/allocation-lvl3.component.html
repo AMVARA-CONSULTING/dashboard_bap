@@ -8,7 +8,7 @@
 </div>
 <header *ngIf="ready">
   <div class="month">
-    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="Change selected plant"
+    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="{{ 'change.plant' | translate }}"
       style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">

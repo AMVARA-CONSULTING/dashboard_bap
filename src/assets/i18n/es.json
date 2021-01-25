@@ -23,6 +23,17 @@
         "plan_unit": "Total de clientes y planes.",
         "reserved": "Unidades pertenecientes a reservados."
     },
+    "change": {
+        "plant": "Cambiar la fábrica seleccionada",
+        "year": "Cambiar el año seleccionado"
+    },
+    "description": {
+        "coordinator": "Coordinador",
+        "designer": "Diseñador",
+        "programmer": "Programador"
+    },
+    "portrait": "Vertical y horizontal",
+    "swipe": "Deslizar vertical y horizontalmente",
     "prev_month": "Último mes",
     "prev_year": "Último año",
     "last_x_month": "Últimos 12 meses",
@@ -63,6 +74,11 @@
         "device_adapted": "Esta aplicación está adaptada para todo tipo de dispositivos. Puede navegar a través de ella con diferentes opciones.",
         "detail": "Detalles",
         "year_selector": "Selector de año y ubicación",
-        "tree": "Jerarquía"
+        "tree": "Jerarquía",
+        "language_change": "Idioma cambiado con éxito!",
+        "language_reload": "Idioma recargado con éxito!",
+        "report_name": "Nombre del informe",
+        "date": "Fecha",
+        "not_running": "No está corriendo"
     }
 }

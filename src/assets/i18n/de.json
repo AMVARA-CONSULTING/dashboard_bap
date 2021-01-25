@@ -23,6 +23,17 @@
         "plan_unit": "Summe der Kunden- und Planeinheiten.",
         "reserved": "Einheiten reserviert."
     },
+    "change": {
+        "plant": "Ändern die ausgewählte Fabrik",
+        "year": "Ändern das ausgewählte Jahr"
+    },
+    "description": {
+        "coordinator": "Koordinator",
+        "designer": "Designer",
+        "programmer": "Programmierer"
+    },
+    "portrait": "Vertikal und horizontal",
+    "swipe": "Wischen vertikal und horizontal",
     "prev_month": "Zurück Monat",
     "prev_year": "Vorheriges Jahr",
     "last_x_month": "Letzte 12 Monate",
@@ -63,6 +74,11 @@
         "device_adapted": "Diese Anwendung ist für jedes Gerät und jede Visualisierung geeignet. Sie können mit verschiedenen Optionen durch sie navigieren.",
         "detail": "Einzelheiten",
         "year_selector": "Jahr & Standort-Selektoren",
-        "tree": "Hierarchie"
+        "tree": "Hierarchie",
+        "language_change": "Sprache erfolgreich geändert!",
+        "language_reload": "Sprache erfolgreich neu geladen!",
+        "report_name": "Berichtsname",
+        "date": "Datum",
+        "not_running": "Läuft nicht"
     }
 }

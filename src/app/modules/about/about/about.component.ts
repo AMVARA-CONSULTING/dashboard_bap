@@ -71,12 +71,12 @@ export class AboutComponent implements OnInit {
     localStorage.setItem('lang', code);
     this.translate.use(code);
     this._store.dispatch( new ConfigActions.SetParameter('language', code) );
-    this.snack.open('Language changed successfully!', 'OK', { duration: 3000 });
+    this.snack.open(this.translate.instant('help.language_change'), 'OK', { duration: 3000 });
   }
 
   reloadLang(): void {
     this.translate.reloadLang(this.config.config.language);
-    this.snack.open('Language reloaded successfully!', 'OK', { duration: 3000 });
+    this.snack.open(this.translate.instant('help.language_reload'), 'OK', { duration: 3000 });
   }
 
   reportInfos = new BehaviorSubject<AboutReport[]>([]);

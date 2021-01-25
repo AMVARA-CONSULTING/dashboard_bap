@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ContactInfo } from '@other/interfaces';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';

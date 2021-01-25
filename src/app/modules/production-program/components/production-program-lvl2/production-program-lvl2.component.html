@@ -5,8 +5,8 @@
   </div>
   <header>
     <div class="title">
-      <!--<button (click)="changeYear(year, years)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" mat-button><mat-icon>today</mat-icon>{{ year }}</button>-->
-      <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected year" style="width: 70px; margin-left: 10px;">
+      <!--<button (click)="changeYear(year, years)" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.year' | translate }}" mat-button><mat-icon>today</mat-icon>{{ year }}</button>-->
+      <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.year' | translate }}" style="width: 70px; margin-left: 10px;">
         <mat-select ngDefaultControl [(ngModel)]="year" (ngModelChange)="changeYear($event)">
           <mat-option *ngFor="let newYear of years" [value]="newYear">
             {{ newYear }}

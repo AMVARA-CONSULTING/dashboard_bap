@@ -1,12 +1,12 @@
 <div class="title">{{ title | uppercase }}</div>
 <div class="container">
   <div class="name">
-    <span class="prop">ReportName:</span> <span class="val">{{ name | async }}</span>
+    <span class="prop">{{ 'help.report_name' | translate }}:</span> <span class="val">{{ name | async }}</span>
   </div>
   <div class="id">
     <span class="prop">ID:</span> <span class="val">{{ id | async }}</span>
   </div>
   <div class="date">
-    <span class="prop">Date:</span> <span class="val">{{ date | async }} {{ hour | async }}</span>
+    <span class="prop">{{ 'help.date' | translate }}:</span> <span class="val">{{ date | async }} {{ hour | async }}</span>
   </div>
 </div>

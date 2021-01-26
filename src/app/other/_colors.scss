@@ -13,7 +13,7 @@ $main-shady-color: #181820;
 $header-bg-color: rgba($color: #17181F, $alpha: .85);
 $main-bg-body-color: rgba($color: $main-shady-color, $alpha: .92);
 $main-bg-content-color: rgba($color: #202020, $alpha: .4);
-$bg-white-lvl1: rgba($color: #343445, $alpha: .5);
+$bg-white-lvl1: rgba($color: #453434, $alpha: .5);
 $bg-white-lvl2: rgba($color: #292931, $alpha: $transparency);
 $bg-white-lvl2-5: rgba($color: #252527, $alpha: $transparency);
 $bg-white-lvl4: rgba($color: $main-shady-color, $alpha: $transparency);
@@ -23,10 +23,10 @@ $bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
 $row-hover: rgba(white, .02);
 
 // New Dark Theme specs
-$new-dark-header-bg-color: black; // Used for Header
+$new-dark-header-bg-color:#000a13; // Used for Header
 $new-dark-header-border-color: #808080; // Used for header border bottom
-$new-dark-total-upper-bg-color: #1A1A1A; // Used for total and group rows
-$new-dark-total-lower-bg-color: #111111; // Used for last total row of report total headers
+$new-dark-total-upper-bg-color: #04243c; // Used for total and group rows
+$new-dark-total-lower-bg-color: #000e1a; // Used for last total row of report total headers
 $new-dark-group-bg-color: $new-dark-total-upper-bg-color; // Used for group rows
 $new-dark-graphic-bg-color: darken($new-dark-group-bg-color, 2); // Used for graphics
 $new-dark-body-bg-color: darken($new-dark-group-bg-color, 5); // Used for body
@@ -41,11 +41,11 @@ $text-color: lighten(black, 5);
 $main-bg-body-color-light: darken(white, 3);
 $header-bg-color-light: white;
 $cyan-text-light: darken($cyan-text, 40);
-$petrol: #17687F;
-$orange: #E59123;
+$petrol: #141651; // First graph color
+$orange: #f2142c; // Second graph color
 $light-grey1: #F2F2F2;
 $light-grey2: #E6E6E6;
-$light-grey3: #666666;
+$light-grey3: #9a0315; // First level name color
 $light-grey4: #333333;
 
 // Common styles

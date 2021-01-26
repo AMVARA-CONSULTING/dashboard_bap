@@ -58,14 +58,19 @@
         "credits": "Кредити",
         "thanks": "Подяка",
         "thanks_message": "Ми хотіли б подякувати Google за їх дизайн UX Material, який пропонує новий модерний дизайн та пристосовується до будь-яких потреб. <a href='https://material.io/' target='_blank'>Див. керівні вказівки для Google Material</a>",
-        "software": "Software",
+        "software": "Програмне забезпечення",
         "software_message": "Цей звіт для мобільних пристроїв був розроблений компанією <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a>, використовуючи <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> та <a href='https://angular.io/' target='_blank'>Angular</a>.<br /> Запити даних були надані відповідним відділом бізнесу.",
         "licenses": "Ліцензії",
+        "license_type": {
+            "consumer": "Споживча ліцензія",
+            "mit": "Ліцензія MIT "
+        },
         "technical_information": "Технічна інформація",
-        "changelog": "Changelog",
+        "changelog": "Журнал змін",
         "reload_lang": "Оновити мовні файли",
         "connection": "Підключення до сервера",
-        "lang": "Мова"
+        "lang": "Мова",
+        "version": "Версія"
     },
     "help": {
         "lightTheme": "Ця програма пропонує темну і світлу тему, які ви можете вибрати нижче. Налаштування зберігаються в локально в Вашому браузері. Для мобільного використання ми рекомендуємо темну тему, оскільки вона забезпечує більший контраст.",
@@ -79,6 +84,7 @@
         "language_reload": "Мова успішно перезавантажена!",
         "report_name": "Назва звіту",
         "date": "Дата",
-        "not_running": "Не працює"
+        "not_running": "Не працює",
+        "link_to_app": "Посилання на платформу @ Corporate Analytics"
     }
 }

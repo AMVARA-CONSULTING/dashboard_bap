@@ -61,11 +61,16 @@
         "software": "Software",
         "software_message": "This mobile report has been developed by <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a> using <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> and <a href='https://angular.io/' target='_blank'>Angular</a>.<br />The data queries were provided by the respective business department itself.",
         "licenses": "Licenses",
+        "license_type": {
+            "consumer": "Customer License",
+            "mit": "Mit License"
+        },
         "technical_information": "Technical Information",
         "changelog": "Changelog",
         "reload_lang": "Reload language files",
         "connection": "Connection to server",
-        "lang": "Language"
+        "lang": "Language",
+        "version": "Version"
     },
     "help": {
         "lightTheme": "This application offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast.",
@@ -79,6 +84,7 @@
         "language_reload": "Language reloaded successfully!",
         "report_name": "Report Name",
         "date": "Date",
-        "not_running": "Not running"
+        "not_running": "Not running",
+        "link_to_app": "Link to @ Corporate Analytics Platform"
     }
 }

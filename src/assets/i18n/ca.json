@@ -61,11 +61,16 @@
         "software": "Software",
         "software_message": "Aquest informe per a mòbils ha estat desenvolupat per <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a> utilizant <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> i <a href='https://angular.io/' target='_blank'>Angular</a>.<br /> Les consultes de dades han sigut proporcionades pel propi departament comercial.",
         "licenses": "Llicència",
+        "license_type": {
+            "consumer": "Llicència de consumidor",
+            "mit": "Llicència de MIT"
+        },
         "technical_information": "Informació Tècnica",
-        "changelog": "Changelog",
+        "changelog": "Registre de canvis",
         "reload_lang": "Recarregar arxius d'idiomes",
         "connection": "Connexió al servidor",
-        "lang": "Idioma"
+        "lang": "Idioma",
+        "version": "Versió"
     },
     "help": {
         "lightTheme": "Aquesta aplicació ofereix temes clars i foscos. Seleccioneu-ho a continuació. La selecció s'emmagatzema de manera local en el seu navegador. Pels dispositius mòvils recomanem el tema fosc degut a que ofereix un major contrast.",
@@ -79,6 +84,7 @@
         "language_reload": "Idioma recarregat amb èxit!",
         "report_name": "Nom de l'informe",
         "date": "Data",
-        "not_running": "No està corrent"
+        "not_running": "No està corrent",
+        "link_to_app": "Enllaç a la plataforma @ Corporate Analytics"
     }
 }

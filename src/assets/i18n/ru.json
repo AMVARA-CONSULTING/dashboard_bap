@@ -58,14 +58,19 @@
         "credits": "Кредиты",
         "thanks": "Благодарность",
         "thanks_message": "Мы хотели бы поблагодарить Google за их дизайн UX Material, который привносит новый современный дизайн и адаптируется к любым потребностям. <a href='https://material.io/' target='_blank'>См. руководящие указания для Google Material</a>",
-        "software": "Software",
+        "software": "Программного обеспечения",
         "software_message": "Этот мобильный отчет был разработан <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a> с использованием <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> и <a href='https://angular.io/' target='_blank'>Angular</a>.<br /> Запросы данных были предоставлены соответствующим бизнес-отделом.",
         "licenses": "Лицензии",
+        "license_type": {
+            "consumer": "Потребительская лицензия ",
+            "mit": "Лицензия MIT"
+        },
         "technical_information": "Техническая информация",
-        "changelog": "Changelog",
+        "changelog": "Журнал изменений",
         "reload_lang": "Обновить языковые файлы",
         "connection": "Подключение к серверу",
-        "lang": "Язык"
+        "lang": "Язык",
+        "version": "Версия"
     },
     "help": {
         "lightTheme": "Это приложение предлагает темную и светлую тему, которые вы можете выбрать ниже. Настройки хранятся в локально в вашому браузере. Для мобильного использования мы рекомендуем темную тему, поскольку она обеспечивает больший контраст.",
@@ -79,6 +84,7 @@
         "language_reload": "Язык успешно перезагружен!",
         "report_name": "Название отчета",
         "date": "Дата",
-        "not_running": "Не работает"
+        "not_running": "Не работает",
+        "link_to_app": "Ссылка на платформу @ Corporate Analytics"
     }
 }

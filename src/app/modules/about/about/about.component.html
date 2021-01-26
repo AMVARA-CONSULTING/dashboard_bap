@@ -40,13 +40,13 @@
     </mat-expansion-panel-header>
     <div class="software">
       <ul>
-        <li>IBM Cognos Analytics 11: <a href="#" target="_blank">Consumer License</a></li>
-        <li>Angular {{ angularVersion }}: <a href="https://github.com/angular/angular/blob/master/LICENSE" target="_blank">MIT License</a></li>
-        <li>HammerJS {{ hammerVersion }}: <a href="https://github.com/hammerjs/hammer.js/blob/master/LICENSE.md" target="_blank">MIT License</a></li>
-        <li>MomentJS {{ momentVersion }}: <a href="https://github.com/moment/moment/blob/develop/LICENSE" target="_blank">MIT License</a></li>
-        <li>@ngx-translate {{ ngx_translateVersion }}: <a href="https://github.com/ngx-translate/core/blob/master/LICENSE" target="_blank">MIT License</a></li>
-        <li>angular-svg-round-progressbar {{ progressVersion }}: <a href="https://github.com/crisbeto/angular-svg-round-progressbar/blob/master/LICENSE" target="_blank">MIT License</a></li>
-        <li>ng-connection-service {{ connectionVersion }}: <a href="https://github.com/ultrasonicsoft/ng-connection-service/blob/master/LICENSE" target="_blank">MIT License</a></li>
+        <li>IBM Cognos Analytics 11: <a href="#" target="_blank">{{ 'about.license_type.consumer' | translate }}</a></li>
+        <li>Angular {{ angularVersion }}: <a href="https://github.com/angular/angular/blob/master/LICENSE" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
+        <li>HammerJS {{ hammerVersion }}: <a href="https://github.com/hammerjs/hammer.js/blob/master/LICENSE.md" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
+        <li>MomentJS {{ momentVersion }}: <a href="https://github.com/moment/moment/blob/develop/LICENSE" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
+        <li>@ngx-translate {{ ngx_translateVersion }}: <a href="https://github.com/ngx-translate/core/blob/master/LICENSE" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
+        <li>angular-svg-round-progressbar {{ progressVersion }}: <a href="https://github.com/crisbeto/angular-svg-round-progressbar/blob/master/LICENSE" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
+        <li>ng-connection-service {{ connectionVersion }}: <a href="https://github.com/ultrasonicsoft/ng-connection-service/blob/master/LICENSE" target="_blank">{{ 'about.license_type.mit' | translate }}</a></li>
       </ul>
     </div>
   </mat-expansion-panel>
@@ -57,7 +57,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     {{ 'about.connection' | translate }}: <span class="sw_status enabled">OK</span><span style="display:none" class="sw_status disabled">Not running</span>
-    <report-info *ngFor="let report of reportInfos | async" [title]="report.title" [type]="report.type"></report-info>
+    <report-info *ngFor="let report of reportInfos | async" [shownTitle]="report.shownTitle" [title]="report.title" [type]="report.type"></report-info>
     <div *ngIf="(_cognos.userCapabilities | async )?.admin">
       <b>Hint:</b> Press Alt + F11 to show current config in the Browser Console.
     </div>
@@ -80,4 +80,4 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
-<div class="version">Version: {{ config.config.version }}</div>
+<div class="version">{{ 'about.version' | translate }}: {{ config.config.version }}</div>

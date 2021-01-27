@@ -2,34 +2,34 @@ $semi-white: white;
 $yellow-text: #F8B03B;
 $cyan-text: #00ACC1;
 $cyan-text-material: #00ACC1;
-$yellow-text-material: #F8B03B;
+$yellow-text-material: #F8B03B; // About underline color
 $lighten-cyan-text: lighten($cyan-text, 20);
 $main-bg-color: #101010;
 
 $transparency: .6;
 
 // Dark Theme
-$main-shady-color: #181820;
-$header-bg-color: rgba($color: #17181F, $alpha: .85);
-$main-bg-body-color: rgba($color: $main-shady-color, $alpha: .92);
-$main-bg-content-color: rgba($color: #202020, $alpha: .4);
-$bg-white-lvl1: rgba($color: #453434, $alpha: .5);
-$bg-white-lvl2: rgba($color: #292931, $alpha: $transparency);
-$bg-white-lvl2-5: rgba($color: #252527, $alpha: $transparency);
-$bg-white-lvl4: rgba($color: $main-shady-color, $alpha: $transparency);
-$bg-white-lvl3-pure: #202029;
-$bg-white-lvl3: rgba($color: $bg-white-lvl3-pure, $alpha: .4);
-$bg-white-lvl5: rgba($color: #101012, $alpha: $transparency);
-$row-hover: rgba(white, .02);
+$main-shady-color: #20181f; // Select menu color
+$main-bg-body-color: rgba($color: $main-shady-color, $alpha: .92); // Select menu color
+$header-bg-color: rgba($color: #1f171e, $alpha: .85); // Old header color (deprecated)
+$main-bg-content-color: rgba($color: #202020, $alpha: .4); // Old bg content color (deprecated)
+$bg-white-lvl1: rgba($color: #453442, $alpha: .5); // Hover pie chart pop up color
+$bg-white-lvl2: rgba($color: #312931, $alpha: $transparency); // Unknown
+$bg-white-lvl2-5: rgba($color: #272527, $alpha: $transparency); // Unknown, probably deprecated
+$bg-white-lvl4: rgba($color: $main-shady-color, $alpha: $transparency); // Unknown
+$bg-white-lvl3-pure: #282029; // Scroll bar backround color
+$bg-white-lvl3: rgba($color: $bg-white-lvl3-pure, $alpha: .4); // Unknown
+$bg-white-lvl5: rgba($color: #121012, $alpha: $transparency); // Unknown, probably deprecated
+$row-hover: rgba(white, .02); // Unknown, probably deprecated
 
 // New Dark Theme specs
 $new-dark-header-bg-color:#000a13; // Used for Header
 $new-dark-header-border-color: #808080; // Used for header border bottom
-$new-dark-total-upper-bg-color: #04243c; // Used for total and group rows
-$new-dark-total-lower-bg-color: #000e1a; // Used for last total row of report total headers
-$new-dark-group-bg-color: $new-dark-total-upper-bg-color; // Used for group rows
-$new-dark-graphic-bg-color: darken($new-dark-group-bg-color, 2); // Used for graphics
-$new-dark-body-bg-color: darken($new-dark-group-bg-color, 5); // Used for body
+$new-dark-total-upper-bg-color: #04243c; // Used for background and odd rows
+$new-dark-total-lower-bg-color: #000e1a; // Used for even rows
+$new-dark-group-bg-color: $new-dark-total-upper-bg-color; // Used for group odd rows
+$new-dark-graphic-bg-color: darken($new-dark-group-bg-color, 2); // Used for graphics background
+$new-dark-body-bg-color: darken($new-dark-group-bg-color, 5); // Used for rows body background
 $new-dark-row-even-bg-color: $new-dark-body-bg-color; // Used for detail even rows
 $new-dark-total-border-color: $new-dark-body-bg-color; // Used for border between total headers
 $new-dark-row-odd-bg-color: $new-dark-total-lower-bg-color; // Used for detail odd rows

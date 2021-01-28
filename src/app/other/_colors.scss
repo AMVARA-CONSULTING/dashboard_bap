@@ -1,6 +1,6 @@
-$semi-white: white;
+$semi-white: rgb(255, 255, 255);
 $yellow-text: #F8B03B;
-$cyan-text: #00ACC1;
+$cyan-text: #00ACC1; // Used for "about" hyprlinks
 $cyan-text-material: #00ACC1;
 $yellow-text-material: #F8B03B; // About underline color
 $lighten-cyan-text: lighten($cyan-text, 20);
@@ -37,16 +37,16 @@ $new-dark-row-odd-bg-color: $new-dark-total-lower-bg-color; // Used for detail o
 
 
 // Light theme
-$text-color: lighten(black, 5);
-$main-bg-body-color-light: darken(white, 3);
-$header-bg-color-light: white;
+$text-color: lighten(black, 5); // Used to color text
+$main-bg-body-color-light: darken(white, 3); // Used for loading screen color
+$header-bg-color-light: white; // Header
 $cyan-text-light: darken($cyan-text, 40);
-$petrol: #141651; // First graph color
-$orange: #f2142c; // Second graph color
-$light-grey1: #F2F2F2;
-$light-grey2: #E6E6E6;
-$light-grey3: #9a0315; // First level name color
-$light-grey4: #333333;
+$petrol: #141651; // Used for first graph
+$orange: #f2142c; // Used for second graph
+$light-grey1: #F2F2F2; // Used for select panel
+$light-grey2: #E6E6E6; // Used for title row and graphic div
+$light-grey3: #9a0315; // Used for first level name
+$light-grey4: #333333; // Used for navbar's text, row's value, graph's name and logo text
 
 // Common styles
 @mixin totalStyle {

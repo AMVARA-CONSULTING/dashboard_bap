@@ -95,7 +95,7 @@
         }
     }
     .outer {
-        display: block;
+        display: none;
         position: absolute;
         left: 0;
         top: 0;
@@ -116,7 +116,7 @@
         }
     }
     .middle {
-        display: block;
+        display: none;
         position: absolute;
         left: 0;
         top: 0;
@@ -145,7 +145,7 @@
         bottom: 0;
         margin: auto;
         height: 50px;
-        width: 50px;
+        width: 37px;
         background-image: url(^assets/loader_circle_inside.svg);
         background-size: contain;
         background-repeat: no-repeat;

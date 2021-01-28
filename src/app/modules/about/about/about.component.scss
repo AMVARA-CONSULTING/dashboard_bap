@@ -25,7 +25,7 @@
 
 @include lightTheme {
     :host {
-        a {
+        ::ng-deep a {
             color: $petrol !important;
             font-weight: bold;
         }
@@ -59,8 +59,8 @@
     }
 }
 
-:host::ng-deep {
-    p a, p span {
+:host {
+    ::ng-deep p a, p span {
         color: $lighten-cyan-text;
         text-decoration: none;
     }

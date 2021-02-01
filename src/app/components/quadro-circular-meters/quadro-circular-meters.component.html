@@ -13,7 +13,7 @@
 <div class="meter">
   <div class="container" [matTooltip]="totalValue | toNumber" matTooltipPosition="above" matTooltipClass="total">
     <div [ngClass]="{'negative': !clockwise_total}" class="percent orange">{{ total }}%</div>
-    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="rgba(248, 176, 59, .2)" [color]="data.lightTheme ? '#E59123' : '#f8b03b'"></round-progress>
+    <round-progress [duration]="1000" [animation]="'easeInOutCubic'" [animationDelay]="200" [max]="100" [radius]="30" [stroke]="5" [current]="total" background="rgba(243, 18, 40, .2)" [color]="data.lightTheme ? '#f2142c' : '#f2142c'"></round-progress>
   </div>
 </div>
 <div class="meter">

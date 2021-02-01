@@ -1,6 +1,6 @@
 <svg class="lds-curve-bars" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
     <g transform="translate(50,50)">
         <circle cx="0" cy="0" r="41" fill="none" stroke="#393939" stroke-width="4"></circle>
-        <circle cx="0" cy="0" r="41" fill="none" stroke="#f8b03b" stroke-width="4.2" stroke-dasharray="70 130" transform="rotate(215)"></circle>
+        <circle cx="0" cy="0" r="41" fill="none" stroke="#f2142c" stroke-width="4.2" stroke-dasharray="70 130" transform="rotate(215)"></circle>
     </g>
 </svg>

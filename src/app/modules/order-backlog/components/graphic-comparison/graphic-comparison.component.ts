@@ -24,7 +24,7 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
 
   @Input() current: any[];
   @Input() previous: any[];
-  
+
   constructor(
     private _store: Store,
     private _config: ConfigService,
@@ -36,8 +36,8 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
     this.colorScheme$ = this._data.lightTheme.valueChanges.pipe(
       startWith(this._data.lightTheme.value),
       map(lightTheme => {
-        const darkPalette = ['#28E8FF', '#F8B03B'];
-        const lightPalette = ['#17687F', '#E59123'];
+        const darkPalette = ['#28E8FF', '#f2142c'];
+        const lightPalette = ['#17687F', '#f2142c'];
         return { domain: lightTheme ? lightPalette : darkPalette };
       })
     );

@@ -1,8 +1,8 @@
 $semi-white: rgb(255, 255, 255);
-$yellow-text: #F8B03B;
+$yellow-text: #f2142c; // Used for dark mode div separation and graph color
 $cyan-text: #00ACC1; // Used for "about" hyprlinks
 $cyan-text-material: #00ACC1;
-$yellow-text-material: #F8B03B; // About underline color
+$yellow-text-material: #f2142c; // About underline color
 $lighten-cyan-text: lighten($cyan-text, 20);
 $main-bg-color: #101010;
 

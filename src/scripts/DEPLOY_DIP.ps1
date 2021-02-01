@@ -1,4 +1,5 @@
 # AMVARA
+# 2021-02-01 ABP Changed parameters from string[] to string
 # 2020-12-09 RRO added new PROD destiny folder
 # 2020-11-24 ABP Add command line script parameters
 # 2020-11-23 ABP Create menu to deploy on INT / PROD and TRUCKS / VANS
@@ -7,11 +8,10 @@
 # Deploy script to DIP PROD Vans
 
 param (
-    [Parameter()][ValidateSet('int','prod')][string[]]$env,
-    [Parameter()][ValidateSet('trucks','vans')][string[]]$target,
+    [Parameter()][ValidateSet('int','prod')][string]$env,
+    [Parameter()][ValidateSet('trucks','vans')][string]$target,
     [Switch]$sure
 )
-
 
 #
 # SAVE path from where we are executing

@@ -1,4 +1,5 @@
 # AMVARA
+# 2021-02-02 ABP Fix UTF8 encoding when modifying json files
 # 2021-02-01 ABP Changed parameters from string[] to string
 # 2020-12-09 RRO added new PROD destiny folder
 # 2020-11-24 ABP Add command line script parameters

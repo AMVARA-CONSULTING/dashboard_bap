@@ -1,6 +1,8 @@
 {
   "scripts": {
+    "versionUp": "node patchVersion.js",
     "build": [
+      "versionUp",
       "npx json -I -f ./angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\"",
       "npx json -I -f ./src/manifest.json -e \"this.scope='/'\"",
       "npx json -I -f ./src/manifest.json -e \"this.start_url='/'\"",
@@ -8,6 +10,7 @@
       "npx json -I -f ./angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\""
     ],
     "build-cognos": [
+      "versionUp",
       "npx json -I -f .//angular.json -e \"this.projects.dip.architect.build.options.index='src/index.cognos.html'\"",
       "npx ng build --prod --aot",
       "npx json -I -f ./angular.json -e \"this.projects.dip.architect.build.options.index='src/index.html'\""

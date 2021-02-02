@@ -38,7 +38,7 @@
     "memo-decorator": "^2.0.1",
     "moment": "^2.29.1",
     "ng-connection-service": "^1.0.4",
-    "ngx-network-error": "^0.6.12",
+    "ngx-network-error": "^0.6.24",
     "number-to-locale-string": "^1.2.0",
     "rxjs": "^6.6.3",
     "web-animations-js": "^2.3.2",

@@ -59,6 +59,10 @@ import { ConfigState } from '@store/config.state';
 
 import { NgxNetworkErrorModule } from 'ngx-network-error';
 
+// Import version from config for hash versioning
+import { version } from '../assets/config_common.json';
+
+
 declare var Hammer: any;
 
 @Injectable()
@@ -116,7 +120,8 @@ export class MyHammerConfig extends HammerGestureConfig {
       },
       debug: !environment.production,
       authType: 'cognos',
-      cognosNamespace: 'EMEA'
+      cognosNamespace: 'EMEA',
+      version: version
     })
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.development })
   ],

@@ -174,7 +174,7 @@ if ( $env -eq "int" ) {
 } else {
     $config.debug = $False
 }
-$config | ConvertTo-Json -Depth 50 | set-content $configFile
+$config | ConvertTo-Json -Depth 50 | Set-Content -Encoding UTF8 $configFile
 
 # Edit Manifest JSON file to have the correct parameters
 
@@ -185,7 +185,7 @@ $manifest = Get-Content $manifestFile -Encoding UTF8 -Raw | ConvertFrom-Json
 $subfolder = $subfolder.replace("\", "/")
 $manifest.scope = "/internal/bi/app/DIPRE/$subfolder"
 $manifest.start_url = "/internal/bi/app/DIPRE/$subfolder"
-$manifest | ConvertTo-Json -Depth 50 | set-content $manifestFile
+$manifest | ConvertTo-Json -Depth 50 | Set-Content -Encoding UTF8 $manifestFile
 
 cd scripts
 echo "Done!"

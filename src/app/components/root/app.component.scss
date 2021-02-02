@@ -11,7 +11,7 @@
 }
 
 ::ng-deep .mat-drawer-container {
-    color: white;
+    color: $semi-white;
     background-color: transparent;
 }
 
@@ -54,7 +54,7 @@
             background-image: url(^assets/arrow.svg);
             background-size: contain;
             background-repeat: no-repeat;
-        } 
+        }
         &:hover {
             &:before {
                 left: 18px;

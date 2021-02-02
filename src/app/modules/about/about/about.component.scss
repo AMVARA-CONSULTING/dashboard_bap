@@ -20,7 +20,7 @@
 }
 
 ::ng-deep .mat-expansion-panel-content {
-    color: white;
+    color: $semi-white;
 }
 
 @include lightTheme {
@@ -64,7 +64,7 @@
         color: $lighten-cyan-text;
         text-decoration: none;
     }
-} 
+}
 
 @include lightTheme {
     :host p span {

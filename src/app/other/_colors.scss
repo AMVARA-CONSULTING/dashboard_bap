@@ -1,4 +1,4 @@
-$semi-white: rgb(255, 255, 255);
+$semi-white: rgb(200, 200, 200);
 $yellow-text: #f2142c; // Used for dark mode div separation and graph color
 $cyan-text: #00ACC1; // Used for "about" hyprlinks
 $cyan-text-material: #00ACC1;
@@ -20,7 +20,7 @@ $bg-white-lvl4: rgba($color: $main-shady-color, $alpha: $transparency); // Unkno
 $bg-white-lvl3-pure: #282029; // Scroll bar backround color
 $bg-white-lvl3: rgba($color: $bg-white-lvl3-pure, $alpha: .4); // Unknown
 $bg-white-lvl5: rgba($color: #121012, $alpha: $transparency); // Unknown, probably deprecated
-$row-hover: rgba(white, .02); // Unknown, probably deprecated
+$row-hover: rgba($semi-white, .02); // Unknown, probably deprecated
 
 // New Dark Theme specs
 $new-dark-header-bg-color:#000a13; // Used for Header

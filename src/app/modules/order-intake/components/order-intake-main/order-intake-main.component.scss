@@ -149,10 +149,10 @@
 
 @include lightTheme {
     :host::ng-deep .overview .simple .overview-group .actual {
-        color: $cyan-text-light !important; 
+        color: $cyan-text-light !important;
     }
     .zone .zone-header .actual {
-        color: $cyan-text-light !important; 
+        color: $cyan-text-light !important;
     }
     :host {
         background-color: white;

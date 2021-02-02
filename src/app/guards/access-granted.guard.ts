@@ -20,8 +20,8 @@ export class AccessGranted implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
     if (this.config.corpintra) {
       // Check user capabilities in Cognos Server
-      this.data.accessGranted = this._cognos.userCapabilities.getValue()[this.config.target][route.data.title];
-      if (this.data.accessGranted || ['about','help'].includes(route.data.title)) {
+      this.data.accessGranted = this._cognos.userCapabilities.getValue()[this.config.target][route.data.title] || ['about','help'].includes(route.data.title);
+      if (this.data.accessGranted) {
         return true;
       } else {
         return this.router.createUrlTree(['/'], { queryParamsHandling: 'merge' })

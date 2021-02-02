@@ -1,5 +1,5 @@
 {
-    "version": "2.92.3",
+    "version": "2.93.0",
     "debug": false,
     "loading": false,
     "language": "en",
@@ -280,6 +280,12 @@
         }
     },
     "changelog": [
+        {
+            "version": "2.93.0",
+            "text": [
+                "Fix About & Help pages without top header"
+            ]
+        },
         {
             "version": "2.92.0",
             "text": [

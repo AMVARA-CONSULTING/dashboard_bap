@@ -14,7 +14,7 @@
         "main": "Volver a la vista principal",
         "second": "Volver al segundo nivel",
         "month": "Volver al nivel de meses",
-        "zone": "Volver al nivel de fábrica/zona", 
+        "zone": "Volver al nivel de planta/zona", 
         "werkbestand": "Volver al nivel de Werkbestand"
     },
     "belong_to": {
@@ -24,7 +24,7 @@
         "reserved": "Unidades pertenecientes a reservados."
     },
     "change": {
-        "plant": "Cambiar la fábrica seleccionada",
+        "plant": "Cambiar la planta seleccionada",
         "year": "Cambiar el año seleccionado"
     },
     "description": {

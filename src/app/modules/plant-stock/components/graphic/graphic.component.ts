@@ -46,7 +46,7 @@ export class GraphicComponent implements OnChanges {
       let total = 0
       this.werks.forEach(el => {
         const total_werk_actual = this.data.sumByIndex(el.value, this.config.config.reports.trucks.columns.plantStock.actual)
-        const total_werk_previous = this.data.sumByIndex(el.value, this.config.config.reports.trucks.columns.plantStock.actual)
+        const total_werk_previous = this.data.sumByIndex(el.value, this.config.config.reports.trucks.columns.plantStock.previous)
         if (total_werk_actual > total) total = total_werk_actual
         if (total_werk_previous > total) total = total_werk_previous
       })

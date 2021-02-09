@@ -28,7 +28,7 @@
 </div>
 <header>
   <div class="werk">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.plant' | translate }}" style="margin-left: 10px;">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.ubication' | translate }}" style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
@@ -43,7 +43,7 @@
 <div class="content-wrapper">
   <div class="header-rows">
     <div class="group-header">
-      <div class="werk">TOTAL</div>
+      <div class="werk">{{ 'cities' | translate }}</div>
       <div class="actual">{{ totalActual | toNumber }}</div>
       <div class="previous">{{ totalPrevious | toNumber }}</div>
       <div class="delta">{{ totalDelta | toNumber:true }}</div>

@@ -80,7 +80,7 @@
       </div>
     </ng-container>
     <div class="header-row arrow plant" *ngIf="RegionID != null && groupInfo" (click)="return()">
-      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
+      <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.cities' | translate }}">{{
           groupInfo.productsPlain[0][config.config.language == 'en' ? 10 : 9].trim() }}</span></div>
       <div class="customer">{{ data.sumByIndex(groupInfo.productsPlain, 15) | toNumber }}</div>
       <div class="plan">{{ data.sumByIndex(groupInfo.productsPlain, 16) | toNumber }}</div>
@@ -108,7 +108,7 @@
     [totalValue]="groupInfo.progress3Value || 0" [reserveValue]="groupInfo.progress4Value || 0" *ngIf="ready && groupInfo"></dip-quadro-circular-meters>
   <ng-container *ngIf="ProductID != null">
     <div class="title-header">
-      <div class="title">{{ 'regions' | translate }}</div>
+      <div class="title">{{ 'cities' | translate }}</div>
     </div>
     <div class="lvl2-row" (click)="goForRegion(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
       <div class="title">{{ groupInfo.regions[RegionKey][0][[config.config.language == 'en' ? 10 : 9]].trim() }}</div>
@@ -125,7 +125,7 @@
   </ng-container>
   <ng-container *ngIf="RegionID != null">
     <div class="title-header">
-      <div class="title">{{ 'products' | translate }}</div>
+      <div class="title">{{ 'companies' | translate }}</div>
     </div>
     <div class="lvl2-row" (click)="goForProduct(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
       <div class="title">{{ groupInfo.products[ProductKey][0][[config.config.language == 'en' ? 12 : 11]].trim() }}</div>

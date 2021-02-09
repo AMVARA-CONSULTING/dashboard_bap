@@ -28,7 +28,7 @@
 </div>
 <header>
   <div class="werk">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.plant' | translate }}" style="margin-left: 10px;">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.ubication' | translate }}" style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
@@ -43,7 +43,7 @@
 <div class="content-wrapper">
   <div class="header-rows">
     <div class="group-header">
-      <div class="werk">TOTAL</div>
+      <div class="werk">{{ 'list' | translate }}</div>
       <div class="actual">{{ totalActual | toNumber }}</div>
       <div class="previous">{{ totalPrevious | toNumber }}</div>
       <div class="delta">{{ totalDelta | toNumber:true }}</div>
@@ -59,7 +59,7 @@
     </div>
     <div *ngIf="hofb != 'not defined' && hofb != 'nicht definiert'" class="group-header return arrow-right">
       <div class="werk" (click)="returnToLvl2()">
-        <div matTooltip="{{ 'return.werkbestand' | translate }}" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
+        <div matTooltip="{{ 'return.second' | translate }}" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
           hofb }}</div>
       </div>
       <div class="actual">{{ hofbActual | toNumber }}</div>
@@ -68,7 +68,7 @@
     </div>
   </div>
   <dip-circular-meters [actualValue]="hofbActual" [previousValue]="hofbPrevious" [actual]="actualValue" [previous]="previousValue"></dip-circular-meters>
-  <div class="group-header">REGIONS</div>
+  <div class="group-header">{{ 'sectors' | translate }}</div>
   <div class="row" *ngFor="let region of regions | keyvalue">
     <div class="werk">{{
       region.value[0][config.config.reports.trucks.columns.plantStock.regionName[config.config.corpintra ? config.config.language : 'en']] }}</div>
@@ -79,7 +79,7 @@
     <div class="delta">{{ data.sumByIndex(region.value, config.config.reports.trucks.columns.plantStock.delta) |
       toNumber:true }}</div>
   </div>
-  <div class="group-header">PRODUCTS</div>
+  <div class="group-header">{{ 'companies' | translate }}</div>
   <div class="row" *ngFor="let product of products | keyvalue">
     <div class="werk">{{
       product.value[0][config.config.reports.trucks.columns.plantStock.productName[config.config.corpintra ? config.config.language : 'en']] }}</div>

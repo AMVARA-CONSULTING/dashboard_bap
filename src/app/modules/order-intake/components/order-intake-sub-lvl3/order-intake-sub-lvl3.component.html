@@ -22,7 +22,7 @@
             'region' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.region[config.config.language]]}}</span></div>
         <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
-            'product' | translate }} - {{
+            'company' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.product[config.config.language]]}}</span></div>
         <div class="actual">{{ data.sumByIndex(subRows,this.config.config.reports.trucks.columns.orderIntake.actual) |
           toNumber }}</div>
@@ -48,7 +48,7 @@
             'region' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.region[config.config.language]]}}</span></div>
         <div *ngIf="RegionID == null" class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.second' | translate}}">{{
-            'product' | translate }} - {{
+            'company' | translate }} - {{
             subRows[0][config.config.reports.trucks.columns.orderIntake.product[config.config.language]]}}</span></div>
         <div class="actual">{{ data.sumByIndex(subRows,this.config.config.reports.trucks.columns.orderIntake.actual) |
           toNumber }}</div>

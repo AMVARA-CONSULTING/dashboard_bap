@@ -169,19 +169,23 @@
 					"plantKey": 1,
 					"groupName": {
 						"de": 3,
-						"en": 2
+						"en": 2,
+						"es": 2
 					},
 					"plantName": {
 						"de": 5,
-						"en": 4
+						"en": 4,
+						"es": 4
 					},
 					"region": {
 						"de": 7,
-						"en": 6
+						"en": 6,
+						"es": 6
 					},
 					"product": {
 						"de": 9,
-						"en": 8
+						"en": 8,
+						"es": 8
 					},
 					"dateShort": 10,
 					"dateFull": 11,
@@ -210,15 +214,18 @@
 					"plantKey": 0,
 					"plantName": {
 						"en": 4,
-						"de": 3
+						"de": 3,
+						"es": 3
 					},
 					"regionName": {
 						"en": 7,
-						"de": 6
+						"de": 6,
+						"es": 6
 					},
 					"productName": {
 						"en": 9,
-						"de": 8
+						"de": 8,
+						"es": 8
 					},
 					"dayOfWeek": 10,
 					"datum": 11,
@@ -236,23 +243,28 @@
 					"plantKey": 0,
 					"plantName": {
 						"en": 2,
-						"de": 1
+						"de": 1,
+						"es": 2
 					},
 					"werkbestandName": {
 						"en": 4,
-						"de": 3
+						"de": 3,
+						"es": 4
 					},
 					"hofbestandName": {
 						"en": 6,
-						"de": 5
+						"de": 5,
+						"es": 6
 					},
 					"regionName": {
 						"en": 8,
-						"de": 7
+						"de": 7,
+						"es": 8
 					},
 					"productName": {
 						"en": 10,
-						"de": 9
+						"de": 9,
+						"es": 10
 					},
 					"actual": 11,
 					"previous": 12,

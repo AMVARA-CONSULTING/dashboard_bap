@@ -24,7 +24,7 @@
           </div>
           <!-- Header Row of current selected month -->
           <div class="header-row zone">
-            <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.zone' | translate }}"></i>
+            <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.month' | translate }}"></i>
             <div class="title with-selector">
               <dip-month-selector [rows]="plantOrZoneRows"></dip-month-selector>
             </div>
@@ -39,7 +39,7 @@
         </div>
         <!-- Content Rows -->
         <div class="title-header">
-          <div class="title">REGIONS</div>
+          <div class="title">{{ 'cities' | translate }}</div>
         </div>
         <!-- Region rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'region' as previousRegions">
@@ -68,7 +68,7 @@
           </ng-container>
         </ng-container>
         <div class="title-header">
-          <div class="title">PRODUCTS</div>
+          <div class="title">{{ 'companies' | translate }}</div>
         </div>
         <!-- Product rows -->
         <ng-container *ngLet="previousMonthRows | distinctItems:'product' as previousProducts">

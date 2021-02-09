@@ -1,30 +1,31 @@
 {
     "menu": {
-        "order_intake": "Recepción de Pedidos",
-        "order_backlog": "Lista de Pedidos",
-        "production_program": "Programa de Producción",
-        "allocation": "Distribución",
-        "plant_stock": "Stock",
+        "order_intake": "Actividad",
+        "order_backlog": "Ventas",
+        "production_program": "Empleados",
+        "allocation": "COVID-19",
+        "plant_stock": "Listado de empresas",
         "about": "Acerca de",
         "help": "Ayuda"
     },
     "connected": "Conectado",
     "not_connected": "No conectado",
     "return": {
-        "main": "Volver a la vista principal",
+        "main": "Volver al nivel principal",
         "second": "Volver al segundo nivel",
-        "month": "Volver al nivel de meses",
-        "zone": "Volver al nivel de planta/zona", 
-        "werkbestand": "Volver al nivel de Werkbestand"
+        "month": "Volver a meses",
+        "zone": "Volver a comarcas/ciudades",
+        "werkbestand": "Volver a sectores/subsectores",
+        "cities": "Volver a ciudades/empresas"
     },
     "belong_to": {
-        "customers": "Unidades pertenecientes a los clientes.",
-        "plan": "Unidades pertenecientes a los planes.",
-        "plan_unit": "Total de clientes y planes.",
-        "reserved": "Unidades pertenecientes a reservados."
+        "customers": "Cantidad de contrataciones por parte de la empresa",
+        "plan": "Cantidad de contratos temporales",
+        "plan_unit": "Total actual de trabajadores en la empresa",
+        "reserved": "Cantidad total de despidos"
     },
     "change": {
-        "plant": "Cambiar la planta seleccionada",
+        "ubication": "Cambiar la provincia seleccionada",
         "year": "Cambiar el año seleccionado"
     },
     "description": {
@@ -38,19 +39,23 @@
     "prev_year": "Último año",
     "last_x_month": "Últimos 12 meses",
     "plandate": "a",
-    "region": "Región",
-    "product": "Producto",
-    "regions": "Regiones",
-    "products": "Productos",
+    "region": "Comarca",
+    "company": "Empresa",
+    "regions": "Comarcas",
+    "city": "Ciudad",
+    "cities": "Ciudades",
+    "companies": "Empresas",
+    "sectors": "Sectores",
+    "list": "Lista",
     "production_program": {
-        "customer": "Cliente",
-        "plan": "Plan",
-        "total": "Total",
-        "reserve": "Reserva"
+        "customer": "Contrataciones",
+        "plan": "Temporales",
+        "total": "Total actual",
+        "reserve": "Despidos"
     },
     "allocation": {
-        "program": "Programa",
-        "allocation": "Distribución"
+        "program": "Contagios",
+        "allocation": "Vacunados"
     },
     "about": {
         "config": "Configuración",

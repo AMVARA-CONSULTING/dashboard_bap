@@ -15,7 +15,7 @@
         "second": "Volver al segundo nivel",
         "month": "Volver a meses",
         "zone": "Volver a comarcas/ciudades",
-        "werkbestand": "Volver a sectores/subsectores",
+        "sectors": "Volver a sectores/subsectores",
         "cities": "Volver a ciudades/empresas"
     },
     "belong_to": {
@@ -54,7 +54,7 @@
         "reserve": "Despidos"
     },
     "allocation": {
-        "program": "Contagios",
+        "program": "Población",
         "allocation": "Vacunados"
     },
     "about": {

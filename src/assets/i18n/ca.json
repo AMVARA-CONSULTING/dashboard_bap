@@ -1,10 +1,10 @@
 {
     "menu": {
-        "order_intake": "Recepció de Comandes",
-        "order_backlog": "Llistat de Comandes",
-        "production_program": "Programa de Producció",
-        "allocation": "Distribució",
-        "plant_stock": "Stock",
+        "order_intake": "Activitat",
+        "order_backlog": "Ventes",
+        "production_program": "Empleats",
+        "allocation": "COVID-19",
+        "plant_stock": "Llistat d'empreses",
         "about": "Sobre",
         "help": "Ajuda"
     },
@@ -13,18 +13,19 @@
     "return": {
         "main": "Tornar a la vista principal",
         "second": "Tornar al segon nivell",
-        "month": "Tornar al nivell de mesos",
-        "zone": "Tornar al nivell de fàbrica/zona",
-        "werkbestand": "Tornar al nivell de Werkbestand"
+        "month": "Tornar a mesos",
+        "zone": "Tornar a comarques/ciutats",
+        "sectors": "Tornar al sectors/subsectors",
+        "cities": "Tornar a ciutats/empreses"
     },
     "belong_to": {
-        "customers": "Unitats pertanyents a clients.",
-        "plan": "Unitats pertanents a plans.",
-        "plan_unit": "Total de clients i plans.",
-        "reserved": "Unitats pertanyens a reservats."
+        "customers": "Quantitat de contractacions per part de l'empresa",
+        "plan": "Quantitat de contractes temporals",
+        "plan_unit": "Total actual de treballadors a l'empresa",
+        "reserved": "Quantitat total d'acomiadaments"
     },
     "change": {
-        "plant": "Canviar la fàbrica seleccionada",
+        "ubication": "Canviar la província seleccionada",
         "year": "Canviar l'any seleccionat"
     },
     "description": {
@@ -38,19 +39,23 @@
     "prev_year": "Últim any",
     "last_x_month": "Últims 12 mesos",
     "plandate": "a",
-    "region": "Regió",
-    "product": "Producte",
-    "regions": "Regions",
-    "products": "Productes",
+    "region": "Comarca",
+    "company": "Empresa",
+    "regions": "Comarques",
+    "city": "Ciutat",
+    "cities": "Ciutats",
+    "companies": "Empreses",
+    "sectors": "Sectors",
+    "list": "Llista",
     "production_program": {
-        "customer": "Client",
-        "plan": "Pla",
-        "total": "Total",
-        "reserve": "Reserva"
+        "customer": "Contractacions",
+        "plan": "Temporals",
+        "total": "Total actual",
+        "reserve": "Acomiadaments"
     },
     "allocation": {
-        "program": "Programa",
-        "allocation": "Distribució"
+        "program": "Població",
+        "allocation": "Vacunats"
     },
     "about": {
         "config": "Configuració",

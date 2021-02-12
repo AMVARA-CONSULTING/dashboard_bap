@@ -90,7 +90,7 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
         } catch (err) { }
         chart[1].series.push({
           name: moment(currentMonths[currentMonthIndex][0][BacklogColumns.Date], 'YYYY-MM').toDate(),
-          value: SumQuantityFn(previousMonths[previousMonthIndex]),
+          value: previousMonths[previousMonthIndex] ? SumQuantityFn(previousMonths[previousMonthIndex]) : 0,
           extra: {
             original: originalItem
           }

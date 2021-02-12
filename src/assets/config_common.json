@@ -1,5 +1,5 @@
 {
-    "version": "2.94.0",
+    "version": "2.95.0",
     "debug": false,
     "loading": false,
     "language": "en",
@@ -280,6 +280,12 @@
         }
     },
     "changelog": [
+        {
+            "version": "2.95.0",
+            "text": [
+                "#2868 - Fix Order Backlog LVL 2 graphic when missing previous months"
+            ]
+        },
         {
             "version": "2.94.0",
             "text": [

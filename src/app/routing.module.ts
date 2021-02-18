@@ -8,44 +8,44 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'order-intake',
+    redirectTo: 'activity',
   },
   {
     path: 'miami-access',
     component: AccessCodeComponent
   },
   {
-    path: 'order-intake',
+    path: 'activity',
     loadChildren: () => import('./modules/order-intake/order-intake.module').then(m => m.OrderIntakeModule),
-    data: { title: 'order_intake' },
+    data: { title: 'activity' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
-    path: 'order-backlog',
+    path: 'sells',
     loadChildren: () => import('./modules/order-backlog/order-backlog.module').then(m => m.OrderBacklogModule),
-    data: { title: 'order_backlog' },
+    data: { title: 'sells' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
-    path: 'production-program',
+    path: 'employees',
     loadChildren: () => import('./modules/production-program/production-program.module').then(m => m.ProductionProgramModule),
-    data: { title: 'production_program' },
+    data: { title: 'employees' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
-    path: 'allocation',
+    path: 'covid',
     loadChildren: () => import('./modules/allocation/allocation.module').then(m => m.AllocationModule),
-    data: { title: 'allocation' },
+    data: { title: 'covid' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
-    path: 'plant-stock',
+    path: 'companies',
     loadChildren: () => import('./modules/plant-stock/plant-stock.module').then(m => m.PlantStockModule),
-    data: { title: 'plant_stock' },
+    data: { title: 'companies' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },

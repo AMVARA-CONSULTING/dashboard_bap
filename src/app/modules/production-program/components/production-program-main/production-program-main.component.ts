@@ -7,6 +7,7 @@ import { trigger, state, style, transition, animate, query, stagger } from '@ang
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -43,14 +44,21 @@ export class ProductionProgramMainComponent implements OnInit {
     private route: ActivatedRoute,
     private config: ConfigService,
     private router: Router,
+    private translate: TranslateService,
     private title: Title
   ) {
-    this.title.setTitle(this.config.config.appTitle + ' - Production Program')
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.production_program'))
   }
 
   year: string = ''
 
   plandate: string = ''
+
+  // Names of the routes for each level
+  main_route: string = 'employees'
+  main_route_slash: string = '/employees'
+  general_route: string = 'zone'
+  second_level_route: string = 'region'
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -80,7 +88,7 @@ export class ProductionProgramMainComponent implements OnInit {
 
   changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
-    this.router.navigate(['production-program', year], { replaceUrl: true })
+    this.router.navigate([this.main_route, year], { replaceUrl: true })
   }
 
   rowsGroupsGlobal: any
@@ -91,11 +99,11 @@ export class ProductionProgramMainComponent implements OnInit {
     this.byYear = this.data.classifyByIndex(this.data.productionProgramData, 13)
     this.years = Object.keys(this.byYear)
     const yearCache = localStorage.getItem('production-year')
-    if (yearCache && this.year != yearCache) this.router.navigate(['/production-program', yearCache], { replaceUrl: true })
+    if (yearCache && this.year != yearCache) this.router.navigate([this.main_route_slash, yearCache], { replaceUrl: true })
     this.year = yearCache
     if (this.years.indexOf(this.year) == -1) {
       localStorage.setItem('production-year', this.years[0])
-      this.router.navigate(['/production-program', this.years[0]], { replaceUrl: true })
+      this.router.navigate([this.main_route_slash, this.years[0]], { replaceUrl: true })
     } else {
       this.rowsGroupsGlobal = this.data.classifyByIndex(this.data.productionProgramData.filter(dat => dat[13] == this.year), 0)
       for (var group in this.rowsGroupsGlobal) {
@@ -108,11 +116,11 @@ export class ProductionProgramMainComponent implements OnInit {
   }
 
   goZone(ZoneID: string): void {
-    this.router.navigate(['zone', ZoneID], { relativeTo: this.route, replaceUrl: true })
+    this.router.navigate([this.general_route, ZoneID], { relativeTo: this.route, replaceUrl: true })
   }
 
   goPlant(PlantID: string): void {
-    this.router.navigate(['plant', PlantID], { relativeTo: this.route, replaceUrl: true })
+    this.router.navigate([this.second_level_route, PlantID], { relativeTo: this.route, replaceUrl: true })
   }
 
   ready: boolean = false

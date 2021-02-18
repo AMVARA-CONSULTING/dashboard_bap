@@ -7,6 +7,7 @@ import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -44,17 +45,23 @@ export class AllocationMainComponent {
 
   plant: string
 
+  // Names of the routes for each level
+  main_route: string = 'covid'
+  main_route_slash: string = '/covid'
+  second_level_route: string = 'date'
+
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     (window as any).a1 = this;
     moment.locale(this.config.config.language)
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation')
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       // If no Allocation rows were found, get them
@@ -73,7 +80,7 @@ export class AllocationMainComponent {
 
   changePlant(plant: string): void {
     localStorage.setItem('allocation-plant', plant)
-    this.router.navigate(['allocation', plant], { replaceUrl: true })
+    this.router.navigate([this.main_route, plant], { replaceUrl: true })
   }
 
   goMonth(date): void {
@@ -93,13 +100,13 @@ export class AllocationMainComponent {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
     
     const plantCache = localStorage.getItem('allocation-plant')
-    if (plantCache && this.plant != plantCache) this.router.navigate(['/allocation', plantCache], { replaceUrl: true })
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    if (plantCache && this.plant != plantCache) this.router.navigate([this.main_route_slash, plantCache], { replaceUrl: true })
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation') + ' - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment().startOf('month')
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months').endOf('month')
     let months = {}

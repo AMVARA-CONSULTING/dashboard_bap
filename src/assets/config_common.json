@@ -18,11 +18,11 @@
 		"ca": "Català"
 	},
 	"reportLinks": [
-		{ "link": "/order-intake", "text": "order_intake" },
-    	{ "link": "/order-backlog", "text": "order_backlog"},
-    	{ "link": "/production-program", "text": "production_program" },
-    	{ "link": "/allocation", "text": "allocation" },
-    	{ "link": "/plant-stock", "text": "plant_stock" }
+		{ "link": "/activity", "text": "order_intake" },
+    	{ "link": "/sells", "text": "order_backlog"},
+    	{ "link": "/employees", "text": "production_program" },
+    	{ "link": "/covid", "text": "allocation" },
+    	{ "link": "/companies", "text": "plant_stock" }
 	],
 	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",

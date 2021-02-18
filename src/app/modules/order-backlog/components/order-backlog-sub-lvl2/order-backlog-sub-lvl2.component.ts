@@ -9,6 +9,7 @@ import { OrderBacklogState } from '@store/order-backlog.state';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CustomSelectors } from '@other/custom-selectors';
+import { TranslateService } from '@ngx-translate/core';
 import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 
 @Component({
@@ -39,9 +40,10 @@ export class OrderBacklogSubLvl2Component {
     private _title: Title,
     private _store: Store,
     private _breakpoints: BreakpointObserver,
+    private translate: TranslateService,
     public _obRouter: OrderBacklogRouter
   ) {
-    this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
+    this._title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_backlog'));
     this.mobile$ = this._breakpoints.observe(Breakpoints.HandsetPortrait).pipe( map(result => result.matches) );
     // Grab all params from URL
     this.params$ = this._ac.paramMap.pipe(

@@ -7,6 +7,7 @@ import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -52,17 +53,24 @@ export class AllocationLvl3Component {
 
   monthMomentum: string = ''
 
+  // Names of the routes for each level
+  main_route: string = 'covid'
+  main_route_slash: string = '/covid'
+  sub_level_a: string = 'region'
+  sub_level_b: string = 'city'
+
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation')
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.date = params.get('date')
@@ -83,7 +91,7 @@ export class AllocationLvl3Component {
   }
 
   changePlant(plant: string): void {
-    this.router.navigate(['allocation', plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
+    this.router.navigate([this.main_route, plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
   }
 
   getDate(month): string {
@@ -97,10 +105,10 @@ export class AllocationLvl3Component {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation') + ' - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}
@@ -134,7 +142,7 @@ export class AllocationLvl3Component {
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     const filteredRowsByPlant_copy2 = filteredRowsByPlant.concat()
-    if (this.type == 'region') {
+    if (this.type == this.sub_level_a) {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language]] == this.region_id)
     } else {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language]] == this.region_id)
@@ -146,7 +154,7 @@ export class AllocationLvl3Component {
     this.percentProgram = +percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
     this.programNumber = this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.program)
     this.monthMomentum = moment(this.date, 'YYYYMM').format('MMMM YYYY')
-    if (this.type == 'region') {
+    if (this.type == this.sub_level_a) {
       this.rows = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language])
     } else {
       this.rows = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language])
@@ -159,10 +167,10 @@ export class AllocationLvl3Component {
   }
 
   exchangeType(key): void {
-    if (this.type == 'region') {
-      this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
+    if (this.type == this.sub_level_a) {
+      this.router.navigate(['../../', this.sub_level_b, key], { relativeTo: this.activatedRoute, replaceUrl: true })
     } else {
-      this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
+      this.router.navigate(['../../', this.sub_level_a, key], { relativeTo: this.activatedRoute, replaceUrl: true })
     }
   }
 

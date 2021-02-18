@@ -6,6 +6,7 @@ import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -26,18 +27,24 @@ export class OrderIntakeSubLvl2Component {
 
   ready: boolean = false
 
+  // Names of the routes for each level
+  general_route: string = 'zone'
+  sub_route_a: string = 'city'
+  sub_route_b: string = 'company'
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
+    private translate: TranslateService,
     private title: Title
   ) {
-    title.setTitle(this.config.config.appTitle + ' - Order Intake')
+    title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_intake'))
     // Show the loader while getting/loading the data
     this.activatedRoute.params.subscribe(params => {
-      if (params.type == 'zone') {
+      if (params.type == this.general_route) {
         this.ZoneID = params.id
       } else {
         this.PlantID = params.id
@@ -105,7 +112,7 @@ export class OrderIntakeSubLvl2Component {
       regions: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]),
       products: this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])
     }
-    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_intake') + ' - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions)
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products)
     this.groupInfo.progressValue1 = this.ZoneID != null ? this.groupInfo.zoneActual : this.groupInfo.plantActual
@@ -131,28 +138,28 @@ export class OrderIntakeSubLvl2Component {
 
   forward(): void {
     if (this.data.lastTap2) {
-      if (this.data.lastTap2.type == 'region') {
-        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
+      if (this.data.lastTap2.type == this.sub_route_a) {
+        this.router.navigate([this.sub_route_a, this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       } else {
-        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
+        this.router.navigate([this.sub_route_b, this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       }
     }
   }
 
   goProduct(ProductID): void {
     this.data.lastTap = {
-      type: 'region',
+      type: this.sub_route_a,
       key: encodeURI(ProductID)
     }
-    this.router.navigate(['region', encodeURI(ProductID)], { relativeTo: this.activatedRoute })
+    this.router.navigate([this.sub_route_a, encodeURI(ProductID)], { relativeTo: this.activatedRoute })
   }
 
   goRegion(RegionID): void {
     this.data.lastTap = {
-      type: 'product',
+      type: this.sub_route_b,
       key: encodeURI(RegionID)
     }
-    this.router.navigate(['product', encodeURI(RegionID)], { relativeTo: this.activatedRoute })
+    this.router.navigate([this.sub_route_b, encodeURI(RegionID)], { relativeTo: this.activatedRoute })
   }
 
 }

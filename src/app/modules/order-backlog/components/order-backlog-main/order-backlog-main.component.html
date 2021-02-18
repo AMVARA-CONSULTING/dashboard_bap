@@ -43,8 +43,8 @@
         </ng-container>
       </div>
       <!-- Iterate over each plant inside zone -->
-      <div class="plant" (click)="_obRouter.goToPlantZoneView(_ac, 'plant', plant.key)" *ngFor="let plant of zone.value | plantsByZone | keyvalue">
-        <div class="title">{{ plant.value | groupOrPlantName:'plant' }}</div>
+      <div class="plant" (click)="_obRouter.goToPlantZoneView(_ac, 'region', plant.key)" *ngFor="let plant of zone.value | plantsByZone | keyvalue">
+        <div class="title">{{ plant.value | groupOrPlantName:'region' }}</div>
         <!-- Map current value -->
         <ng-container *ngLet="plant.value | filterDay:'current' | sumQuantity as currentValue">
           <!-- Map previous value -->

@@ -31,8 +31,8 @@ export class PlantStockLvl3Component {
 
   // Names of the routes for each level
   main_route: string = 'companies'
-  general_route: string = 'zone'
-  second_level_route: string = 'region'
+  second_level_route: string = 'cities'
+  third_level_route: string = 'city'
 
   constructor(
     public data: DataService,
@@ -71,7 +71,7 @@ export class PlantStockLvl3Component {
   }
 
   changePlant(plant) {
-    this.router.navigate([this.main_route, plant, 'werk', this.werk, 'hofbestand', this.hofb], { replaceUrl: true })
+    this.router.navigate([this.main_route, plant, this.second_level_route, this.werk, this.third_level_route, this.hofb], { replaceUrl: true })
   }
 
   rollupData() {
@@ -117,7 +117,7 @@ export class PlantStockLvl3Component {
   }
 
   goWerk(werk): void {
-    this.router.navigate([this.main_route, this.plant, 'werk', werk], { replaceUrl: true })
+    this.router.navigate([this.main_route, this.plant, this.second_level_route, werk], { replaceUrl: true })
   }
 
   returnToMain(): void {

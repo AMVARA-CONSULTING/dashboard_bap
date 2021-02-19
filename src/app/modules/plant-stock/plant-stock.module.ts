@@ -24,12 +24,12 @@ const routes: Routes = [
         data: { level: 1 }
       },
       {
-        path: ':plant/werk/:werk',
+        path: ':plant/cities/:werk',
         component: PlantStockLvl2Component,
         data: { level: 2 }
       },
       {
-        path: ':plant/werk/:werk/hofbestand/:hofb',
+        path: ':plant/cities/:werk/city/:hofb',
         component: PlantStockLvl3Component,
         data: { level: 3 }
       }

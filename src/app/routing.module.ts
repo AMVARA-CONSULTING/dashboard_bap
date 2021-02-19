@@ -17,35 +17,35 @@ const routes: Routes = [
   {
     path: 'activity',
     loadChildren: () => import('./modules/order-intake/order-intake.module').then(m => m.OrderIntakeModule),
-    data: { title: 'activity' },
+    data: { title: 'order_intake' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
     path: 'sells',
     loadChildren: () => import('./modules/order-backlog/order-backlog.module').then(m => m.OrderBacklogModule),
-    data: { title: 'sells' },
+    data: { title: 'order_backlog' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
     path: 'employees',
     loadChildren: () => import('./modules/production-program/production-program.module').then(m => m.ProductionProgramModule),
-    data: { title: 'employees' },
+    data: { title: 'production_program' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
     path: 'covid',
     loadChildren: () => import('./modules/allocation/allocation.module').then(m => m.AllocationModule),
-    data: { title: 'covid' },
+    data: { title: 'allocation' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },
   {
     path: 'companies',
     loadChildren: () => import('./modules/plant-stock/plant-stock.module').then(m => m.PlantStockModule),
-    data: { title: 'companies' },
+    data: { title: 'plant_stock' },
     canActivate: [AccessGranted],
     canLoad: [CapabilityAccess]
   },

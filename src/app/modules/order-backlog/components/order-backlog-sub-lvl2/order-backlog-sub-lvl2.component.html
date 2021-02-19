@@ -5,7 +5,7 @@
     <!-- Bindings for actual and previous date ranges -->
     <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">
       <ng-container *ngLet="rows | filterYear:'previous' as previousYearRows">
-        <!-- Graphic Comparison -->
+        <!-- Graphic Comparison for level 2 -->
         <order-backlog-graphic-comparison [current]="currentYearRows" [previous]="previousYearRows"></order-backlog-graphic-comparison>
         <!-- Overview -->
         <div class="overview">

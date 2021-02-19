@@ -59,7 +59,7 @@
         height: 50px;
         margin-top: 17px;
         .app-title {
-            letter-spacing: 0.35em;
+            // letter-spacing: 0.35em;
             line-height: 22px;
             @include light-theme {
                 color: $light-grey4;

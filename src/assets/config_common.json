@@ -3,7 +3,7 @@
 	"debug": false,
 	"loading": false,
 	"language": "en",
-	"appTitle": "Amvara",
+	"appTitle": "BAP",
 	"scenario": "int",
 	"target": "trucks",
 	"delay": 2000,

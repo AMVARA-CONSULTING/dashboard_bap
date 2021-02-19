@@ -38,8 +38,7 @@ export class PlantStockMainComponent {
 
   // Names of the routes for each level
   main_route: string = 'companies'
-  general_route: string = 'zone'
-  second_level_route: string = 'region'
+  second_level_route: string = 'cities'
 
   constructor(
     public data: DataService,
@@ -70,7 +69,7 @@ export class PlantStockMainComponent {
   }
 
   goWerk(werk) : void {
-    this.router.navigate(['werk', werk], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate([this.second_level_route, werk], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   changePlant(plant) {

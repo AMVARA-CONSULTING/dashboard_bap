@@ -93,17 +93,26 @@
       }
 
       .title {
+        --title-margin: -220px;
+        --title-size: 90pt;
         display: block;
         position: absolute;
         height: 343px;
         width: 200px;
         top: 40px;
         margin: auto;
-        left: -220px;
+        left: var(--title-margin);
         color: #d2d2d2;
         margin-top: 200px;
-        font-size: 90pt;
+        font-size: var(--title-size);
         right: 0;
+      }
+
+      @media screen and (max-width: 800px) {
+        .title {
+          font-size: calc(var(--title-size) * 0.6);
+          left: calc(var(--title-margin) * 0.25);
+        }
       }
 
       .loadingTitle {

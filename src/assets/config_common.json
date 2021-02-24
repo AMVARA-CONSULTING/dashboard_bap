@@ -219,20 +219,20 @@
 					"plantName": {
 						"en": 4,
 						"de": 3,
-						"es": 3,
-						"ca": 3
+						"es": 4,
+						"ca": 4
 					},
 					"regionName": {
 						"en": 7,
 						"de": 6,
-						"es": 6,
-						"ca": 6
+						"es": 7,
+						"ca": 7
 					},
 					"productName": {
 						"en": 9,
 						"de": 8,
-						"es": 8,
-						"ca": 8
+						"es": 9,
+						"ca": 9
 					},
 					"dayOfWeek": 10,
 					"datum": 11,

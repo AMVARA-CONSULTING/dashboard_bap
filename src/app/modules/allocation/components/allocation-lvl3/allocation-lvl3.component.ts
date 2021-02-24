@@ -56,6 +56,7 @@ export class AllocationLvl3Component {
   // Names of the routes for each level
   main_route: string = 'covid'
   main_route_slash: string = '/covid'
+  second_level_route: string = 'date'
   sub_level_a: string = 'region'
   sub_level_b: string = 'city'
 
@@ -73,7 +74,7 @@ export class AllocationLvl3Component {
     this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
-      this.date = params.get('date')
+      this.date = params.get(this.second_level_route)
       this.type = params.get('type')
       this.region_id = decodeURI(params.get('region_id'))
       // If no Allocation rows were found, get them
@@ -91,7 +92,7 @@ export class AllocationLvl3Component {
   }
 
   changePlant(plant: string): void {
-    this.router.navigate([this.main_route, plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
+    this.router.navigate([this.main_route, plant, this.second_level_route, this.date, this.type, this.region_id], { replaceUrl: true })
   }
 
   getDate(month): string {

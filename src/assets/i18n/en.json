@@ -1,10 +1,10 @@
 {
     "menu": {
-        "order_intake": "Order Intake",
-        "order_backlog": "Order Backlog",
-        "production_program": "Production Program",
-        "allocation": "Allocation",
-        "plant_stock": "Plant Stock",
+        "order_intake": "Activity",
+        "order_backlog": "Sells",
+        "production_program": "Employees",
+        "allocation": "COVID-19",
+        "plant_stock": "Companies list",
         "about": "About",
         "help": "Help"
     },
@@ -14,17 +14,18 @@
         "main": "Return to main view",
         "second": "Return to second level",
         "month": "Return to month level",
-        "zone": "Return to plant/zone level", 
-        "werkbestand": "Return to Werkbestand level"
+        "zone": "Return to plant/zone level",
+        "sectors": "Return to sectors/subsectors level",
+        "cities": "Return to cities/companies level"
     },
     "belong_to": {
-        "customers": "Units belonging to customers.",
-        "plan": "Units belonging to plan.",
-        "plan_unit": "Sum of customer and plan units.",
-        "reserved": "Units belonging to reserved."
+        "customers": "Amount of hires by the company",
+        "plan": "Amount of temporary contracts",
+        "plan_unit": "Current total of workers in the company",
+        "reserved": "Total amount of layoffs"
     },
     "change": {
-        "plant": "Change selected plant",
+        "plant": "Change selected province",
         "year": "Change selected year"
     },
     "description": {
@@ -39,18 +40,22 @@
     "last_x_month": "Last 12 month",
     "plandate": "as at",
     "region": "Region",
-    "product": "Product",
+    "company": "Company",
     "regions": "Regions",
-    "products": "Products",
+    "city": "City",
+    "cities": "Cities",
+    "companies": "Companies",
+    "sectors": "Sectors",
+    "list": "List",
     "production_program": {
-        "customer": "Customer",
-        "plan": "Plan",
-        "total": "Total",
-        "reserve": "Reserve"
+        "customer": "Hirings",
+        "plan": "Temporary",
+        "total": "Current total",
+        "reserve": "Layoffs"
     },
     "allocation": {
-        "program": "Program",
-        "allocation": "Allocation"
+        "program": "Population",
+        "allocation": "Vaccinated"
     },
     "about": {
         "config": "Config",

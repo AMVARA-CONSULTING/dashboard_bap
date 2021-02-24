@@ -86,7 +86,7 @@ export class AllocationMainComponent {
   goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('YYYYMM')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate([this.second_level_route, year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   getDate(month): string {

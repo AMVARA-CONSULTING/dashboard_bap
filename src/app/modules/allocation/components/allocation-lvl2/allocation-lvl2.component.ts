@@ -52,6 +52,7 @@ export class AllocationLvl2Component {
 
   // Names of the routes for each level
   main_route: string = 'covid'
+  second_level_route: string = 'date'
 
   constructor(
     public data: DataService,
@@ -67,7 +68,7 @@ export class AllocationLvl2Component {
     this.title.setTitle(config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
-      this.date = params.get('date')
+      this.date = params.get(this.second_level_route)
       // If no Allocation rows were found, get them
       if (this.data.allocationData.length == 0) {
         this.api.getSavedReportData(ReportTypes.Allocation).subscribe(res => {
@@ -83,7 +84,7 @@ export class AllocationLvl2Component {
   }
 
   changePlant(plant: string): void {
-    this.router.navigate([this.main_route, plant, 'date', this.date], { replaceUrl: true })
+    this.router.navigate([this.main_route, plant, this.second_level_route, this.date], { replaceUrl: true })
   }
 
   goRegion(key): void {
@@ -97,7 +98,7 @@ export class AllocationLvl2Component {
   goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY')
     const year = momentum.format('DDYYYY')
-    this.router.navigate(['date', year], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate([this.second_level_route, year], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   getDate(month): string {

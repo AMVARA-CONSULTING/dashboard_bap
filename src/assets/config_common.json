@@ -18,7 +18,7 @@
 		"ca": "Català"
 	},
 	"reportLinks": [
-		{ "link": "/activity", "text": "order_intake" },
+			{ "link": "/activity", "text": "order_intake" },
     	{ "link": "/sells", "text": "order_backlog"},
     	{ "link": "/employees", "text": "production_program" },
     	{ "link": "/covid", "text": "allocation" },

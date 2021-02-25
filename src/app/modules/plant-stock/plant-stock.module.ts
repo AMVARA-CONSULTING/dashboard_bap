@@ -8,6 +8,10 @@ import { GraphicComponent } from './components/graphic/graphic.component';
 import { PlantStockLvl2Component } from './components/plant-stock-lvl2/plant-stock-lvl2.component';
 import { PlantStockLvl3Component } from './components/plant-stock-lvl3/plant-stock-lvl3.component';
 
+// Names of the routes for each level
+var second_level_route: string = 'cities'
+var third_level_route: string = 'city'
+
 const routes: Routes = [
   {
     path: '',
@@ -24,12 +28,12 @@ const routes: Routes = [
         data: { level: 1 }
       },
       {
-        path: ':plant/cities/:werk',
+        path: ':plant/' + second_level_route + '/:werk',
         component: PlantStockLvl2Component,
         data: { level: 2 }
       },
       {
-        path: ':plant/cities/:werk/city/:hofb',
+        path: ':plant/' + second_level_route + '/:werk/' + third_level_route + '/:hofb',
         component: PlantStockLvl3Component,
         data: { level: 3 }
       }

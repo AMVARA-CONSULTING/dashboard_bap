@@ -9,6 +9,10 @@ import { GraphicComponent } from './components/graphic/graphic.component';
 import { AllocationLvl3Component } from '@modules/allocation/components/allocation-lvl3/allocation-lvl3.component';
 import { AllocationBarComponent } from './components/allocation-bar/allocation-bar.component';
 
+
+// Names of the routes for each level
+var second_level_route: string = 'date'
+
 const routes: Routes = [
   {
     path: '',
@@ -25,12 +29,12 @@ const routes: Routes = [
         data: { level: 1 }
       },
       {
-        path: ':plant/date/:date',
+        path: ':plant/' + second_level_route + '/:date',
         component: AllocationLvl2Component,
         data: { level: 2 }
       },
       {
-        path: ':plant/date/:date/:type/:region_id',
+        path: ':plant/' + second_level_route + '/:date/:type/:region_id',
         component: AllocationLvl3Component,
         data: { level: 3 }
       }

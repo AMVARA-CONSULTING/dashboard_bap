@@ -55,22 +55,35 @@ You can change the wepbage logo in the "./src/app/components/header/header.compo
 ![Logo](img/5-Logo.png)
 
 ## 3.5 Routing<a name="Routing"></a>
+To rename the main route of each one of the 5 components, first go to "./src/assets/config_common.json" and change the "link" value inside the "reportLinks" array.
 
+![Routing1](img/10.1-Routing1.png)
+
+Then go to "./src/app/routing.module.ts" and in the first place change the "redirectTo" variable.
+
+![Routing2](img/10.2-Routing2.png)
+
+Then change all the "path" values you need starting from the third Routes array place.
+
+![Routing3](img/10.3-Routing3.png)
+
+In order to rename the level rout of each component you need to head to "./src/app/modules". Once inside said folder, you need to change every level variable names in each component folder. As there are some differences in the routing of each component, we will explain how to change all of them.
+* Allocation: Change the level variable names inside each level and inside of "allocation.module.ts".
 
 ## 3.6 App title and loading screen<a name="AppTitle"></a>
 The app title can be modified in "./src/assets/config_common.json" changing the "AppTitle" variable to the name of your application. To change the loading screen title, head to "./src/index.html" and put it inside the "title" div.
 
 ![AppTitle](img/11-AppTitle.png)
 
-# 4. Translation
+# 4. Translation<a name="Translate"></a>
 BAP offers the user the ability to translate the webpage into whatever language. To do so, follow the steps:
 
-## 4.1 Add new language
+## 4.1 Add new language<a name="NewLanguage"></a>
 To add and use a new language in BAP go to "./src/assets/config_common.json". In said file, the variable 'languageCodes' contains all the languages the user is going to use. Add the code of the new language. [Click here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) to see all the language codes.
 
 ![AddLanguage](img/6-AddLanguage.png)
 
-## 4.2 Translate text
+## 4.2 Translate text<a name="TranslateText"></a>
 Once you have added anew language in the previous step, go to "./src/assets/i18n" and create a new .json file with your language code. Next, add the variables you are going to use.
 
 ![LanguageVariables](img/7-LanguageVariables.png)
@@ -79,12 +92,13 @@ To insert those variables into an .html file you will need to follow the angular
 
 ![AddTranslatedText](img/8-AddTranslatedText.png)
 
-## 4.3 Translate data
+## 4.3 Translate data<a name="TranslateData"></a>
 Translating data is pretty much the same as translating text, but instead of translating variables you'll choose which column you want to use. To do so, go to "./src/assets/config_common.json". There, you will see the columns are in use. To translate the column, add the translated column number inside the array.
 
 ![TranslateData](img/9-TranslateData.png)
 
-# 5. Input own data
+# 5. Input own data<a name="Data"></a>
 
-# 6. Support
+
+# 6. Support<a name="Support"></a>
 For further questions or issues, please contact us at our email <tec_dev@amvara.de>

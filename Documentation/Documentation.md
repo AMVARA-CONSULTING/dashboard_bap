@@ -31,7 +31,36 @@ BAP is an interactive dashboard that displays all the data contained in a CSV fi
 ![PreviewMobile](img/2-PreviewMobile.png)
 
 # 2. Installation and deployment<a name="InstallDeploy"></a>
+## Installation
 
+Before installing the dashboard, make sure you have all the needed dependencies:
+<pre>
+sudo apt -y update;
+sudo apt-get -y install nodejs;
+sudo apt-get -y install npm;
+</pre>
+
+Once you have installed everything in the previous step, execute the following:
+<pre>
+sudo npm install -g @angular/cli;
+sudo npm install -g json;
+sudo npm install --save-dev @angular-devkit/build-angular
+</pre>
+
+## Development server
+
+Run `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+You can install them using `npm install -g <package_name>`
+
+## Build / Deployment
+
+- For more.amvara.rocks `npm run build`
+- For Cognos (corpintra.net) `npm run build-cognos`
 
 # 3. Skinning<a name="Skinning"></a>
 In this point we will explain you how to customize the app to your own needs.
@@ -47,7 +76,7 @@ The same way as with the colors, you can change the colors of the graphics. Some
 ![Graphs](img/4-Graphs.png)
 
 ## 3.3 Text<a name="Text"></a>
-Changing the text is pretty easy. If you want to hardcode text, go to its respective .html file and change it from there. However, if you want to insert translated text, you can go to point 3 to see how to do so.
+Changing the text is pretty easy. If you want to hardcode text, go to its respective .html file and change it from there. However, if you want to insert translated text, you can go to point [4.2 Translate text](#TranslateText) to see how to do so.
 
 ## 3.4 Logo<a name="Logo"></a>
 You can change the wepbage logo in the "./src/app/components/header/header.component.scss" file. You should keep in mind that the original logo is divided in 3 parts(outer, middle and inner). If you don't want to follow this structure, just put display:hidden in the property you want to hide. If you want to keep the rotating animation, you will also need to adapt the height and width properties to your image scale.
@@ -68,7 +97,15 @@ Then change all the "path" values you need starting from the third Routes array 
 ![Routing3](img/10.3-Routing3.png)
 
 In order to rename the level rout of each component you need to head to "./src/app/modules". Once inside said folder, you need to change every level variable names in each component folder. As there are some differences in the routing of each component, we will explain how to change all of them.
-* Allocation: Change the level variable names inside each level and inside of "allocation.module.ts".
+* Allocation: Change the level variable names inside each level .ts file and inside of "allocation.module.ts".
+* Order-backlog: Change the level variable names inside of "services/order-backlog-router.service.ts".
+* Order-intake: Change the level variable names inside each level .ts file.
+* Plant-stock: Change the level variable names inside each level .ts file and inside of "plant-stock.module.ts".
+* Production-program: Change the level variable names inside each level .ts file and inside of "production-program.module.ts".
+
+![Routing4](img/10.4-Routing4.png)
+
+Note that all the level names must share the same name within each component (e.g. main_route must have the same value inside of each file of the component).
 
 ## 3.6 App title and loading screen<a name="AppTitle"></a>
 The app title can be modified in "./src/assets/config_common.json" changing the "AppTitle" variable to the name of your application. To change the loading screen title, head to "./src/index.html" and put it inside the "title" div.

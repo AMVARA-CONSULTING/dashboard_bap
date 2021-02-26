@@ -38,6 +38,7 @@ Before installing the dashboard, make sure you have all the needed dependencies:
 sudo apt -y update;
 sudo apt-get -y install nodejs;
 sudo apt-get -y install npm;
+sudo npm install -g npm;
 </pre>
 
 Once you have installed everything in the previous step, execute the following:
@@ -130,12 +131,20 @@ To insert those variables into an .html file you will need to follow the angular
 ![AddTranslatedText](img/8-AddTranslatedText.png)
 
 ## 4.3 Translate data<a name="TranslateData"></a>
-Translating data is pretty much the same as translating text, but instead of translating variables you'll choose which column you want to use. To do so, go to "./src/assets/config_common.json". There, you will see the columns are in use. To translate the column, add the translated column number inside the array.
+Translating data is pretty much the same as translating text, but instead of translating variables you will choose which column you want to use. To do so, go to "./src/assets/config_common.json". There, you will see the columns that are in use. To translate the column, simply add the translated column number inside the array.
 
 ![TranslateData](img/9-TranslateData.png)
 
 # 5. Input own data<a name="Data"></a>
+To input your own data into the dashboard firstly you must understand the hierarchy of the tables and its inner relationships.
+* The first thing to understand is the id of each element. In each table you will see a field containing an id with a format similar to 100200. In this case the 100 represents the id of the first level and the 200 represents the id of each child of said level. It is not mandatory to strictly follow this rule but the idea. The id can be whathever you want: 120900000, 209, 3000091... It is only important to respect the `main levels - sub levels structure`.
+* Another important thing to keep in mind is the way fields are organized. If you go to "./src/assets/config_common.json" and scroll down to the "columns" array, you will see all the
 
+Here is a little example graphic showing the hierarchies. In this case, the table is used to list all the companies of the specified regions.
+
+![DataInput](img/12-DataInput.svg)
+
+Despite the fact that almost all of the tables have the same structure, there are some subtle differences amongst them.
 
 # 6. Support<a name="Support"></a>
 For further questions or issues, please contact us at our email <tec_dev@amvara.de>

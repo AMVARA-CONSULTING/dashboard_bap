@@ -1,50 +1,43 @@
 {
-    "version": "2.95.0",
-    "debug": false,
-    "loading": false,
-    "language": "en",
-    "appTitle": "BAP",
-    "scenario": "int",
-    "target": "trucks",
-    "delay": 2000,
-    "copyright": "AMVARA",
-    "license": "SFASR",
-    "languageCodes": {
-        "en": "English",
-        "de": "Deutsch"
-    },
-    "reportLinks": [
-        {
-            "link": "/order-intake",
-            "text": "order_intake"
-        },
-        {
-            "link": "/order-backlog",
-            "text": "order_backlog"
-        },
-        {
-            "link": "/production-program",
-            "text": "production_program"
-        },
-        {
-            "link": "/allocation",
-            "text": "allocation"
-        },
-        {
-            "link": "/plant-stock",
-            "text": "plant_stock"
-        }
-    ],
-    "portal": "/internal/bi/",
-    "apiLink": "/internal/bi/v1/",
-    "apiDomain": "",
-    "enableReports": {
-        "order_backlog": true,
-        "order_intake": true,
-        "production_program": true,
-        "allocation": true,
-        "plant_stock": true
-    },
+	"version": "2.96.0",
+	"debug": false,
+	"loading": false,
+	"language": "en",
+	"appTitle": "AMVARA",
+	"scenario": "int",
+	"newLogin":  {
+		"value":"true",
+		"comment":"true enables the newLogin form to bypass Cognos, false disables it"
+	},
+	"target": "trucks",
+	"delay": 2000,
+	"copyright": "AMVARA",
+	"license": "SFASR",
+	"languageCodes": {
+		"en": "English",
+		"de": "Deutsch",
+		"es": "Español",
+		"ru": "Русский",
+		"uk": "Українська",
+		"ca": "Català"
+	},
+	"reportLinks": [
+		{ "link": "/order-intake", "text": "order_intake" },
+    	{ "link": "/order-backlog", "text": "order_backlog"},
+    	{ "link": "/production-program", "text": "production_program" },
+    	{ "link": "/allocation", "text": "allocation" },
+    	{ "link": "/plant-stock", "text": "plant_stock" }
+	],
+	"portal": "/internal/bi/",
+	"apiLink": "/internal/bi/v1/",
+	"apiDomain": "",
+	"enableReports": {
+		"order_backlog": true,
+		"order_intake": true,
+		"production_program": true,
+		"allocation": true,
+		"plant_stock": true
+	},
     "capabilities": {
         "int": "i606D0768D6AC4241AADD880B4B72EC06",
         "prod": "iF43E1B95C13B4A42A2DEABAF5B2F9701"
@@ -280,6 +273,12 @@
         }
     },
     "changelog": [
+		{
+			"version": "2.96.0",
+			"text": [
+			  "#2709 - added global newLoginForm parameter to enable/disable this feature"
+			]
+		},
         {
             "version": "2.95.0",
             "text": [

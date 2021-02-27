@@ -115,7 +115,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
     NgxNetworkErrorModule.forRoot({
       reporting: {
-        sentryDSN: 'https://b75afd9cf4c649b9b06e341b545ecd27@sentry.amvara.de/7'
+          // depending on foo-function (see at bottom here) ... returns DSN or empty
+          // environment.production = true => returns DSN ... all other empty
+          sentryDSN: foo(environment.production)
       },
       debug: !environment.production,
       authType: 'cognos',
@@ -160,3 +162,16 @@ export class MyHammerConfig extends HammerGestureConfig {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/**
+ * this is foo function returns sentry DSN depending on environment.production
+ * if true ... returns and enables sentry messages
+ * @author Ralf Roeber
+ * @since 27.02.2021
+ * @param envProd
+ */
+function foo(envProd: boolean): string {
+  // console.log("==============> ", envProd)
+  // on Production return sentry DSN ... on DEV return empty
+  return envProd ? 'https://b75afd9cf4c649b9b06e341b545ecd27@sentry.amvara.de/7' : ""
+}

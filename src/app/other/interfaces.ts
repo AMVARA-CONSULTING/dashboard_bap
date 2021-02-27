@@ -1,32 +1,44 @@
 export interface Config {
-    version: string;
-    debug: boolean;
-    loading: boolean;
-    language: ILanguage;
-    reports: IConfigReports;
-    delay: number;
-    scenario: string;
-    portal: string;
-    contacts: any[];
-    reportLinks: ReportLink[];
-    cognosApiWorkaround: boolean;
-    apiLink: string;
-
     /** apiDomain serves as backend URL for DEV environments, and is normally blank */
     apiDomain: string;
-    
-    copyright: string;
-    license: string;
-    corpintra: boolean;
-    translations: 'en' | 'de' | any;
-    changelog: any;
+    apiLink: string;
     appTitle: string;
-    languageCodes: any;
-    target: string;
-    simulateUnauthorized: number;
-    heartbeat: number;
+
     capabilities: any;
+    changelog: any;
+    cognosApiWorkaround: boolean;
+    contacts: any[];
+    copyright: string;
+    corpintra: boolean;
+
+    debug: boolean;
+    delay: number;
+
     enableReports: any;
+
+    heartbeat: number;
+
+    loading: boolean;
+    language: ILanguage;
+    languageCodes: any;
+    license: string;
+
+    /** newLogin {value:"true", comment: ""}, if false, then loginForm from Cognos/OIDC will be used  */
+    newLogin: any;
+
+    portal: string;
+
+    reports: IConfigReports;
+    reportLinks: ReportLink[];
+
+    scenario: string;
+
+    translations: 'en' | 'de' | any;
+    target: string;
+
+    simulateUnauthorized: number;
+
+    version: string;
 }
 
 export interface ReportLink {

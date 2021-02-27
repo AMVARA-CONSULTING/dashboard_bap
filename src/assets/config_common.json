@@ -1,10 +1,14 @@
 {
-	"version": "2.90.0",
+	"version": "2.91.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
 	"appTitle": "BAP",
 	"scenario": "int",
+	"newLogin":  {
+		"value":"true",
+		"comment":"true enables the newLogin form to bypass Cognos, false disables it"
+	},
 	"target": "trucks",
 	"delay": 2000,
 	"copyright": "AMVARA",
@@ -265,6 +269,12 @@
 		}
 	},
 	"changelog": [
+		{
+			"version": "2.91.0",
+			"text": [
+			  "#2709 - added global newLoginForm parameter to enable/disable this feature",
+			]
+		},
 		{
 		  "version": "2.90.0",
 		  "text": [

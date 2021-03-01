@@ -6,7 +6,7 @@
       </ng-container>
       <ng-container class="plant" *ngFor="let plant of zone.value | plantsByZone | keyvalue">
         <ng-container *ngLet="plant.value | groupOrPlantName:'plant' as plantName">
-          <mat-option class="plant" value="plant|{{plant.key}}">{{ plantName }}</mat-option>
+          <mat-option class="plant" value="region|{{plant.key}}">{{ plantName }}</mat-option>
         </ng-container>
       </ng-container>
     </ng-container>

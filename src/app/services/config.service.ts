@@ -24,7 +24,7 @@ export class ConfigService {
   load(): Promise<void> {
     return new Promise(resolve => {
       const corpintra = location.hostname.indexOf('corpintra.net') > -1;
-      let configFile = corpintra ? 'config_daimler.json' : 'config.json';
+      let configFile = corpintra ? 'config_provider.json' : 'config.json';
       // Let the developer / user give a custom config
       const customConfig = localStorage.getItem('configFile');
       if (customConfig) {

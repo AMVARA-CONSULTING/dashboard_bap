@@ -5,7 +5,7 @@
   "scenario": "int",
   "target": "trucks",
   "delay": 0,
-  "copyright": "DAIMLER",
+  "copyright": "1",
   "license": {
     "trucks": "TE/SO",
     "vans": "VAN/VSO"

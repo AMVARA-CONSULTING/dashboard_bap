@@ -300,7 +300,7 @@
 		{
 			"version": "2.91.0",
 			"text": [
-			  "#2709 - added global newLoginForm parameter to enable/disable this feature",
+			  "#2709 - added global newLoginForm parameter to enable/disable this feature"
 			]
 		},
 		{
@@ -894,7 +894,6 @@
 				"New background image",
 				"Added real-time connection status on footer",
 				"Now the page title can be viewed in the footer",
-				"Modified Service Worker for caching iBISS platform",
 				"No more need to reload with Shift + F5 to get the latest version, now just F5"
 			]
 		},

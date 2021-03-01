@@ -161,8 +161,8 @@ export class CognosService {
    *
    * This method is ok for Cognos 11.0.x environments, but very slow on Cognos 11.1.x environments as IBM changed the way of loading elements
    *
-   * @param resolve 
-   * @param config 
+   * @param resolve
+   * @param config
    */
   doLoginWithIframe(resolve, config: Config) {
     // Create iframe with style parameters and url
@@ -176,7 +176,7 @@ export class CognosService {
     const _this = this;
     // Set onload callback
     iframe.onload = function() {
-      // Manually add DaimlerLoginCSS to login iframe
+      // Manually add ProviderLoginCSS to login iframe
       _this.addCSStoLogin(location.protocol + '//' + location.host + location.pathname + 'assets/css/custom_login.css');
     };
     // Set iframe URL

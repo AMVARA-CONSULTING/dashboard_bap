@@ -61,7 +61,7 @@ You can install them using `npm install -g <package_name>`
 ## Build / Deployment
 
 - For more.amvara.rocks `npm run build`
-- For Cognos (corpintra.net) `npm run build-cognos`
+- For Cognos `npm run build-cognos`
 
 ## URL Params
 

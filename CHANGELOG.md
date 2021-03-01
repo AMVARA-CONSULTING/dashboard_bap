@@ -117,7 +117,6 @@ All notable changes to this project will be documented in this file.
 - New background image
 - Added real-time connection status on footer
 - Now the page title can be viewed in the footer
-- Modified Service Worker for caching iBISS platform
 - No more need to reload with Shift + F5 to get the latest version, now just F5
 
 ## 2.0.1

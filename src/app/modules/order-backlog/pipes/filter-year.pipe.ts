@@ -21,6 +21,7 @@ export class FilterYearPipe implements PipeTransform {
 //              Current: dates.slice(0, 12)
 //              Previous: dates.slice()
 export function FilterYearFn(rows: any[], year: 'current' | 'previous', ranges: DateRanges) {
+  if (!rows || rows.length === 0) return [];
   if (year === 'current') {
     return rows.filter(row => ranges.actual.includes(row[BacklogColumns.Date].substring(0, 7)));
   } else {

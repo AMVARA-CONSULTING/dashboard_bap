@@ -7,7 +7,6 @@ import { Zones } from '@other/interfaces';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '@services/data.service';
 
 @Component({
@@ -40,10 +39,9 @@ export class OrderBacklogMainComponent {
     public _data: DataService,
     private config: ConfigService,
     private title: Title,
-    private translate: TranslateService,
     public _obRouter: OrderBacklogRouter
   ) {
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_backlog'));
+    this.title.setTitle(this.config.config.appTitle + ' - Order Backlog');
   }
 
 }

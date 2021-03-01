@@ -50,11 +50,11 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     // Only show available reports info, this prevents the user from seeing things it shouldn't see
     let reportInfos: AboutReport[] = [
-      { shownTitle: this.translate.instant('menu.order_intake'), title: 'Order Intake', type: 'orderIntake' },
-      { shownTitle: this.translate.instant('menu.order_backlog'), title: 'Order Backlog', type: 'orderBacklog' },
-      { shownTitle: this.translate.instant('menu.production_program'), title: 'Production program', type: 'productionProgram' },
-      { shownTitle: this.translate.instant('menu.allocation'), title: 'Allocation', type: 'allocation' },
-      { shownTitle: this.translate.instant('menu.plant_stock'), title: 'Plant stock', type: 'plantStock' }
+      { title: 'Order Intake', type: 'orderIntake' },
+      { title: 'Order Backlog', type: 'orderBacklog' },
+      { title: 'Production program', type: 'productionProgram' },
+      { title: 'Allocation', type: 'allocation' },
+      { title: 'Plant stock', type: 'plantStock' }
     ];
     const availableLinks = this._cognos.getLinksWithAccess().map(link => link.text);
     if (this.config.config.debug) {
@@ -67,25 +67,16 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-  }
-  
-  // Added delay to setLang and reloadLang because pop up doesn't have enough time to get the chosen language, so instead it would the the default/previous
   setLang(code: string): void {
     localStorage.setItem('lang', code);
     this.translate.use(code);
     this._store.dispatch( new ConfigActions.SetParameter('language', code) );
-    this.delay(300).then(any=>{
-      this.snack.open(this.translate.instant('help.language_change'), 'OK', { duration: 3000 });
-    });
+    this.snack.open('Language changed successfully!', 'OK', { duration: 3000 });
   }
 
   reloadLang(): void {
     this.translate.reloadLang(this.config.config.language);
-    this.delay(300).then(any=>{
-      this.snack.open(this.translate.instant('help.language_reload'), 'OK', { duration: 3000 });
-    });
+    this.snack.open('Language reloaded successfully!', 'OK', { duration: 3000 });
   }
 
   reportInfos = new BehaviorSubject<AboutReport[]>([]);
@@ -93,7 +84,6 @@ export class AboutComponent implements OnInit {
 }
 
 interface AboutReport {
-  shownTitle: string;
   title: string;
   type: string;
 }

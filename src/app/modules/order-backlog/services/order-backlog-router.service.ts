@@ -9,23 +9,19 @@ import { PlantOrZone, RegionOrProduct } from '@other/interfaces';
 @Injectable()
 export class OrderBacklogRouter {
 
-    // Names of routes for each level
-    main_route: string = '/sells';
-    sub_level_a: string = 'month';
-
     constructor(
         private _router: Router
     ) { }
 
     goToMainView() {
-        this._router.navigate([this.main_route]);
+        this._router.navigate(['/order-backlog']);
     }
 
     goToPlantZoneView(route: ActivatedRoute, plantType?: PlantOrZone, plantValue?: string) {
         plantType = plantType || route.snapshot.params.plant;
         plantValue = plantValue || route.snapshot.params.id;
         this._router.navigate([
-            this.main_route,
+            '/order-backlog',
             plantType,
             plantValue
         ]);
@@ -36,10 +32,10 @@ export class OrderBacklogRouter {
         plantValue = plantValue || route.snapshot.params.id;
         month = month || route.snapshot.params.month;
         this._router.navigate([
-            this.main_route,
+            '/order-backlog',
             plantType,
             plantValue,
-            this.sub_level_a,
+            'month',
             month
         ]);
     }
@@ -52,10 +48,10 @@ export class OrderBacklogRouter {
         itemType = itemType || route.snapshot.params.type;
         itemValue = itemValue || route.snapshot.params.value;
         this._router.navigate([
-            this.main_route,
+            '/order-backlog',
             plantType,
             plantValue,
-            this.sub_level_a,
+            'month',
             month,
             itemType,
             itemValue

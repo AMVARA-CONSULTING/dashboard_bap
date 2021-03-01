@@ -9,7 +9,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { OrderBacklogState } from '@store/order-backlog.state';
 import { ViewSelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { CustomSelectors } from '@other/custom-selectors';
-import { TranslateService } from '@ngx-translate/core';
 import { OrderBacklogRouter } from '@modules/order-backlog/services/order-backlog-router.service';
 
 @Component({
@@ -40,10 +39,9 @@ export class OrderBacklogSubLvl3Component {
     private config: ConfigService,
     private _title: Title,
     private _store: Store,
-    private translate: TranslateService,
     public _obRouter: OrderBacklogRouter
   ) {
-    this._title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_backlog'));
+    this._title.setTitle(this.config.config.appTitle + ' - Order Backlog');
     // Grab all params from URL
     this.params$ = this._ac.paramMap.pipe(
       map(params => params.keys.reduce((r, a) => (r[a] = params.get(a), r), {}))

@@ -10,7 +10,7 @@
       <div class="headers">
         <div class="empty"></div>
         <div class="actual">{{ plandate }}</div>
-        <div class="previous">{{ 'prev_month' | translate }}</div>
+        <div class="previous">Prev. Month</div>
         <div class="delta">&Delta;</div>
       </div>
       <div (click)="goWerk(werk.key)" class="overview-group" *ngFor="let werk of werkbestands | keyvalue | plantStockSorting">
@@ -28,7 +28,7 @@
 </div>
 <header>
   <div class="werk">
-    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'change.ubication' | translate }}" style="margin-left: 10px;">
+    <mat-form-field matTooltipClass="after" matTooltipPosition="after" matTooltip="Change selected plant" style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
           {{ plant.value }}
@@ -37,20 +37,20 @@
     </mat-form-field>
   </div>
   <div class="actual">{{ plandate }}</div>
-  <div class="previous">{{ 'prev_month' | translate }}</div>
+  <div class="previous">Prev. Month</div>
   <div class="delta">&Delta;</div>
 </header>
 <div class="content-wrapper">
   <div class="header-rows">
     <div class="group-header">
-      <div class="werk">{{ 'cities' | translate }}</div>
+      <div class="werk">TOTAL</div>
       <div class="actual">{{ totalActual | toNumber }}</div>
       <div class="previous">{{ totalPrevious | toNumber }}</div>
       <div class="delta">{{ totalDelta | toNumber:true }}</div>
     </div>
     <div class="group-header return arrow-right">
       <div class="werk" (click)="returnToMain()">
-        <div matTooltip="{{ 'return.main' | translate }}" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
+        <div matTooltip="Return to main level" matTooltipPosition="after" matTooltipClass="after" class="inlineBlock">{{
           werk }}</div>
       </div>
       <div class="actual">{{ werkActual | toNumber }}</div>

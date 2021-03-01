@@ -50,7 +50,6 @@ export class ConfigService {
         // Please use ConfigState in future code instead of service
         this.config = config as Config;
         this._store.dispatch( new ConfigActions.Set({ ...this.config }) );
-        // console.log("AMVARA: config.corpintra", this.config.corpintra)
         if (this.config.corpintra) {
           // Initialize login process
           this.cognos.load({ ...config }).then(_ => {

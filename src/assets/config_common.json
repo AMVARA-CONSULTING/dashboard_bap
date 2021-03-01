@@ -1,32 +1,24 @@
 {
-	"version": "2.91.0",
+	"version": "2.90.0",
 	"debug": false,
 	"loading": false,
 	"language": "en",
-	"appTitle": "AMVARA",
+	"appTitle": "BAP",
 	"scenario": "int",
-	"newLogin":  {
-		"value":"true",
-		"comment":"true enables the newLogin form to bypass Cognos, false disables it"
-	},
 	"target": "trucks",
 	"delay": 2000,
 	"copyright": "AMVARA",
 	"license": "SFASR",
 	"languageCodes": {
 		"en": "English",
-		"de": "Deutsch",
-		"es": "Español",
-		"ru": "Русский",
-		"uk": "Українська",
-		"ca": "Català"
+		"de": "Deutsch"
 	},
 	"reportLinks": [
-		{ "link": "/activity", "text": "order_intake" },
-    	{ "link": "/sells", "text": "order_backlog"},
-    	{ "link": "/employees", "text": "production_program" },
-    	{ "link": "/covid", "text": "allocation" },
-    	{ "link": "/companies", "text": "plant_stock" }
+		{ "link": "/order-intake", "text": "order_intake" },
+    	{ "link": "/order-backlog", "text": "order_backlog"},
+    	{ "link": "/production-program", "text": "production_program" },
+    	{ "link": "/allocation", "text": "allocation" },
+    	{ "link": "/plant-stock", "text": "plant_stock" }
 	],
 	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
@@ -173,27 +165,19 @@
 					"plantKey": 1,
 					"groupName": {
 						"de": 3,
-						"en": 2,
-						"es": 2,
-						"ca": 2
+						"en": 2
 					},
 					"plantName": {
 						"de": 5,
-						"en": 4,
-						"es": 4,
-						"ca": 4
+						"en": 4
 					},
 					"region": {
 						"de": 7,
-						"en": 6,
-						"es": 6,
-						"ca": 6
+						"en": 6
 					},
 					"product": {
 						"de": 9,
-						"en": 8,
-						"es": 8,
-						"ca": 8
+						"en": 8
 					},
 					"dateShort": 10,
 					"dateFull": 11,
@@ -222,21 +206,15 @@
 					"plantKey": 0,
 					"plantName": {
 						"en": 4,
-						"de": 3,
-						"es": 3,
-						"ca": 3
+						"de": 3
 					},
 					"regionName": {
 						"en": 7,
-						"de": 6,
-						"es": 6,
-						"ca": 6
+						"de": 6
 					},
 					"productName": {
 						"en": 9,
-						"de": 8,
-						"es": 8,
-						"ca": 8
+						"de": 8
 					},
 					"dayOfWeek": 10,
 					"datum": 11,
@@ -254,33 +232,23 @@
 					"plantKey": 0,
 					"plantName": {
 						"en": 2,
-						"de": 1,
-						"es": 2,
-						"ca": 2
+						"de": 1
 					},
 					"werkbestandName": {
 						"en": 4,
-						"de": 3,
-						"es": 4,
-						"ca": 4
+						"de": 3
 					},
 					"hofbestandName": {
 						"en": 6,
-						"de": 5,
-						"es": 6,
-						"ca": 6
+						"de": 5
 					},
 					"regionName": {
 						"en": 8,
-						"de": 7,
-						"es": 8,
-						"ca": 8
+						"de": 7
 					},
 					"productName": {
 						"en": 10,
-						"de": 9,
-						"es": 10,
-						"ca": 10
+						"de": 9
 					},
 					"actual": 11,
 					"previous": 12,
@@ -297,12 +265,6 @@
 		}
 	},
 	"changelog": [
-		{
-			"version": "2.91.0",
-			"text": [
-			  "#2709 - added global newLoginForm parameter to enable/disable this feature",
-			]
-		},
 		{
 		  "version": "2.90.0",
 		  "text": [

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Amvara</title>
+  <title>BAP</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
@@ -17,12 +17,6 @@
   </script>
   <dip-root>
     <style>
-      :root {
-        --title-margin-desktop: -220px;
-        --title-size-desktop: 90pt;
-        --title-margin-phone: -85px;
-        --title-size-phone: 60pt;
-      }
       html,
       body {
         overflow: hidden;
@@ -65,7 +59,7 @@
         height: 100vh;
         top: 0;
         left: 0;
-        background-color: rgba(0, 22, 40, 0.92);
+        background-color: rgba(24, 24, 32, 0.92);
       }
 
       body[theme=new-dark] .amvaraLoading:before {
@@ -105,18 +99,11 @@
         width: 200px;
         top: 40px;
         margin: auto;
-        left: var(--title-margin-desktop);
+        left: 0;
         color: #d2d2d2;
         margin-top: 200px;
-        font-size: var(--title-size-desktop);
+        font-size: 90pt;
         right: 0;
-      }
-
-      @media screen and (max-width: 800px) {
-        .title {
-          font-size: var(--title-size-phone);
-          left: var(--title-margin-phone);
-        }
       }
 
       .loadingTitle {
@@ -152,7 +139,7 @@
         <div class="outside"></div>
         <div class="middle"></div>
         <div class="inside"></div>
-        <div class="title">AMVARA</div>
+        <div class="title">BAP</div>
       </div>
       <div class="loadingTitle">Data Platform</div>
     </div>

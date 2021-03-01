@@ -8,7 +8,7 @@
 </div>
 <header *ngIf="ready">
   <div class="month">
-    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="{{ 'change.ubication' | translate }}"
+    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="Change selected plant"
       style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
@@ -23,7 +23,7 @@
 </header>
 <header class="return" *ngIf="ready">
   <div class="month" (click)="returnToMain()">
-    <div class="first-row" matTooltipClass="after" matTooltip="{{ 'return.main' | translate}}" matTooltipPosition="after" style="display: inline-block">{{
+    <div class="first-row" matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{
       monthMomentum }}</div>
   </div>
   <div class="total-allocation">{{ totalAllocation | toNumber }}</div>
@@ -34,7 +34,7 @@
   [partNumber]="partNumber || 0"></allocation-bar>
 <div class="content-wrapper" [@list]="months.length">
   <div class="row-group" *ngIf="regions">
-    <div class="group-header">{{ 'regions' | translate }}</div>
+    <div class="group-header">REGIONS</div>
     <div class="row" (click)="goRegion(region.key)" *ngFor="let region of regions | keyvalue">
       <div class="month">{{ region.key }}</div>
       <div class="allocation">{{ data.sumByIndex(region.value,
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="row-group" *ngIf="products">
-    <div class="group-header">{{ 'cities' | translate }}</div>
+    <div class="group-header">PRODUCTS</div>
     <div class="row" (click)="goProduct(product.key)" *ngFor="let product of products | keyvalue">
       <div class="month">{{ product.key }}</div>
       <div class="allocation">{{ data.sumByIndex(product.value,

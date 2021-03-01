@@ -25,9 +25,7 @@ export class CognosService {
   // Object containing user capabilities, null in development
   userCapabilities = new BehaviorSubject<UserCapabilities>(null);
 
-  /**
-   * Gets the available reports based on the user capabilities object
-  */
+  // Gets the available reports based on the user capabilities object
   getLinksWithAccess() {
     // Retrieve links from config and filter by enabled object
     const links: HeaderLink[] = this.config.reportLinks.filter(link => this.config.enableReports[link.text]);
@@ -80,23 +78,12 @@ export class CognosService {
   }
 
   /**
-   * Function to initialize App requesting a secured item and providing loginForm depending on repsonse with
+   * Function to initialize App with
    * @param config ConfigService (automatic)
    */
   load(config: Config): Promise<void> {
     return new Promise(resolve => {
       // Check user session validity by accessing internal file
-      // console.log("AMVARA:============> newLogin.value: ", this.config.newLogin["value"], localStorage.getItem('newLogin'))
-
-      // this variable defines, if the newLoginForm is shown or not, default is "use old loginForm"
-      var showOldLoginForm = true
-
-      // If localStorage newLogin is true or common_config newLogin is true
-      if (localStorage.getItem('newLogin') === 'true' || this.config.newLogin["value"] === 'true') {
-        // enable newLoginForm by setting showOldLoginForm=false
-        showOldLoginForm = false
-      }
-
       this.http.get(`${config.apiDomain}${config.apiLink}ext/0201_DIP_CC/img/DIPLogV_Color_DarkBack.svg`, {
         responseType: 'text',
         observe: 'response',
@@ -104,10 +91,7 @@ export class CognosService {
         params: new InterceptorParams({
           // Only make XHR go through error interceptor if newLogin is enabled
           // Because will be enabled a Login Dialog will be shown automatically
-          // newLogin can be set in config_common.json or localStorage
-          ...(
-            (showOldLoginForm) && { skipInterceptor: true }
-            ),
+          ...(localStorage.getItem('newLogin') !== 'true' && { skipInterceptor: true }),
           ignoreDiskCache: true,
           ignoreServiceWorkerCache: true,
           ignoreProxyCache: true
@@ -119,7 +103,6 @@ export class CognosService {
             this.loadCapabilities(resolve, config);
           },
           err => {
-            // console.log("AMVARA: ===> err onLoading")
             // Login
             /* if (localStorage.getItem('newLogin') === 'true') {
               // Trigger XSRF Token cookie generation
@@ -157,16 +140,12 @@ export class CognosService {
   }
 
   /**
-   * Does login with iframe method using the triggerReport stored in DIP Cognos Environment
-   *
-   * This method is ok for Cognos 11.0.x environments, but very slow on Cognos 11.1.x environments as IBM changed the way of loading elements
-   *
+   * Does login with iframe method
    * @param resolve 
    * @param config 
    */
   doLoginWithIframe(resolve, config: Config) {
     // Create iframe with style parameters and url
-    // console.log("AMVARA: loginForm")
     const app: HTMLElement = document.querySelector('dip-root');
     app.style.display = 'none';
     const iframe = document.createElement('iframe');

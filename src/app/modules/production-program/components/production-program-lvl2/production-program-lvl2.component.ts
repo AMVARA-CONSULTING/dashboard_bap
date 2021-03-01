@@ -6,7 +6,6 @@ import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -27,28 +26,21 @@ export class ProductionProgramLvl2Component {
 
   ready: boolean = false
 
-  // Names of the routes for each level
-  main_route: string = 'employees'
-  general_route: string = 'zone'
-  sub_level_a: string = 'city'
-  sub_level_b: string = 'company'  
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private translate: TranslateService,
     private title: Title
   ) {
-    title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.production_program'))
+    title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
     this.activatedRoute.paramMap.subscribe(params => {
       this.year = params.get('year')
       this.type = params.get('type')
       this.id = params.get('id')
-      if (params.get('type') == this.general_route) {
+      if (params.get('type') == 'zone') {
         this.ZoneID = params.get('id')
       } else {
         this.PlantID = params.get('id')
@@ -69,7 +61,7 @@ export class ProductionProgramLvl2Component {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate([this.main_route], { replaceUrl: true })
+            this.router.navigate(['production-program'], { replaceUrl: true })
           }
         })
       } else {
@@ -86,7 +78,7 @@ export class ProductionProgramLvl2Component {
         try {
           this.rollupData()
         } catch (err) {
-          this.router.navigate([this.main_route], { replaceUrl: true })
+          this.router.navigate(['production-program'], { replaceUrl: true })
         }
       }
     })
@@ -103,7 +95,7 @@ export class ProductionProgramLvl2Component {
 
   changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
-    this.router.navigate([this.main_route, year, this.type, this.id], { replaceUrl: true })
+    this.router.navigate(['production-program', year, this.type, this.id], { replaceUrl: true })
   }
 
   rollupData(): void {
@@ -154,7 +146,7 @@ export class ProductionProgramLvl2Component {
       regions: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 10 : 9),
       products: this.data.classifyByIndex(rows, this.config.config.language == 'en' ? 12 : 11)
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.production_program') + ' - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle))
     this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions).sort()
     this.groupInfo.productKeys = Object.keys(this.groupInfo.products).sort()
     this.groupInfo.progress1Value = this.ZoneID != null ? this.groupInfo.zoneCustomer : this.groupInfo.plantCustomer
@@ -188,28 +180,28 @@ export class ProductionProgramLvl2Component {
 
   forward(): void {
     if (this.data.lastTap2) {
-      if (this.data.lastTap2.type == this.sub_level_a) {
-        this.router.navigate([this.sub_level_a, this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
+      if (this.data.lastTap2.type == 'region') {
+        this.router.navigate(['region', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       } else {
-        this.router.navigate([this.sub_level_b, this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
+        this.router.navigate(['product', this.data.lastTap2.key], { relativeTo: this.activatedRoute, replaceUrl: true })
       }
     }
   }
 
   goProduct(ProductID): void {
     this.data.lastTap = {
-      type: this.sub_level_a,
+      type: 'region',
       key: encodeURI(ProductID)
     }
-    this.router.navigate([this.sub_level_a, ProductID], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['region', ProductID], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   goRegion(RegionID): void {
     this.data.lastTap = {
-      type: this.sub_level_b,
+      type: 'product',
       key: encodeURI(RegionID)
     }
-    this.router.navigate([this.sub_level_b, RegionID], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['product', RegionID], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
 }

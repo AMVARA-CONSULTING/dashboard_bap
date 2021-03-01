@@ -10,33 +10,6 @@
     },
     "connected": "Verbunden",
     "not_connected": "Nicht verbunden",
-    "return": {
-        "main": "Zurück zur Hauptansicht",
-        "second": "Kehre zur zweiten Ebene zurück",
-        "month": "Kehre zum Monatsniveau zurück",
-        "zone": "Zurück zur Anlagen- / Zonenebene",
-        "werkbestand": "Kehre zum Werkbestand zurück"
-    },
-    "belong_to": {
-        "customers": "Einheiten von Kunden.",
-        "plan": "Zu Plan gehörende Einheiten.",
-        "plan_unit": "Summe der Kunden- und Planeinheiten.",
-        "reserved": "Einheiten reserviert."
-    },
-    "change": {
-        "plant": "Ändern die ausgewählte Fabrik",
-        "year": "Ändern das ausgewählte Jahr"
-    },
-    "description": {
-        "coordinator": "Koordinator",
-        "designer": "Designer",
-        "programmer": "Programmierer"
-    },
-    "portrait": "Vertikal und horizontal",
-    "swipe": "Wischen vertikal und horizontal",
-    "prev_month": "Zurück Monat",
-    "prev_year": "Vorheriges Jahr",
-    "last_x_month": "Letzte 12 Monate",
     "plandate": "Stand",
     "region": "Region",
     "product": "Produkt",
@@ -57,20 +30,13 @@
         "sponsor": "Sponsor",
         "credits": "Credits",
         "thanks": "Danke",
-        "thanks_message": "Wir möchten uns bei Google für das UX-Materialdesign bedanken, das ein neues modernes Design bietet und an alle Anforderungen angepasst werden kann. <a href='https://material.io/' target='_blank'>Siehe Google-Material richtlinien</a>",
         "software": "Software",
-        "software_message": "Dieser mobile Bericht wurde von <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a> mit <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> und <a href='https://angular.io/' target='_blank'>Angular</a> entwickelt.<br /> Die Datenabfragen wurden von der jeweiligen Geschäftsabteilung selbst bereitgestellt.",
         "licenses": "Lizenzhinweise",
-        "license_type": {
-            "consumer": "Verbraucherlizenz",
-            "mit": "MIT-Lizenz"
-        },
         "technical_information": "Technische Informationen",
-        "changelog": "Änderungsprotokoll",
+        "changelog": "Changelog",
         "reload_lang": "Sprachdateien neu laden",
         "connection": "Verbindung zum Server",
-        "lang": "Sprache",
-        "version": "Version"
+        "lang": "Sprache"
     },
     "help": {
         "lightTheme": "DIP bietet ein dunkles und ein helles Layout - auswählbar hiernach. Die Einstellung wird je Gerät gespeichert. Für die mobile Nutzung wird das dunkle Layout empfohlen, da dieses mehr Kontrast bietet.",
@@ -79,12 +45,6 @@
         "device_adapted": "Diese Anwendung ist für jedes Gerät und jede Visualisierung geeignet. Sie können mit verschiedenen Optionen durch sie navigieren.",
         "detail": "Einzelheiten",
         "year_selector": "Jahr & Standort-Selektoren",
-        "tree": "Hierarchie",
-        "language_change": "Sprache erfolgreich geändert!",
-        "language_reload": "Sprache erfolgreich neu geladen!",
-        "report_name": "Berichtsname",
-        "date": "Datum",
-        "not_running": "Läuft nicht",
-        "link_to_app": "Link zur @ Corporate Analytics-Plattform"
+        "tree": "Hierarchie"
     }
 }

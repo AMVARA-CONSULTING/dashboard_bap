@@ -8,7 +8,7 @@
 </div>
 <header *ngIf="ready">
   <div class="month">
-    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="{{ 'change.ubication' | translate }}"
+    <mat-form-field matTooltipClass="after" class="allocation-selector" matTooltipPosition="after" matTooltip="Change selected plant"
       style="margin-left: 10px;">
       <mat-select ngDefaultControl [(ngModel)]="plant" (ngModelChange)="changePlant($event)">
         <mat-option *ngFor="let plant of plants | keyvalue" [value]="plant.key">
@@ -23,7 +23,7 @@
 </header>
 <header class="return" *ngIf="ready">
   <div class="month" (click)="returnToMain()">
-    <div matTooltipClass="after" matTooltip="{{ 'return.main' | translate }}" matTooltipPosition="after" style="display: inline-block">{{
+    <div matTooltipClass="after" matTooltip="Return to main view" matTooltipPosition="after" style="display: inline-block">{{
       monthMomentum }}</div>
   </div>
   <div class="total-allocation">{{ totalAllocation | toNumber }}</div>
@@ -32,10 +32,10 @@
 </header>
 <header class="return2" *ngIf="ready">
   <div class="month" (click)="returnToParent()">
-    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="{{ 'return.second' | translate }}" matTooltipPosition="after"
+    <div *ngIf="type == 'region'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
       style="display: inline-block">{{ 'region' | translate }} - {{ region_id }}</div>
-    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="{{ 'return.second' | translate }}" matTooltipPosition="after"
-      style="display: inline-block">{{ 'company' | translate }} - {{ region_id }}</div>
+    <div *ngIf="type == 'product'" matTooltipClass="after" matTooltip="Return to month view" matTooltipPosition="after"
+      style="display: inline-block">{{ 'product' | translate }} - {{ region_id }}</div>
   </div>
   <div class="total-allocation">{{ subtotalAllocation | toNumber }}</div>
   <div class="total-program">{{ subtotalProgram | toNumber }}</div>
@@ -45,7 +45,7 @@
   [partNumber]="subtotalAllocation || 0"></allocation-bar>
 <div class="content-wrapper" [@list]="months.length">
   <div class="row-group">
-    <div class="group-header" *ngIf="type == 'region'">{{ 'cities' | translate }}</div>
+    <div class="group-header" *ngIf="type == 'region'">{{ 'products' | translate }}</div>
     <div class="group-header" *ngIf="type == 'product'">{{ 'regions' | translate }}</div>
     <div class="row" (click)="exchangeType(row.key)" *ngFor="let row of rows | keyvalue">
       <div class="month">{{ row.key }}</div>

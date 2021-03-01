@@ -6,7 +6,6 @@ import { DataService } from '@services/data.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -30,25 +29,18 @@ export class OrderIntakeSubLvl3Component {
 
   ready: boolean = false
 
-  // Names of the routes for each level
-  main_route: string = 'activity'
-  general_route: string = 'zone'
-  sub_route_a: string = 'city'
-  sub_route_b: string = 'company'
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private translate: TranslateService,
     private title: Title
   ) {
-    title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_intake'))
+    title.setTitle(this.config.config.appTitle + ' - Order Intake')
     // Show the loader while getting/loading the data
     this.activatedRoute.paramMap.subscribe(params => {
-      if (params.get('type') == this.general_route) {
+      if (params.get('type') == 'zone') {
         this.ZoneID = params.get('id')
         this.PlantID = null
       } else {
@@ -56,7 +48,7 @@ export class OrderIntakeSubLvl3Component {
         this.ZoneID = null
       }
       try {
-        if (params.get('type2') == this.sub_route_a) {
+        if (params.get('type2') == 'region') {
           this.RegionID = decodeURI(params.get('region_id'))
           this.ProductID = null
         } else {
@@ -64,7 +56,7 @@ export class OrderIntakeSubLvl3Component {
           this.RegionID = null
         }
       } catch (err) {
-        this.router.navigate([this.main_route], { replaceUrl: true })
+        this.router.navigate(['order-intake'], { replaceUrl: true })
       }
       // If no Order Intake rows were found, get them
       if (this.data.orderIntakeData.length === 0) {
@@ -74,7 +66,7 @@ export class OrderIntakeSubLvl3Component {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate([this.main_route], { replaceUrl: true })
+            this.router.navigate(['order-intake'], { replaceUrl: true })
           }
         })
       } else {
@@ -82,7 +74,7 @@ export class OrderIntakeSubLvl3Component {
         try {
           this.rollupData();
         } catch (err) {
-          this.router.navigate([this.main_route], { replaceUrl: true });
+          this.router.navigate(['order-intake'], { replaceUrl: true });
         }
       }
     });
@@ -90,9 +82,9 @@ export class OrderIntakeSubLvl3Component {
 
   goAnother(key): void {
     if (this.RegionID != null) {
-      this.router.navigate(['../../', this.sub_route_b, encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
+      this.router.navigate(['../../', 'product', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
     } else {
-      this.router.navigate(['../../', this.sub_route_a, encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
+      this.router.navigate(['../../', 'region', encodeURI(key)], { relativeTo: this.activatedRoute, replaceUrl: true });
     }
   }
 
@@ -140,7 +132,7 @@ export class OrderIntakeSubLvl3Component {
     } else {
       this.subRows = this.data.classifyByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language])[this.ProductID]
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_intake') + ' - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' + (this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' + (this.RegionID != null ? this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.region[this.config.config.language]] : this.subRows[0][this.config.config.reports.trucks.columns.orderIntake.product[this.config.config.language]]))
     this.groupInfo['thisActual'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.actual)
     this.groupInfo['thisPrevious'] = this.data.sumByIndex(this.subRows, this.config.config.reports.trucks.columns.orderIntake.previous)
     this.groupInfo['progress1'] = this.percent(this.groupInfo.thisActual, this.data.sumByIndex(rows, this.config.config.reports.trucks.columns.orderIntake.actual))

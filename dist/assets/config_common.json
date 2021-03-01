@@ -11,11 +11,7 @@
 	"license": "SFASR",
 	"languageCodes": {
 		"en": "English",
-		"de": "Deutsch",
-		"es": "Español",
-		"ru": "Русский",
-		"uk": "Українська",
-		"ca": "Català"
+		"de": "Deutsch"
 	},
 	"reportLinks": [
 		{ "link": "/order-intake", "text": "order_intake" },

@@ -5,7 +5,7 @@
     <!-- Bindings for actual and previous date ranges -->
     <ng-container *ngLet="rows | filterYear:'current' as currentYearRows">
       <ng-container *ngLet="rows | filterYear:'previous' as previousYearRows">
-        <!-- Graphic Comparison for level 2 -->
+        <!-- Graphic Comparison -->
         <order-backlog-graphic-comparison [current]="currentYearRows" [previous]="previousYearRows"></order-backlog-graphic-comparison>
         <!-- Overview -->
         <div class="overview">
@@ -13,7 +13,7 @@
           <order-backlog-header></order-backlog-header>
           <!-- Header Row of current select plant / zone -->
           <div class="header-row zone">
-            <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}"></i>
+            <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
             <div class="title with-selector">
               <dip-plant-selector></dip-plant-selector>
             </div>

@@ -7,7 +7,6 @@ import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -50,21 +49,17 @@ export class AllocationLvl2Component {
 
   monthMomentum: string = ''
 
-  // Names of the routes for each level
-  main_route: string = 'covid'
-
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private translate: TranslateService
+    private router: Router
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.title.setTitle(config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
+    this.title.setTitle(config.config.appTitle + ' - Allocation')
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
       this.date = params.get('date')
@@ -83,7 +78,7 @@ export class AllocationLvl2Component {
   }
 
   changePlant(plant: string): void {
-    this.router.navigate([this.main_route, plant, 'date', this.date], { replaceUrl: true })
+    this.router.navigate(['allocation', plant, 'date', this.date], { replaceUrl: true })
   }
 
   goRegion(key): void {
@@ -111,10 +106,10 @@ export class AllocationLvl2Component {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate(['allocation', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation') + ' - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Allocation - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}

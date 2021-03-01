@@ -6,7 +6,6 @@ import { ApiService } from '@services/api.service';
 import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -28,19 +27,13 @@ export class PlantStockLvl2Component {
   plant: string
   werk: string
 
-  // Names of the routes for each level
-  main_route: string = 'companies'
-  second_level_route: string = 'cities'
-  third_level_route: string = 'city'
-
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private translate: TranslateService
+    private router: Router
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
@@ -62,15 +55,15 @@ export class PlantStockLvl2Component {
   }
 
   goWerk(werk): void {
-    this.router.navigate([this.main_route, this.plant, this.second_level_route, werk], { replaceUrl: true })
+    this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
   changePlant(plant) {
-    this.router.navigate([this.main_route, plant, this.second_level_route, this.werk], { replaceUrl: true })
+    this.router.navigate(['plant-stock', plant, 'werk', this.werk], { replaceUrl: true })
   }
 
   goHofbestand(hofbestandKey) {
-    this.router.navigate([this.main_route, this.plant, this.second_level_route, this.werk, this.third_level_route, hofbestandKey], { replaceUrl: true })
+    this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', hofbestandKey], { replaceUrl: true })
   }
 
   rollupData() {
@@ -86,10 +79,10 @@ export class PlantStockLvl2Component {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.plant_stock') + ' - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.corpintra ? this.config.config.language : 'en']])))
+    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.corpintra ? this.config.config.language : 'en']])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
@@ -101,11 +94,11 @@ export class PlantStockLvl2Component {
     this.werkDelta = this.data.sumByIndex(filteredRowsByWerk, this.config.config.reports.trucks.columns.plantStock.delta)
     this.hofbestands = { ...this.data.classifyByIndex(filteredRowsByWerk, hofbestandName[this.config.config.corpintra ? this.config.config.language : 'en']) }
     if (this.hofbestands.hasOwnProperty("not defined")) {
-      this.router.navigate([this.main_route, this.plant, this.second_level_route, this.werk, this.third_level_route, 'not defined'], { replaceUrl: true })
+      this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'not defined'], { replaceUrl: true })
       return
     }
     if (this.hofbestands.hasOwnProperty("nicht definiert")) {
-      this.router.navigate([this.main_route, this.plant, this.second_level_route, this.werk, this.third_level_route, 'nicht definiert'], { replaceUrl: true })
+      this.router.navigate(['plant-stock', this.plant, 'werk', this.werk, 'hofbestand', 'nicht definiert'], { replaceUrl: true })
       return
     }
     this.actualValue = percent(this.werkActual, this.totalActual)

@@ -6,7 +6,6 @@ import { ConfigService } from '@services/config.service';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment'
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -30,24 +29,16 @@ export class ProductionProgramLvl3Component {
 
   ready: boolean = false
 
-    // Names of the routes for each level
-    main_route: string = 'employees'
-    second_level_route: string = 'region'
-    general_route: string = 'zone'
-    sub_level_a: string = 'city'
-    sub_level_b: string = 'company'  
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public data: DataService,
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private translate: TranslateService,
     private title: Title
   ) {
     (window as any).pp3 = this;
-    title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.production_program'))
+    title.setTitle(this.config.config.appTitle + ' - Production Program')
     // Show the loader while getting/loading the data
     this.activatedRoute.paramMap.subscribe(params => {
       this.year = params.get('year')
@@ -55,12 +46,12 @@ export class ProductionProgramLvl3Component {
       this.type2 = params.get('type2')
       this.region_id = decodeURI(params.get('region_id'))
       this.id = params.get('id')
-      if (this.type == this.general_route) {
+      if (this.type == 'zone') {
         this.ZoneID = this.id
       } else {
         this.PlantID = this.id
       }
-      if (this.type2 == this.sub_level_a) {
+      if (this.type2 == 'region') {
         this.RegionID = decodeURI(this.region_id)
         this.ProductID = null
       } else {
@@ -93,7 +84,7 @@ export class ProductionProgramLvl3Component {
           try {
             this.rollupData()
           } catch (err) {
-            this.router.navigate([this.main_route], { replaceUrl: true })
+            this.router.navigate(['production-program'], { replaceUrl: true })
           }
         })
       } else {
@@ -126,18 +117,18 @@ export class ProductionProgramLvl3Component {
         try {
           this.rollupData()
         } catch (err) {
-          this.router.navigate([this.main_route], { replaceUrl: true })
+          this.router.navigate(['production-program'], { replaceUrl: true })
         }
       }
     })
   }
 
   goForProduct(key): void {
-    this.router.navigate(['../../', this.sub_level_b, key], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   goForRegion(key): void {
-    this.router.navigate(['../../', this.sub_level_a, key], { relativeTo: this.activatedRoute, replaceUrl: true })
+    this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
 
   productionProgramData: any[][] = []
@@ -153,7 +144,7 @@ export class ProductionProgramLvl3Component {
 
   changeYear(year: string, years?: string[]): void {
     localStorage.setItem('production-year', year)
-    this.router.navigate([this.main_route, year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
+    this.router.navigate(['production-program', year, this.type, this.id, this.type2, this.region_id], { replaceUrl: true })
   }
 
   rollupData(): void {
@@ -174,7 +165,7 @@ export class ProductionProgramLvl3Component {
     // If type is plant group by plant sub id
     let reducedIndexForZoneLevel = 3;
     let reducedSelector = rows[0][3];
-    if (this.type === this.general_route) {
+    if (this.type === 'zone') {
       if (this.ProductID != null) {
         reducedIndexForZoneLevel = this.config.config.language === 'en' ? 12 : 11;
       } else {
@@ -228,24 +219,24 @@ export class ProductionProgramLvl3Component {
       this.groupInfo.regions = this.data.classifyByIndex(this.groupInfo.regionsPlain, this.config.config.language == 'en' ? 10 : 9)
       this.groupInfo.regionKeys = Object.keys(this.groupInfo.regions).sort()
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.production_program') + ' - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' +
+    this.title.setTitle(this.config.config.appTitle + ' - Production Program - ' + (this.ZoneID != null ? this.groupInfo.zoneTitle : this.groupInfo.plantTitle) + ' - ' +
       (this.RegionID != null ? this.RegionID : this.ProductID))
     this.groupInfo.progress1Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 15) : this.data.sumByIndex(this.groupInfo.regionsPlain, 15)
     this.groupInfo.progress2Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 16) : this.data.sumByIndex(this.groupInfo.regionsPlain, 16)
     this.groupInfo.progress3Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 17) : this.data.sumByIndex(this.groupInfo.regionsPlain, 17)
     this.groupInfo.progress4Value = this.RegionID != null ? this.data.sumByIndex(this.groupInfo.productsPlain, 22) : this.data.sumByIndex(this.groupInfo.regionsPlain, 22)
     this.groupInfo.progress1 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 15): this.groupInfo.zoneCustomer) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 15): this.groupInfo.zoneCustomer)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 15), this.type == 'plant' ? this.data.sumByIndex(plantRows, 15): this.groupInfo.zoneCustomer) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 15), this.type == 'plant' ? this.data.sumByIndex(plantRows, 15): this.groupInfo.zoneCustomer)
     this.groupInfo.progress2 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 16): this.groupInfo.zonePlan) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 16): this.groupInfo.zonePlan)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 16), this.type == 'plant' ? this.data.sumByIndex(plantRows, 16): this.groupInfo.zonePlan) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 16), this.type == 'plant' ? this.data.sumByIndex(plantRows, 16): this.groupInfo.zonePlan)
     this.groupInfo.progress3 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 17): this.groupInfo.zoneTotal) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 17): this.groupInfo.zoneTotal)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 17), this.type == 'plant' ? this.data.sumByIndex(plantRows, 17): this.groupInfo.zoneTotal) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 17), this.type == 'plant' ? this.data.sumByIndex(plantRows, 17): this.groupInfo.zoneTotal)
     this.groupInfo.progress4 = this.RegionID != null ?
-      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 22): this.groupInfo.zoneReserve) :
-      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.type == this.second_level_route ? this.data.sumByIndex(plantRows, 22): this.groupInfo.zoneReserve)
+      this.percent(this.data.sumByIndex(this.groupInfo.productsPlain, 22), this.type == 'plant' ? this.data.sumByIndex(plantRows, 22): this.groupInfo.zoneReserve) :
+      this.percent(this.data.sumByIndex(this.groupInfo.regionsPlain, 22), this.type == 'plant' ? this.data.sumByIndex(plantRows, 22): this.groupInfo.zoneReserve)
     this.groupInfo = { ...this.groupInfo }
     // Tell the DOM it's ready to rock ’n’ roll !
     setTimeout(() => this.ready = true)

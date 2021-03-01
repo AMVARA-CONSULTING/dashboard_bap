@@ -10,33 +10,6 @@
     },
     "connected": "Connected",
     "not_connected": "Not connected",
-    "return": {
-        "main": "Return to main view",
-        "second": "Return to second level",
-        "month": "Return to month level",
-        "zone": "Return to plant/zone level", 
-        "werkbestand": "Return to Werkbestand level"
-    },
-    "belong_to": {
-        "customers": "Units belonging to customers.",
-        "plan": "Units belonging to plan.",
-        "plan_unit": "Sum of customer and plan units.",
-        "reserved": "Units belonging to reserved."
-    },
-    "change": {
-        "plant": "Change selected plant",
-        "year": "Change selected year"
-    },
-    "description": {
-        "coordinator": "Coordinator",
-        "designer": "Designer",
-        "programmer": "Programmer"
-    },
-    "portrait": "Portrait & Landscape",
-    "swipe": "Swipe & Scroll",
-    "prev_month": "Prev. Month",
-    "prev_year": "Prev. Year",
-    "last_x_month": "Last 12 month",
     "plandate": "as at",
     "region": "Region",
     "product": "Product",
@@ -57,20 +30,13 @@
         "sponsor": "Sponsor",
         "credits": "Credits",
         "thanks": "Thank you",
-        "thanks_message": "We would like to thank Google for their UX Material design, which brings a new modern design and adaptable to any need. <a href='https://material.io/' target='_blank'>See Google Material guidelines</a>",
         "software": "Software",
-        "software_message": "This mobile report has been developed by <a href='https://amvara.de/' target='_blank'>AMVARA CONSULTING</a> using <a href='https://www.ibm.com/products/cognos-analytics' target='_blank'>IBM Cognos Analytics</a> and <a href='https://angular.io/' target='_blank'>Angular</a>.<br />The data queries were provided by the respective business department itself.",
         "licenses": "Licenses",
-        "license_type": {
-            "consumer": "Customer License",
-            "mit": "Mit License"
-        },
         "technical_information": "Technical Information",
         "changelog": "Changelog",
         "reload_lang": "Reload language files",
         "connection": "Connection to server",
-        "lang": "Language",
-        "version": "Version"
+        "lang": "Language"
     },
     "help": {
         "lightTheme": "This application offers a dark and a light theme. Select below. The prefence is stored in your browsers local storage. For mobile use we recommend the dark theme as it offers more contrast.",
@@ -79,12 +45,6 @@
         "device_adapted": "This application is adapted for any device and visualization. You can navigate through it with different options.",
         "detail": "Detail",
         "year_selector": "Year & Location Selectors",
-        "tree": "Hierarchy",
-        "language_change": "Language changed successfully!",
-        "language_reload": "Language reloaded successfully!",
-        "report_name": "Report Name",
-        "date": "Date",
-        "not_running": "Not running",
-        "link_to_app": "Link to @ Corporate Analytics Platform"
+        "tree": "Hierarchy"
     }
 }

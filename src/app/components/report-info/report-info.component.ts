@@ -25,7 +25,6 @@ export class ReportInfoComponent implements OnChanges {
 
   @Input() type = '';
   @Input() title = '';
-  @Input() shownTitle = '';
 
   ngOnChanges(changes: SimpleChanges) {
     const type = changes.type.currentValue;

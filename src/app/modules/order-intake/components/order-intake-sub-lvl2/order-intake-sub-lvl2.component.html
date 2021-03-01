@@ -12,7 +12,7 @@
         <div class="previous">{{ groupInfo.totalPrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow zone" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
             groupInfo.zoneRows[0][config.config.reports.trucks.columns.orderIntake.groupName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.zoneActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
@@ -26,7 +26,7 @@
         <div class="previous">{{ groupInfo.zonePrevious | toNumber }}</div>
       </div>
       <div class="header-row arrow plant" (click)="return()">
-        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="{{ 'return.main' | translate }}">{{
+        <div class="title"><span matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view">{{
             groupInfo.plantRows[0][config.config.reports.trucks.columns.orderIntake.plantName[config.config.language]]}}</span></div>
         <div class="actual">{{ groupInfo.plantActual | toNumber }}</div>
         <div class="previous">{{ groupInfo.plantPrevious | toNumber }}</div>
@@ -36,7 +36,7 @@
   <dip-circular-meters [actualValue]="groupInfo.progressValue1" [previousValue]="groupInfo.progressValue2" [actual]="groupInfo.progress1 || 0"
     [previous]="groupInfo.progress2 || 0" *ngIf="ready && groupInfo"></dip-circular-meters>
   <div class="title-header">
-    <div class="title">{{ 'cities' | translate }}</div>
+    <div class="title">{{ 'regions' | translate }}</div>
   </div>
   <div class="lvl2-row" (click)="goProduct(RegionKey)" *ngFor="let RegionKey of groupInfo?.regionKeys">
     <div class="title">{{
@@ -46,7 +46,7 @@
     <div class="previous orange">{{ data.sumByIndex(groupInfo.regions[RegionKey], 13) | toNumber }}</div>
   </div>
   <div class="title-header">
-    <div class="title">{{ 'companies' | translate }}</div>
+    <div class="title">{{ 'products' | translate }}</div>
   </div>
   <div class="lvl2-row" (click)="goRegion(ProductKey)" *ngFor="let ProductKey of groupInfo?.productKeys">
     <div class="title">{{

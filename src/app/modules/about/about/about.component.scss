@@ -20,12 +20,12 @@
 }
 
 ::ng-deep .mat-expansion-panel-content {
-    color: $semi-white;
+    color: white;
 }
 
 @include lightTheme {
     :host {
-        ::ng-deep a {
+        a {
             color: $petrol !important;
             font-weight: bold;
         }
@@ -59,11 +59,9 @@
     }
 }
 
-:host {
-    ::ng-deep p a, p span {
-        color: $lighten-cyan-text;
-        text-decoration: none;
-    }
+p a, p span {
+    color: $lighten-cyan-text;
+    text-decoration: none;
 }
 
 @include lightTheme {

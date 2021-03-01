@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment } from '@other/functions';
 
 @Component({
@@ -34,19 +33,13 @@ export class OrderIntakeMainComponent implements OnInit {
     private api: ApiService,
     private config: ConfigService,
     private router: Router,
-    private title: Title,
-    private translate: TranslateService
+    private title: Title
   ) {
     (window as any).moment = moment
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.order_intake'))
+    this.title.setTitle(this.config.config.appTitle + ' - Order Intake')
   }
 
   ready: boolean = false
-
-  // Names of the routes for each level
-  main_route: string = 'activity'
-  general_route: string = 'zone'
-  second_level_route: string = 'region'
 
   plandate: string = ''
 
@@ -91,10 +84,10 @@ export class OrderIntakeMainComponent implements OnInit {
    */
   goZone(ZoneID): void {
     this.data.lastTap = {
-      type: this.general_route,
+      type: 'zone',
       key: ZoneID
     }
-    this.router.navigate([this.main_route,this.general_route, ZoneID], { replaceUrl: true, queryParamsHandling: 'merge' })
+    this.router.navigate(['order-intake','zone', ZoneID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   /** Go to /order-intake/plant/:id
@@ -102,18 +95,18 @@ export class OrderIntakeMainComponent implements OnInit {
    */
   goPlant(PlantID): void {
     this.data.lastTap = {
-      type: this.second_level_route,
+      type: 'plant',
       key: PlantID
     }
-    this.router.navigate([this.main_route, this.second_level_route, PlantID], { replaceUrl: true, queryParamsHandling: 'merge' })
+    this.router.navigate(['order-intake', 'plant', PlantID], { replaceUrl: true, queryParamsHandling: 'merge' })
   }
 
   recoverLvl2(): void {
     if (this.data.lastTap != null) {
-      if (this.data.lastTap.type == this.second_level_route) {
-        this.router.navigate([this.main_route, this.second_level_route, this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
+      if (this.data.lastTap.type == 'plant') {
+        this.router.navigate(['order-intake', 'plant', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       } else {
-        this.router.navigate([this.main_route, this.general_route, this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
+        this.router.navigate(['order-intake', 'zone', this.data.lastTap.key], { replaceUrl: true, queryParamsHandling: 'merge' })
       }
     }
   }

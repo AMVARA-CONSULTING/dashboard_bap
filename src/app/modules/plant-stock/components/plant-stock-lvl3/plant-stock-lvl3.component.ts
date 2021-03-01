@@ -6,7 +6,6 @@ import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -29,19 +28,13 @@ export class PlantStockLvl3Component {
   werk: string
   hofb: string
 
-  // Names of the routes for each level
-  main_route: string = 'companies'
-  second_level_route: string = 'cities'
-  third_level_route: string = 'city'
-
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private translate: TranslateService
+    private router: Router
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
@@ -71,7 +64,7 @@ export class PlantStockLvl3Component {
   }
 
   changePlant(plant) {
-    this.router.navigate([this.main_route, plant, this.second_level_route, this.werk, this.third_level_route, this.hofb], { replaceUrl: true })
+    this.router.navigate(['plant-stock', plant, 'werk', this.werk, 'hofbestand', this.hofb], { replaceUrl: true })
   }
 
   rollupData() {
@@ -89,10 +82,10 @@ export class PlantStockLvl3Component {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate(['plant-stock', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.plant_stock') + ' - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.corpintra ? this.config.config.language : 'en']])))
+    this.title.setTitle(this.config.config.appTitle + ' - Plant Stock - ' + ((this.data.plantStockData.filter(item => item[plantKey] == this.plant)[0][plantName[this.config.config.corpintra ? this.config.config.language : 'en']])))
     const filteredRowsByPlant = this.data.plantStockData.filter(aloc => aloc[plantKey] == this.plant)
     this.totalActual = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.actual)
     this.totalPrevious = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.plantStock.previous)
@@ -117,7 +110,7 @@ export class PlantStockLvl3Component {
   }
 
   goWerk(werk): void {
-    this.router.navigate([this.main_route, this.plant, this.second_level_route, werk], { replaceUrl: true })
+    this.router.navigate(['plant-stock', this.plant, 'werk', werk], { replaceUrl: true })
   }
 
   returnToMain(): void {

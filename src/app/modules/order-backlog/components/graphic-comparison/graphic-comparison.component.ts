@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfigService } from '@services/config.service';
 import { DataService } from '@services/data.service';
 import { map, startWith } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'order-backlog-graphic-comparison',
@@ -28,16 +27,15 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
   constructor(
     private _store: Store,
     private _config: ConfigService,
-    private _data: DataService,
-    private translate: TranslateService
+    private _data: DataService
   ) {
     // Pipe the lightTheme FormControl for the correct chart colors
     // startWith is needed because valueChanges doesn't emit until there's a change
     this.colorScheme$ = this._data.lightTheme.valueChanges.pipe(
       startWith(this._data.lightTheme.value),
       map(lightTheme => {
-        const darkPalette = ['#28E8FF', '#f2142c'];
-        const lightPalette = ['#17687F', '#f2142c'];
+        const darkPalette = ['#28E8FF', '#F8B03B'];
+        const lightPalette = ['#17687F', '#E59123'];
         return { domain: lightTheme ? lightPalette : darkPalette };
       })
     );
@@ -68,11 +66,9 @@ export class OrderBacklogGraphicComparisonComponent implements OnChanges {
         return r;
       }, {});
       // Create basic scheme for chart
-      const prev_year = this.translate.instant('prev_year');
-      const last_x_month = this.translate.instant('last_x_month');
       const chart: NgxLineChart = [
-        { name: last_x_month, series: [] },
-        { name: prev_year, series: [] }
+        { name: 'Last 12 Month', series: [] },
+        { name: 'Prev. Year', series: [] }
       ];
       let i = 0;
       const length = currentMonthsRange.length;

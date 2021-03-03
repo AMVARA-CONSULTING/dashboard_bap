@@ -18,6 +18,13 @@ export class AccessGranted implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    // bypass acess Code for github domains
+    if (window.location.href.includes("github")) {
+      this.data.accessGranted=true
+      return this.data.accessGranted
+    }
+
+    // check access granted
     if (this.config.corpintra) {
       // Check user capabilities in Cognos Server
       this.data.accessGranted = this._cognos.userCapabilities.getValue()[this.config.target][route.data.title];

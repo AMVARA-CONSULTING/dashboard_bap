@@ -1,6 +1,6 @@
 
-<a href="https://amvara.de/">![Logo](Documentation/img/1-Logo.svg)</a>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<a href="https://amvara.de/"><img src="Documentation/img/1-Logo.svg" width="400px"></a>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 # Table of contents
 1. [What is BAP?](#BAP)

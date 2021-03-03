@@ -22,7 +22,11 @@
 
 # 1. What is BAP?<a name="BAP"></a>
 
-BAP is an interactive dashboard that displays all the data contained in a CSV file in a matter of seconds, granting incredibly low FCP (First Contentful Paint) and TTI (Time To Interactive). Furthermore, our dashboard offers to the user a broad range of different graphics and data display options combined with an atractive and totally customizable interface.
+BAP is an interactive dashboard that displays all the data contained in a CSV file or from [IBM Cognos](https://www.ibm.com/products/cognos-analytics) [REST API](https://www.ibm.com/support/knowledgecenter/SSEP7J_11.1.0/com.ibm.swg.ba.cognos.ca_api.doc/swagger_ca.json) in a matter of seconds, granting incredibly low FCP (First Contentful Paint) and TTI (Time To Interactive). Furthermore, the BAP dashboard offers to the user a broad range of different graphics and data display options combined with an atractive and totally customizable interface.
+
+Connecting BAP to IBM Cognos also includes retrieval of access rights and matches them against the shown reports. If IBM Cognos is secured and the user has not authenticated yet, a Login Form is offered.
+
+BAP connects a total of 5 reports with up to 4 drill-levels.
 
 ### Desktop view
 ![PreviewDesktop](Documentation/img/2-PreviewDesktop.png)
@@ -43,10 +47,12 @@ sudo npm install -g npm;
 
 Once you have installed everything in the previous step, execute the following:
 <pre>
-sudo npm install -g @angular/cli;
-sudo npm install -g json;
-sudo npm install --save-dev @angular-devkit/build-angular
+npm install @angular/cli;
+npm install json;
+npm install --save-dev @angular-devkit/build-angular
 </pre>
+
+You might consider not using sudo. We recommend this.
 
 ## Development server
 
@@ -60,6 +66,7 @@ You can install them using `npm install -g <package_name>`
 
 ## Build / Deployment
 
+- The easiest way and interactive compiling `npm start` 
 - For more.amvara.rocks `npm run build`
 - For Cognos `npm run build-cognos`
 
@@ -151,4 +158,4 @@ Here is a little example graphic showing the hierarchies. In this case, the tabl
 Despite the fact that almost all of the tables have the same structure, there are some subtle differences amongst them.
 
 # 6. Support<a name="Support"></a>
-For further questions or issues, please contact us at our email <tec_dev@amvara.de>
+For further questions or issues, please contact us at our email <tec_dev@amvara.de> or via Discord https://discord.gg/MfuVQrqP

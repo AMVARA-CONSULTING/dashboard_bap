@@ -28,6 +28,8 @@ Connecting BAP to IBM Cognos also includes retrieval of access rights and matche
 
 BAP connects a total of 5 reports with up to 4 drill-levels.
 
+[See it live](https://amvara-consulting.github.io/dashboard_bap.github.io/#/activity)
+
 ### Desktop view
 ![PreviewDesktop](Documentation/img/2-PreviewDesktop.png)
 

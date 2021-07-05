@@ -1,3 +1,4 @@
 FROM gitpod/workspace-full
 
-RUN npm i -g @angular/cli
+RUN npm install
+RUN npm install -g @angular/cli

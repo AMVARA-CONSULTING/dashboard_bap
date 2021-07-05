@@ -1,9 +1,7 @@
-image:
-  file: .gitpod.Dockerfile
-
 tasks:
-  - command: ng serve --aot
-    name: build
+  - name: serve
+    init: npm install
+    command: npx ng serve --aot
     openMode: split-right
 
 ports:

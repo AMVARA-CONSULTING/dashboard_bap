@@ -1,9 +1,14 @@
 tasks:
-  - before: npm install
+  - name: dependencies
+    init: >
+      npm install &&
+      gp sync-done dependencies
   - name: serve
+    init: gp sync-await dependencies
     command: npx ng serve --aot
     openMode: split-right
   - name: build
+    init: gp sync-await dependencies
     command: npx ng build -c production
     openMode: split-right
   

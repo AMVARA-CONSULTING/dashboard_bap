@@ -1,8 +1,12 @@
 tasks:
+  - before: npm install
   - name: serve
-    init: npm install
     command: npx ng serve --aot
     openMode: split-right
+  - name: build
+    command: npx ng build -c production
+    openMode: split-right
+  
 
 ports:
   - port: 4200

@@ -1,0 +1,4 @@
+<mat-button-toggle-group appearance="legacy" #group="matButtonToggleGroup" [value]="(showTotal$ | async) ? 'total' : 'avg'" (change)="valueChanged(group.value)">
+  <mat-button-toggle value="avg">{{ 'total_selector.avg_view' | translate }}</mat-button-toggle>
+  <mat-button-toggle value="total">{{ 'total_selector.total_view' | translate }}</mat-button-toggle>
+</mat-button-toggle-group>

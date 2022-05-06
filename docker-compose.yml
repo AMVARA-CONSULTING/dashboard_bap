@@ -1,9 +1,10 @@
 version: '2.0'
 services:
   node:
-    image: node:10.16.3-alpine
+    image: node:14-alpine
     container_name: "dip_docker"
     restart: always
+    working_dir: /opt/code
     volumes:
       - ".:/opt/code/."
       - "./entrypoint.sh:/entrypoint.sh"

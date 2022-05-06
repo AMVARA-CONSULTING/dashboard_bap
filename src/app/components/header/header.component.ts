@@ -39,5 +39,5 @@ export class HeaderComponent {
   }
 
   reports: HeaderLink[] = [];
-
+  
 }

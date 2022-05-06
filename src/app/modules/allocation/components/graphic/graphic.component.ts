@@ -39,7 +39,7 @@ export class GraphicComponent {
   goMonth(date): void {
     const momentum = moment(date, 'MM / YYYY');
     const year = momentum.format('YYYYMM');
-    this.router.navigate(['allocation', this.plantID, 'date', year]);
+    this.router.navigate(['covid', this.plantID, 'date', year]);
   }
 
   width: number = 0

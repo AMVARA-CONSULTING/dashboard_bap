@@ -1,0 +1,93 @@
+<div *ngIf="loaded" class="shipped">
+  <div *ngIf="pl.length > 0; else noReport">
+    <div class="charts">
+      <!------------- vertical bar chart legend labels ----------------->
+      <div class="field-labels">
+        <!--------------------------------------------------------------- month selector -------------------------------------------------------------------------->
+        <div class="month-selector">
+          <mat-button-toggle-group appearance="legacy" #group="matButtonToggleGroup" [(ngModel)]="sm" (change)="onChangeM(group.value)">
+            <mat-button-toggle value="{{shipped[sp]['month'][0].month_id}}">{{shipped[sp]['month'][0].month_id}}</mat-button-toggle>
+            <mat-button-toggle value="{{shipped[sp]['month'][1].month_id}}">{{shipped[sp]['month'][1].month_id}}</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="legends">
+          <span>{{ 'shipped.day' | translate }}</span>
+          <span>{{ 'shipped.mon_avg' | translate }}</span>
+        </div>
+      </div>
+
+      <!--------------------- Vertical bar chart  ----------------------->
+      <shipped-graphic [data]="gvcd()" ></shipped-graphic>
+    </div>
+
+
+    <div class="data-table">
+
+      <div class="table-header">
+        <!-------------------- plant selector ----------------------->
+        <mat-form-field  matTooltipClass="" matTooltipPosition="" matTooltip="">
+          <mat-select [(ngModel)]="sp"  (ngModelChange)="onChangeP()">
+            <mat-option *ngFor="let plant of pl" [value]="plant"> {{ plant }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!---------------------- date slider ------------------------>
+        <mat-form-field>
+          <div class="date-slider">
+            <mat-icon [ngClass]="{disabled: isFD()}" (click)="onChangeD('previous')">play_arrow</mat-icon>
+            <div (click)="picker.open()">
+              <input #dateSelector [style.width.ch]="getInputSize(dateSelector)" matInput readonly [value]="sTD(sd)" [matDatepickerFilter]="aD" [min]="mid" [max]="mad" [matDatepicker]="picker" (dateChange)="onDC($event)">
+            </div>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="isMobile" #picker></mat-datepicker>
+            <mat-icon [ngClass]="{disabled: isLD()}" (click)="onChangeD('next')" >play_arrow</mat-icon>
+          </div>
+        </mat-form-field>
+
+        <!----------------------- month sum  ------------------------>
+        <mat-form-field>
+          <input matInput value="{{ 'shipped.mon_sum' | translate }}" readonly>
+        </mat-form-field>
+
+        <!--------------------- month average ----------------------->
+        <mat-form-field>
+          <input matInput value="{{ 'shipped.mon_avg' | translate }}" readonly>
+        </mat-form-field>
+      </div>
+
+      <!-------------------------------------------------------------------- report data start -------------------------------------------------------------------------------->
+      <div class="table-content">
+        <table>
+          <tr>
+            <td>{{ 'shipped.to' | translate }}</td><td>{{ ddr.to | toNumber }}</td><td>{{ dmar.to | toNumber }}</td><td>{{ dmar['DS to'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.tr' | translate }}</td><td>{{ ddr['tot'] | toNumber }}</td><td>{{ dmar['tot'] | toNumber }}</td><td>{{ dmar['DS tot'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.ow' | translate }}</td><td>{{ ddr['ow'] | toNumber }}</td><td>{{ dmar['ow'] | toNumber }}</td><td>{{ dmar['DS ow'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.rs' | translate }}</td><td>{{ ddr['rs'] | toNumber }}</td><td>{{ dmar['rs'] | toNumber }}</td><td>{{ dmar['DS rs'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.dt' | translate }}</td><td>{{ ddr['dt'] | toNumber }}</td><td>{{ dmar['dt'] | toNumber }}</td><td>{{ dmar['DS dt'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.dp' | translate }}</td><td>{{ ddr['ftp'] | toNumber }}</td><td>{{ dmar['ftp'] | toNumber }}</td><td>{{ dmar['DS ftp'] | toNumber }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'shipped.cc' | translate }}</td><td>{{ ddr['cc'] | toNumber }}</td><td>{{ dmar['cc'] | toNumber }}</td><td>{{ dmar['DS cc'] | toNumber }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noReport>
+  <div class="noReport">
+    <mat-icon>find_in_page</mat-icon>
+    <p class="noReportMessage">Currently there is no avaliable report</p>
+  </div>
+</ng-template>

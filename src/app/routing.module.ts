@@ -50,6 +50,20 @@ const routes: Routes = [
     canLoad: [CapabilityAccess]
   },
   {
+    path: 'shipped',
+    loadChildren: () => import('./modules/deliveries/deliveries.module').then(m => m.DeliveriesModule),
+    data: { title: 'deliveries' },
+    canActivate: [AccessGranted],
+    canLoad: [CapabilityAccess]
+  },
+  {
+    path: 'ecommerce evolution',
+    loadChildren: () => import('./modules/order-intake-history/order-intake-history.module').then(m => m.OrderIntakeHistoryModule),
+    data: { title: 'order_intake_history' },
+    canActivate: [AccessGranted],
+    canLoad: [CapabilityAccess]
+  },
+  {
     path: 'about',
     loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule),
     data: { title: 'about' },

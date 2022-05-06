@@ -1,0 +1,113 @@
+<!-- Binding for params -->
+<ng-container *ngLet="params$ | async as params">
+  <!-- Binding for rows -->
+  <ng-container *ngLet="rows$ | async as rows">
+    <!-- Overview -->
+    <div class="overview" *ngIf="plantOrZoneRows$ | async as plantOrZoneRows">
+      <dip-total-selector></dip-total-selector>
+      <!-- Headers -->
+      <report-header type="day"></report-header>
+      <div class="header-rows">
+        <!-- Header Row of currented select plant / zone -->
+        <div class="header-row zone">
+          <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+          <div class="title with-selector">
+            <dip-plant-selector></dip-plant-selector>
+          </div>
+        </div>
+        <ng-container *ngLet="plantOrZoneRows | distinctMonths as currentDistinctMonths">
+          <ng-container *ngLet="previousMonthRows$ | async as previousMonthRows">
+            <!-- Header Row of current selected month -->
+            <div class="header-row zone">
+              <i class="arrow" (click)="_obRouter.goToPlantZoneView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to plant/zone view"></i>
+              <div class="title with-selector">
+                <dip-month-selector [rows]="plantOrZoneRows"></dip-month-selector>
+              </div>
+              <ng-container *ngLet="currentDistinctMonths[params.month] | sumQuantity as currentValue">
+                <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+                <ng-container *ngLet="previousMonthRows | sumQuantity as previousValue">
+                  <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+                  <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-container>
+        </ng-container>
+        <!-- Header Row of current selected product / region -->
+        <div class="header-row zone">
+          <i class="arrow" (click)="_obRouter.goToMonthView(_ac)" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to month view"></i>
+          <div class="title with-selector">
+            <dip-product-region-selector [rows]="monthRows$ | async" [previousRows]="previousRows$ | async"></dip-product-region-selector>
+          </div>
+          <ng-container *ngLet="rows | sumQuantity as currentValue">
+            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+            <ng-container *ngIf="previousRows$ | async | sumQuantity as previousValue; else dummyPrevious">
+              <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+              <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+            </ng-container>
+            <!-- Template for when a region title is not found in a previous month -->
+            <ng-template #dummyPrevious>
+              <div class="previous orange">-</div>
+              <div class="delta grey">-</div>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Content Rows -->
+      <div class="title-header">
+        <ng-container *ngIf="params.type === 'region'; else regionsTitle">
+          <div class="title">PRODUCTS</div>
+        </ng-container>
+        <ng-template #regionsTitle>
+          <div class="title">REGIONS</div>
+        </ng-template>
+      </div>
+      <!-- Opposite param type -->
+      <ng-container *ngLet="params.type === 'region' ? 'product' : 'region' as oppositeType">
+        <!-- Items rows -->
+        <ng-container *ngLet="previousRows$ | async | distinctItems:oppositeType as previousRegions">
+          <ng-container *ngLet="rows | distinctItems:oppositeType:previousRegions | mockMissingPreviousRows:previousRegions | keyvalue as items">
+            <ng-container *ngLet="items | max:(previousRegions | keyvalue) as maximum">
+              <!-- Iterate over each region -->
+              <div class="lvl4-row" (click)="goItem(oppositeType, item.key)" *ngFor="let item of items">
+                <div class="title">{{ item.key }}</div>
+                <!-- Bind current and previous value, previous can be not found in some cases! -->
+                <ng-container *ngLet="item.value | sumQuantity as currentValue">
+                  <ng-container *ngLet="previousRegions[item.key] | default:[] as previousRegion">
+                    <ng-container *ngLet="previousRegion | sumQuantity as previousValue">
+                      <!-- Bind template of LVL 4 Row -->
+                      <ng-container *ngTemplateOutlet="responsiveRow; context: { current: currentValue, previous: previousValue, maximum: maximum }"></ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>
+<!-- Template for LVL 4 Rows -->
+<ng-template #responsiveRow let-current="current" let-previous="previous" let-maximum="maximum">
+  <!-- Check mobile view-->
+  <ng-container *ngIf="_data.mobile$ | async; then mobileRow else desktopRow"></ng-container>
+  <!-- Template for mobile-tabletPortrait -->
+  <ng-template #mobileRow>
+    <ng-container *ngTemplateOutlet="lvl4Row; context: { current: current, previous: previous }"></ng-container>
+    <!-- Bind numbers template -->
+    <dip-product-region-chart class="mobile" [current]="current" [previous]="previous" [maximum]="maximum"></dip-product-region-chart>
+  </ng-template>
+  <!-- Template for TabletLandscape-Desktop -->
+  <ng-template #desktopRow>
+    <dip-product-region-chart class="desktop" [current]="current" [previous]="previous" [maximum]="maximum"></dip-product-region-chart>
+    <!-- Bind numbers template -->
+    <ng-container *ngTemplateOutlet="lvl4Row; context: { current: current, previous: previous }"></ng-container>
+  </ng-template>
+</ng-template>
+<!-- Template used in every row to show the numbers -->
+<ng-template #lvl4Row let-current="current" let-previous="previous">
+  <div class="actual cyan" [innerHTML]="current | toNumber"></div>
+  <div class="previous orange" [innerHTML]="previous | toNumber"></div>
+  <div class="delta grey" [innerHTML]="previous | difference:current"></div>
+</ng-template>

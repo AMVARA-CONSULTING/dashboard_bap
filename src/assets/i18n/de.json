@@ -1,5 +1,8 @@
 {
     "menu": {
+        "deliveries": "Versendet",
+        "order_Intake_History": "aaa",
+        "order_intake_history": "Entwicklung des E-Commerce",
         "order_intake": "Auftragseingang",
         "order_backlog": "Auftragsbestand",
         "production_program": "Produktionprogramm",
@@ -27,6 +30,10 @@
         "plant": "Ändern die ausgewählte Fabrik",
         "year": "Ändern das ausgewählte Jahr"
     },
+    "total_selector": {
+        "avg_view": "Durchschnitt",
+        "total_view": "Summen"
+    },
     "description": {
         "coordinator": "Koordinator",
         "designer": "Designer",
@@ -41,7 +48,7 @@
     "region": "Region",
     "product": "Produkt",
     "regions": "Regionen",
-    "products": "Produkte",
+    "products": "ESTABLISHMNET",
     "production_program": {
         "customer": "Kunde",
         "plan": "Plan",
@@ -86,5 +93,17 @@
         "date": "Datum",
         "not_running": "Läuft nicht",
         "link_to_app": "Link zur @ Corporate Analytics-Plattform"
+    },
+    "shipped": {
+        "day": "Tag",
+        "mon_sum": "Σ Monat Summe",
+        "mon_avg": "Ø Monat Durchs.",
+        "to": "Barcelona",
+        "tr": "Madrid",
+        "ow": "Alicante",
+        "rs": "Valencia",
+        "dt": "Cordoba",
+        "dp": "Granada",
+        "cc": "Malaga"
     }
 }

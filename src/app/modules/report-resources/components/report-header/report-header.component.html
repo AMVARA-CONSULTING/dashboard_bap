@@ -1,0 +1,89 @@
+<div class="empty"></div>
+<ng-container [ngSwitch]="level">
+    <!-- Level 1 Headers -->
+    <ng-container *ngSwitchCase="1">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} {{ ( days$ | async ).latestDay | formatLatestDay }}</div>
+                <div class="lower"></div>
+            </div>
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} {{ ( days$ | async ).latestDay | formatLatestDay }}</div>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} Prev. Year</div>
+        </ng-template>
+    </ng-container>
+    <!-- Level 2 Headers -->
+    <ng-container *ngSwitchCase="2">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} Last</div>
+                <div class="lower">12 Month</div>
+            </div>
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} Last 12 month</div>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} Prev. Year</div>
+        </ng-template>
+    </ng-container>
+    <!-- Level 3 Headers -->
+    <ng-container *ngSwitchCase="3">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <ng-container *ngIf="(currentMonthDate$ | async) === currentMonth; then today else last12MonthMobile"></ng-container>
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <ng-container *ngIf="(currentMonthDate$ | async) == currentMonth; then today else last12MonthDesktop"></ng-container>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} Prev. Year</div>
+        </ng-template>
+    </ng-container>
+    <!-- Level 4 Headers -->
+    <ng-container *ngSwitchCase="4">
+        <!-- Mobile -->
+        <ng-container *ngIf="_data.mobile$ | async; else desktopHeaders">
+            <ng-container *ngIf="(currentMonthDate$ | async) === currentMonth; then today else last12MonthMobile"></ng-container>
+            <div class="report-date">
+                <div class="upper">{{totalOrAverageSign | async | valueSign}} Prev.</div>
+                <div class="lower">Year</div>
+            </div>
+        </ng-container>
+        <!-- Desktop -->
+        <ng-template #desktopHeaders>
+            <ng-container *ngIf="(currentMonthDate$ | async) == currentMonth; then today else last12MonthDesktop"></ng-container>
+            <div class="report-date">{{totalOrAverageSign | async | valueSign}} Prev. Year</div>
+        </ng-template>
+    </ng-container>
+</ng-container>
+<ng-template #today>
+    <div class="report-date">
+        <div class="upper">{{totalOrAverageSign | async | valueSign}} {{ currentMonthDate$ | async | formatLatestDay:'today' }}</div>
+    </div>
+</ng-template>
+<ng-template #last12MonthMobile>
+    <div class="report-date">
+        <div class="upper">{{totalOrAverageSign | async | valueSign}} {{ currentMonthDate$ | async | formatLatestDay:'monthOnly' }}</div>
+    </div>
+</ng-template>
+<ng-template #last12MonthDesktop>
+    <div class="report-date">
+        <div class="upper">{{totalOrAverageSign | async | valueSign}} {{ currentMonthDate$ | async | formatLatestDay:'monthOnly' }}</div>
+    </div>
+</ng-template>
+<div class="glyph">&Delta;</div>

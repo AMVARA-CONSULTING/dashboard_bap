@@ -1,0 +1,301 @@
+@import 'colors';
+
+:host {
+    display: block;
+    left: 0;
+}
+
+:host report-header::ng-deep {
+    @include desktop {
+        margin-bottom: -20px;
+        .report-date,
+        .glyph {
+            flex: 1 5%;
+        }
+    }
+}
+
+.report-header {
+    @include desktop {
+        height: 286px;
+        margin-bottom: 2px;
+        overflow-y: hidden;
+    }
+}
+
+.overview {
+    display: flex;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .6s ease-in-out;
+    // border-color: rgba($color: #000, $alpha: .2);
+    @include mobileLandscape {
+        flex-wrap: wrap;
+    }
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $bg-white-lvl1);
+    @media screen and (min-width: 400px) and (orientation: landscape) {
+        max-height: 1000px;
+        min-height: 243px;
+        overflow: auto;
+        border-bottom: 3px solid rgba($color: #000, $alpha: .05);
+    }
+    @include desktop {
+        max-height: 1000px;
+        min-height: 243px;
+        // height: calc(100% - 79px) !important;
+        overflow: auto;
+        border-bottom: 2px solid transparent;
+    }
+
+    .graphic {
+        flex: 1 60%;
+        max-width: 60%;
+        padding: 30px;
+        
+        @include mobileLandscape {
+            flex: 1 40%;
+            max-width: 40%;
+            height: 260px;
+            padding-right: 10px;
+            border-bottom: 0;
+            padding-bottom: 50px;
+            padding-top: 10px;
+        }
+    }
+    .simple {
+        flex: 1 40%;
+        max-width: 40%;
+        border-left: 3px solid rgba($color: #000, $alpha: .35);
+        padding: 30px;
+        padding-right: 20px;
+        @include mobileLandscape {
+            flex: 1 60%;
+            max-width: 60%;
+            border-left-width: 0;
+            padding-left: 10px;
+            .headers {
+                padding-right: 0 !important
+            }
+            .previous {
+                flex: 0 0 95px !important;
+            }
+        }
+        .overview-group {
+            display: flex;
+            width: 100%;
+            line-height: 40px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            .empty, .actual, .previous, .delta {
+                flex: 1;
+            }
+            transition: background .1s ease-in-out;
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+            &:hover {
+                background-color: rgba(255,255,255,.05);
+            }
+            .empty {
+                cursor: pointer;
+            }
+            .actual {
+                color: $lighten-cyan-text;
+                @include totalStyle;
+                text-align: right;
+            }
+            .previous {
+                color: $yellow-text;
+                @include totalStyle;
+                text-align: right;
+            }
+            .delta {
+                color: rgba(white, .85);
+                @include totalStyle;
+                text-align: right;
+            }
+        }
+    }
+}
+
+@include lightTheme {
+    :host::ng-deep .overview .simple .overview-group .actual {
+        color: $cyan-text-light !important; 
+    }
+    .zone .zone-header .actual {
+        color: $cyan-text-light !important; 
+    }
+    :host {
+        background-color: white;
+        .zone {
+            .zone-header {
+                background-color: $light-grey2;
+                .title {
+                    color: $light-grey3;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $petrol !important;
+                }
+                .previous {
+                    color: $orange !important;
+                }
+                .delta {
+                    color: rgba($text-color, .8) !important;
+                }
+            }
+            .plant {
+                background-color: white;
+                border-bottom: 1px solid $light-grey2;
+                .title {
+                    color: $light-grey4 !important;
+                    font-weight: bold;
+                }
+                .actual {
+                    color: $text-color !important;
+                    font-weight: bold;
+                }
+                .previous {
+                    color: $text-color !important;
+                    font-weight: bold;
+                }
+                .delta {
+                    color: $text-color !important;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    :host .overview {
+        background: linear-gradient(to bottom, white, $light-grey2);
+        border-bottom-color: white;
+        .simple {
+            border-left-color: transparent;
+            .actual {
+                color: $petrol !important;
+            }
+            .previous {
+                color: $orange !important;
+            }
+            .delta {
+                color: rgba($text-color, .8) !important;
+            }
+        }
+    }
+}
+
+.zone {
+    display: block;
+    position: relative;
+    .zone-header {
+        display: flex;
+        padding: 12px 40px 12px 40px;
+        @include mobile {
+            padding: 12px 20px 12px 15px;
+        }
+        position: relative;
+        border-bottom: 1px solid transparent;
+        &:hover {
+            border-bottom-color: $yellow-text !important;
+        }
+        background-color: $bg-white-lvl1;
+        cursor: pointer;
+        .title {
+            flex: 1 30%;
+            @include desktop {
+                font-size: 17px;
+                line-height: 25px;
+                flex: 1 70%;
+                letter-spacing: 1px;
+            }
+            text-transform: uppercase;
+        }
+        .actual,
+        .previous,
+        .delta {
+            flex: 1 15%;
+            @include totalStyle;
+            @include desktop {
+                flex: 0 0 150px;
+            }
+            text-align: right;
+        }
+        .actual {
+            color: $lighten-cyan-text;
+        }
+        .previous {
+            color: $yellow-text;
+        }
+        .delta {
+            color: rgba(white, .85);
+        }
+    }
+    .plant {
+        display: flex;
+        padding: 12px 40px 12px 40px;
+        @include mobile {
+            padding: 12px 20px 12px 15px;
+        }
+        position: relative;
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+        @include rowHoverEffect;
+        &:hover .title {
+            &:after {
+                left: 10px;
+            }
+            padding-left: 30px;
+            box-sizing: border-box;
+        }
+        &:nth-child(even) {
+            background-color: $bg-white-lvl3;
+        }
+        &:nth-child(odd) {
+            background-color: $bg-white-lvl4;
+        }
+        .title {
+            transition: padding-left .15s ease-in-out;
+            flex: 1 30%;
+            @include desktop {
+                flex: 1 70%;
+            }
+            padding-left: 20px;
+            position: relative;
+            &:after {
+                transition: left .15s ease-in-out;
+                content: "";
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                display: block;
+                background-image: url(^assets/arrow.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+        .actual {
+            color: $lighten-cyan-text;
+        }
+        .previous {
+            color: $yellow-text;
+        }
+        .delta {
+            color: rgba(white, .85);
+        }
+        .actual,
+        .previous,
+        .delta {
+            flex: 1 15%;
+            text-align: right;
+            @include detailStyle;
+            @include desktop {
+                flex: 0 0 150px;
+            }
+        }
+    }
+}

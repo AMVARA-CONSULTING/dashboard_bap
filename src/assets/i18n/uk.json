@@ -3,8 +3,10 @@
         "order_intake": "Приймання замовлень",
         "order_backlog": "Список замовлень",
         "production_program": "Виробнича програма",
+        "order_intake_history": "Еволюція електронної комерції",
         "allocation": "Розподіл",
         "plant_stock": "Інвентар",
+        "deliveries": "Відправлено",
         "about": "Про сторінку",
         "help": "Допомога"
     },

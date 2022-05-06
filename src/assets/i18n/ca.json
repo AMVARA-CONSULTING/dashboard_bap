@@ -1,8 +1,10 @@
 {
     "menu": {
+        "deliveries": "Enviat",
         "order_intake": "Activitat",
         "order_backlog": "Ventes",
         "production_program": "Empleats",
+        "order_intake_history": "Ecommerce evolució",
         "allocation": "COVID-19",
         "plant_stock": "Llistat d'empreses",
         "about": "Sobre",

@@ -3,7 +3,9 @@
         "order_intake": "Прием заказов",
         "order_backlog": "Список заказов",
         "production_program": "Производственная программа",
+        "order_intake_history": "Эволюция электронной коммерции",
         "allocation": "Распределение",
+        "deliveries": "Отправленный",
         "plant_stock": "Инвентарь",
         "about": "О странице",
         "help": "Помощь"

@@ -1,11 +1,28 @@
 #!/bin/sh
 
+# install git
+# apk add git
 
-# cd to the working directory
-cd /opt/code/ || exit 1
-# install angular v 7.0.6
-npm install -g @angular/cli@7.0.6
-# install all the npm packages necessary
-npm install || exit 2
+# deactivate questions
+export NG_CLI_ANALYTICS=ci
+
+echo "removing node_modules"
+rm -rf node_modules && echo OK || echo failed
+
+echo "rm -rf /root/.npm"
+rm -rf /root/.npm && echo OK || echo failed
+
+echo "------ npm version"
+npm version
+
+echo "------ npm cache verify"
+npm cache verify
+
+# echo "------ npm cache clean"
+# npm cache clean
+
+echo "doing npm ci"
+time npm ci --timing --loglevel verbose && echo OK || exit 2
+
 # serve the page
-ng serve --aot --host 0.0.0.0
+npx ng serve --host 0.0.0.0 --disable-host-check

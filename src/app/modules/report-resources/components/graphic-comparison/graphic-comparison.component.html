@@ -1,0 +1,13 @@
+<ngx-charts-line-chart
+  [scheme]="colorScheme$ | async"
+  [legend]="true"
+  [showXAxisLabel]="false"
+  [showYAxisLabel]="false"
+  [xAxis]="true"
+  [yAxis]="true"
+  [timeline]="false"
+  [xAxisTickFormatting]="xAxisTickFormattingFn"
+  legendPosition="below"
+  legendTitle=""
+  [results]="chart$ | async">
+</ngx-charts-line-chart>

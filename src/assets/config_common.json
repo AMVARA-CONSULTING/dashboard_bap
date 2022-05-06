@@ -22,11 +22,13 @@
 		"ca": "Català"
 	},
 	"reportLinks": [
-			{ "link": "/activity", "text": "order_intake" },
+		{ "link": "/activity", "text": "order_intake" },
     	{ "link": "/sells", "text": "order_backlog"},
     	{ "link": "/employees", "text": "production_program" },
     	{ "link": "/covid", "text": "allocation" },
-    	{ "link": "/companies", "text": "plant_stock" }
+    	{ "link": "/companies", "text": "plant_stock" },
+		{ "link": "/shipped", "text": "deliveries" },
+		{ "link": "/ecommerce evolution", "text": "order_intake_history" }
 	],
 	"portal": "/internal/bi/",
 	"apiLink": "/internal/bi/v1/",
@@ -36,7 +38,9 @@
 		"order_intake": true,
 		"production_program": true,
 		"allocation": true,
-		"plant_stock": true
+		"plant_stock": true,
+		"deliveries": true,
+		"order_intake_history": true
 	},
     "capabilities": {
       "int": "i606D0768D6AC4241AADD880B4B72EC06",
@@ -69,10 +73,20 @@
 					"fallback": "Planning.json"
 				},
 				"orderBacklog": {
-					"id": "TBD",
+					"id": "iBC11D50CB0AE41ED90875D353EAC5A0A",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
-				}
+				},
+				"deliveries": {
+                    "id": "i89B4EB7B3F284703AADBE540BC0F01E4",
+                    "selector": "AMVARA_DATA_DR",
+                    "fallback": "KB_Delivery_new.txt"
+                },
+				"orderIntakeHistory": {
+                    "id": "iABDC27EF49F142FD9AF580A466FF9A9B",
+                    "selector": "AMVARA_DATA_OIH",
+                    "fallback": "OrderIntakeHistory.json"
+                }
 			},
 			"prod": {
 				"orderIntake": {
@@ -101,10 +115,22 @@
 				},
 				"orderBacklog": {
 					"reportSearchpath": "--- ReportID unknown ... to be defined in config_common.json ---",
-					"id": " --- ReportID unknown ... to be defined in config_common.json ---",
+					"id": "iBC11D50CB0AE41ED90875D353EAC5A0A",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
-				}
+				},
+				"deliveries": {
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+                    "id": "i89B4EB7B3F284703AADBE540BC0F01E4",
+                    "selector": "AMVARA_DATA_DR",
+                    "fallback": "KB_Delivery_new.txt"
+                },
+				"orderIntakeHistory": {
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+                    "id": "iABDC27EF49F142FD9AF580A466FF9A9B",
+                    "selector": "AMVARA_DATA_OIH",
+                    "fallback": "OrderIntakeHistory.json"
+                }
 			}
 		},
 		"trucks": {
@@ -130,10 +156,20 @@
 					"fallback": "Planning.json"
 				},
 				"orderBacklog": {
-					"id": "iA01394B355674C3880C15541A6D68B3E",
+					"id": "iBC11D50CB0AE41ED90875D353EAC5A0A",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
-				}
+				},
+				"deliveries": {
+                    "id": "i89B4EB7B3F284703AADBE540BC0F01E4",
+                    "selector": "AMVARA_DATA_DR",
+                    "fallback": "KB_Delivery_new.txt"
+                },
+				"orderIntakeHistory": {
+                    "id": "iABDC27EF49F142FD9AF580A466FF9A9B",
+                    "selector": "AMVARA_DATA_OIH",
+                    "fallback": "OrderIntakeHistory.json"
+                }
 			},
 			"prod": {
 				"orderIntake": {
@@ -162,10 +198,22 @@
 				},
 				"orderBacklog": {
 					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='TRUCKS']/report[@name='Order_Backlog_Truck']",
-					"id": "i0F2C43C961E04D17AA68FC332CB71894",
+					"id": "iBC11D50CB0AE41ED90875D353EAC5A0A",
 					"selector": "AMVARA_DATA_OB",
 					"fallback": "Order_Backlog.json"
-				}
+				},
+				"deliveries": {
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+                    "id": "i89B4EB7B3F284703AADBE540BC0F01E4",
+                    "selector": "AMVARA_DATA_DR",
+                    "fallback": "KB_Delivery_new.txt"
+                },
+				"orderIntakeHistory": {
+					"reportSearchpath": "/content/folder[@name='0201_DIPRE']/folder[@name='COCKPIT']/folder[@name='ReportOutputs']/folder[@name='VANS']/report[@name='Planning_Van']",
+                    "id": "iABDC27EF49F142FD9AF580A466FF9A9B",
+                    "selector": "AMVARA_DATA_OIH",
+                    "fallback": "OrderIntakeHistory.json"
+                }
 			},
 			"columns": {
 				"orderIntake": {

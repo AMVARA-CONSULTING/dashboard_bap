@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { InterceptorParams } from 'ngx-network-error';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -18,15 +17,9 @@ export class NewUpdateComponent {
   reload() {
     const path = `${location.protocol}//${location.host}${location.pathname}`;
     this._http.get(path, {
-      responseType: 'text',
-      params: new InterceptorParams({
-        skipInterceptor: true,
-        ignoreServiceWorkerCache: true,
-        ignoreProxyCache: true,
-        ignoreDiskCache: true
-      })
+      responseType: 'text'
     }).pipe(
-      finalize(() => location.reload(true))
+      finalize(() => location.reload())
     ).subscribe()
   }
 

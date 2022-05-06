@@ -9,10 +9,22 @@
     float: left;
     padding-left: 5px;
 }
+.report-header {
+    @include desktop {
+        height: 286px;
+        margin-bottom: 2px;
+        overflow-y: hidden;
+    }
+}
+
+:host ::ng-deep .mat-form-field .mat-form-field-infix {
+    border-top: 10px solid transparent !important;
+}
 
 .plandate {
     display: block;
     padding: 0 40px;
+    font-size: 15px;
     @include mobile {
         padding: 0 15px;
     }
@@ -24,6 +36,7 @@
 }
 
 .overview {
+    height: calc(100% - 10px);
     display: flex;
     width: 100%;
     max-height: 0;
@@ -109,6 +122,11 @@ header {
     padding: 0 15px;
     @include desktop {
         padding: 0 40px;
+    }
+    @include new-dark-theme {
+        // background-color: $new-dark-group-bg-color !important;
+        background-color: $light-blue !important;
+        border-bottom: 2px solid $new-dark-body-bg-color;
     }
     box-sizing: border-box;
     height: 40px;
@@ -288,7 +306,8 @@ header {
             }
         }
         header {
-            background-color: $light-grey2 !important;
+            // background-color: $light-grey2 !important;
+            background-color: $saturated-gray !important;
             .title {
                 color: $light-grey4;
                 font-weight: bold;
@@ -299,6 +318,7 @@ header {
             .previous {
                 color: $orange;
             }
+            // border-bottom: 2px solid $faint-gray;
             border-bottom: 2px solid white;
         }
         .group-header {

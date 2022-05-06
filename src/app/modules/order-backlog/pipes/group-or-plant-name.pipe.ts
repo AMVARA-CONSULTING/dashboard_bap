@@ -18,5 +18,5 @@ export class GroupOrPlantNamePipe implements PipeTransform {
 }
 
 export function groupOrPlantNameFn(values: any[], type: 'plant' | 'group' | 'zone', language): string {
-  return values[0][['group', 'zone'].includes(type) ? BacklogColumns[`PlantGroup${language}`] : BacklogColumns[`Plant${language}`]];
+return values[0][['group', 'zone'].includes(type) ? BacklogColumns[`PlantGroup${language}`] : BacklogColumns[`Plant${language}`]];
 }

@@ -3,7 +3,9 @@
         "order_intake": "Actividad",
         "order_backlog": "Ventas",
         "production_program": "Empleados",
+        "order_intake_history": "Ecommerce evolución",
         "allocation": "COVID-19",
+        "deliveries": "Enviada",
         "plant_stock": "Listado de empresas",
         "about": "Acerca de",
         "help": "Ayuda"

@@ -1,0 +1,130 @@
+
+@import 'colors';
+
+:host {
+    position: relative;
+    display: block;
+    // background-color: $main-bg-content-color;
+}
+
+:host > * {
+    display: block;
+}
+
+// Stylize zone and plant option of selector
+::ng-deep .plant-select-panel {
+    min-width: calc(100% + 60px) !important;
+    .zone {
+        color: rgba(white, .7);
+        .mat-option-text {
+            text-transform: uppercase;
+        }
+    }
+    .plant {
+        padding-left: 40px;
+    }
+    .mat-optgroup-label {
+        color: rgba($yellow-text, .9);
+    }
+}
+
+:host::ng-deep .header-row {
+    position: relative;
+    // Fix mat-select to correctly fit into title row
+    .title.with-selector {
+        flex: initial;
+        padding-left: 20px !important;
+        @include desktop {
+            padding-left: 30px !important;
+        }
+        .mat-form-field-infix {
+            border-top: 0;
+        }
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+        .mat-form-field .mat-select-value {
+            padding-right: 5px;
+        }
+        .mat-form-field {
+            max-width: 90px !important;
+        }
+    }
+    // Arrow icon before title
+    i.arrow {
+        position: absolute;
+        height: 100%;
+        width: 35px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 99;
+        transform: rotate(180deg);
+        margin: auto;
+        display: block;
+        background-image: url(^assets/arrow.svg);
+        background-size: 7px;
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: 15px;
+        transition: background-position-x .2s ease-in-out;
+        &:hover {
+            background-position-x: 25px;
+        }
+        @include desktop {
+            width: 60px;
+        }
+    }
+}
+
+:host::ng-deep {
+    dip-month-selector,
+    dip-product-region-selector,
+    dip-plant-selector {
+        display: block;
+    }
+}
+
+::ng-deep order-backlog-sub-lvl2, ::ng-deep order-backlog-main, ::ng-deep order-backlog-sub-lvl3,
+::ng-deep order-intake-history-sub-lvl2, ::ng-deep order-intake-history-main, ::ng-deep order-intake-history-sub-lvl3 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: calc(100% - 32px);
+    padding-top: 70px;
+    box-sizing: border-box;
+    width: 100%;
+    left: 0;
+    overflow-y: auto;
+    transform: translate3d(0,0,0);
+    touch-action: pan-y !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-select-value-text {
+    color: $semi-white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: $semi-white !important;
+    opacity: .7;
+}
+
+::ng-deep .mat-select-content {
+    background-color: $bg-white-lvl2;
+}
+
+::ng-deep .mat-option:not(.mat-selected) {
+    color: $semi-white;
+}
+
+::ng-deep .mat-option.mat-selected {
+    color: $yellow-text !important;
+}

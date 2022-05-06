@@ -8,6 +8,8 @@ import { BacklogColumns } from '@other/interfaces';
 export class PlantsByZonePipe implements PipeTransform {
 
   // Get available plants inside zone
-  transform = (values: any[]) => classifyByProperty(values, BacklogColumns.SortKey_Plant);
+  transform = (values: any[]) => { 
+    return classifyByProperty(values, BacklogColumns.SortKey_Plant)
+  };
 
 }

@@ -1,5 +1,7 @@
 {
     "menu": {
+        "deliveries": "Shipped",
+        "order_intake_history": "Ecommerce evolution",
         "order_intake": "Activity",
         "order_backlog": "Sells",
         "production_program": "Employees",
@@ -24,6 +26,10 @@
         "plan_unit": "Current total of workers in the company",
         "reserved": "Total amount of layoffs"
     },
+    "total_selector": {
+        "avg_view": "AVERAGE VIEW",
+        "total_view": "TOTAL VIEW"
+    },
     "change": {
         "plant": "Change selected province",
         "year": "Change selected year"
@@ -44,6 +50,7 @@
     "regions": "Regions",
     "city": "City",
     "cities": "Cities",
+    "products": "ESTABLISHMNET",
     "companies": "Companies",
     "sectors": "Sectors",
     "list": "List",
@@ -91,5 +98,17 @@
         "date": "Date",
         "not_running": "Not running",
         "link_to_app": "Link to @ Corporate Analytics Platform"
+    },
+    "shipped": {
+        "day": "Day",
+        "mon_sum": "Σ Month Sum",
+        "mon_avg": "Ø Month Avg.",
+        "to": "Barcelona",
+        "tr": "Madrid",
+        "ow": "Alicante",
+        "rs": "Valencia",
+        "dt": "Cordoba",
+        "dp": "Granada",
+        "cc": "Malaga"
     }
 }

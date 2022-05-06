@@ -1,0 +1,145 @@
+@import 'colors';
+
+@keyframes animate {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@for $i from 1 through 8 {
+    .zone:nth-child(#{$i}) {
+        animation: animate 1s ease-in-out forwards;
+        animation-delay: $i * 0.1s;
+    }
+}
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    transition: 0.2s;
+}
+
+.zone {
+    opacity: 0;
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    cursor: inherit;
+    transition: top .15s ease-in-out;
+    top: 0;
+    &:hover {
+        top: -10px;
+    }
+    .title {
+        @include light-theme { color: $light-grey4; }
+        @include small-mobile { font-size: 12px; }
+        position: absolute;
+        height: 30px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 30px;
+        text-align: center;
+    }
+    .bars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: calc(100% - 40px);
+        width: calc(100% - 20px);
+        .day {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+            width: calc(50% - 2px);
+            transition: height .7s ease-in-out;
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba($cyan-text, .5));
+            border-top: 3px solid $cyan-text;
+            padding-top: 5px;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                @include totalStyle;
+                @include small-mobile { font-size: 12px; }
+                color: rgba($cyan-text, .9);
+            }
+            &.zero {
+                height: 0% !important;
+            }
+        }
+        .month {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+            width: calc(50% - 2px);
+            transition: height .7s ease-in-out;
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba($yellow-text, .5));
+            border-top: 3px solid $yellow-text;
+            padding-top: 5px;
+            .value {
+                position: absolute;
+                top: -25px;
+                text-align: center;
+                width: 100%;
+                @include small-mobile { font-size: 12px; }
+                @include totalStyle;
+                color: rgba($yellow-text, .9);
+            }
+            &.zero {
+                height: 0% !important;
+            }
+        }
+    }
+}
+
+:host::ng-deep .day {
+    border-color: $cyan-text;
+    position: relative;
+}
+
+
+@include lightTheme {
+    :host::ng-deep {
+        .day {
+            border-color: $petrol;
+        }
+        .month {
+            border-color: $orange;
+        }
+        .zone {
+            .bars {
+                .day {
+                    background: linear-gradient(to top, rgba(0,0,0,0), rgba($petrol, .6)) !important;
+                    .value {
+                        color: $petrol !important;
+                    }
+                    border-top-color: $petrol !important;
+                }
+                .month {
+                    background: linear-gradient(to top, rgba(0,0,0,0), rgba($orange, .6)) !important;
+                    .value {
+                        color: $orange !important;
+                    }
+                    border-top-color: $orange !important;
+                }
+            }
+            .title {
+                color: $light-grey4;
+            }
+        }
+    }
+}
+
+:host::ng-deep .month {
+    border-color: $yellow-text;
+    position: relative;
+}

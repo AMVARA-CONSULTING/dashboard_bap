@@ -1,0 +1,15 @@
+<div class="wrapper" [@list]="werks.length">
+  <div class="werk" (click)="goWerk(werk.key)" *ngFor="let werk of werks" [style.width.%]="barsWidth">
+    <div class="bars">
+      <div style="position: relative; height: 100%;">
+        <div [ngClass]="{zero: !ready}" class="actual" [style.height.%]="percent(data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual), maxTotal, false, false, false)">
+          <div class="value" *ngIf="!(data.mobile$ | async)">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.actual) | toNumber }}</div>
+        </div>
+        <div [ngClass]="{zero: !ready}" class="previous" [style.height.%]="percent(data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous), maxTotal, false, false, false)">
+          <div class="value" *ngIf="!(data.mobile$ | async)">{{ data.sumByIndex(werk.value, config.config.reports.trucks.columns.plantStock.previous) | toNumber }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="title">{{ werk.key }}</div>
+  </div>
+</div>

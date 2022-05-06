@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="zone" *ngFor="let diagram of chartData" [style.width.%]="barsWidth">
+    <div class="bars">
+      <div style="position: relative; height: 100%;">
+        <div [ngClass]="{zero: !ready}" class="day" [style.height.%]="diagram.dayPercent">
+          <div class="value">{{ diagram.day | toNumber}}</div>
+        </div>
+        <div [ngClass]="{zero: !ready}" class="month" [style.height.%]="diagram.averagePercent" >
+          <div class="value">{{ diagram.average | toNumber }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="title">
+      {{ diagram.name }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!-- Binding for params -->
+<ng-container *ngLet="params$ | async as params">
+  <!-- Binding for rows -->
+  <ng-container *ngIf="rows$ | async as rows">
+    <!-- Bindings for actual and previous date ranges -->
+    <ng-container *ngLet="rows | filterYear:'current' | async as currentYearRows">
+      <ng-container *ngLet="rows | filterYear:'previous' | async as previousYearRows">
+        <dip-total-selector></dip-total-selector>
+        <!-- Graphic Comparison -->
+        <report-graphic-comparison [current]="currentYearRows" [previous]="previousYearRows"></report-graphic-comparison>
+        <!-- Overview -->
+        <div class="overview">
+          <!-- Headers -->
+          <report-header></report-header>
+          <!-- Header Row of current select plant / zone -->
+          <div class="header-row zone">
+            <i class="arrow" (click)="_obRouter.goToMainView()" matTooltipClass="after" matTooltipPosition="after" matTooltip="Return to main view"></i>
+            <div class="title with-selector">
+              <dip-plant-selector></dip-plant-selector>
+            </div>
+          </div>
+          <!-- Content Rows -->
+          <ng-container *ngLet="rows | filterYear:'current' | async as currentYearRows">
+            <ng-container *ngLet="rows | filterYear:'previous' | async | distinctMonths | keyvalue as previousYearMonths">
+              <ng-container *ngFor="let year of currentYearRows | distinctYears">
+                <!-- Year Row -->
+                <div class="title-header">
+                  <div class="title">{{ year.key }}</div>
+                </div>
+                <!-- Month Rows -->
+                <div class="lvl2-row" (click)="_obRouter.goToMonthView(_ac, null, null, month.key)" *ngFor="let month of year.value | distinctMonths | keyvalue | reverse">
+                  <div class="title">{{ month.key | monthFormat }}</div>
+                  <ng-container *ngLet="month.value | sumQuantity as currentValue">
+                    <ng-container *ngLet="month.key | previousMonth:previousYearMonths | sumQuantity as previousValue">
+                      <div class="actual cyan" [innerHTML]="currentValue | toNumber"></div>
+                      <div class="previous orange" [innerHTML]="previousValue | toNumber"></div>
+                      <div class="delta grey" [innerHTML]="previousValue | difference:currentValue"></div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>

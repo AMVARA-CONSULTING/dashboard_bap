@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-select panelClass="plant-select-panel" [formControl]="monthControl">
+    <ng-container *ngLet="rows | filterYear:'current' | async as currentYearRows">
+      <ng-container *ngLet="rows | filterYear:'previous' | async | distinctMonths | keyvalue as previousYearMonths">
+        <mat-optgroup *ngFor="let year of currentYearRows | distinctYears" [label]="year.key">
+          <ng-container *ngFor="let month of year.value | distinctMonths | keyvalue | reverse">
+            <mat-option [value]="month.key">{{ month.key | monthFormat }}</mat-option>
+          </ng-container>
+        </mat-optgroup>
+      </ng-container>
+    </ng-container>
+  </mat-select>
+</mat-form-field>

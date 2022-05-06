@@ -1,0 +1,23 @@
+<div class="wrapper" [@list]="zones.length">
+  <!-- Iterate over each zone -->
+  <ng-container *ngLet="zones | highestZoneTotal | async as highestZone">
+    <div class="zone" (click)="goZone(zone.key)" *ngFor="let zone of zones" [style.width.%]="100 / zones.length">
+      <div class="bars">
+        <div style="position: relative; height: 100%;">
+          <ng-container *ngLet="zone.value | sumQuantity as zoneTotal">
+            <!-- Current year bar -->
+            <div *ngLet="zone.value | filterDay:'current' | async | sumQuantity as quantity" class="actual" [style.height.%]="quantity | percent:highestZone | startWith:0 | async">
+              <div class="value" *ngIf="!(_data.mobile$ | async)">{{ quantity | toNumber }}</div>
+            </div>
+            <!-- Previous year bar -->
+            <div *ngLet="zone.value | filterDay:'previous' | async | sumQuantity as quantity" class="previous" [style.height.%]="quantity | percent:highestZone | startWith:0 | async">
+              <div class="value" *ngIf="!(_data.mobile$ | async)">{{ quantity | toNumber }}</div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Zone name -->
+      <div class="title">{{ zone.value | groupOrPlantName:'group' }}</div>
+    </div>
+  </ng-container>
+</div>

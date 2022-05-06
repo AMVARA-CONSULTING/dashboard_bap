@@ -142,6 +142,54 @@ export function versionToNumber(version: string): number {
   return parseInt(version.replace(/\./, ''), 10);
 }
 
+ export function shippedToJson(data: any, language: string) {
+  let shippedObject =  [];
+  let header: any = [];
+  data = data.replace(/"/g, '').replace(/,/g, '.');
+  const delimiter = guessCSVDelimiter(data);
+  const lines = data.split("\r");
+  header = lines.shift().split(delimiter);
+  lines.forEach(line => {
+    if (line === "\n") return;
+    let splitLine = line.replace(/^\s+|\s+$/g, '').split(delimiter);
+    let lineObject = {};
+    for(let i=0; i<splitLine.length; i++) {
+      if(Number(splitLine[i])) splitLine[i] = Number(splitLine[i]);
+      lineObject[header[i]] = splitLine[i];
+    }
+    let pl = lineObject["pl"];
+    let ds = lineObject["ds"];
+       if(!shippedObject[pl]) shippedObject[pl] = {};
+       if(ds == 'day') {
+        const deliveryDate = shipped_date_to_dd_mm_yyyy( lineObject["dd"] );
+        if(!shippedObject[pl][deliveryDate]) shippedObject[pl][deliveryDate] = {}
+        shippedObject[pl][deliveryDate] = lineObject;
+    } else {
+        if(!shippedObject[pl]["month"]) shippedObject[pl]["month"] = []
+        const date = shipped_date_to_zoned_mmmm_yyyy( lineObject["mn"], language );
+        lineObject["month_id"] = date;
+        shippedObject[pl]["month"].push(lineObject);
+    }
+  })
+  return shippedObject;
+}
+
+// recieves date string in format ex: 05(month)-09(day)-2021(year)
+// returns date string in format ex: 05(day)/09(month)/2021(year)
+export function shipped_date_to_dd_mm_yyyy(date: string): string {
+  const [del_year, del_month, del_day] = date.split("-").map(item => Number(item));
+  const newDate =  moment( new Date(del_year, del_month-1, del_day), "DD/MM/YYYY").format("DD/MM/YYYY");  
+  return newDate;
+}
+
+// recieves date string in format ex: 05(month)/2021(year)
+// returns date string in format ex: MAY-2021
+export function shipped_date_to_zoned_mmmm_yyyy(date: string, language: string): string {
+  const [month, year] = date.split("/").map(item => Number(item));
+  const newDate = moment( new Date(year, month-1, 1), "DD/MM/YYYY", language).format("MMMM/YYYY");
+  return newDate;
+}
+
 
 /**
  * Sanitizes a CSV text string

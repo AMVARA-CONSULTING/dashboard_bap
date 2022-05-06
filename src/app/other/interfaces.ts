@@ -39,6 +39,8 @@ export interface Config {
     simulateUnauthorized: number;
 
     version: string;
+    commit: string;
+    build: number;
 }
 
 export interface ReportLink {
@@ -63,6 +65,8 @@ export interface IReports<T> {
     plantStock: T;
     productionProgram: T;
     orderBacklog: T;
+    orderIntakeHistory: T,
+    deliveries: T;
 }
 
 export enum ReportTypes {
@@ -70,7 +74,9 @@ export enum ReportTypes {
     ProductionProgram = 'productionProgram',
     Allocation = 'allocation',
     PlantStock = 'plantStock',
-    OrderBacklog = 'orderBacklog'
+    OrderBacklog = 'orderBacklog',
+    OrderIntakeHistory = 'orderIntakeHistory',
+    Deliveries ="deliveries"
 }
 
 export interface ReportInfo {
@@ -95,10 +101,12 @@ export interface UserCapabilities {
 
 export interface SectionCapability {
     order_intake: boolean;
+    order_intake_history: boolean;
     order_backlog: boolean;
     production_program: boolean;
     allocation: boolean;
     plant_stock: boolean;
+    deliveries?: boolean;
 }
 
 export interface UserPreferences {
@@ -136,17 +144,34 @@ export interface SelectYearData {
 export enum BacklogColumns {
     Date = 'Datum Tagesstand (konv.)',
     Datatype = 'Datatype',
-    PlantEnglish = 'Plant (english)',
-    PlantDeutsch = 'Werk (deutsch)',
-    PlantGroupEnglish = 'Plant Group (english)',
-    PlantGroupDeutsch = 'Werksgruppierung (deutsch)',
+    PlantEnglish = '#7',
+    PlantDeutsch = '#6',
+    PlantGroupEnglish = '#4',
+    PlantGroupDeutsch = '#5',
     ProductEnglish = 'Product (englisch)',
-    ProductDeutsch = 'Produkt (deutsch)',
-    RegionEnglish = 'Region (english)',
-    RegionDeutsch = 'Region (deutsch)',
-    SortKey_Plant = 'SortKey_Werk',
-    SortKey_PlantGroup = 'SortKey_Werksgruppe',
+    ProductDeutsch = '#9',
+    RegionEnglish = '#10',
+    RegionDeutsch = '#11',
+    SortKey_Plant = '#3',
+    SortKey_PlantGroup = '#2',
     Quantity = 'Stückzahl'
+}
+
+export enum IntakeHistoryColumns {
+    Date = 'Month',
+    Datatype = '#1',
+    PlantEnglish = '#7',
+    PlantDeutsch = '#6',
+    PlantGroupEnglish = '#4',
+    PlantGroupDeutsch = '#5',
+    ProductEnglish = '#8',
+    ProductDeutsch = '#9',
+    RegionEnglish = '#10',
+    RegionDeutsch = '#11',
+    SortKey_Plant = '#3',
+    SortKey_PlantGroup = '#2',
+    Total = '#15',
+    Average = '#16'
 }
 
 export interface Zones {
@@ -160,6 +185,7 @@ export interface ReportState {
     previousDateRange: string[];
     latestDay: string;
     previousDay: string;
+    showTotal?: boolean;
 }
 
 export interface OrderBacklogDays {

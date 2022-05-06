@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Config } from '@other/interfaces';
-import { report } from 'process';
+// import { report } from 'process';
 
 export namespace ConfigActions {
 

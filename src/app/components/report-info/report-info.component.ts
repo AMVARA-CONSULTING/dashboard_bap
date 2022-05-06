@@ -25,7 +25,6 @@ export class ReportInfoComponent implements OnChanges {
 
   @Input() type = '';
   @Input() title = '';
-  @Input() shownTitle = '';
 
   ngOnChanges(changes: SimpleChanges) {
     const type = changes.type.currentValue;
@@ -47,6 +46,9 @@ export class ReportInfoComponent implements OnChanges {
         case 'plantStock':
           this.api.getSavedReportData(ReportTypes.PlantStock).subscribe(_ => this.rollup(type));
           break;
+        case 'orderIntakeHistory':
+          this.api.getSavedReportData(ReportTypes.OrderIntakeHistory).subscribe(_ => this.rollup(type));
+          break;
       }
     } else {
       this.rollup(type);
@@ -63,7 +65,8 @@ export class ReportInfoComponent implements OnChanges {
       orderIntake: [],
       allocation: [],
       plantStock: [],
-      productionProgram: []
+      productionProgram: [],
+      orderIntakeHistory: []
     };
     // Collect ReportIDs for each Report, Scenario and Target
     // tslint:disable-next-line: forin
@@ -89,6 +92,8 @@ export class ReportInfoComponent implements OnChanges {
     if (ids.plantStock.includes(this.id.getValue())) this.name.next('Plant_Stock_Truck');
     // tslint:disable-next-line: curly
     if (ids.orderBacklog.includes(this.id.getValue())) this.name.next('Order_Backlog_Truck');
+    // tslint:disable-next-line: curly
+    if (ids.orderIntakeHistory.includes(this.id.getValue())) this.name.next('Order_Intake_History');
   }
 
 }

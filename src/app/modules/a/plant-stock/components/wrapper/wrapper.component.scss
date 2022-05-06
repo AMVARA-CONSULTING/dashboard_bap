@@ -1,0 +1,53 @@
+
+@import 'colors';
+
+:host {
+    position: relative;
+    display: block;
+}
+
+:host > * {
+    display: block;
+}
+
+::ng-deep plant-stock-main, ::ng-deep plant-stock-lvl2, ::ng-deep plant-stock-lvl3 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: calc(100% - 32px);
+    padding-top: 70px;
+    box-sizing: border-box;
+    width: 100%;
+    left: 0;
+    overflow-y: auto;
+    touch-action: pan-y !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-select-value-text {
+    color: $semi-white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: $semi-white !important;
+    opacity: .7;
+}
+
+::ng-deep .mat-select-content {
+    background-color: $bg-white-lvl2;
+}
+
+::ng-deep .mat-option:not(.mat-selected) {
+    color: $semi-white;
+}
+
+::ng-deep .mat-option.mat-selected {
+    color: $yellow-text !important;
+}

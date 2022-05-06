@@ -1,0 +1,61 @@
+<!-- Quick Overview -->
+<ng-container *ngIf="zones$ | async | keyvalue as zones">
+  <div class="report-header">
+    <dip-total-selector></dip-total-selector>
+    <!-- Header Info -->
+    <report-header type="day"></report-header>
+    <div class="overview">
+      <div class="graphic">
+        <!-- Graphic -->
+        <report-graphic [zones]="zones | startWith:[] | async"></report-graphic>
+      </div>
+      <!-- Overview of plant groups -->
+      <div class="simple">
+        <div (click)="_obRouter.goToPlantZoneView(_ac, 'zone', zone.key)" class="overview-group" *ngFor="let zone of zones">
+          <div class="empty">{{ zone.value | groupOrPlantName:'group' }}</div>
+          <!-- Map current value -->
+          <ng-container *ngLet="zone.value | filterDay:'current' | async | sumQuantity as currentValue">
+            <!-- Map previous value -->
+            <ng-container *ngLet="zone.value | filterDay:'previous' | async | sumQuantity as previousValue">
+              <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+              <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+              <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Zones Content -->
+  <div class="wrapper" [@list]="zones.length">
+    <!-- Iterate over each zone -->
+    <div class="zone" *ngFor="let zone of zones; trackBy:trackfn">
+      <div class="zone-header" (click)="_obRouter.goToPlantZoneView(_ac, 'zone', zone.key)">
+        <!-- FIXME: Dynamic language fields -->
+        <div class="title">{{ zone.value | groupOrPlantName:'group' }}</div>
+        <!-- Map current value -->
+        <ng-container *ngLet="zone.value | filterDay:'current' | async | sumQuantity as currentValue">
+          <!-- Map previous value -->
+          <ng-container *ngLet="zone.value | filterDay:'previous' | async | sumQuantity as previousValue">
+            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- Iterate over each plant inside zone -->
+      <div class="plant" (click)="_obRouter.goToPlantZoneView(_ac, 'plant', plant.key)" *ngFor="let plant of zone.value | plantsByZone | keyvalue">
+        <div class="title">{{ plant.value | groupOrPlantName:'plant' }}</div>
+        <!-- Map current value -->
+        <ng-container *ngLet="plant.value | filterDay:'current' | async | sumQuantity as currentValue">
+          <!-- Map previous value -->
+          <ng-container *ngLet="plant.value | filterDay:'previous' | async | sumQuantity as previousValue">
+            <div class="actual" [innerHTML]="currentValue | toNumber"></div>
+            <div class="previous" [innerHTML]="previousValue | toNumber"></div>
+            <div class="delta" [innerHTML]="previousValue | difference:currentValue"></div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>

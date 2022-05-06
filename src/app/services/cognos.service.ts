@@ -6,7 +6,6 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectSnapshot } from '@ngxs-labs/select-snapshot';
 import { ConfigState } from '@store/config.state';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginDialog } from 'app/dialogs/login/login.component';
 import { InterceptorParams } from 'ngx-network-error';
 
 @Injectable()
@@ -230,25 +229,7 @@ export class CognosService {
           }
           return r;
         }, []);
-        // Set user capabilities object values by name
-        this.userCapabilities.next({
-          admin: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Admins'.toLowerCase()),
-          mobile: rows.some(permission => permission.toLowerCase() === 'Global_Function_Groups‬:DIPRE_Mobile'.toLowerCase()),
-          trucks: {
-            order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order Intake'.toLowerCase()),
-            order_backlog: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Order_Back_Log'.toLowerCase()),
-            production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Production Program'.toLowerCase()),
-            allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Allocation'.toLowerCase()),
-            plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Truck_Management_Plant Stock'.toLowerCase())
-          },
-          vans: {
-            order_intake: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Order Intake'.toLowerCase()),
-            order_backlog: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_Van_Management_Order_Back_Log'.toLowerCase()),
-            production_program: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Production Program'.toLowerCase()),
-            allocation: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Allocation'.toLowerCase()),
-            plant_stock: rows.some(permission => permission.toLowerCase() === 'Project_Function_Groups:Management Function:DIPRE_VAN_Management_Plant Stock'.toLowerCase())
-          }
-        });
+    
         if (config.debug && this.userCapabilities.getValue().admin) console.log(this.userCapabilities.getValue())
         // Remove login iframe if provided
         if (iframe) iframe.remove()

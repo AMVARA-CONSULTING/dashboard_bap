@@ -7,7 +7,6 @@ import { ConfigService } from '@services/config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate, state } from '@angular/animations';
 import { ReportTypes } from '@other/interfaces';
-import { TranslateService } from '@ngx-translate/core';
 import { getPlanDateWithMoment, percent } from '@other/functions';
 
 @Component({
@@ -33,48 +32,31 @@ import { getPlanDateWithMoment, percent } from '@other/functions';
   }
 })
 export class AllocationLvl3Component {
-
   percent = percent;
-
   ready: boolean = false
-
   plandate: string = ''
   plants
-
   years: string[] = []
-
   months = []
-
   plant: string
   date: string
-
   type: string
   region_id: string
-
   monthMomentum: string = ''
-
-  // Names of the routes for each level
-  main_route: string = 'covid'
-  main_route_slash: string = '/covid'
-  second_level_route: string = 'date'
-  sub_level_a: string = 'region'
-  sub_level_b: string = 'city'
-
   constructor(
     public data: DataService,
     private title: Title,
     private api: ApiService,
     public config: ConfigService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private translate: TranslateService
+    private router: Router
   ) {
     (window as any).moment = moment
     moment.locale(this.config.config.language)
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation'))
+    this.title.setTitle(this.config.config.appTitle + ' - Covid 19')
     this.activatedRoute.paramMap.subscribe(params => {
       this.plant = params.get('plant')
-      this.date = params.get(this.second_level_route)
+      this.date = params.get('date')
       this.type = params.get('type')
       this.region_id = decodeURI(params.get('region_id'))
       // If no Allocation rows were found, get them
@@ -90,15 +72,12 @@ export class AllocationLvl3Component {
       }
     })
   }
-
   changePlant(plant: string): void {
-    this.router.navigate([this.main_route, plant, this.second_level_route, this.date, this.type, this.region_id], { replaceUrl: true })
+    this.router.navigate(['covid', plant, 'date', this.date, this.type, this.region_id], { replaceUrl: true })
   }
-
   getDate(month): string {
     return moment(month, 'MM / YYYY').format('MMMM YYYY')
   }
-
   rollupData() {
     this.plants = this.data.allocationData.reduce((r, a) => {
       r[a[0]] = r[a[0]] || ''
@@ -106,10 +85,10 @@ export class AllocationLvl3Component {
       return r
     }, {})
     if (this.plant == null || !this.plants[this.plant]) {
-      this.router.navigate([this.main_route, Object.keys(this.plants)[0]], { replaceUrl: true })
+      this.router.navigate(['covid', Object.keys(this.plants)[0]], { replaceUrl: true })
       return
     }
-    this.title.setTitle(this.config.config.appTitle + ' - ' + this.translate.instant('menu.allocation') + ' - ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
+    this.title.setTitle(this.config.config.appTitle + ' - Covid 19- ' + (this.data.allocationData.filter(item => item[0] == this.plant)[0][this.config.config.reports.trucks.columns.allocation.plantName[this.config.config.language]]))
     const dateNow: moment.Moment = moment()
     const dateNextEightMonths: moment.Moment = moment().add(12, 'months')
     let months = {}
@@ -143,7 +122,7 @@ export class AllocationLvl3Component {
     this.totalProgram = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program)
     this.totalAllocation = this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.allocation)
     const filteredRowsByPlant_copy2 = filteredRowsByPlant.concat()
-    if (this.type == this.sub_level_a) {
+    if (this.type == 'region') {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language]] == this.region_id)
     } else {
       filteredRowsByPlant = filteredRowsByPlant.filter(item => item[this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language]] == this.region_id)
@@ -155,7 +134,7 @@ export class AllocationLvl3Component {
     this.percentProgram = +percent(this.data.sumByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.program), this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.program), false, false, false)
     this.programNumber = this.data.sumByIndex(filteredRowsByPlant_copy2, this.config.config.reports.trucks.columns.allocation.program)
     this.monthMomentum = moment(this.date, 'YYYYMM').format('MMMM YYYY')
-    if (this.type == this.sub_level_a) {
+    if (this.type == 'region') {
       this.rows = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.productName[this.config.config.language])
     } else {
       this.rows = this.data.classifyByIndex(filteredRowsByPlant, this.config.config.reports.trucks.columns.allocation.regionName[this.config.config.language])
@@ -164,39 +143,29 @@ export class AllocationLvl3Component {
     setTimeout(() => {
       this.ready = true
     })
-
   }
-
   exchangeType(key): void {
-    if (this.type == this.sub_level_a) {
-      this.router.navigate(['../../', this.sub_level_b, key], { relativeTo: this.activatedRoute, replaceUrl: true })
+    if (this.type == 'region') {
+      this.router.navigate(['../../', 'product', key], { relativeTo: this.activatedRoute, replaceUrl: true })
     } else {
-      this.router.navigate(['../../', this.sub_level_a, key], { relativeTo: this.activatedRoute, replaceUrl: true })
+      this.router.navigate(['../../', 'region', key], { relativeTo: this.activatedRoute, replaceUrl: true })
     }
   }
-
   returnToMain(): void {
     this.router.navigate(['../../../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
-
   returnToParent(): void {
     this.router.navigate(['../../'], { relativeTo: this.activatedRoute, replaceUrl: true })
   }
-
   percentAllocation: number | string = 0
   percentProgram: number | string = 0
   partNumber: number = 0
   programNumber: number = 0
-
   rows = []
-
   regions
   products
-
   totalProgram: number = 0
   totalAllocation: number = 0
   subtotalProgram: number = 0
   subtotalAllocation: number = 0
-
-
 }
